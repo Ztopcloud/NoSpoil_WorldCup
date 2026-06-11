@@ -43,7 +43,7 @@ website/public/scgs-tv-extension.zip
 - 主队
 - 客队
 - 官方复播链接
-- 建议跳过秒数
+- 建议跳过前段秒数
 
 不允许包含：
 

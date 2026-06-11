@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'scgs-tv-pwa-v2';
+const CACHE_VERSION = 'scgs-tv-pwa-v3';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -47,7 +47,8 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
 
   if (url.pathname.endsWith('/data/matches.json')) {
-    event.respondWith(networkOnly(request));
+    // 缓存优先 + 后台更新：立即返回缓存，同时在后台拉取最新数据更新缓存
+    event.respondWith(staleWhileRevalidate(request));
     return;
   }
 
@@ -103,4 +104,19 @@ async function cacheFirst(request) {
 
 async function networkOnly(request) {
   return fetch(request);
+}
+
+async function staleWhileRevalidate(request) {
+  const cache = await caches.open(CACHE_VERSION);
+  const cached = await cache.match(request);
+
+  const fetchPromise = fetch(request).then(function(response) {
+    if (response.ok) {
+      cache.put(request, response.clone());
+    }
+    return response;
+  });
+
+  // 有缓存就立即返回缓存，同时在后台拉取最新数据
+  return cached || fetchPromise;
 }

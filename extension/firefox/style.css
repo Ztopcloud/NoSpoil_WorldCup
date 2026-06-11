@@ -24,6 +24,30 @@
   transform: translate(-50%, -8px);
 }
 
+html.nospoil-prepaint-shield:not(.nospoil-prepaint-ready) {
+  background: #000000 !important;
+}
+
+html.nospoil-prepaint-shield:not(.nospoil-prepaint-ready) body {
+  visibility: hidden !important;
+  background: #000000 !important;
+}
+
+html.nospoil-prepaint-shield:not(.nospoil-prepaint-ready)::before {
+  content: "时差观赛模式正在净屏...";
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483646 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #000000 !important;
+  color: #ffffff !important;
+  font: 600 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  letter-spacing: 0 !important;
+  text-align: center !important;
+}
+
 .nospoil-hidden {
   display: none !important;
   visibility: hidden !important;

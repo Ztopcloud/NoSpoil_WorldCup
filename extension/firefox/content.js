@@ -8,7 +8,11 @@
   const PLAYER_ROOT_CLASS = 'nospoil-player-root';
   const OUTSIDE_PLAYER_CLASS = 'nospoil-outside-player';
   const THEATER_CLASS = 'nospoil-theater-mode';
+  const PREPAINT_SHIELD_CLASS = 'nospoil-prepaint-shield';
+  const PREPAINT_READY_CLASS = 'nospoil-prepaint-ready';
+  const PREPAINT_STYLE_ID = 'nospoil-prepaint-style';
   const processedVideos = new WeakSet();
+  let prepaintShieldEnabled = false;
 
   const PLAYER_SAFE_SELECTORS = [
     'video',
@@ -60,6 +64,76 @@
   ];
 
   const TITLE_LIKE_TEXT = /\[[^\]]+\]\d{6,}/;
+  const PLAYER_CONTROL_TEXT = [
+    '暂停',
+    '播放',
+    '当前时间',
+    '时长',
+    '画质',
+    '静音',
+    '全屏',
+    '进度条',
+    '画中画'
+  ];
+  const PLAYER_REJECT_TEXT = [
+    '分析',
+    '数据',
+    '阵容',
+    '战报',
+    '竞猜',
+    '助威',
+    '评论',
+    '赛程',
+    '积分榜',
+    '查看全部'
+  ];
+
+  function shouldUsePrepaintShield() {
+    const hostname = window.location.hostname.toLowerCase();
+    const pathname = window.location.pathname.toLowerCase();
+
+    return hostname === 'worldcup.cctv.com' && /\/2026\/match\/\d+\/index\.shtml$/.test(pathname);
+  }
+
+  function installPrepaintShield() {
+    if (!shouldUsePrepaintShield() || !document.documentElement) return;
+
+    prepaintShieldEnabled = true;
+    document.documentElement.classList.add(PREPAINT_SHIELD_CLASS);
+
+    if (document.getElementById(PREPAINT_STYLE_ID)) return;
+
+    const style = document.createElement('style');
+    style.id = PREPAINT_STYLE_ID;
+    style.textContent = `
+html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS}) {
+  background: #000000 !important;
+}
+html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS}) body {
+  visibility: hidden !important;
+  background: #000000 !important;
+}
+html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
+  content: "时差观赛模式正在净屏...";
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483646 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #000000 !important;
+  color: #ffffff !important;
+  font: 600 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  letter-spacing: 0 !important;
+  text-align: center !important;
+}`;
+    document.documentElement.appendChild(style);
+  }
+
+  function releasePrepaintShield() {
+    if (!prepaintShieldEnabled || !document.documentElement) return;
+    document.documentElement.classList.add(PREPAINT_READY_CLASS);
+  }
 
   function createNotice() {
     if (document.getElementById(NOTICE_ID)) return;
@@ -86,13 +160,73 @@
     el.classList.add('nospoil-hidden');
   }
 
-  function getPlayerRoot() {
-    const video = Array.from(document.querySelectorAll('video'))
+  function getLargestVisibleVideo() {
+    return Array.from(document.querySelectorAll('video'))
       .map((el) => ({ el, rect: el.getBoundingClientRect() }))
       .filter(({ rect }) => rect.width > 320 && rect.height > 180)
       .sort((a, b) => (b.rect.width * b.rect.height) - (a.rect.width * a.rect.height))[0];
+  }
 
-    if (!video) return null;
+  function elementText(el) {
+    return (el.innerText || el.textContent || '').trim().replace(/\s+/g, ' ');
+  }
+
+  function candidatePlayerScore(el) {
+    const rect = el.getBoundingClientRect();
+    if (rect.width <= 320 || rect.height <= 180) return 0;
+
+    const attrs = [
+      el.getAttribute('aria-label'),
+      el.getAttribute('title'),
+      el.getAttribute('role'),
+      el.id,
+      typeof el.className === 'string' ? el.className : ''
+    ].join(' ');
+    const text = elementText(el).slice(0, 420);
+    const haystack = `${attrs} ${text}`.toLowerCase();
+    const hasPlayerLabel = /视频播放器|播放器|video\s*player|(^|\s|[-_])player($|\s|[-_])|video/.test(haystack);
+    const hasControls = PLAYER_CONTROL_TEXT.filter((marker) => text.includes(marker)).length >= 2;
+    const hasRejectedText = PLAYER_REJECT_TEXT.some((marker) => text.includes(marker));
+
+    let score = 0;
+    if (el.matches('video')) score += 100;
+    if (/视频播放器|video\s*player/i.test(attrs)) score += 90;
+    if (/(^|\s|[-_])(cctv-)?(video-)?player($|\s|[-_])|cctvplayer/i.test(attrs)) score += 60;
+    if (hasControls) score += 55;
+    if (hasPlayerLabel) score += 25;
+    if (el.matches('iframe') && !/视频播放器|video\s*player|player/i.test(attrs)) score -= 120;
+    if (hasRejectedText && !hasControls) score -= 120;
+
+    return score;
+  }
+
+  function getPlayerFallbackRoot() {
+    return Array.from(document.querySelectorAll([
+      '[aria-label*="视频播放器"]',
+      '[title*="视频播放器"]',
+      '[role="region"]',
+      '[role="application"]',
+      '[class*="player"]',
+      '[id*="player"]',
+      '[class*="video"]',
+      '[id*="video"]',
+      'iframe[title*="player" i]',
+      'iframe[title*="视频播放器"]'
+    ].join(',')))
+      .map((el) => ({ el, rect: el.getBoundingClientRect(), score: candidatePlayerScore(el) }))
+      .filter(({ score }) => score >= 70)
+      .sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return (b.rect.width * b.rect.height) - (a.rect.width * a.rect.height);
+      })[0]?.el || null;
+  }
+
+  function getPlayerRoot() {
+    const video = getLargestVisibleVideo();
+
+    if (!video) {
+      return getPlayerFallbackRoot();
+    }
 
     let best = video.el;
     let bestArea = video.rect.width * video.rect.height;
@@ -121,7 +255,10 @@
     const playerRoot = getPlayerRoot();
     if (playerRoot) return playerRoot.getBoundingClientRect();
 
-    const candidates = Array.from(document.querySelectorAll('video, [class*="player"], [id*="player"]'))
+    const fallbackRoot = getPlayerFallbackRoot();
+    if (fallbackRoot) return fallbackRoot.getBoundingClientRect();
+
+    const candidates = Array.from(document.querySelectorAll('video'))
       .map((el) => el.getBoundingClientRect())
       .filter((rect) => rect.width > 320 && rect.height > 180);
 
@@ -192,6 +329,7 @@
 
     const playerRoot = getPlayerRoot();
     hideOutsidePlayer(playerRoot);
+    if (playerRoot) releasePrepaintShield();
     hideCctvLayoutAroundVideo();
 
     const playerRect = getPlayerRect();
@@ -241,6 +379,16 @@
     }
   }
 
+  function getSkipTargetSeconds(video) {
+    const duration = Number(video.duration);
+    if (!Number.isFinite(duration) || duration <= 0) return DEFAULT_SKIP_SECONDS;
+    if (duration < 30) return 3;
+    if (duration < 60) return 8;
+    if (duration < 120) return 15;
+    if (duration < 200) return 25;
+    return DEFAULT_SKIP_SECONDS;
+  }
+
   function hidePossibleSpoilers() {
     SPOILER_SELECTORS.forEach((selector) => {
       document.querySelectorAll(selector).forEach((el) => {
@@ -261,13 +409,13 @@
       if (attempted) return;
 
       try {
+        const targetSeconds = getSkipTargetSeconds(video);
         if (
           video.duration &&
-          video.duration >= MIN_SKIP_DURATION_SECONDS &&
-          video.currentTime < DEFAULT_SKIP_SECONDS
+          video.currentTime < targetSeconds
         ) {
           attempted = true;
-          video.currentTime = DEFAULT_SKIP_SECONDS;
+          video.currentTime = targetSeconds;
         }
       } catch (err) {
         attempted = true;
@@ -294,6 +442,7 @@
     trySkipIntro();
   }
 
+  installPrepaintShield();
   run();
 
   const observer = new MutationObserver(() => {

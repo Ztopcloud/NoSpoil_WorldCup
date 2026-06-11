@@ -1,0 +1,5 @@
+# Android project build artifacts
+android-probe/.gradle/
+android-probe/.idea/
+android-probe/build/
+android-probe/local.properties

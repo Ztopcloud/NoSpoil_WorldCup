@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "时差观赛助手",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "隐藏复播页面中可能包含剧透的信息，帮助用户用时差观赛方式观看官方复播。",
   "browser_specific_settings": {
     "gecko": {
@@ -26,7 +26,7 @@
       ],
       "js": ["content.js"],
       "css": ["style.css"],
-      "run_at": "document_idle"
+      "run_at": "document_start"
     }
   ],
   "icons": {

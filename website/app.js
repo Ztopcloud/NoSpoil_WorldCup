@@ -434,9 +434,9 @@
   }
 
   function renderRoundBlock(title, matches) {
-    // 按比赛时间倒序排列：最新的在最前面
+    // 按比赛时间正序排列：最近的/最早的在最左边
     var sorted = matches.slice().sort(function(a, b) {
-      return matchStartTime(b).getTime() - matchStartTime(a).getTime();
+      return matchStartTime(a).getTime() - matchStartTime(b).getTime();
     });
     return '<div class="match-round-block">' +
       '<div class="round-header"><span>' + title + '</span></div>' +
@@ -445,9 +445,9 @@
   }
 
   function renderScrollableRoundBlock(title, matches) {
-    // 按比赛时间倒序排列
+    // 按比赛时间正序排列：最近的/最早的在最左边
     var sorted = matches.slice().sort(function(a, b) {
-      return matchStartTime(b).getTime() - matchStartTime(a).getTime();
+      return matchStartTime(a).getTime() - matchStartTime(b).getTime();
     });
     return '<div class="match-row-section">' +
       '<div class="round-header"><span>' + title + '</span></div>' +
@@ -573,7 +573,10 @@
   });
 
   /* ===== Fetch & Init ===== */
-  fetch('data/matches.json?v=' + Date.now(), { cache: 'no-store' })
+  // 使用固定版本号替代 Date.now()，允许浏览器/CDN 条件缓存（304 Not Modified），
+  // 同时更新版本号后会拉取最新数据，兼顾加载速度与内容更新。
+  var MATCHES_VERSION = '20260611';
+  fetch('data/matches.json?v=' + MATCHES_VERSION)
     .then(function(response) {
       if (!response.ok) throw new Error('matches load failed');
       return response.json();
