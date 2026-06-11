@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "时差观赛助手",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "隐藏复播页面中可能包含剧透的信息，帮助用户用时差观赛方式观看官方复播。",
   "permissions": [],
   "host_permissions": [

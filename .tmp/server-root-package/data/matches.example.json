@@ -1,0 +1,22 @@
+[
+  {
+    "id": "match-001",
+    "date": "2026-06-12",
+    "timeBeijing": "09:00",
+    "home": "球队A",
+    "away": "球队B",
+    "replayUrl": "https://example.com/official-replay-url",
+    "skipSeconds": 60,
+    "sourceName": "官方公开复播页面"
+  },
+  {
+    "id": "match-002",
+    "date": "2026-06-13",
+    "timeBeijing": "03:00",
+    "home": "球队C",
+    "away": "球队D",
+    "replayUrl": "https://example.com/official-replay-url-2",
+    "skipSeconds": 90,
+    "sourceName": "官方公开复播页面"
+  }
+]

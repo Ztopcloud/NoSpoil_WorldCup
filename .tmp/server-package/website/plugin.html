@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>安装时差观赛助手 - 时差观赛</title>
+    <meta name="description" content="下载时差观赛助手，选择常用浏览器，并在同一个页面里完成安装查看。">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="assets/pwa-icon-192.png">
+    <meta name="theme-color" content="#050c2f">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="时差观赛">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="styles.css?v=11">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="时差观赛首页">
+        <img src="assets/logo-white-wide.png" alt="时差观赛">
+      </a>
+      <nav class="nav-links nav-links-mobile-trim" aria-label="主导航">
+        <!-- 世界杯 独立入口 -->
+        <a href="index.html" class="nav-item">
+          <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16c-5.76 0-6.78-5.74-6.96-10.294c-.051-1.266-.076-1.9.4-2.485c.475-.586 1.044-.682 2.183-.874A26.4 26.4 0 0 1 12 2c1.784 0 3.253.157 4.377.347c1.139.192 1.708.288 2.184.874s.45 1.219.4 2.485C18.781 10.26 17.761 16 12.001 16Z"/><path stroke-linecap="round" d="M12 16v3"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.5 22h-7l.34-1.696a1 1 0 0 1 .98-.804h4.36a1 1 0 0 1 .98.804z"/><path d="m19 5l.949.316c.99.33 1.485.495 1.768.888S22 7.12 22 8.162v.073c0 .86 0 1.291-.207 1.643s-.584.561-1.336.98L17.5 12.5M5 5l-.949.316c-.99.33-1.485.495-1.768.888S2 7.12 2 8.162v.073c0 .86 0 1.291.207 1.643s.584.561 1.336.98L6.5 12.5m4.646-6.477C11.526 5.34 11.716 5 12 5s.474.34.854 1.023l.098.176c.108.194.162.29.246.354c.085.064.19.088.4.135l.19.044c.738.167 1.107.25 1.195.532s-.164.577-.667 1.165l-.13.152c-.143.167-.215.25-.247.354s-.021.215 0 .438l.02.203c.076.785.114 1.178-.115 1.352c-.23.174-.576.015-1.267-.303l-.178-.082c-.197-.09-.295-.135-.399-.135s-.202.045-.399.135l-.178.082c-.691.319-1.037.477-1.267.303s-.191-.567-.115-1.352l.02-.203c.021-.223.032-.334 0-.438s-.104-.187-.247-.354l-.13-.152c-.503-.588-.755-.882-.667-1.165c.088-.282.457-.365 1.195-.532l.19-.044c.21-.047.315-.07.4-.135c.084-.064.138-.16.246-.354z"/><path stroke-linecap="round" d="M18 22H6"/></g></svg>
+          世界杯
+        </a>
+        <div class="nav-dropdown">
+          <button class="nav-drop-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" fill-rule="evenodd" d="m2.782 11.225l.396-.262c.594-.393.987-.654 1.265-.887c.264-.221.364-.369.416-.507s.076-.315.025-.656c-.054-.36-.175-.815-.359-1.504l-.167-.625a9.2 9.2 0 0 0-1.576 4.44m2.75-5.84l.024.074l.429 1.602c.17.638.315 1.177.382 1.631c.035.233.053.46.042.687l2.5 1.053a2 2 0 0 1 .18-.16l1.838-1.404q.148-.113.312-.19v-2.71a3.5 3.5 0 0 1-.608-.284c-.398-.229-.847-.56-1.377-.952L7.876 3.715a9.3 9.3 0 0 0-2.344 1.67m4.007-2.306l.572.422c.573.423.953.702 1.268.883c.298.171.47.214.618.216c.147.001.32-.038.622-.203c.318-.174.704-.445 1.286-.855l.622-.438a9.2 9.2 0 0 0-2.538-.354a9.2 9.2 0 0 0-2.45.329m6.646.678a1 1 0 0 1-.095.08l-1.354.954c-.54.38-.995.702-1.397.922c-.197.108-.396.2-.6.267v2.697q.163.078.311.191l1.837 1.405q.099.075.184.162l2.56-1.06c-.01-.225.008-.451.043-.683c.067-.454.212-.993.382-1.63l.429-1.602l.008-.029a9.3 9.3 0 0 0-2.308-1.674m3.48 3.095l-.149.557c-.184.689-.305 1.145-.359 1.504c-.05.34-.027.518.025.656s.152.286.416.507c.278.233.67.494 1.265.887l.328.217a9.2 9.2 0 0 0-1.526-4.328m3.055 5.55q.007-.2.007-.402c0-5.936-4.807-10.75-10.738-10.75C6.057 1.25 1.25 6.064 1.25 12s4.807 10.75 10.739 10.75c5.625 0 10.238-4.33 10.7-9.84a.75.75 0 0 0 .03-.508m-1.543.567L20 12.19c-.55-.363-1.016-.67-1.367-.966a3.6 3.6 0 0 1-.458-.452l-2.613 1.082a2 2 0 0 1-.067.324l-.721 2.337q-.038.123-.092.236l1.468 1.698c.225-.075.46-.12.704-.148c.456-.052 1.014-.052 1.673-.052h1.668a9.2 9.2 0 0 0 .98-3.281m-1.951 4.781h-.656c-.713 0-1.184.001-1.544.042c-.341.04-.506.107-.625.194c-.12.086-.237.22-.382.533c-.153.33-.303.777-.528 1.453l-.226.68a9.26 9.26 0 0 0 3.96-2.902m-5.7 3.372l.555-1.663c.208-.627.385-1.156.578-1.572q.129-.281.295-.528l-1.434-1.66q-.202.051-.416.051h-2.23q-.2 0-.388-.043L9.21 17.332q.178.257.313.555c.194.416.37.945.579 1.572l.565 1.697a9.3 9.3 0 0 0 2.86-.034m-4.58-.385l-.254-.765c-.226-.676-.376-1.124-.529-1.453c-.145-.312-.262-.447-.381-.533c-.12-.087-.284-.155-.625-.194c-.36-.04-.832-.042-1.544-.042H4.75a9.26 9.26 0 0 0 4.195 2.987m-5.15-4.46a.8.8 0 0 1 .202-.027h1.656c.66 0 1.217 0 1.673.052c.235.027.46.069.676.139l1.304-1.662a2 2 0 0 1-.105-.263l-.721-2.337a2 2 0 0 1-.068-.328l-2.55-1.075a3.6 3.6 0 0 1-.456.45c-.352.294-.817.601-1.367.965l-1.236.817c.127 1.17.47 2.273.991 3.27m8.192-6.269a.25.25 0 0 0-.15.052L10 11.464a.25.25 0 0 0-.087.273l.722 2.337a.25.25 0 0 0 .237.176h2.23a.25.25 0 0 0 .238-.176l.722-2.337a.25.25 0 0 0-.087-.273l-1.837-1.405a.25.25 0 0 0-.15-.05" clip-rule="evenodd"/></svg>
+            足球
+            <svg class="nav-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <ul class="nav-drop-menu" role="menu">
+            <li role="none"><a href="index.html" role="menuitem"><span class="league-badge" style="background:linear-gradient(135deg,#006bff,#08d5ff);color:#fff">WC</span>世界杯</a></li>
+            <li role="none"><a href="#" role="menuitem"><span class="league-badge" style="background:#37003c;color:#fff">PL</span>英超</a></li>
+            <li role="none"><a href="#" role="menuitem"><span class="league-badge" style="background:#1a3a6e;color:#fff">SA</span>意甲</a></li>
+            <li role="none"><a href="#" role="menuitem"><span class="league-badge" style="background:#d20515;color:#fff">BL</span>德甲</a></li>
+            <li role="none"><a href="#" role="menuitem"><span class="league-badge" style="background:#091c3e;color:#fff">L1</span>法甲</a></li>
+            <li role="none"><a href="#" role="menuitem"><span class="league-badge" style="background:linear-gradient(135deg,#ff4e00,#ffb800);color:#fff">LL</span>西甲</a></li>
+            <li role="none"><a href="#" role="menuitem"><span class="league-badge" style="background:#0e1e5b;color:#fff">⚽</span>欧冠</a></li>
+            <li role="none"><a href="#" role="menuitem"><span class="league-badge" style="background:#e60012;color:#fff">中</span>中超</a></li>
+          </ul>
+        </div>
+        <div class="nav-dropdown">
+          <button class="nav-drop-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M17.736 20.192c4.524-3.168 5.623-9.404 2.455-13.928C17.024 1.74 10.788.641 6.264 3.81C1.74 6.976.641 13.212 3.808 17.736s9.404 5.623 13.928 2.456m0 0L6.264 3.809"/><path d="M19.577 5.473c-3.77 5.896-8.508 9.214-16.302 11.415"/><path d="M13.06 2.056c.413 5.24 3.392 9.494 8.646 12.35M2.293 9.595c4.783 2.18 7.761 6.434 8.647 12.349"/></g></svg>
+            篮球
+            <svg class="nav-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <ul class="nav-drop-menu" role="menu">
+            <li role="none"><a href="#" role="menuitem"><span class="league-badge" style="background:linear-gradient(135deg,#e4002b,#0033a0,#f2a900,#009639);color:#fff">NB</span>NBC</a></li>
+            <li role="none"><a href="#" role="menuitem"><span class="league-badge" style="background:#c8102e;color:#fff">CB</span>CBA</a></li>
+          </ul>
+        </div>
+        <a href="plugin.html" aria-current="page" class="nav-item">安装助手</a>
+        <a href="disclaimer.html" class="nav-item">免责声明</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="page-hero plugin-hero plugin-hero-aligned">
+        <div class="page-hero-inner">
+          <p class="eyebrow">Extension Guide</p>
+          <h1>安装时差观赛助手</h1>
+          <p class="lead">轻量的浏览器扩展、Windows 客户端与 Android 应用，帮你自动隐藏复播页的比分、标题和评论区——像看直播一样看回放。</p>
+          <nav class="tutorial-nav tutorial-nav-hero" aria-label="安装教程导航">
+            <button class="tutorial-nav-btn" type="button" data-tutorial-tab="windows">
+              <svg class="tutorial-nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.4 10.6 4v7.2H3V5.4Zm8.8-1.6L21 2.2v9h-9.2V3.8ZM3 12.4h7.6v7.2L3 18.2v-5.8Zm8.8 0H21v9l-9.2-1.6v-7.4Z" fill="currentColor"/></svg>
+              <span>Windows</span>
+            </button>
+            <button class="tutorial-nav-btn" type="button" data-tutorial-tab="android">
+              <svg class="tutorial-nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 4.4 5.9 2.2a.7.7 0 0 1 1.2-.7l1.4 2.3a8.6 8.6 0 0 1 7 0l1.4-2.3a.7.7 0 0 1 1.2.7l-1.3 2.2A8.6 8.6 0 0 1 20 11H4a8.6 8.6 0 0 1 3.2-6.6ZM8.5 8a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8Zm7 0a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8ZM4 12.4h16v7.1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7.1Z" fill="currentColor"/></svg>
+              <span>Android</span>
+            </button>
+            <button class="tutorial-nav-btn active" type="button" data-tutorial-tab="browser">
+              <span class="tutorial-browser-icons" aria-hidden="true">
+                <img src="https://api.iconify.design/logos/chrome.svg" alt="" width="18" height="18">
+                <img src="https://api.iconify.design/logos/microsoft-edge.svg" alt="" width="18" height="18">
+              </span>
+              <span>浏览器</span>
+            </button>
+          </nav>
+        </div>
+      </section>
+
+
+      <section id="tutorials" class="section tutorial-switcher">
+        <div class="tutorial-panels">
+          <section id="windows-tutorial" class="tutorial-panel" data-tutorial-panel="windows" hidden>
+            <article class="install-guide-panel install-guide-windows">
+              <div class="install-guide-head">
+                <div class="install-guide-title">
+                  <span class="install-guide-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.4 10.6 4v7.2H3V5.4Zm8.8-1.6L21 2.2v9h-9.2V3.8ZM3 12.4h7.6v7.2L3 18.2v-5.8Zm8.8 0H21v9l-9.2-1.6v-7.4Z" fill="currentColor"/></svg></span>
+                  <div>
+                    <p class="eyebrow">Windows</p>
+                    <h2>Windows 客户端安装教程</h2>
+                    <p>下载压缩包，完整解压后运行客户端。它会优先打开专用 Edge 窗口，并临时加载内置净屏助手。</p>
+                  </div>
+                </div>
+                <a class="button primary install-guide-download" href="public/nospoil-worldcup-windows.zip" download="nospoil-worldcup-windows.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 Windows 版</a>
+              </div>
+              <ol class="install-guide-steps">
+                <li>
+                  <span>01</span>
+                  <div>
+                    <h3>下载压缩包</h3>
+                    <p>将 <code>nospoil-worldcup-windows.zip</code> 保存到电脑上容易找到的位置。</p>
+                  </div>
+                </li>
+                <li>
+                  <span>02</span>
+                  <div>
+                    <h3>完整解压文件夹</h3>
+                    <p>右键压缩包选择全部解压，保留解压后的整个文件夹，不要只单独拖出 exe 文件。</p>
+                  </div>
+                </li>
+                <li>
+                  <span>03</span>
+                  <div>
+                    <h3>运行客户端</h3>
+                    <p>打开解压后的文件夹，双击「时差观赛.exe」。若 Windows 提示未知发布者，选择更多信息后继续运行。</p>
+                  </div>
+                </li>
+                <li>
+                  <span>04</span>
+                  <div>
+                    <h3>从专用窗口观看</h3>
+                    <p>程序会打开 scgs.tv。后续看复播时从这个窗口进入比赛页面即可。</p>
+                  </div>
+                </li>
+              </ol>
+              <div class="install-guide-note">
+                Windows 版依赖本机 Microsoft Edge。若系统未检测到 Edge，会改用默认浏览器打开页面，此时不会自动加载内置净屏助手。
+              </div>
+            </article>
+          </section>
+
+          <section id="android-tutorial" class="tutorial-panel" data-tutorial-panel="android" hidden>
+            <article class="install-guide-panel install-guide-android">
+              <div class="install-guide-head">
+                <div class="install-guide-title">
+                  <span class="install-guide-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 4.4 5.9 2.2a.7.7 0 0 1 1.2-.7l1.4 2.3a8.6 8.6 0 0 1 7 0l1.4-2.3a.7.7 0 0 1 1.2.7l-1.3 2.2A8.6 8.6 0 0 1 20 11H4a8.6 8.6 0 0 1 3.2-6.6ZM8.5 8a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8Zm7 0a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8ZM4 12.4h16v7.1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7.1Z" fill="currentColor"/></svg></span>
+                  <div>
+                    <p class="eyebrow">Android</p>
+                    <h2>Android 安装包教程</h2>
+                    <p>下载 APK 后在手机上安装，打开应用即可进入无剧透观赛页面。</p>
+                  </div>
+                </div>
+                <a class="button primary install-guide-download" href="public/时差观赛.apk" download="时差观赛.apk">
+                  <svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>
+                  下载 Android 版
+                </a>
+              </div>
+              <ol class="install-guide-steps">
+                <li>
+                  <span>01</span>
+                  <div>
+                    <h3>保存 APK 文件</h3>
+                    <p>将 <code>时差观赛.apk</code> 下载到手机。如果先下载到电脑，可通过微信文件传输助手或数据线传到手机。</p>
+                  </div>
+                </li>
+                <li>
+                  <span>02</span>
+                  <div>
+                    <h3>允许安装未知应用</h3>
+                    <p>打开手机<strong>设置 → 安全</strong>，找到「安装未知来源应用」或「允许安装未知应用」，为当前文件管理器或浏览器开启权限。</p>
+                  </div>
+                </li>
+                <li>
+                  <span>03</span>
+                  <div>
+                    <h3>安装应用</h3>
+                    <p>在手机上找到下载好的 APK 文件，点击安装。安装完成后桌面会出现「时差观赛」应用图标。</p>
+                  </div>
+                </li>
+                <li>
+                  <span>04</span>
+                  <div>
+                    <h3>打开应用观看</h3>
+                    <p>应用会自动加载无剧透观赛页面，启动后直达 scgs.tv 赛程页面。</p>
+                  </div>
+                </li>
+              </ol>
+              <div class="install-guide-note">
+                该安卓应用为 WebView 封装，不收集任何个人信息，无需注册登录。若手机提示安全风险，是因为应用未上架官方商店，属正常现象。
+              </div>
+            </article>
+          </section>
+
+          <section id="browser-tutorial" class="tutorial-panel active" data-tutorial-panel="browser">
+            <div class="section-heading">
+              <p class="eyebrow">Browsers</p>
+              <h2>浏览器插件教程</h2>
+            </div>
+            <div id="browser-downloads" class="browser-grid">
+              <article class="browser-card">
+                <span class="browser-label">Recommended</span>
+                <div class="browser-card-header">
+                  <img class="browser-card-icon" src="https://api.iconify.design/logos/chrome.svg" alt="Chrome" width="36" height="36">
+                  <h3>Chrome</h3>
+                  <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-chrome.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 Chrome 版</a>
+                </div>
+                <p>最直接的安装路径，打开 <code>chrome://extensions/</code> 后启用开发者模式并加载解压后的文件夹。</p>
+              </article>
+              <article class="browser-card">
+                <span class="browser-label">Chromium</span>
+                <div class="browser-card-header">
+                  <img class="browser-card-icon" src="https://api.iconify.design/logos/microsoft-edge.svg" alt="Edge" width="36" height="36">
+                  <h3>Edge</h3>
+                  <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-edge.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 Edge 版</a>
+                </div>
+                <p>可在 <code>edge://extensions/</code> 中加载已解压的扩展程序，整体步骤与 Chrome 基本一致。</p>
+              </article>
+              <article class="browser-card">
+                <span class="browser-label">Chromium</span>
+                <div class="browser-card-header">
+                  <img class="browser-card-icon" src="assets/360.png" alt="360浏览器" width="36" height="36">
+                  <h3>360 浏览器</h3>
+                  <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-360.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 360 版</a>
+                </div>
+                <p>桌面版通常支持开发者模式扩展安装，入口位置可能在扩展中心或管理页内。</p>
+              </article>
+              <article class="browser-card">
+                <span class="browser-label">Chromium</span>
+                <div class="browser-card-header">
+                  <img class="browser-card-icon" src="assets/QQ.png" alt="QQ浏览器" width="36" height="36">
+                  <h3>QQ 浏览器</h3>
+                  <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-qq.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 QQ 版</a>
+                </div>
+                <p>新版桌面端一般可兼容 Chrome 扩展，进入扩展管理页后加载已解压文件夹即可。</p>
+              </article>
+              <article class="browser-card">
+                <span class="browser-label warn">Check support</span>
+                <div class="browser-card-header">
+                  <img class="browser-card-icon" src="assets/UC.png" alt="UC浏览器" width="36" height="36">
+                  <h3>UC 浏览器</h3>
+                  <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-uc.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 UC 兼容版</a>
+                </div>
+                <p>是否支持本地开发者模式扩展，取决于桌面版本。建议优先使用 Chrome 或 Edge，稳定性更高。</p>
+              </article>
+              <article class="browser-card">
+                <span class="browser-label warn">Separate build</span>
+                <div class="browser-card-header">
+                  <img class="browser-card-icon" src="https://api.iconify.design/logos/firefox.svg" alt="Firefox" width="36" height="36">
+                  <h3>Firefox</h3>
+                  <a class="browser-download" href="public/scgs-tv-extension-firefox.zip" download="scgs-tv-extension-firefox.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 Firefox 版</a>
+                </div>
+                <p>火狐扩展体系不同，使用单独打包版本。长期发布时建议继续走 Firefox 扩展签名流程。</p>
+              </article>
+            </div>
+            <ol id="install-steps" class="step-list tutorial-step-list" style="margin-top:28px;">
+              <li>
+                <span>01</span>
+                <p>先在上方浏览器卡片里下载对应版本压缩包，再把它解压到一个固定文件夹，后续浏览器会一直从这个文件夹读取助手文件。</p>
+              </li>
+              <li>
+                <span>02</span>
+                <p>打开你常用浏览器的扩展管理页。Chrome 可用 <code>chrome://extensions/</code>，Edge 可用 <code>edge://extensions/</code>，其他 Chromium 浏览器通常也有对应的扩展管理入口。</p>
+              </li>
+              <li>
+                <span>03</span>
+                <p>打开"开发者模式"，点击"加载已解压的扩展程序"，选择刚才解压出来的助手文件夹。不要在安装后删除或移动这个文件夹。</p>
+              </li>
+              <li>
+                <span>04</span>
+                <p>从本站比赛入口打开支持的官方公开复播页面。看到"时差观赛模式已开启"提示，或页面里的标题、评论、推荐等剧透区域被隐藏时，就表示助手已经生效。</p>
+              </li>
+            </ol>
+            <div class="tip-strip">
+              注意：Chrome、Edge、360、QQ 和 UC 使用 Chromium 兼容包；Firefox 使用单独版本。助手只在本地浏览器里净屏，不会接管播放。
+            </div>
+
+            <section class="section">
+              <div class="section-heading split-heading">
+                <div>
+                  <p class="eyebrow">Local assistant</p>
+                  <h2>只做本地净屏，不接管播放</h2>
+                </div>
+              </div>
+              <div class="feature-grid">
+                <article class="feature-card">
+                  <span class="feature-index"><svg width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M208 40H48a24 24 0 0 0-24 24v112a24 24 0 0 0 24 24h160a24 24 0 0 0 24-24V64a24 24 0 0 0-24-24m8 136a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V64a8 8 0 0 1 8-8h160a8 8 0 0 1 8 8Zm-48 48a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8m-3.56-110.66l-48-32A8 8 0 0 0 104 88v64a8 8 0 0 0 12.44 6.66l48-32a8 8 0 0 0 0-13.32M120 137.05V103l25.58 17Z"/></svg></span>
+                  <h3>支持平台</h3>
+                  <p>桌面端支持 Chrome/Edge/Firefox/360/QQ/UC 等浏览器插件安装；手机端提供 Android APK 安装包，覆盖电脑和手机两种观赛场景。</p>
+                </article>
+                <article class="feature-card">
+                  <span class="feature-index"><svg width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M232 168h-8V72a24 24 0 0 0-24-24H56a24 24 0 0 0-24 24v96h-8a8 8 0 0 0-8 8v16a24 24 0 0 0 24 24h176a24 24 0 0 0 24-24v-16a8 8 0 0 0-8-8M48 72a8 8 0 0 1 8-8h144a8 8 0 0 1 8 8v96H48Zm176 120a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8v-8h192ZM152 88a8 8 0 0 1-8 8h-32a8 8 0 0 1 0-16h32a8 8 0 0 1 8 8"/></svg></span>
+                  <h3>本地运行 / 隐私安全</h3>
+                  <p>无论是浏览器插件还是手机 App，都只在本地运行，不上传浏览记录、不收集个人信息，也不需要注册登录。</p>
+                </article>
+                <article class="feature-card">
+                  <span class="feature-index"><svg width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M208 40H48a16 16 0 0 0-16 16v56c0 52.72 25.52 84.67 46.93 102.19c23.06 18.86 46 25.26 47 25.53a8 8 0 0 0 4.2 0c1-.27 23.91-6.67 47-25.53C198.48 196.67 224 164.72 224 112V56a16 16 0 0 0-16-16m0 72c0 37.07-13.66 67.16-40.6 89.42a129.3 129.3 0 0 1-39.4 22.2a128.3 128.3 0 0 1-38.92-21.81C61.82 179.51 48 149.3 48 112V56h160ZM82.34 141.66a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 11.32l-56 56a8 8 0 0 1-11.32 0Z"/></svg></span>
+                  <h3>失败不影响观看</h3>
+                  <p>浏览器插件和手机 App 都会按视频时长尝试跳过前段，但如果页面限制了进度跳转，视频仍会照常播放，你可以手动调整进度继续观看。</p>
+                </article>
+              </div>
+            </section>
+
+            <section class="section final-cta">
+              <div>
+                <p class="eyebrow">Before replay</p>
+                <h2>打开复播前，先确认助手处于启用状态</h2>
+                <p>如果没有生效，请刷新复播页面，或回到扩展管理页重新检查开关和文件夹加载状态。安卓用户请确保已安装并打开 App。</p>
+              </div>
+              <a class="button primary" href="index.html#matches">返回比赛入口</a>
+            </section>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-links" aria-label="友情链接">
+          <p class="footer-kicker">友情链接</p>
+          <div class="footer-logo-row">
+            <a class="footer-friend-link footer-logo-scgs" href="index.html" aria-label="时差观赛首页">
+              <img src="assets/logo-white-wide.png" alt="时差观赛">
+              <span>不熬夜也能无剧透完整观赛</span>
+            </a>
+            <a class="footer-friend-link" href="https://ztopcloud.com" target="_blank" rel="noopener noreferrer" aria-label="极拓云官网">
+              <img src="assets/ztopcloud-logo.png" alt="极拓云">
+              <span>国际TOP5云服务厂商官方授权代理</span>
+            </a>
+            <a class="footer-friend-link" href="https://egocos.com" target="_blank" rel="noopener noreferrer" aria-label="思想星图官网">
+              <img src="assets/sixiangxingtu-logo-white.png" alt="思想星图">
+              <span>记录真实自我，构建你的思想星图</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-contact-panel">
+          <div class="footer-contact">
+            <p class="footer-kicker">联系我们</p>
+            <ul class="contact-list" aria-label="联系方式">
+              <li>
+                <span class="contact-label">邮箱</span>
+                <a href="mailto:support@egocos.com">support@egocos.com</a>
+              </li>
+              <li>
+                <span class="contact-label">手机</span>
+                <a href="tel:+8617612085881">+86 17612085881</a>
+              </li>
+              <li>
+                <span class="contact-label">QQ</span>
+                <a href="//wpa.qq.com/msgrd?v=3&amp;uin=2656726367&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">2656726367</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-qr-grid" aria-label="客服二维码">
+            <div class="footer-qr-card">
+              <img src="assets/contact-wechat.png" alt="微信客服二维码">
+              <span>微信客服</span>
+            </div>
+            <div class="footer-qr-card">
+              <img src="assets/contact-qq.png" alt="QQ客服二维码">
+              <span>QQ客服</span>
+            </div>
+            <a class="footer-qr-card" href="https://t.me/ztopcloud" target="_blank" rel="noopener noreferrer">
+              <img src="assets/contact-telegram.png" alt="Telegram客服二维码">
+              <span>Telegram客服</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      (function() {
+        var tutorialButtons = document.querySelectorAll('[data-tutorial-tab]');
+        var tutorialPanels = document.querySelectorAll('[data-tutorial-panel]');
+        var hashToTutorial = {
+          '#windows-tutorial': 'windows',
+          '#android-tutorial': 'android',
+          '#android-download': 'android',
+          '#browser-tutorial': 'browser',
+          '#browser-downloads': 'browser',
+          '#install-steps': 'browser',
+          '#tutorials': 'browser'
+        };
+
+        function getTutorialFromHash() {
+          return hashToTutorial[window.location.hash] || 'browser';
+        }
+
+        function setActiveTutorial(tutorial, scrollToGuide) {
+          tutorialButtons.forEach(function(btn) {
+            var isActive = btn.getAttribute('data-tutorial-tab') === tutorial;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-current', isActive ? 'true' : 'false');
+          });
+
+          tutorialPanels.forEach(function(panel) {
+            var isActive = panel.getAttribute('data-tutorial-panel') === tutorial;
+            panel.classList.toggle('active', isActive);
+            panel.hidden = !isActive;
+          });
+
+          if (scrollToGuide) {
+            var guide = document.getElementById('tutorials');
+            if (guide) guide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+
+        tutorialButtons.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var tutorial = btn.getAttribute('data-tutorial-tab');
+            var isHeroNav = !!btn.closest('.tutorial-nav-hero');
+            setActiveTutorial(tutorial, isHeroNav);
+            if (history.replaceState) {
+              history.replaceState(null, '', '#' + tutorial + '-tutorial');
+            }
+          });
+        });
+
+        setActiveTutorial(getTutorialFromHash(), false);
+
+        if (window.location.hash && hashToTutorial[window.location.hash]) {
+          var anchor = document.querySelector(window.location.hash);
+          var target = anchor || document.getElementById('tutorials');
+          if (target) window.setTimeout(function() {
+            target.scrollIntoView({ behavior: 'auto', block: 'start' });
+          }, 0);
+        }
+
+        window.addEventListener('hashchange', function() {
+          setActiveTutorial(getTutorialFromHash(), false);
+        });
+
+        var dropTriggers = document.querySelectorAll('.nav-drop-trigger');
+        dropTriggers.forEach(function(btn) {
+          btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var dropdown = this.closest('.nav-dropdown');
+            var isOpen = dropdown.classList.contains('open');
+            document.querySelectorAll('.nav-dropdown.open').forEach(function(d) { d.classList.remove('open'); });
+            if (!isOpen) dropdown.classList.add('open');
+          });
+        });
+        document.addEventListener('click', function() {
+          document.querySelectorAll('.nav-dropdown.open').forEach(function(d) { d.classList.remove('open'); });
+        });
+      })();
+    </script>
+    <script src="pwa-register.js"></script>
+  </body>
+</html>
