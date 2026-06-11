@@ -12,7 +12,10 @@
   const PREPAINT_READY_CLASS = 'nospoil-prepaint-ready';
   const PREPAINT_STYLE_ID = 'nospoil-prepaint-style';
   const processedVideos = new WeakSet();
+  const fullscreenVideos = new WeakSet();
   let prepaintShieldEnabled = false;
+  let pendingFullscreenVideo = null;
+  let userGestureFullscreenArmed = false;
 
   const PLAYER_SAFE_SELECTORS = [
     'video',
@@ -436,10 +439,107 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
     document.querySelectorAll('video').forEach(scheduleIntroSkip);
   }
 
+  function requestElementFullscreen(el) {
+    if (!el) return false;
+
+    const requestFullscreen = el.requestFullscreen ||
+      el.webkitRequestFullscreen ||
+      el.mozRequestFullScreen ||
+      el.msRequestFullscreen;
+
+    if (requestFullscreen) {
+      try {
+        const result = requestFullscreen.call(el);
+        if (result && typeof result.catch === 'function') {
+          result.catch(() => {});
+        }
+        return true;
+      } catch (err) {
+        return false;
+      }
+    }
+
+    if (typeof el.webkitEnterFullscreen === 'function') {
+      try {
+        el.webkitEnterFullscreen();
+        return true;
+      } catch (err) {
+        return false;
+      }
+    }
+
+    return false;
+  }
+
+  function tryPlay(video) {
+    if (!video || !video.paused) return;
+
+    try {
+      const result = video.play();
+      if (result && typeof result.catch === 'function') {
+        result.catch(() => {});
+      }
+    } catch (err) {
+      // Browsers may require a user gesture for autoplay with sound.
+    }
+  }
+
+  function tryAutoFullscreen(video) {
+    if (!video || !isCctvPage()) return;
+
+    tryPlay(video);
+
+    const playerRoot = getPlayerRoot();
+    requestElementFullscreen(playerRoot || video);
+  }
+
+  function armUserGestureFullscreen(video) {
+    pendingFullscreenVideo = video;
+    if (userGestureFullscreenArmed) return;
+
+    userGestureFullscreenArmed = true;
+    const handler = () => {
+      userGestureFullscreenArmed = false;
+      document.removeEventListener('click', handler, true);
+      document.removeEventListener('touchend', handler, true);
+      document.removeEventListener('keydown', handler, true);
+
+      const targetVideo = pendingFullscreenVideo;
+      pendingFullscreenVideo = null;
+      tryAutoFullscreen(targetVideo);
+    };
+
+    document.addEventListener('click', handler, true);
+    document.addEventListener('touchend', handler, true);
+    document.addEventListener('keydown', handler, true);
+  }
+
+  function scheduleAutoFullscreen(video) {
+    if (fullscreenVideos.has(video)) return;
+    fullscreenVideos.add(video);
+
+    const engage = () => {
+      tryAutoFullscreen(video);
+      armUserGestureFullscreen(video);
+    };
+
+    video.addEventListener('loadedmetadata', engage, { once: true });
+    video.addEventListener('canplay', engage, { once: true });
+    video.addEventListener('play', engage, { once: true });
+    window.setTimeout(engage, 500);
+    window.setTimeout(engage, 1500);
+    window.setTimeout(engage, 4000);
+  }
+
+  function tryAutoFullscreenVideos() {
+    document.querySelectorAll('video').forEach(scheduleAutoFullscreen);
+  }
+
   function run() {
     createNotice();
     hidePossibleSpoilers();
     trySkipIntro();
+    tryAutoFullscreenVideos();
   }
 
   installPrepaintShield();

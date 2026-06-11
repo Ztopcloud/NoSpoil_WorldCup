@@ -1,0 +1,4 @@
+tv.scgs.probe.test.app-androidTest-0 C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\build\generated\res\resValues\androidTest\debug
+tv.scgs.probe.test.app-mergeDebugAndroidTestResources-1 C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+tv.scgs.probe.test.app-mergeDebugAndroidTestResources-2 C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+tv.scgs.probe.test.app-debugAndroidTest-3 C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

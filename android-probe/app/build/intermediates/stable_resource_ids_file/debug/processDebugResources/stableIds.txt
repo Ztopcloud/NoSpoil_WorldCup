@@ -1,0 +1,2 @@
+tv.scgs.probe:style/AppTheme = 0x7f020000
+tv.scgs.probe:mipmap/ic_launcher = 0x7f010000

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -48,9 +49,12 @@ public class MainActivity extends Activity {
     private LinearLayout toolbar;
     private ProgressBar progressBar;
     private TextView statusText;
+    private FrameLayout webContainer;
     private WebView webView;
+    private TextView nospoilShield;
     private View fullscreenView;
     private WebChromeClient.CustomViewCallback fullscreenCallback;
+    private boolean nospoilViewingMode;
     private String nospoilCss;
     private String nospoilJs;
 
@@ -76,13 +80,24 @@ public class MainActivity extends Activity {
 
         webView = new WebView(this);
         configureWebView(webView);
+        nospoilShield = buildNospoilShield();
+
+        webContainer = new FrameLayout(this);
+        webContainer.addView(webView, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        ));
+        webContainer.addView(nospoilShield, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        ));
 
         shell.addView(toolbar);
         shell.addView(progressBar, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 6
         ));
-        shell.addView(webView, new LinearLayout.LayoutParams(
+        shell.addView(webContainer, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 0,
                 1
@@ -128,6 +143,18 @@ public class MainActivity extends Activity {
                 1
         ));
         return bar;
+    }
+
+    private TextView buildNospoilShield() {
+        TextView shield = new TextView(this);
+        shield.setText("净屏加载中...");
+        shield.setTextColor(0xffffffff);
+        shield.setTextSize(16);
+        shield.setGravity(Gravity.CENTER);
+        shield.setBackgroundColor(0xff050c2f);
+        shield.setVisibility(View.GONE);
+        shield.setClickable(true);
+        return shield;
     }
 
     private TextView toolbarButton(String label) {
@@ -176,6 +203,13 @@ public class MainActivity extends Activity {
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             statusText.setText(shortStatus(url));
             progressBar.setVisibility(View.VISIBLE);
+            if (isNospoilHost(Uri.parse(url))) {
+                enterNospoilViewingMode();
+                showNospoilShield();
+            } else {
+                exitNospoilViewingMode();
+                hideNospoilShield();
+            }
         }
 
         @Override
@@ -185,7 +219,11 @@ public class MainActivity extends Activity {
                 injectSiteLinkHandler(view);
             }
             if (isNospoilHost(Uri.parse(url))) {
-                injectNospoilRules(view);
+                enterNospoilViewingMode();
+                injectNospoilRules(view, () -> hideNospoilShield());
+            } else {
+                exitNospoilViewingMode();
+                hideNospoilShield();
             }
         }
     }
@@ -199,7 +237,13 @@ public class MainActivity extends Activity {
             return true;
         }
 
-        if (isInAppHost(uri)) return false;
+        if (isInAppHost(uri)) {
+            if (isNospoilHost(uri)) {
+                enterNospoilViewingMode();
+                showNospoilShield();
+            }
+            return false;
+        }
 
         openExternal(uri);
         return true;
@@ -227,9 +271,12 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void injectNospoilRules(WebView view) {
+    private void injectNospoilRules(WebView view, Runnable afterInjected) {
         if (nospoilCss == null || nospoilJs == null) {
             Log.w(TAG, "No-spoiler assets missing, skip injection");
+            if (afterInjected != null) {
+                afterInjected.run();
+            }
             return;
         }
 
@@ -244,7 +291,56 @@ public class MainActivity extends Activity {
                 + nospoilJs
                 + "})();";
 
-        view.evaluateJavascript(script, value -> Log.i(TAG, "No-spoiler injection result: " + value));
+        view.evaluateJavascript(script, value -> {
+            Log.i(TAG, "No-spoiler injection result: " + value);
+            if (afterInjected != null) {
+                afterInjected.run();
+            }
+        });
+    }
+
+    private void showNospoilShield() {
+        if (nospoilShield != null) {
+            nospoilShield.bringToFront();
+            nospoilShield.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hideNospoilShield() {
+        if (nospoilShield != null) {
+            nospoilShield.setVisibility(View.GONE);
+        }
+    }
+
+    private void enterNospoilViewingMode() {
+        nospoilViewingMode = true;
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+        toolbar.setVisibility(View.GONE);
+        enterImmersiveMode();
+    }
+
+    private void exitNospoilViewingMode() {
+        nospoilViewingMode = false;
+        if (fullscreenView == null) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+            toolbar.setVisibility(View.VISIBLE);
+            exitImmersiveMode();
+        }
+    }
+
+    private void enterImmersiveMode() {
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        );
+    }
+
+    private void exitImmersiveMode() {
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
     }
 
     private void injectSiteLinkHandler(WebView view) {
@@ -321,7 +417,10 @@ public class MainActivity extends Activity {
 
             fullscreenView = view;
             fullscreenCallback = callback;
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+            enterImmersiveMode();
             toolbar.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
             webView.setVisibility(View.GONE);
             root.addView(fullscreenView, new FrameLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -340,8 +439,15 @@ public class MainActivity extends Activity {
 
         root.removeView(fullscreenView);
         fullscreenView = null;
-        toolbar.setVisibility(View.VISIBLE);
         webView.setVisibility(View.VISIBLE);
+        if (nospoilViewingMode) {
+            toolbar.setVisibility(View.GONE);
+            enterImmersiveMode();
+        } else {
+            toolbar.setVisibility(View.VISIBLE);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+            exitImmersiveMode();
+        }
 
         if (fullscreenCallback != null) {
             fullscreenCallback.onCustomViewHidden();
