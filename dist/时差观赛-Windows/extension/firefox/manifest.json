@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "时差观赛助手",
+  "version": "0.1.5",
+  "description": "隐藏复播页面中可能包含剧透的信息，帮助用户用时差观赛方式观看官方复播。",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "nospoil-worldcup@shichaguansai.local",
+      "strict_min_version": "109.0"
+    }
+  },
+  "permissions": [],
+  "host_permissions": [
+    "https://*.cctv.com/*",
+    "https://*.cntv.cn/*",
+    "https://*.yangshipin.cn/*",
+    "https://*.xiaohongshu.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.cctv.com/*",
+        "https://*.cntv.cn/*",
+        "https://*.yangshipin.cn/*",
+        "https://*.xiaohongshu.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["style.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

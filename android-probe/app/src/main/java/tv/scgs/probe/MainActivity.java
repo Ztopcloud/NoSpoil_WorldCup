@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowInsets;
 import android.webkit.ConsoleMessage;
 import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
@@ -39,6 +40,9 @@ import java.util.Set;
 public class MainActivity extends Activity {
     private static final String TAG = "SCGSProbe";
     private static final String HOME_URL = "https://scgs.tv/";
+    private static final int TOOLBAR_HORIZONTAL_PADDING_DP = 16;
+    private static final int TOOLBAR_TOP_PADDING_DP = 8;
+    private static final int TOOLBAR_BOTTOM_PADDING_DP = 8;
     private static final Set<String> IN_APP_HOSTS = new HashSet<>(Arrays.asList(
             "scgs.tv",
             "www.scgs.tv",
@@ -61,7 +65,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        WebView.setWebContentsDebuggingEnabled(true);
+        WebView.setWebContentsDebuggingEnabled(BuildConfig.DEBUG);
 
         nospoilCss = readAsset("nospoil/style.css");
         nospoilJs = readAsset("nospoil/content.js");
@@ -110,8 +114,24 @@ public class MainActivity extends Activity {
     private LinearLayout buildToolbar() {
         LinearLayout bar = new LinearLayout(this);
         bar.setGravity(Gravity.CENTER_VERTICAL);
-        bar.setPadding(16, 8, 16, 8);
+        int horizontalPadding = dpToPx(TOOLBAR_HORIZONTAL_PADDING_DP);
+        int topPadding = dpToPx(TOOLBAR_TOP_PADDING_DP);
+        int bottomPadding = dpToPx(TOOLBAR_BOTTOM_PADDING_DP);
+        bar.setPadding(horizontalPadding, topPadding, horizontalPadding, bottomPadding);
         bar.setBackgroundColor(0xff050c2f);
+        bar.setOnApplyWindowInsetsListener((view, insets) -> {
+            int statusBarInset = 0;
+            if (insets != null) {
+                statusBarInset = insets.getSystemWindowInsetTop();
+            }
+            view.setPadding(
+                    horizontalPadding,
+                    topPadding + statusBarInset,
+                    horizontalPadding,
+                    bottomPadding
+            );
+            return insets;
+        });
 
         TextView back = toolbarButton("返回");
         back.setOnClickListener(v -> {
@@ -142,6 +162,7 @@ public class MainActivity extends Activity {
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 1
         ));
+        bar.requestApplyInsets();
         return bar;
     }
 
@@ -499,6 +520,10 @@ public class MainActivity extends Activity {
 
     private String safeLower(String value) {
         return value == null ? "" : value.toLowerCase(Locale.ROOT);
+    }
+
+    private int dpToPx(int dp) {
+        return Math.round(dp * getResources().getDisplayMetrics().density);
     }
 
     private String jsString(String value) {

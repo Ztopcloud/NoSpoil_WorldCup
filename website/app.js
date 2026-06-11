@@ -34,6 +34,22 @@
     setInterval(updateCountdown, 1000);
   }
 
+  /* ===== Platform Tabs ===== */
+  var tabButtons = document.querySelectorAll('.platform-tab');
+  var tabPanels = document.querySelectorAll('.platform-panel');
+
+  tabButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tab = btn.getAttribute('data-tab');
+      tabButtons.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      tabPanels.forEach(function(p) {
+        p.classList.remove('active');
+        if (p.id === 'panel-' + tab) p.classList.add('active');
+      });
+    });
+  });
+
   /* ===== Schedule Rendering ===== */
   const grid = document.getElementById('schedule-grid');
   if (!grid) return;
@@ -224,7 +240,7 @@
 
     const hasLink = state.link && !isPlaceholder;
     const tag = hasLink ? 'a' : 'div';
-    const hrefAttr = hasLink ? ' href="' + state.link + '" target="_blank" rel="noopener noreferrer"' : '';
+    const hrefAttr = hasLink ? ' href="' + state.link + '"' : '';
     const linkClose = hasLink ? '</a>' : '</div>';
 
     const roundLabel = roundLabels[match.round] || match.round;

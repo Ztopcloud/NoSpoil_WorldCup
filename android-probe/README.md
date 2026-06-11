@@ -9,7 +9,7 @@
 - 其他链接交给系统浏览器或外部 App。
 - `worldcup.cctv.com` 页面加载完成后，注入仓库现有的 `extension/content.js` 和 `extension/style.css`。
 - 支持基础返回、刷新、回首页、视频全屏 custom view。
-- 开启 WebView 调试，可用 Chrome `chrome://inspect` 查看控制台与 DOM。
+- Debug 包开启 WebView 调试，可用 Chrome `chrome://inspect` 查看控制台与 DOM；Release 包会关闭调试。
 
 ## 构建方式
 
@@ -31,7 +31,21 @@ cd android-probe
 gradlew.bat :app:assembleDebug
 ```
 
-本仓库当前没有提交 Gradle Wrapper；如果机器没有全局 Gradle，先在 Android Studio 中打开工程，或用本机 Gradle 生成 wrapper。
+## Release 签名
+
+Debug 包可以安装测试，但不适合公开给用户下载。正式发布 APK 需要使用同一把 release 签名密钥；以后每次升级都必须用同一把密钥签名，否则用户无法覆盖安装更新。
+
+1. 生成签名密钥，并把 `.jks` 文件放在 `android-probe` 目录下或你自己的安全目录里。
+2. 复制 `keystore.properties.example` 为 `keystore.properties`。
+3. 在 `keystore.properties` 里填写 `storeFile`、`storePassword`、`keyAlias`、`keyPassword`。
+4. 构建正式包：
+
+```text
+cd android-probe
+gradlew.bat :app:assembleRelease
+```
+
+`keystore.properties` 和密钥文件已在仓库 `.gitignore` 中排除，不要提交到 Git。
 
 ## 调研记录模板
 

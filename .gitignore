@@ -3,3 +3,6 @@ android-probe/.gradle/
 android-probe/.idea/
 android-probe/build/
 android-probe/local.properties
+android-probe/keystore.properties
+android-probe/*.jks
+android-probe/*.keystore

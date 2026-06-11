@@ -413,8 +413,10 @@ h1 {
 .browser-icons {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   padding: 0 4px;
+  flex-wrap: wrap;
 }
 
 .browser-icon-link {
@@ -437,6 +439,241 @@ h1 {
 .browser-icon:hover {
   opacity: 1;
   transform: scale(1.18);
+}
+
+/* Plugin page tab buttons */
+.platform-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 200px;
+  height: 94px;
+  padding: 0 16px;
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+  transition: background 180ms ease, opacity 180ms ease;
+  opacity: 0.55;
+}
+
+.platform-tab:first-of-type {
+  padding-left: 0;
+  border-left: none;
+}
+
+.platform-tab:hover {
+  opacity: 0.8;
+}
+
+.platform-tab.active {
+  opacity: 1;
+  background: rgba(255,255,255,0.06);
+}
+
+.platform-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  text-decoration: none;
+}
+
+.platform-icon {
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+
+.platform-name {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 20px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.browser-tab-icons {
+  gap: 6px;
+  flex-wrap: wrap;
+  width: auto;
+}
+
+.browser-icon-sm {
+  width: 28px;
+  height: 28px;
+  display: block;
+  opacity: 0.9;
+}
+
+/* ---- Tab Content Panels ---- */
+.platform-tab-panels {
+  margin-top: 20px;
+  max-width: 900px;
+}
+
+.platform-panel {
+  display: none;
+  animation: panelFadeIn 240ms ease;
+}
+
+.platform-panel.active {
+  display: block;
+}
+
+.tutorial-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid rgba(216, 224, 238, 0.9);
+  border-radius: 8px;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 12px 34px rgba(5, 12, 47, 0.08);
+}
+
+.tutorial-nav-hero {
+  margin-top: 30px;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+  backdrop-filter: blur(10px);
+}
+
+.tutorial-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  min-width: 118px;
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 16px;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.tutorial-nav-hero .tutorial-nav-btn {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.tutorial-nav-btn:hover {
+  background: #e8f2ff;
+  color: var(--blue);
+}
+
+.tutorial-nav-hero .tutorial-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+.tutorial-nav-btn.active {
+  background: var(--navy);
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(5, 12, 47, 0.18);
+}
+
+.tutorial-nav-hero .tutorial-nav-btn.active {
+  background: var(--red);
+  color: #ffffff;
+  box-shadow: 0 12px 30px rgba(255, 39, 95, 0.24);
+}
+
+.tutorial-nav-btn img,
+.tutorial-browser-icons {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tutorial-browser-icons {
+  gap: 2px;
+  width: 40px;
+}
+
+.tutorial-browser-icons img {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.tutorial-panel {
+  animation: panelFadeIn 220ms ease;
+}
+
+.tutorial-panel[hidden] {
+  display: none;
+}
+
+.tutorial-download-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.tutorial-step-list {
+  margin-top: 20px;
+}
+
+@keyframes panelFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.platform-panel-inner {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 28px 30px;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.panel-head h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.panel-head-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.button.ghost-light {
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.9);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.button.ghost-light:hover {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
 }
 
 h2 {
@@ -463,6 +700,30 @@ h3 {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 30px;
+}
+
+/* ---- Platform Downloads & Tabs ---- */
+.actions-downloads {
+  align-items: center;
+  gap: 0;
+  flex-wrap: nowrap;
+}
+
+/* Homepage download links */
+.actions-downloads .platform-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 200px;
+  height: 94px;
+  padding: 0 16px;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.actions-downloads .platform-group:first-of-type {
+  padding-left: 0;
+  border-left: none;
 }
 
 .button {
@@ -797,6 +1058,32 @@ a.feature-card {
 .browser-label.warn {
   background: #fff2da;
   color: #8a5a00;
+}
+
+/* ---- Android Card ---- */
+.android-card {
+  border-color: rgba(50, 205, 50, 0.28);
+  background: linear-gradient(135deg, #f0fff0 0%, #e8ffe8 50%, #ffffff 100%);
+}
+
+.android-card .browser-label {
+  background: #e0ffe0;
+  color: #2d7a2d;
+}
+
+.android-card .browser-download {
+  color: #2d7a2d;
+  border-color: rgba(50, 205, 50, 0.38);
+}
+
+.android-card .browser-download:hover {
+  background: #3cb043;
+  border-color: #3cb043;
+  color: #ffffff;
+}
+
+.android-card p {
+  color: #3a5a3a;
 }
 
 /* ===== Schedule Grid ===== */
@@ -1890,6 +2177,36 @@ a.footer-qr-card:hover {
 
   .section {
     padding: 42px 0;
+  }}
+
+  .platform-icon-wrap {
+    width: 44px;
+    height: 44px;
+  }
+
+  .platform-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .platform-name {
+    font-size: 13px;
+  }
+
+  .platform-tab {
+    gap: 4px;
+    width: auto;
+    height: 64px;
+    padding: 0 10px;
+  }
+
+  .browser-tab-icons {
+    height: 44px;
+  }
+
+  .browser-icon-sm {
+    width: 18px;
+    height: 18px;
   }
 
   .final-cta {
@@ -2029,6 +2346,16 @@ a.footer-qr-card:hover {
   .footer-qr-card span {
     font-size: 12px;
     white-space: normal;
+  }
+
+  .actions-downloads {
+    flex-wrap: wrap;
+  }
+
+  .actions-downloads .platform-group {
+    width: auto;
+    height: auto;
+    padding: 0 10px;
   }
 }
 

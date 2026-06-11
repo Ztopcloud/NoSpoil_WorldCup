@@ -17,6 +17,50 @@
   let pendingFullscreenVideo = null;
   let userGestureFullscreenArmed = false;
 
+  const SCGS_HOST_RE = /(^|\.)scgs\.tv$/i;
+  const SUPPORTED_REPLAY_HOST_RE = /(^|\.)(cctv\.com|cntv\.cn|yangshipin\.cn|xiaohongshu\.com)$/i;
+
+  function isScgsSite() {
+    return SCGS_HOST_RE.test(window.location.hostname);
+  }
+
+  function isSupportedReplayUrl(url) {
+    try {
+      return SUPPORTED_REPLAY_HOST_RE.test(new URL(url, window.location.href).hostname);
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function keepReplayLinksInApp() {
+    if (!isScgsSite() || !document.documentElement) return;
+
+    document.addEventListener('click', (event) => {
+      const link = event.target && event.target.closest ? event.target.closest('a[href]') : null;
+      if (!link || !isSupportedReplayUrl(link.href)) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      window.location.href = link.href;
+    }, true);
+
+    const normalizeLinks = () => {
+      document.querySelectorAll('a[href]').forEach((link) => {
+        if (!isSupportedReplayUrl(link.href)) return;
+        link.removeAttribute('target');
+        link.removeAttribute('rel');
+      });
+    };
+
+    normalizeLinks();
+    new MutationObserver(normalizeLinks).observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['href', 'target', 'rel']
+    });
+  }
+
   const PLAYER_SAFE_SELECTORS = [
     'video',
     '.video',
@@ -542,6 +586,7 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
     tryAutoFullscreenVideos();
   }
 
+  keepReplayLinksInApp();
   installPrepaintShield();
   run();
 

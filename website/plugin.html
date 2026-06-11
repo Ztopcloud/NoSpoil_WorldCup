@@ -12,7 +12,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="时差观赛">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=6">
   </head>
   <body>
     <header class="site-header">
@@ -63,110 +63,218 @@
         <div class="page-hero-inner">
           <p class="eyebrow">Extension Guide</p>
           <h1>安装时差观赛助手</h1>
-          <p class="lead">一个轻量的浏览器扩展，专注一件事：在你的本地浏览器上自动隐藏复播页的比分、标题和评论区，让你像看直播一样看回放。</p>
-          <div class="actions">
-            <a class="button primary" href="#browser-downloads">选择浏览器下载</a>
-            <a class="button ghost" href="#install-steps">直接看安装步骤</a>
-          </div>
+          <p class="lead">轻量的浏览器扩展、Windows 客户端与 Android 应用，帮你自动隐藏复播页的比分、标题和评论区——像看直播一样看回放。</p>
+          <nav class="tutorial-nav tutorial-nav-hero" aria-label="安装教程导航">
+            <button class="tutorial-nav-btn" type="button" data-tutorial-tab="windows">
+              <img src="assets/windows-10-icon.svg" alt="" width="22" height="22">
+              <span>Windows</span>
+            </button>
+            <button class="tutorial-nav-btn" type="button" data-tutorial-tab="android">
+              <img src="assets/android-logomark.svg" alt="" width="22" height="22">
+              <span>Android</span>
+            </button>
+            <button class="tutorial-nav-btn active" type="button" data-tutorial-tab="browser">
+              <span class="tutorial-browser-icons" aria-hidden="true">
+                <img src="https://api.iconify.design/logos/chrome.svg" alt="" width="18" height="18">
+                <img src="https://api.iconify.design/logos/microsoft-edge.svg" alt="" width="18" height="18">
+              </span>
+              <span>浏览器</span>
+            </button>
+          </nav>
         </div>
       </section>
 
 
-      <section id="browser-downloads" class="section">
+      <section id="tutorials" class="section tutorial-switcher">
         <div class="section-heading split-heading">
           <div>
-            <p class="eyebrow">Browsers</p>
-            <h2>选择你常用的浏览器</h2>
+            <p class="eyebrow">Install Guide</p>
+            <h2>选择安装教程</h2>
           </div>
+          <nav class="tutorial-nav" aria-label="安装教程导航">
+            <button class="tutorial-nav-btn" type="button" data-tutorial-tab="windows">
+              <img src="assets/windows-10-icon.svg" alt="" width="22" height="22">
+              <span>Windows</span>
+            </button>
+            <button class="tutorial-nav-btn" type="button" data-tutorial-tab="android">
+              <img src="assets/android-logomark.svg" alt="" width="22" height="22">
+              <span>Android</span>
+            </button>
+            <button class="tutorial-nav-btn active" type="button" data-tutorial-tab="browser">
+              <span class="tutorial-browser-icons" aria-hidden="true">
+                <img src="https://api.iconify.design/logos/chrome.svg" alt="" width="18" height="18">
+                <img src="https://api.iconify.design/logos/microsoft-edge.svg" alt="" width="18" height="18">
+              </span>
+              <span>浏览器</span>
+            </button>
+          </nav>
         </div>
-        <div class="browser-grid">
-          <article class="browser-card">
-            <span class="browser-label">Recommended</span>
-            <div class="browser-card-header">
-              <img class="browser-card-icon" src="https://api.iconify.design/logos/chrome.svg" alt="Chrome" width="36" height="36">
-              <h3>Chrome</h3>
-              <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-chrome.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 Chrome 版</a>
-            </div>
-            <p>最直接的安装路径，打开 <code>chrome://extensions/</code> 后启用开发者模式并加载解压后的文件夹。</p>
-          </article>
-          <article class="browser-card">
-            <span class="browser-label">Chromium</span>
-            <div class="browser-card-header">
-              <img class="browser-card-icon" src="https://api.iconify.design/logos/microsoft-edge.svg" alt="Edge" width="36" height="36">
-              <h3>Edge</h3>
-              <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-edge.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 Edge 版</a>
-            </div>
-            <p>可在 <code>edge://extensions/</code> 中加载已解压的扩展程序，整体步骤与 Chrome 基本一致。</p>
-          </article>
-          <article class="browser-card">
-            <span class="browser-label">Chromium</span>
-            <div class="browser-card-header">
-              <img class="browser-card-icon" src="assets/360.png" alt="360浏览器" width="36" height="36">
-              <h3>360 浏览器</h3>
-              <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-360.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 360 版</a>
-            </div>
-            <p>桌面版通常支持开发者模式扩展安装，入口位置可能在扩展中心或管理页内。</p>
-          </article>
-          <article class="browser-card">
-            <span class="browser-label">Chromium</span>
-            <div class="browser-card-header">
-              <img class="browser-card-icon" src="assets/QQ.png" alt="QQ浏览器" width="36" height="36">
-              <h3>QQ 浏览器</h3>
-              <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-qq.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 QQ 版</a>
-            </div>
-            <p>新版桌面端一般可兼容 Chrome 扩展，进入扩展管理页后加载已解压文件夹即可。</p>
-          </article>
-          <article class="browser-card">
-            <span class="browser-label warn">Check support</span>
-            <div class="browser-card-header">
-              <img class="browser-card-icon" src="assets/UC.png" alt="UC浏览器" width="36" height="36">
-              <h3>UC 浏览器</h3>
-              <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-uc.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 UC 兼容版</a>
-            </div>
-            <p>是否支持本地开发者模式扩展，取决于桌面版本。建议优先使用 Chrome 或 Edge，稳定性更高。</p>
-          </article>
-          <article class="browser-card">
-            <span class="browser-label warn">Separate build</span>
-            <div class="browser-card-header">
-              <img class="browser-card-icon" src="https://api.iconify.design/logos/firefox.svg" alt="Firefox" width="36" height="36">
-              <h3>Firefox</h3>
-              <a class="browser-download" href="public/scgs-tv-extension-firefox.zip" download="scgs-tv-extension-firefox.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 Firefox 版</a>
-            </div>
-            <p>火狐扩展体系不同，使用单独打包版本。长期发布时建议继续走 Firefox 扩展签名流程。</p>
-          </article>
-        </div>
-        <div class="tip-strip">
-          注意：Chrome、Edge、360、QQ 和 UC 使用 Chromium 兼容包；Firefox 使用单独版本。想要最稳的体验，优先使用 Chrome 或 Edge 桌面版。
-        </div>
-      </section>
 
-      <section id="install-steps" class="section">
-        <div class="section-heading split-heading">
-          <div>
-            <p class="eyebrow">Install Steps</p>
-            <h2>观赛助手使用教程</h2>
-          </div>
-        </div>
-        <ol class="step-list">
-          <li>
-            <span>01</span>
-            <p>先在上方浏览器卡片里下载对应版本压缩包，再把它解压到一个固定文件夹，后续浏览器会一直从这个文件夹读取助手文件。</p>
-          </li>
-          <li>
-            <span>02</span>
-            <p>打开你常用浏览器的扩展管理页。Chrome 可用 <code>chrome://extensions/</code>，Edge 可用 <code>edge://extensions/</code>，其他 Chromium 浏览器通常也有对应的扩展管理入口。</p>
-          </li>
-          <li>
-            <span>03</span>
-            <p>打开“开发者模式”，点击“加载已解压的扩展程序”，选择刚才解压出来的助手文件夹。不要在安装后删除或移动这个文件夹。</p>
-          </li>
-          <li>
-            <span>04</span>
-            <p>从本站比赛入口打开支持的官方公开复播页面。看到“时差观赛模式已开启”提示，或页面里的标题、评论、推荐等剧透区域被隐藏时，就表示助手已经生效。</p>
-          </li>
-        </ol>
-        <div class="tip-strip">
-          注意：助手只在本地浏览器里净屏，不会接管播放。它会按视频时长尝试跳过前段；如果自动跳过失败，视频仍可正常播放，你可以手动拖动进度条继续观看。
+        <div class="tutorial-panels">
+          <section id="windows-tutorial" class="tutorial-panel" data-tutorial-panel="windows" hidden>
+            <div class="section-heading">
+              <p class="eyebrow">Windows</p>
+              <h2>Windows 客户端安装教程</h2>
+            </div>
+            <div class="browser-grid tutorial-download-grid">
+              <article class="browser-card windows-card">
+                <span class="browser-label">Desktop App</span>
+                <div class="browser-card-header">
+                  <img class="browser-card-icon" src="assets/windows-10-icon.svg" alt="Windows" width="36" height="36">
+                  <h3>Windows 客户端</h3>
+                  <a class="browser-download" href="public/nospoil-worldcup-windows.zip" download="nospoil-worldcup-windows.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 Windows 版</a>
+                </div>
+                <p>电脑用户可下载 Windows 压缩包。程序会优先调用 Microsoft Edge，并随启动临时加载内置净屏助手。</p>
+              </article>
+            </div>
+            <ol class="step-list tutorial-step-list">
+              <li>
+                <span>01</span>
+                <p>点击下载 Windows 版，将 <code>nospoil-worldcup-windows.zip</code> 保存到电脑。</p>
+              </li>
+              <li>
+                <span>02</span>
+                <p>右键压缩包并选择全部解压，保留解压后的整个文件夹，不要只单独拖出 exe 文件。</p>
+              </li>
+              <li>
+                <span>03</span>
+                <p>打开解压后的文件夹，双击「时差观赛.exe」。若 Windows 提示未知发布者，选择更多信息后继续运行。</p>
+              </li>
+              <li>
+                <span>04</span>
+                <p>程序启动后会打开专用浏览器窗口进入 scgs.tv。后续看复播时从这个窗口进入比赛页面即可。</p>
+              </li>
+            </ol>
+            <div class="tip-strip">
+              注意：Windows 版依赖本机 Microsoft Edge。若系统未检测到 Edge，会改用默认浏览器打开页面，此时不会自动加载内置净屏助手。
+            </div>
+          </section>
+
+          <section id="android-tutorial" class="tutorial-panel" data-tutorial-panel="android" hidden>
+            <div class="section-heading">
+              <p class="eyebrow">Android</p>
+              <h2>Android 安装包教程</h2>
+            </div>
+            <div class="browser-grid tutorial-download-grid">
+              <article class="browser-card android-card">
+                <span class="browser-label">Mobile App</span>
+                <div class="browser-card-header">
+                  <img class="browser-card-icon" src="assets/android-logomark.svg" alt="Android" width="36" height="36">
+                  <h3>Android APK</h3>
+                  <a class="browser-download" href="public/nospoil-worldcup-android.apk" download="nospoil-worldcup-android.apk">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>
+                    下载 Android 版
+                  </a>
+                </div>
+                <p>安卓手机用户可直接下载 APK 安装包，安装后打开应用直达无剧透观赛页面，无需浏览器插件。</p>
+              </article>
+            </div>
+            <ol class="step-list tutorial-step-list">
+              <li>
+                <span>01</span>
+                <p>点击上方下载按钮，将 APK 文件保存到手机。如果是在电脑上下载，可通过微信文件传输助手或数据线传至手机。</p>
+              </li>
+              <li>
+                <span>02</span>
+                <p>打开手机<strong>设置 → 安全</strong>，找到「安装未知来源应用」或「允许安装未知应用」，为当前使用的文件管理器或浏览器开启安装权限。</p>
+              </li>
+              <li>
+                <span>03</span>
+                <p>在手机上找到下载好的 <code>nospoil-worldcup-android.apk</code> 文件，点击安装。安装完成后桌面会出现「时差观赛」应用图标。</p>
+              </li>
+              <li>
+                <span>04</span>
+                <p>打开应用，自动加载无剧透观赛页面。该应用为轻量 WebView 封装，启动后直达 scgs.tv 赛程页面，享受纯净的观赛体验。</p>
+              </li>
+            </ol>
+            <div class="tip-strip">
+              提示：该安卓应用为 WebView 封装，不收集任何个人信息，无需注册登录。若手机提示安全风险，是因为应用未上架官方商店，属正常现象，请放心使用。
+            </div>
+          </section>
+
+          <section id="browser-tutorial" class="tutorial-panel active" data-tutorial-panel="browser">
+            <div class="section-heading">
+              <p class="eyebrow">Browsers</p>
+              <h2>浏览器插件教程</h2>
+            </div>
+            <div id="browser-downloads" class="browser-grid">
+              <article class="browser-card">
+                <span class="browser-label">Recommended</span>
+                <div class="browser-card-header">
+                  <img class="browser-card-icon" src="https://api.iconify.design/logos/chrome.svg" alt="Chrome" width="36" height="36">
+                  <h3>Chrome</h3>
+                  <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-chrome.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 Chrome 版</a>
+                </div>
+                <p>最直接的安装路径，打开 <code>chrome://extensions/</code> 后启用开发者模式并加载解压后的文件夹。</p>
+              </article>
+              <article class="browser-card">
+                <span class="browser-label">Chromium</span>
+                <div class="browser-card-header">
+                  <img class="browser-card-icon" src="https://api.iconify.design/logos/microsoft-edge.svg" alt="Edge" width="36" height="36">
+                  <h3>Edge</h3>
+                  <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-edge.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 Edge 版</a>
+                </div>
+                <p>可在 <code>edge://extensions/</code> 中加载已解压的扩展程序，整体步骤与 Chrome 基本一致。</p>
+              </article>
+              <article class="browser-card">
+                <span class="browser-label">Chromium</span>
+                <div class="browser-card-header">
+                  <img class="browser-card-icon" src="assets/360.png" alt="360浏览器" width="36" height="36">
+                  <h3>360 浏览器</h3>
+                  <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-360.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 360 版</a>
+                </div>
+                <p>桌面版通常支持开发者模式扩展安装，入口位置可能在扩展中心或管理页内。</p>
+              </article>
+              <article class="browser-card">
+                <span class="browser-label">Chromium</span>
+                <div class="browser-card-header">
+                  <img class="browser-card-icon" src="assets/QQ.png" alt="QQ浏览器" width="36" height="36">
+                  <h3>QQ 浏览器</h3>
+                  <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-qq.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 QQ 版</a>
+                </div>
+                <p>新版桌面端一般可兼容 Chrome 扩展，进入扩展管理页后加载已解压文件夹即可。</p>
+              </article>
+              <article class="browser-card">
+                <span class="browser-label warn">Check support</span>
+                <div class="browser-card-header">
+                  <img class="browser-card-icon" src="assets/UC.png" alt="UC浏览器" width="36" height="36">
+                  <h3>UC 浏览器</h3>
+                  <a class="browser-download" href="public/scgs-tv-extension-chromium.zip" download="scgs-tv-extension-uc.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 UC 兼容版</a>
+                </div>
+                <p>是否支持本地开发者模式扩展，取决于桌面版本。建议优先使用 Chrome 或 Edge，稳定性更高。</p>
+              </article>
+              <article class="browser-card">
+                <span class="browser-label warn">Separate build</span>
+                <div class="browser-card-header">
+                  <img class="browser-card-icon" src="https://api.iconify.design/logos/firefox.svg" alt="Firefox" width="36" height="36">
+                  <h3>Firefox</h3>
+                  <a class="browser-download" href="public/scgs-tv-extension-firefox.zip" download="scgs-tv-extension-firefox.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 Firefox 版</a>
+                </div>
+                <p>火狐扩展体系不同，使用单独打包版本。长期发布时建议继续走 Firefox 扩展签名流程。</p>
+              </article>
+            </div>
+            <ol id="install-steps" class="step-list tutorial-step-list">
+              <li>
+                <span>01</span>
+                <p>先在上方浏览器卡片里下载对应版本压缩包，再把它解压到一个固定文件夹，后续浏览器会一直从这个文件夹读取助手文件。</p>
+              </li>
+              <li>
+                <span>02</span>
+                <p>打开你常用浏览器的扩展管理页。Chrome 可用 <code>chrome://extensions/</code>，Edge 可用 <code>edge://extensions/</code>，其他 Chromium 浏览器通常也有对应的扩展管理入口。</p>
+              </li>
+              <li>
+                <span>03</span>
+                <p>打开"开发者模式"，点击"加载已解压的扩展程序"，选择刚才解压出来的助手文件夹。不要在安装后删除或移动这个文件夹。</p>
+              </li>
+              <li>
+                <span>04</span>
+                <p>从本站比赛入口打开支持的官方公开复播页面。看到"时差观赛模式已开启"提示，或页面里的标题、评论、推荐等剧透区域被隐藏时，就表示助手已经生效。</p>
+              </li>
+            </ol>
+            <div class="tip-strip">
+              注意：Chrome、Edge、360、QQ 和 UC 使用 Chromium 兼容包；Firefox 使用单独版本。助手只在本地浏览器里净屏，不会接管播放。
+            </div>
+          </section>
         </div>
       </section>
 
@@ -181,17 +289,17 @@
           <article class="feature-card">
             <span class="feature-index"><svg width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M208 40H48a24 24 0 0 0-24 24v112a24 24 0 0 0 24 24h160a24 24 0 0 0 24-24V64a24 24 0 0 0-24-24m8 136a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V64a8 8 0 0 1 8-8h160a8 8 0 0 1 8 8Zm-48 48a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8m-3.56-110.66l-48-32A8 8 0 0 0 104 88v64a8 8 0 0 0 12.44 6.66l48-32a8 8 0 0 0 0-13.32M120 137.05V103l25.58 17Z"/></svg></span>
             <h3>支持平台</h3>
-            <p>当前支持 CCTV、CNTV、央视频、小红书等官方公开页面。若平台页面结构调整，助手规则也会随之更新。</p>
+            <p>桌面端支持 Chrome/Edge/Firefox/360/QQ/UC 等浏览器插件安装；手机端提供 Android APK 安装包，覆盖电脑和手机两种观赛场景。</p>
           </article>
           <article class="feature-card">
             <span class="feature-index"><svg width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M232 168h-8V72a24 24 0 0 0-24-24H56a24 24 0 0 0-24 24v96h-8a8 8 0 0 0-8 8v16a24 24 0 0 0 24 24h176a24 24 0 0 0 24-24v-16a8 8 0 0 0-8-8M48 72a8 8 0 0 1 8-8h144a8 8 0 0 1 8 8v96H48Zm176 120a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8v-8h192ZM152 88a8 8 0 0 1-8 8h-32a8 8 0 0 1 0-16h32a8 8 0 0 1 8 8"/></svg></span>
-            <h3>本地运行</h3>
-            <p>助手只在你的浏览器本地隐藏可能剧透的页面元素，不上传浏览记录，也不需要登录本站。</p>
+            <h3>本地运行 / 隐私安全</h3>
+            <p>无论是浏览器插件还是手机 App，都只在本地运行，不上传浏览记录、不收集个人信息，也不需要注册登录。</p>
           </article>
           <article class="feature-card">
             <span class="feature-index"><svg width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M208 40H48a16 16 0 0 0-16 16v56c0 52.72 25.52 84.67 46.93 102.19c23.06 18.86 46 25.26 47 25.53a8 8 0 0 0 4.2 0c1-.27 23.91-6.67 47-25.53C198.48 196.67 224 164.72 224 112V56a16 16 0 0 0-16-16m0 72c0 37.07-13.66 67.16-40.6 89.42a129.3 129.3 0 0 1-39.4 22.2a128.3 128.3 0 0 1-38.92-21.81C61.82 179.51 48 149.3 48 112V56h160ZM82.34 141.66a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 11.32l-56 56a8 8 0 0 1-11.32 0Z"/></svg></span>
             <h3>失败不影响观看</h3>
-            <p>助手会按视频时长尝试跳过前段，但如果页面限制了进度跳转，视频仍会照常播放，你可以手动调整进度继续观看。</p>
+            <p>浏览器插件和手机 App 都会按视频时长尝试跳过前段，但如果页面限制了进度跳转，视频仍会照常播放，你可以手动调整进度继续观看。</p>
           </article>
         </div>
       </section>
@@ -200,7 +308,7 @@
         <div>
           <p class="eyebrow">Before replay</p>
           <h2>打开复播前，先确认助手处于启用状态</h2>
-          <p>如果没有生效，请刷新复播页面，或回到扩展管理页重新检查开关和文件夹加载状态。</p>
+          <p>如果没有生效，请刷新复播页面，或回到扩展管理页重新检查开关和文件夹加载状态。安卓用户请确保已安装并打开 App。</p>
         </div>
         <a class="button primary" href="index.html#matches">返回比赛入口</a>
       </section>
