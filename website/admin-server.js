@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { submitChangedMatches } = require('./baidu-submit');
 
 const rootDir = __dirname;
 const dataFile = path.join(rootDir, 'data', 'matches.json');
@@ -150,6 +151,10 @@ function writeMatches(matches) {
   return backupFile;
 }
 
+function readMatches() {
+  return JSON.parse(fs.readFileSync(dataFile, 'utf8'));
+}
+
 function serveStatic(req, res) {
   const requestUrl = new URL(req.url, 'http://localhost');
   let pathname = decodeURIComponent(requestUrl.pathname);
@@ -195,11 +200,19 @@ function createServer() {
       if (req.method === 'POST') {
         const body = await readBody(req, 2 * 1024 * 1024);
         const payload = JSON.parse(body);
+        const previousMatches = readMatches();
         const backupFile = writeMatches(payload.matches);
+        let baiduSubmit = { ok: false, skipped: true, error: 'Baidu submit did not run' };
+        try {
+          baiduSubmit = await submitChangedMatches(previousMatches, payload.matches);
+        } catch (error) {
+          baiduSubmit = { ok: false, error: error.message };
+        }
         sendJson(res, 200, {
           ok: true,
           count: payload.matches.length,
-          backup: path.relative(rootDir, backupFile).replace(/\\/g, '/')
+          backup: path.relative(rootDir, backupFile).replace(/\\/g, '/'),
+          baiduSubmit
         });
         return;
       }

@@ -6,6 +6,7 @@
     '22920296': '2026年世界杯：墨西哥VS南非'
   };
   const roundLabels = {
+    pre: '赛前',
     group: '小组赛',
     round32: '32强',
     round16: '16强',
@@ -27,6 +28,7 @@
     '法国': 'fr', '塞内加尔': 'sn', '伊拉克': 'iq', '挪威': 'no',
     '阿根廷': 'ar', '阿尔及利亚': 'dz', '奥地利': 'at', '约旦': 'jo',
     '葡萄牙': 'pt', '刚果民主共和国': 'cd', '英格兰': 'gb-eng', '克罗地亚': 'hr',
+    '冰岛': 'is',
     '加纳': 'gh', '巴拿马': 'pa', '乌兹别克斯坦': 'uz', '哥伦比亚': 'co'
   };
   const teamNames = Object.keys(teamCodeMap).sort();
@@ -595,7 +597,7 @@
 
   function renderKnockoutPanel() {
     if (!knockoutGrid) return;
-    var koMatches = matches.filter(function(m) { return m.round !== 'group'; });
+    var koMatches = matches.filter(function(m) { return m.round !== 'group' && m.round !== 'pre'; });
     if (koMatches.length === 0) {
       knockoutGrid.innerHTML = '<div class="empty-state">暂无淘汰赛数据。</div>';
       return;

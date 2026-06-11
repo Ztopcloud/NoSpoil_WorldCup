@@ -1656,6 +1656,104 @@ a.feature-card {
     linear-gradient(135deg, #072cb1 0%, #0d38d6 48%, #0730bd 100%);
 }
 
+.prematch-video-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.prematch-video-tile {
+  min-height: 174px;
+  background:
+    radial-gradient(circle at 85% 10%, rgba(0, 189, 255, 0.24) 0 90px, transparent 92px),
+    radial-gradient(circle at 10% 10%, rgba(203, 33, 45, 0.36) 0 112px, transparent 114px),
+    linear-gradient(135deg, #071a54 0%, #173b98 54%, #0a5f84 100%);
+}
+
+.prematch-video-tile::after {
+  background: rgba(5, 12, 47, 0.78);
+}
+
+.prematch-video-content {
+  min-height: 174px;
+}
+
+.prematch-video-body {
+  display: grid;
+  align-content: center;
+  gap: 7px;
+  min-height: 82px;
+  padding-top: 14px;
+}
+
+.prematch-video-title {
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1.12;
+  font-weight: 950;
+}
+
+.prematch-video-subtitle {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.prematch-video-source {
+  justify-self: start;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 999px;
+  padding: 3px 9px;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-weight: 900;
+  line-height: 1.2 !important;
+}
+
+.prematch-video-teams {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.prematch-video-teams span {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.prematch-video-teams span:first-child {
+  justify-content: flex-start;
+}
+
+.prematch-video-teams span:last-child {
+  justify-content: flex-end;
+}
+
+.prematch-video-teams img {
+  display: block;
+  width: 40px;
+  height: 27px;
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  border-radius: 3px;
+  object-fit: cover;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+  flex: 0 0 auto;
+}
+
+.prematch-video-teams em {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 950;
+  font-style: normal;
+  flex: 0 0 auto;
+}
+
 .match-tile::before {
   content: '';
   position: absolute;

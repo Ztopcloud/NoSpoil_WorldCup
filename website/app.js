@@ -4,17 +4,34 @@
   const hoursEl = document.getElementById('cd-hours');
   const minsEl = document.getElementById('cd-mins');
   const secsEl = document.getElementById('cd-secs');
-  const target = new Date('2026-06-12T03:00:00+08:00'); // 北京时间 6月12日 03:00 揭幕战
+  const countdownLabelEl = document.querySelector('.countdown-label');
+  let countdownTarget = null;
+
+  function setCountdownNumbers(days, hours, mins, secs) {
+    if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+    if (minsEl) minsEl.textContent = String(mins).padStart(2, '0');
+    if (secsEl) secsEl.textContent = String(secs).padStart(2, '0');
+  }
 
   function updateCountdown() {
-    const now = Date.now();
-    const diff = target.getTime() - now;
+    if (!countdownTarget) {
+      setCountdownNumbers(0, 0, 0, 0);
+      return;
+    }
 
+    if (countdownTarget.getTime() <= Date.now() && allMatches.length > 0) {
+      const previousTarget = countdownTarget.getTime();
+      setCountdownTargetFromMatches(allMatches);
+      if (!countdownTarget || countdownTarget.getTime() === previousTarget) {
+        setCountdownNumbers(0, 0, 0, 0);
+        return;
+      }
+    }
+
+    const diff = countdownTarget.getTime() - Date.now();
     if (diff <= 0) {
-      if (daysEl) daysEl.textContent = '00';
-      if (hoursEl) hoursEl.textContent = '00';
-      if (minsEl) minsEl.textContent = '00';
-      if (secsEl) secsEl.textContent = '00';
+      setCountdownNumbers(0, 0, 0, 0);
       return;
     }
 
@@ -23,10 +40,7 @@
     const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const secs = Math.floor((diff % (1000 * 60)) / 1000);
 
-    if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
-    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
-    if (minsEl) minsEl.textContent = String(mins).padStart(2, '0');
-    if (secsEl) secsEl.textContent = String(secs).padStart(2, '0');
+    setCountdownNumbers(days, hours, mins, secs);
   }
 
   if (daysEl && hoursEl && minsEl && secsEl) {
@@ -57,6 +71,7 @@
   const countryFilters = document.getElementById('country-filters');
 
   const roundLabels = {
+    pre: '赛前',
     group: '小组赛',
     round32: '32强淘汰赛',
     round16: '16强淘汰赛',
@@ -145,6 +160,7 @@
   const LIVE_WINDOW_MINUTES = 150;
   const REPLAY_PREP_MINUTES = 90;
   const finalRounds = ['semi', 'third', 'final'];
+  const scheduleMatchRounds = ['group', 'round32', 'round16', 'quarter', 'semi', 'third', 'final'];
 
   let allMatches = [];
   let activeView = 'countries';
@@ -155,6 +171,26 @@
     return 'https://flagcdn.com/w80/' + code + '.png';
   }
 
+  function escapeHtml(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, function(char) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[char];
+    });
+  }
+
+  function isPreMatchVideo(match) {
+    return match && match.round === 'pre';
+  }
+
+  function isScheduleMatch(match) {
+    return match && scheduleMatchRounds.indexOf(match.round) !== -1;
+  }
+
   function matchStartTime(match) {
     const parts = match.date.split('/');
     const month = parts[0].padStart(2, '0');
@@ -162,9 +198,31 @@
     return new Date(MATCH_YEAR + '-' + month + '-' + day + 'T' + match.timeBeijing + ':00+08:00');
   }
 
+  function setCountdownTargetFromMatches(matches) {
+    const now = Date.now();
+    const nextMatch = matches
+      .filter(function(match) {
+        return isScheduleMatch(match) && match.date && match.timeBeijing;
+      })
+      .map(function(match) {
+        return { match: match, start: matchStartTime(match) };
+      })
+      .filter(function(item) {
+        return Number.isFinite(item.start.getTime()) && item.start.getTime() > now;
+      })
+      .sort(function(a, b) {
+        return a.start.getTime() - b.start.getTime();
+      })[0];
+
+    countdownTarget = nextMatch ? nextMatch.start : null;
+    if (countdownLabelEl) {
+      countdownLabelEl.textContent = nextMatch ? '距离下一场比赛' : '赛程已结束';
+    }
+    updateCountdown();
+  }
+
   function getPreviewNow() {
-    // TEST_TIME: temporarily freeze match state previews at 2026-06-19 09:00 Beijing time.
-    return new Date('2026-06-19T09:00:00+08:00');
+    return new Date();
   }
 
   function formatCountdown(ms) {
@@ -207,7 +265,7 @@
         hoverSubLabel: formatCountdown(start - now),
         topType: 'countdown',
         topLabel: formatCountdown(start - now),
-        link: ''
+        link: match.liveUrl || match.replayUrl || ''
       };
     }
 
@@ -247,6 +305,8 @@
   }
 
   function buildTile(match) {
+    if (isPreMatchVideo(match)) return buildPreMatchTile(match);
+
     const isPlaceholder = match.home === '待定';
     const state = getMatchState(match);
     let tileClass = 'match-tile';
@@ -301,6 +361,45 @@
       linkClose;
   }
 
+  function buildPreMatchTile(match) {
+    var url = match.videoUrl || match.replayUrl || match.liveUrl || '';
+    var tag = url ? 'a' : 'div';
+    var hrefAttr = url ? ' href="' + escapeHtml(url) + '" target="_blank" rel="noopener noreferrer"' : '';
+    var linkClose = url ? '</a>' : '</div>';
+    var title = escapeHtml(match.title || (match.home + ' VS ' + match.away));
+    var subtitle = escapeHtml(match.subtitle || '赛前视频');
+    var source = escapeHtml(match.source || '视频入口');
+    var dateText = match.date && match.date.indexOf('/') !== -1
+      ? escapeHtml(match.date.split('/')[0] + '月' + match.date.split('/')[1] + '日')
+      : escapeHtml(match.date || '');
+    var timeText = escapeHtml(match.timeBeijing || '');
+    var meta = [dateText, timeText].filter(Boolean).join(' ');
+    var hasTeams = match.homeCode && match.awayCode && match.homeCode !== 'xx' && match.awayCode !== 'xx';
+    var mainHtml = hasTeams
+      ? '<div class="prematch-video-teams">' +
+          '<span><img src="' + flagUrl(match.homeCode) + '" alt="" width="40" height="27">' + escapeHtml(match.home) + '</span>' +
+          '<em>VS</em>' +
+          '<span><img src="' + flagUrl(match.awayCode) + '" alt="" width="40" height="27">' + escapeHtml(match.away) + '</span>' +
+        '</div>'
+      : '<strong class="prematch-video-title">' + title + '</strong>';
+
+    return '<' + tag + ' class="match-tile prematch-video-tile match-tile-actionable"' + hrefAttr + '>' +
+      '<div class="match-content prematch-video-content">' +
+        '<div class="match-topline">' +
+          '<span class="match-round-text">赛前</span>' +
+          '<span class="match-live-label"><span class="match-live-icon"></span>视频入口</span>' +
+        '</div>' +
+        '<div class="prematch-video-body">' +
+          '<span class="prematch-video-source">' + source + '</span>' +
+          mainHtml +
+          '<span class="prematch-video-subtitle">' + subtitle + '</span>' +
+        '</div>' +
+        '<span class="match-card-time">' + meta + '</span>' +
+      '</div>' +
+      '<span class="match-hover-action"><span class="match-hover-main"><span class="match-live-icon"></span>打开视频</span></span>' +
+      linkClose;
+  }
+
   function isFinalRound(round) {
     return finalRounds.indexOf(round) !== -1;
   }
@@ -309,7 +408,9 @@
     var countryMap = {};
     var groups = {};
 
-    matches.forEach(function(match) {
+    matches.filter(function(match) {
+      return isScheduleMatch(match);
+    }).forEach(function(match) {
       [
         { name: match.home, code: match.homeCode },
         { name: match.away, code: match.awayCode }
@@ -447,11 +548,17 @@
 
     if (activeView === 'countries') {
       if (activeCountry !== 'all') {
-        filtered = filtered.filter(function(match) {
-          return match.home === activeCountry || match.away === activeCountry;
+        return filtered.filter(function(match) {
+          return isScheduleMatch(match) && (match.home === activeCountry || match.away === activeCountry);
         });
       }
-      return filtered;
+      return filtered.filter(function(match) {
+        return isScheduleMatch(match) || isPreMatchVideo(match);
+      });
+    }
+
+    if (activeView === 'pre') {
+      return filtered.filter(isPreMatchVideo);
     }
 
     if (activeView === 'finals') {
@@ -473,6 +580,13 @@
     return '<div class="match-round-block">' +
       '<div class="round-header"><span>' + title + '</span></div>' +
       '<div class="match-round-grid">' + sorted.map(buildTile).join('') + '</div>' +
+      '</div>';
+  }
+
+  function renderVideoBlock(title, matches) {
+    return '<div class="match-round-block prematch-video-block">' +
+      '<div class="round-header"><span>' + title + '</span></div>' +
+      '<div class="match-round-grid prematch-video-grid">' + matches.map(buildTile).join('') + '</div>' +
       '</div>';
   }
 
@@ -530,9 +644,20 @@
       return;
     }
 
+    if (activeView === 'pre') {
+      grid.innerHTML = renderVideoBlock('赛前视频', visibleMatches);
+      return;
+    }
+
+    var countryPreMatches = activeView === 'countries'
+      ? visibleMatches.filter(isPreMatchVideo)
+      : [];
+    var scheduleMatches = visibleMatches.filter(function(match) {
+      return !isPreMatchVideo(match);
+    });
     var grouped = {};
     var otherRounds = {};
-    visibleMatches.forEach(function(m) {
+    scheduleMatches.forEach(function(m) {
       if (m.round === 'group' && m.group) {
         if (!grouped[m.group]) grouped[m.group] = [];
         grouped[m.group].push(m);
@@ -546,6 +671,10 @@
     });
 
     var html = '';
+    if (countryPreMatches.length > 0) {
+      html += renderVideoBlock('赛前视频', countryPreMatches);
+    }
+
     'ABCDEFGHIJKL'.split('').forEach(function(group) {
       if (grouped[group] && grouped[group].length > 0) {
         html += renderScrollableRoundBlock(group + '组', grouped[group]);
@@ -607,7 +736,7 @@
   /* ===== Fetch & Init ===== */
   // 使用固定版本号替代 Date.now()，允许浏览器/CDN 条件缓存（304 Not Modified），
   // 同时更新版本号后会拉取最新数据，兼顾加载速度与内容更新。
-  var MATCHES_VERSION = '20260611';
+  var MATCHES_VERSION = '20260612-4';
   fetch('data/matches.json?v=' + MATCHES_VERSION)
     .then(function(response) {
       if (!response.ok) throw new Error('matches load failed');
@@ -615,6 +744,7 @@
     })
     .then(function(data) {
       allMatches = data;
+      setCountdownTargetFromMatches(allMatches);
       renderSchedule(allMatches);
     })
     .catch(function() {

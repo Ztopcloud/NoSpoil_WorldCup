@@ -16,8 +16,8 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <link rel="stylesheet" href="styles.css?v=8">
-    <link rel="preload" href="data/matches.json?v=20260611" as="fetch" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css?v=10">
+    <link rel="preload" href="data/matches.json?v=20260612-4" as="fetch" crossorigin="anonymous">
   </head>
   <body>
     <header class="site-header">
@@ -72,7 +72,7 @@
       <section class="hero home-hero">
         <!-- 倒计时 -->
         <div class="countdown-overlay">
-          <span class="countdown-label">距离世界杯开幕</span>
+          <span class="countdown-label">距离下一场比赛</span>
           <div class="countdown-timer">
             <div class="countdown-item">
               <span class="countdown-num" id="cd-days">00</span>
@@ -170,6 +170,7 @@
           <p class="section-sub"><strong>48</strong>支国家队 · <strong>104</strong>场比赛 · 显示均为北京时间</p>
           <nav class="schedule-nav" aria-label="赛程分类">
             <button class="schedule-nav-btn active" type="button" data-view="countries">国家</button>
+            <button class="schedule-nav-btn" type="button" data-view="pre">赛前</button>
             <button class="schedule-nav-btn" type="button" data-view="group">小组赛</button>
             <button class="schedule-nav-btn" type="button" data-view="round32">32强</button>
             <button class="schedule-nav-btn" type="button" data-view="round16">16强</button>
@@ -249,7 +250,7 @@
       </div>
     </footer>
 
-    <script src="app.js?v=20260611-1"></script>
+    <script src="app.js?v=20260612-5"></script>
     <script src="pwa-register.js"></script>
   </body>
 </html>
