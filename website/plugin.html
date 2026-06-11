@@ -12,14 +12,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="时差观赛">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="stylesheet" href="styles.css?v=11">
   </head>
   <body>
     <header class="site-header">
       <a class="brand" href="index.html" aria-label="时差观赛首页">
         <img src="assets/logo-white-wide.png" alt="时差观赛">
       </a>
-      <nav class="nav-links" aria-label="主导航">
+      <nav class="nav-links nav-links-mobile-trim" aria-label="主导航">
         <!-- 世界杯 独立入口 -->
         <a href="index.html" class="nav-item">
           <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16c-5.76 0-6.78-5.74-6.96-10.294c-.051-1.266-.076-1.9.4-2.485c.475-.586 1.044-.682 2.183-.874A26.4 26.4 0 0 1 12 2c1.784 0 3.253.157 4.377.347c1.139.192 1.708.288 2.184.874s.45 1.219.4 2.485C18.781 10.26 17.761 16 12.001 16Z"/><path stroke-linecap="round" d="M12 16v3"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.5 22h-7l.34-1.696a1 1 0 0 1 .98-.804h4.36a1 1 0 0 1 .98.804z"/><path d="m19 5l.949.316c.99.33 1.485.495 1.768.888S22 7.12 22 8.162v.073c0 .86 0 1.291-.207 1.643s-.584.561-1.336.98L17.5 12.5M5 5l-.949.316c-.99.33-1.485.495-1.768.888S2 7.12 2 8.162v.073c0 .86 0 1.291.207 1.643s.584.561 1.336.98L6.5 12.5m4.646-6.477C11.526 5.34 11.716 5 12 5s.474.34.854 1.023l.098.176c.108.194.162.29.246.354c.085.064.19.088.4.135l.19.044c.738.167 1.107.25 1.195.532s-.164.577-.667 1.165l-.13.152c-.143.167-.215.25-.247.354s-.021.215 0 .438l.02.203c.076.785.114 1.178-.115 1.352c-.23.174-.576.015-1.267-.303l-.178-.082c-.197-.09-.295-.135-.399-.135s-.202.045-.399.135l-.178.082c-.691.319-1.037.477-1.267.303s-.191-.567-.115-1.352l.02-.203c.021-.223.032-.334 0-.438s-.104-.187-.247-.354l-.13-.152c-.503-.588-.755-.882-.667-1.165c.088-.282.457-.365 1.195-.532l.19-.044c.21-.047.315-.07.4-.135c.084-.064.138-.16.246-.354z"/><path stroke-linecap="round" d="M18 22H6"/></g></svg>
@@ -32,7 +32,7 @@
             <svg class="nav-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </button>
           <ul class="nav-drop-menu" role="menu">
-            <li role="none"><a href="worldcup.html" role="menuitem"><span class="league-badge" style="background:linear-gradient(135deg,#006bff,#08d5ff);color:#fff">WC</span>世界杯</a></li>
+            <li role="none"><a href="index.html" role="menuitem"><span class="league-badge" style="background:linear-gradient(135deg,#006bff,#08d5ff);color:#fff">WC</span>世界杯</a></li>
             <li role="none"><a href="#" role="menuitem"><span class="league-badge" style="background:#37003c;color:#fff">PL</span>英超</a></li>
             <li role="none"><a href="#" role="menuitem"><span class="league-badge" style="background:#1a3a6e;color:#fff">SA</span>意甲</a></li>
             <li role="none"><a href="#" role="menuitem"><span class="league-badge" style="background:#d20515;color:#fff">BL</span>德甲</a></li>
@@ -66,11 +66,11 @@
           <p class="lead">轻量的浏览器扩展、Windows 客户端与 Android 应用，帮你自动隐藏复播页的比分、标题和评论区——像看直播一样看回放。</p>
           <nav class="tutorial-nav tutorial-nav-hero" aria-label="安装教程导航">
             <button class="tutorial-nav-btn" type="button" data-tutorial-tab="windows">
-              <img src="assets/windows-10-icon.svg" alt="" width="22" height="22">
+              <svg class="tutorial-nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.4 10.6 4v7.2H3V5.4Zm8.8-1.6L21 2.2v9h-9.2V3.8ZM3 12.4h7.6v7.2L3 18.2v-5.8Zm8.8 0H21v9l-9.2-1.6v-7.4Z" fill="currentColor"/></svg>
               <span>Windows</span>
             </button>
             <button class="tutorial-nav-btn" type="button" data-tutorial-tab="android">
-              <img src="assets/android-logomark.svg" alt="" width="22" height="22">
+              <svg class="tutorial-nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 4.4 5.9 2.2a.7.7 0 0 1 1.2-.7l1.4 2.3a8.6 8.6 0 0 1 7 0l1.4-2.3a.7.7 0 0 1 1.2.7l-1.3 2.2A8.6 8.6 0 0 1 20 11H4a8.6 8.6 0 0 1 3.2-6.6ZM8.5 8a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8Zm7 0a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8ZM4 12.4h16v7.1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7.1Z" fill="currentColor"/></svg>
               <span>Android</span>
             </button>
             <button class="tutorial-nav-btn active" type="button" data-tutorial-tab="browser">
@@ -86,110 +86,106 @@
 
 
       <section id="tutorials" class="section tutorial-switcher">
-        <div class="section-heading split-heading">
-          <div>
-            <p class="eyebrow">Install Guide</p>
-            <h2>选择安装教程</h2>
-          </div>
-          <nav class="tutorial-nav" aria-label="安装教程导航">
-            <button class="tutorial-nav-btn" type="button" data-tutorial-tab="windows">
-              <img src="assets/windows-10-icon.svg" alt="" width="22" height="22">
-              <span>Windows</span>
-            </button>
-            <button class="tutorial-nav-btn" type="button" data-tutorial-tab="android">
-              <img src="assets/android-logomark.svg" alt="" width="22" height="22">
-              <span>Android</span>
-            </button>
-            <button class="tutorial-nav-btn active" type="button" data-tutorial-tab="browser">
-              <span class="tutorial-browser-icons" aria-hidden="true">
-                <img src="https://api.iconify.design/logos/chrome.svg" alt="" width="18" height="18">
-                <img src="https://api.iconify.design/logos/microsoft-edge.svg" alt="" width="18" height="18">
-              </span>
-              <span>浏览器</span>
-            </button>
-          </nav>
-        </div>
-
         <div class="tutorial-panels">
           <section id="windows-tutorial" class="tutorial-panel" data-tutorial-panel="windows" hidden>
-            <div class="section-heading">
-              <p class="eyebrow">Windows</p>
-              <h2>Windows 客户端安装教程</h2>
-            </div>
-            <div class="browser-grid tutorial-download-grid">
-              <article class="browser-card windows-card">
-                <span class="browser-label">Desktop App</span>
-                <div class="browser-card-header">
-                  <img class="browser-card-icon" src="assets/windows-10-icon.svg" alt="Windows" width="36" height="36">
-                  <h3>Windows 客户端</h3>
-                  <a class="browser-download" href="public/nospoil-worldcup-windows.zip" download="nospoil-worldcup-windows.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 Windows 版</a>
+            <article class="install-guide-panel install-guide-windows">
+              <div class="install-guide-head">
+                <div class="install-guide-title">
+                  <span class="install-guide-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.4 10.6 4v7.2H3V5.4Zm8.8-1.6L21 2.2v9h-9.2V3.8ZM3 12.4h7.6v7.2L3 18.2v-5.8Zm8.8 0H21v9l-9.2-1.6v-7.4Z" fill="currentColor"/></svg></span>
+                  <div>
+                    <p class="eyebrow">Windows</p>
+                    <h2>Windows 客户端安装教程</h2>
+                    <p>下载压缩包，完整解压后运行客户端。它会优先打开专用 Edge 窗口，并临时加载内置净屏助手。</p>
+                  </div>
                 </div>
-                <p>电脑用户可下载 Windows 压缩包。程序会优先调用 Microsoft Edge，并随启动临时加载内置净屏助手。</p>
-              </article>
-            </div>
-            <ol class="step-list tutorial-step-list">
-              <li>
-                <span>01</span>
-                <p>点击下载 Windows 版，将 <code>nospoil-worldcup-windows.zip</code> 保存到电脑。</p>
-              </li>
-              <li>
-                <span>02</span>
-                <p>右键压缩包并选择全部解压，保留解压后的整个文件夹，不要只单独拖出 exe 文件。</p>
-              </li>
-              <li>
-                <span>03</span>
-                <p>打开解压后的文件夹，双击「时差观赛.exe」。若 Windows 提示未知发布者，选择更多信息后继续运行。</p>
-              </li>
-              <li>
-                <span>04</span>
-                <p>程序启动后会打开专用浏览器窗口进入 scgs.tv。后续看复播时从这个窗口进入比赛页面即可。</p>
-              </li>
-            </ol>
-            <div class="tip-strip">
-              注意：Windows 版依赖本机 Microsoft Edge。若系统未检测到 Edge，会改用默认浏览器打开页面，此时不会自动加载内置净屏助手。
-            </div>
+                <a class="button primary install-guide-download" href="public/nospoil-worldcup-windows.zip" download="nospoil-worldcup-windows.zip"><svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>下载 Windows 版</a>
+              </div>
+              <ol class="install-guide-steps">
+                <li>
+                  <span>01</span>
+                  <div>
+                    <h3>下载压缩包</h3>
+                    <p>将 <code>nospoil-worldcup-windows.zip</code> 保存到电脑上容易找到的位置。</p>
+                  </div>
+                </li>
+                <li>
+                  <span>02</span>
+                  <div>
+                    <h3>完整解压文件夹</h3>
+                    <p>右键压缩包选择全部解压，保留解压后的整个文件夹，不要只单独拖出 exe 文件。</p>
+                  </div>
+                </li>
+                <li>
+                  <span>03</span>
+                  <div>
+                    <h3>运行客户端</h3>
+                    <p>打开解压后的文件夹，双击「时差观赛.exe」。若 Windows 提示未知发布者，选择更多信息后继续运行。</p>
+                  </div>
+                </li>
+                <li>
+                  <span>04</span>
+                  <div>
+                    <h3>从专用窗口观看</h3>
+                    <p>程序会打开 scgs.tv。后续看复播时从这个窗口进入比赛页面即可。</p>
+                  </div>
+                </li>
+              </ol>
+              <div class="install-guide-note">
+                Windows 版依赖本机 Microsoft Edge。若系统未检测到 Edge，会改用默认浏览器打开页面，此时不会自动加载内置净屏助手。
+              </div>
+            </article>
           </section>
 
           <section id="android-tutorial" class="tutorial-panel" data-tutorial-panel="android" hidden>
-            <div class="section-heading">
-              <p class="eyebrow">Android</p>
-              <h2>Android 安装包教程</h2>
-            </div>
-            <div class="browser-grid tutorial-download-grid">
-              <article class="browser-card android-card">
-                <span class="browser-label">Mobile App</span>
-                <div class="browser-card-header">
-                  <img class="browser-card-icon" src="assets/android-logomark.svg" alt="Android" width="36" height="36">
-                  <h3>Android APK</h3>
-                  <a class="browser-download" href="public/nospoil-worldcup-android.apk" download="nospoil-worldcup-android.apk">
-                    <svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>
-                    下载 Android 版
-                  </a>
+            <article class="install-guide-panel install-guide-android">
+              <div class="install-guide-head">
+                <div class="install-guide-title">
+                  <span class="install-guide-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 4.4 5.9 2.2a.7.7 0 0 1 1.2-.7l1.4 2.3a8.6 8.6 0 0 1 7 0l1.4-2.3a.7.7 0 0 1 1.2.7l-1.3 2.2A8.6 8.6 0 0 1 20 11H4a8.6 8.6 0 0 1 3.2-6.6ZM8.5 8a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8Zm7 0a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8ZM4 12.4h16v7.1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7.1Z" fill="currentColor"/></svg></span>
+                  <div>
+                    <p class="eyebrow">Android</p>
+                    <h2>Android 安装包教程</h2>
+                    <p>下载 APK 后在手机上安装，打开应用即可进入无剧透观赛页面。</p>
+                  </div>
                 </div>
-                <p>安卓手机用户可直接下载 APK 安装包，安装后打开应用直达无剧透观赛页面，无需浏览器插件。</p>
-              </article>
-            </div>
-            <ol class="step-list tutorial-step-list">
-              <li>
-                <span>01</span>
-                <p>点击上方下载按钮，将 APK 文件保存到手机。如果是在电脑上下载，可通过微信文件传输助手或数据线传至手机。</p>
-              </li>
-              <li>
-                <span>02</span>
-                <p>打开手机<strong>设置 → 安全</strong>，找到「安装未知来源应用」或「允许安装未知应用」，为当前使用的文件管理器或浏览器开启安装权限。</p>
-              </li>
-              <li>
-                <span>03</span>
-                <p>在手机上找到下载好的 <code>nospoil-worldcup-android.apk</code> 文件，点击安装。安装完成后桌面会出现「时差观赛」应用图标。</p>
-              </li>
-              <li>
-                <span>04</span>
-                <p>打开应用，自动加载无剧透观赛页面。该应用为轻量 WebView 封装，启动后直达 scgs.tv 赛程页面，享受纯净的观赛体验。</p>
-              </li>
-            </ol>
-            <div class="tip-strip">
-              提示：该安卓应用为 WebView 封装，不收集任何个人信息，无需注册登录。若手机提示安全风险，是因为应用未上架官方商店，属正常现象，请放心使用。
-            </div>
+                <a class="button primary install-guide-download" href="public/时差观赛.apk" download="时差观赛.apk">
+                  <svg width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g></svg>
+                  下载 Android 版
+                </a>
+              </div>
+              <ol class="install-guide-steps">
+                <li>
+                  <span>01</span>
+                  <div>
+                    <h3>保存 APK 文件</h3>
+                    <p>将 <code>时差观赛.apk</code> 下载到手机。如果先下载到电脑，可通过微信文件传输助手或数据线传到手机。</p>
+                  </div>
+                </li>
+                <li>
+                  <span>02</span>
+                  <div>
+                    <h3>允许安装未知应用</h3>
+                    <p>打开手机<strong>设置 → 安全</strong>，找到「安装未知来源应用」或「允许安装未知应用」，为当前文件管理器或浏览器开启权限。</p>
+                  </div>
+                </li>
+                <li>
+                  <span>03</span>
+                  <div>
+                    <h3>安装应用</h3>
+                    <p>在手机上找到下载好的 APK 文件，点击安装。安装完成后桌面会出现「时差观赛」应用图标。</p>
+                  </div>
+                </li>
+                <li>
+                  <span>04</span>
+                  <div>
+                    <h3>打开应用观看</h3>
+                    <p>应用会自动加载无剧透观赛页面，启动后直达 scgs.tv 赛程页面。</p>
+                  </div>
+                </li>
+              </ol>
+              <div class="install-guide-note">
+                该安卓应用为 WebView 封装，不收集任何个人信息，无需注册登录。若手机提示安全风险，是因为应用未上架官方商店，属正常现象。
+              </div>
+            </article>
           </section>
 
           <section id="browser-tutorial" class="tutorial-panel active" data-tutorial-panel="browser">
@@ -253,7 +249,7 @@
                 <p>火狐扩展体系不同，使用单独打包版本。长期发布时建议继续走 Firefox 扩展签名流程。</p>
               </article>
             </div>
-            <ol id="install-steps" class="step-list tutorial-step-list">
+            <ol id="install-steps" class="step-list tutorial-step-list" style="margin-top:28px;">
               <li>
                 <span>01</span>
                 <p>先在上方浏览器卡片里下载对应版本压缩包，再把它解压到一个固定文件夹，后续浏览器会一直从这个文件夹读取助手文件。</p>
@@ -274,43 +270,43 @@
             <div class="tip-strip">
               注意：Chrome、Edge、360、QQ 和 UC 使用 Chromium 兼容包；Firefox 使用单独版本。助手只在本地浏览器里净屏，不会接管播放。
             </div>
+
+            <section class="section">
+              <div class="section-heading split-heading">
+                <div>
+                  <p class="eyebrow">Local assistant</p>
+                  <h2>只做本地净屏，不接管播放</h2>
+                </div>
+              </div>
+              <div class="feature-grid">
+                <article class="feature-card">
+                  <span class="feature-index"><svg width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M208 40H48a24 24 0 0 0-24 24v112a24 24 0 0 0 24 24h160a24 24 0 0 0 24-24V64a24 24 0 0 0-24-24m8 136a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V64a8 8 0 0 1 8-8h160a8 8 0 0 1 8 8Zm-48 48a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8m-3.56-110.66l-48-32A8 8 0 0 0 104 88v64a8 8 0 0 0 12.44 6.66l48-32a8 8 0 0 0 0-13.32M120 137.05V103l25.58 17Z"/></svg></span>
+                  <h3>支持平台</h3>
+                  <p>桌面端支持 Chrome/Edge/Firefox/360/QQ/UC 等浏览器插件安装；手机端提供 Android APK 安装包，覆盖电脑和手机两种观赛场景。</p>
+                </article>
+                <article class="feature-card">
+                  <span class="feature-index"><svg width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M232 168h-8V72a24 24 0 0 0-24-24H56a24 24 0 0 0-24 24v96h-8a8 8 0 0 0-8 8v16a24 24 0 0 0 24 24h176a24 24 0 0 0 24-24v-16a8 8 0 0 0-8-8M48 72a8 8 0 0 1 8-8h144a8 8 0 0 1 8 8v96H48Zm176 120a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8v-8h192ZM152 88a8 8 0 0 1-8 8h-32a8 8 0 0 1 0-16h32a8 8 0 0 1 8 8"/></svg></span>
+                  <h3>本地运行 / 隐私安全</h3>
+                  <p>无论是浏览器插件还是手机 App，都只在本地运行，不上传浏览记录、不收集个人信息，也不需要注册登录。</p>
+                </article>
+                <article class="feature-card">
+                  <span class="feature-index"><svg width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M208 40H48a16 16 0 0 0-16 16v56c0 52.72 25.52 84.67 46.93 102.19c23.06 18.86 46 25.26 47 25.53a8 8 0 0 0 4.2 0c1-.27 23.91-6.67 47-25.53C198.48 196.67 224 164.72 224 112V56a16 16 0 0 0-16-16m0 72c0 37.07-13.66 67.16-40.6 89.42a129.3 129.3 0 0 1-39.4 22.2a128.3 128.3 0 0 1-38.92-21.81C61.82 179.51 48 149.3 48 112V56h160ZM82.34 141.66a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 11.32l-56 56a8 8 0 0 1-11.32 0Z"/></svg></span>
+                  <h3>失败不影响观看</h3>
+                  <p>浏览器插件和手机 App 都会按视频时长尝试跳过前段，但如果页面限制了进度跳转，视频仍会照常播放，你可以手动调整进度继续观看。</p>
+                </article>
+              </div>
+            </section>
+
+            <section class="section final-cta">
+              <div>
+                <p class="eyebrow">Before replay</p>
+                <h2>打开复播前，先确认助手处于启用状态</h2>
+                <p>如果没有生效，请刷新复播页面，或回到扩展管理页重新检查开关和文件夹加载状态。安卓用户请确保已安装并打开 App。</p>
+              </div>
+              <a class="button primary" href="index.html#matches">返回比赛入口</a>
+            </section>
           </section>
         </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading split-heading">
-          <div>
-            <p class="eyebrow">Local assistant</p>
-            <h2>只做本地净屏，不接管播放</h2>
-          </div>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card">
-            <span class="feature-index"><svg width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M208 40H48a24 24 0 0 0-24 24v112a24 24 0 0 0 24 24h160a24 24 0 0 0 24-24V64a24 24 0 0 0-24-24m8 136a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V64a8 8 0 0 1 8-8h160a8 8 0 0 1 8 8Zm-48 48a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8m-3.56-110.66l-48-32A8 8 0 0 0 104 88v64a8 8 0 0 0 12.44 6.66l48-32a8 8 0 0 0 0-13.32M120 137.05V103l25.58 17Z"/></svg></span>
-            <h3>支持平台</h3>
-            <p>桌面端支持 Chrome/Edge/Firefox/360/QQ/UC 等浏览器插件安装；手机端提供 Android APK 安装包，覆盖电脑和手机两种观赛场景。</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-index"><svg width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M232 168h-8V72a24 24 0 0 0-24-24H56a24 24 0 0 0-24 24v96h-8a8 8 0 0 0-8 8v16a24 24 0 0 0 24 24h176a24 24 0 0 0 24-24v-16a8 8 0 0 0-8-8M48 72a8 8 0 0 1 8-8h144a8 8 0 0 1 8 8v96H48Zm176 120a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8v-8h192ZM152 88a8 8 0 0 1-8 8h-32a8 8 0 0 1 0-16h32a8 8 0 0 1 8 8"/></svg></span>
-            <h3>本地运行 / 隐私安全</h3>
-            <p>无论是浏览器插件还是手机 App，都只在本地运行，不上传浏览记录、不收集个人信息，也不需要注册登录。</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-index"><svg width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M208 40H48a16 16 0 0 0-16 16v56c0 52.72 25.52 84.67 46.93 102.19c23.06 18.86 46 25.26 47 25.53a8 8 0 0 0 4.2 0c1-.27 23.91-6.67 47-25.53C198.48 196.67 224 164.72 224 112V56a16 16 0 0 0-16-16m0 72c0 37.07-13.66 67.16-40.6 89.42a129.3 129.3 0 0 1-39.4 22.2a128.3 128.3 0 0 1-38.92-21.81C61.82 179.51 48 149.3 48 112V56h160ZM82.34 141.66a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 11.32l-56 56a8 8 0 0 1-11.32 0Z"/></svg></span>
-            <h3>失败不影响观看</h3>
-            <p>浏览器插件和手机 App 都会按视频时长尝试跳过前段，但如果页面限制了进度跳转，视频仍会照常播放，你可以手动调整进度继续观看。</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section final-cta">
-        <div>
-          <p class="eyebrow">Before replay</p>
-          <h2>打开复播前，先确认助手处于启用状态</h2>
-          <p>如果没有生效，请刷新复播页面，或回到扩展管理页重新检查开关和文件夹加载状态。安卓用户请确保已安装并打开 App。</p>
-        </div>
-        <a class="button primary" href="index.html#matches">返回比赛入口</a>
       </section>
     </main>
 
@@ -372,6 +368,66 @@
     </footer>
     <script>
       (function() {
+        var tutorialButtons = document.querySelectorAll('[data-tutorial-tab]');
+        var tutorialPanels = document.querySelectorAll('[data-tutorial-panel]');
+        var hashToTutorial = {
+          '#windows-tutorial': 'windows',
+          '#android-tutorial': 'android',
+          '#android-download': 'android',
+          '#browser-tutorial': 'browser',
+          '#browser-downloads': 'browser',
+          '#install-steps': 'browser',
+          '#tutorials': 'browser'
+        };
+
+        function getTutorialFromHash() {
+          return hashToTutorial[window.location.hash] || 'browser';
+        }
+
+        function setActiveTutorial(tutorial, scrollToGuide) {
+          tutorialButtons.forEach(function(btn) {
+            var isActive = btn.getAttribute('data-tutorial-tab') === tutorial;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-current', isActive ? 'true' : 'false');
+          });
+
+          tutorialPanels.forEach(function(panel) {
+            var isActive = panel.getAttribute('data-tutorial-panel') === tutorial;
+            panel.classList.toggle('active', isActive);
+            panel.hidden = !isActive;
+          });
+
+          if (scrollToGuide) {
+            var guide = document.getElementById('tutorials');
+            if (guide) guide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+
+        tutorialButtons.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var tutorial = btn.getAttribute('data-tutorial-tab');
+            var isHeroNav = !!btn.closest('.tutorial-nav-hero');
+            setActiveTutorial(tutorial, isHeroNav);
+            if (history.replaceState) {
+              history.replaceState(null, '', '#' + tutorial + '-tutorial');
+            }
+          });
+        });
+
+        setActiveTutorial(getTutorialFromHash(), false);
+
+        if (window.location.hash && hashToTutorial[window.location.hash]) {
+          var anchor = document.querySelector(window.location.hash);
+          var target = anchor || document.getElementById('tutorials');
+          if (target) window.setTimeout(function() {
+            target.scrollIntoView({ behavior: 'auto', block: 'start' });
+          }, 0);
+        }
+
+        window.addEventListener('hashchange', function() {
+          setActiveTutorial(getTutorialFromHash(), false);
+        });
+
         var dropTriggers = document.querySelectorAll('.nav-drop-trigger');
         dropTriggers.forEach(function(btn) {
           btn.addEventListener('click', function(e) {

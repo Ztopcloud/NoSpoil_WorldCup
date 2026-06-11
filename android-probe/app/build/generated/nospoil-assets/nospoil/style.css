@@ -83,3 +83,7 @@ html.nospoil-theater-mode body {
   height: 100% !important;
   object-fit: contain !important;
 }
+
+.nospoil-player-root:is(video) {
+  object-fit: contain !important;
+}

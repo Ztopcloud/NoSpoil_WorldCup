@@ -107,6 +107,22 @@
     return `${match.date} ${match.timeBeijing} ${match.home} vs ${match.away}`;
   }
 
+  function addSkipHash(url, skipSeconds) {
+    if (!url) return '';
+
+    const seconds = Number(skipSeconds);
+    if (!Number.isFinite(seconds) || seconds < 0) return url;
+
+    const hashValue = 'scgs_skip=' + encodeURIComponent(String(Math.round(seconds)));
+    const baseHash = url.indexOf('#') === -1 ? '' : url.slice(url.indexOf('#') + 1);
+    const baseUrl = url.indexOf('#') === -1 ? url : url.slice(0, url.indexOf('#'));
+    const hashParts = baseHash ? baseHash.split('&').filter(function(part) {
+      return part && !/^scgs_skip=/.test(part);
+    }) : [];
+    hashParts.push(hashValue);
+    return baseUrl + '#' + hashParts.join('&');
+  }
+
   function updateStats() {
     document.getElementById('stat-total').textContent = matches.length;
     document.getElementById('stat-replay').textContent = matches.filter(match => match.replayUrl).length;
@@ -153,9 +169,10 @@
           : (roundLabels[match.round] || match.round);
         var placeholderClass = isPlaceholder(match) ? ' placeholder' : '';
 
-        function urlOpenBtn(url) {
+        function urlOpenBtn(url, skipSeconds) {
           if (!url) return '<span class="match-inline-open disabled" title="暂无链接">打开</span>';
-          return '<a class="match-inline-open" href="' + escapeHtml(url) +
+          var openUrl = skipSeconds == null ? url : addSkipHash(url, skipSeconds);
+          return '<a class="match-inline-open" href="' + escapeHtml(openUrl) +
             '" target="_blank" rel="noopener noreferrer" title="在新标签页打开">打开</a>';
         }
 
@@ -189,8 +206,12 @@
             '<label class="match-url-label">复播' +
               '<div class="match-url-row">' +
                 '<input data-field="replayUrl" value="' + escapeHtml(match.replayUrl || '') + '" placeholder="https://cbs.sports.cctv.com/...">' +
-                urlOpenBtn(match.replayUrl) +
+                urlOpenBtn(match.replayUrl, match.skipSeconds) +
               '</div>' +
+            '</label>' +
+            '<label class="match-url-label skip-seconds-label">跳过秒数' +
+              '<input class="skip-seconds-input" data-field="skipSeconds" type="number" min="0" step="1" value="' + escapeHtml(match.skipSeconds == null ? '' : match.skipSeconds) +
+              '" placeholder="自动" title="留空使用平台默认值；填 0 表示不跳过开头">' +
             '</label>' +
             '<button class="match-clear-btn" data-action="clear-urls" title="清除直播/复播链接及主客队信息">清除</button>' +
           '</article>'
@@ -385,7 +406,16 @@
   function updateMatch(id, field, value) {
     const match = matches.find(item => item.id === id);
     if (!match) return;
-    match[field] = value.trim();
+    if (field === 'skipSeconds') {
+      const trimmed = value.trim();
+      if (trimmed === '') {
+        delete match.skipSeconds;
+      } else {
+        match.skipSeconds = Math.max(0, Math.round(Number(trimmed) || 0));
+      }
+    } else {
+      match[field] = value.trim();
+    }
     setStatus('有未保存修改', true);
     updateStats();
   }
@@ -442,6 +472,36 @@
     URL.revokeObjectURL(url);
   }
 
+  function refreshOpenButton(card, field) {
+    var row = card.querySelector('[data-field="' + field + '"]')?.closest('.match-url-row');
+    if (!row) return;
+
+    var openBtn = row.querySelector('.match-inline-open');
+    var input = row.querySelector('[data-field="' + field + '"]');
+    if (!openBtn || !input) return;
+
+    var url = input.value.trim();
+    if (url) {
+      var skipInput = card.querySelector('[data-field="skipSeconds"]');
+      var skipValue = skipInput && skipInput.value.trim() !== '' ? skipInput.value.trim() : null;
+      var href = field === 'replayUrl' && skipValue != null ? addSkipHash(url, skipValue) : url;
+      var a = document.createElement('a');
+      a.className = 'match-inline-open';
+      a.href = href;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.title = '在新标签页打开';
+      a.textContent = '打开';
+      openBtn.replaceWith(a);
+    } else {
+      var span = document.createElement('span');
+      span.className = 'match-inline-open disabled';
+      span.title = '暂无链接';
+      span.textContent = '打开';
+      openBtn.replaceWith(span);
+    }
+  }
+
   matchList.addEventListener('input', function(event) {
     var input = event.target;
     var card = input.closest('[data-id]');
@@ -463,31 +523,12 @@
       }
     }
 
-    // 当修改直播/复播链接时，实时更新打开按钮
+    // 当修改直播/复播链接或跳过秒数时，实时更新打开按钮
     if (field === 'liveUrl' || field === 'replayUrl') {
-      var row = input.closest('.match-url-row');
-      if (row) {
-        var openBtn = row.querySelector('.match-inline-open');
-        if (openBtn) {
-          var url = input.value.trim();
-          if (url) {
-            var a = document.createElement('a');
-            a.className = 'match-inline-open';
-            a.href = url;
-            a.target = '_blank';
-            a.rel = 'noopener noreferrer';
-            a.title = '在新标签页打开';
-            a.textContent = '打开';
-            openBtn.replaceWith(a);
-          } else {
-            var span = document.createElement('span');
-            span.className = 'match-inline-open disabled';
-            span.title = '暂无链接';
-            span.textContent = '打开';
-            openBtn.replaceWith(span);
-          }
-        }
-      }
+      refreshOpenButton(card, field);
+    }
+    if (field === 'skipSeconds') {
+      refreshOpenButton(card, 'replayUrl');
     }
 
     // 当手动修改国旗代码时，也触发保存标记
@@ -610,6 +651,7 @@
     match.away = '待定';
     match.homeCode = 'xx';
     match.awayCode = 'xx';
+    delete match.skipSeconds;
     setStatus('有未保存修改', true);
     updateStats();
     renderMatches();

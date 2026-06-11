@@ -22,8 +22,8 @@
 17-->C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\src\main\AndroidManifest.xml:7:9-43
 18        android:icon="@mipmap/ic_launcher"
 18-->C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\src\main\AndroidManifest.xml:8:9-43
-19        android:label="时差观赛调研版"
-19-->C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\src\main\AndroidManifest.xml:9:9-32
+19        android:label="时差观赛"
+19-->C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\src\main\AndroidManifest.xml:9:9-29
 20        android:supportsRtl="true"
 20-->C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\src\main\AndroidManifest.xml:10:9-35
 21        android:theme="@style/AppTheme"

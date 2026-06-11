@@ -202,6 +202,10 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
     return /(^|\.)cctv\.com$/i.test(window.location.hostname);
   }
 
+  function isXiaohongshuPage() {
+    return /(^|\.)xiaohongshu\.com$/i.test(window.location.hostname);
+  }
+
   function hideElement(el) {
     if (!el || el.id === NOTICE_ID || isInsidePlayer(el)) return;
     el.classList.add('nospoil-hidden');
@@ -210,7 +214,10 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
   function getLargestVisibleVideo() {
     return Array.from(document.querySelectorAll('video'))
       .map((el) => ({ el, rect: el.getBoundingClientRect() }))
-      .filter(({ rect }) => rect.width > 320 && rect.height > 180)
+      .filter(({ rect }) => {
+        const area = rect.width * rect.height;
+        return area > 57600 && rect.width > 120 && rect.height > 120;
+      })
       .sort((a, b) => (b.rect.width * b.rect.height) - (a.rect.width * a.rect.height))[0];
   }
 
@@ -307,7 +314,7 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
 
     const candidates = Array.from(document.querySelectorAll('video'))
       .map((el) => el.getBoundingClientRect())
-      .filter((rect) => rect.width > 320 && rect.height > 180);
+      .filter((rect) => rect.width * rect.height > 57600 && rect.width > 120 && rect.height > 120);
 
     return candidates.sort((a, b) => (b.width * b.height) - (a.width * a.height))[0] || null;
   }
@@ -349,7 +356,7 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
   function hideCctvLayoutAroundVideo() {
     const video = Array.from(document.querySelectorAll('video'))
       .map((el) => ({ el, rect: el.getBoundingClientRect() }))
-      .filter(({ rect }) => rect.width > 320 && rect.height > 180)
+      .filter(({ rect }) => rect.width * rect.height > 57600 && rect.width > 120 && rect.height > 120)
       .sort((a, b) => (b.rect.width * b.rect.height) - (a.rect.width * a.rect.height))[0];
 
     if (!video) return;
@@ -420,20 +427,45 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
     });
   }
 
+  function hideXiaohongshuSideContent() {
+    if (!isXiaohongshuPage()) return;
+
+    const playerRoot = getPlayerRoot();
+    if (!playerRoot) return;
+
+    hideOutsidePlayer(playerRoot);
+    sanitizeDocumentTitle();
+  }
+
   function sanitizeDocumentTitle() {
     if (TITLE_LIKE_TEXT.test(document.title)) {
       document.title = '时差观赛';
     }
   }
 
+  function getConfiguredSkipSeconds() {
+    const hash = window.location.hash || '';
+    const match = hash.match(/(?:^#?|&)scgs_skip=([^&]+)/);
+    if (match) {
+      const value = Number(decodeURIComponent(match[1]));
+      if (Number.isFinite(value) && value >= 0) return Math.round(value);
+    }
+
+    if (isXiaohongshuPage()) return 0;
+    return DEFAULT_SKIP_SECONDS;
+  }
+
   function getSkipTargetSeconds(video) {
+    const configuredSeconds = getConfiguredSkipSeconds();
+    if (configuredSeconds === 0) return 0;
+
     const duration = Number(video.duration);
-    if (!Number.isFinite(duration) || duration <= 0) return DEFAULT_SKIP_SECONDS;
+    if (!Number.isFinite(duration) || duration <= 0) return configuredSeconds;
     if (duration < 30) return 3;
     if (duration < 60) return 8;
     if (duration < 120) return 15;
     if (duration < 200) return 25;
-    return DEFAULT_SKIP_SECONDS;
+    return configuredSeconds;
   }
 
   function hidePossibleSpoilers() {
@@ -444,6 +476,7 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
     });
 
     hideCctvSideContent();
+    hideXiaohongshuSideContent();
     sanitizeDocumentTitle();
   }
 
@@ -458,6 +491,7 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
       try {
         const targetSeconds = getSkipTargetSeconds(video);
         if (
+          targetSeconds > 0 &&
           video.duration &&
           video.currentTime < targetSeconds
         ) {
@@ -529,7 +563,7 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
   }
 
   function tryAutoFullscreen(video) {
-    if (!video || !isCctvPage()) return;
+    if (!video || (!isCctvPage() && !isXiaohongshuPage())) return;
 
     tryPlay(video);
 

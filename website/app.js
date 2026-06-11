@@ -177,6 +177,22 @@
     return minutes + '分';
   }
 
+  function addSkipHash(url, skipSeconds) {
+    if (!url) return '';
+
+    const seconds = Number(skipSeconds);
+    if (!Number.isFinite(seconds) || seconds < 0) return url;
+
+    const hashValue = 'scgs_skip=' + encodeURIComponent(String(Math.round(seconds)));
+    const baseHash = url.indexOf('#') === -1 ? '' : url.slice(url.indexOf('#') + 1);
+    const baseUrl = url.indexOf('#') === -1 ? url : url.slice(0, url.indexOf('#'));
+    const hashParts = baseHash ? baseHash.split('&').filter(function(part) {
+      return part && !/^scgs_skip=/.test(part);
+    }) : [];
+    hashParts.push(hashValue);
+    return baseUrl + '#' + hashParts.join('&');
+  }
+
   function getMatchState(match) {
     const now = getPreviewNow().getTime();
     const start = matchStartTime(match).getTime();
@@ -203,7 +219,7 @@
         hoverSubLabel: '',
         topType: 'live',
         topLabel: '视频直播',
-        link: match.liveUrl || ''
+      link: match.liveUrl || ''
       };
     }
 
@@ -226,7 +242,7 @@
       hoverSubLabel: '',
       topType: 'live',
       topLabel: '视频直播',
-      link: match.replayUrl || match.liveUrl || ''
+      link: addSkipHash(match.replayUrl || match.liveUrl || '', match.skipSeconds)
     };
   }
 

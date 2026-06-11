@@ -24,7 +24,7 @@ INJECTED from C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\src\main\AndroidMa
 	android:supportsRtl
 		ADDED from C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\src\main\AndroidManifest.xml:10:9-35
 	android:label
-		ADDED from C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\src\main\AndroidManifest.xml:9:9-32
+		ADDED from C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\src\main\AndroidManifest.xml:9:9-29
 	android:hardwareAccelerated
 		ADDED from C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\src\main\AndroidManifest.xml:7:9-43
 	android:icon

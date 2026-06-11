@@ -128,6 +128,16 @@ function assertSafeMatches(matches) {
         throw new Error(`${match.id}: ${key} must start with http:// or https://`);
       }
     });
+
+    if (match.skipSeconds == null || match.skipSeconds === '') {
+      delete match.skipSeconds;
+    } else {
+      const skipSeconds = Number(match.skipSeconds);
+      if (!Number.isFinite(skipSeconds) || skipSeconds < 0) {
+        throw new Error(`${match.id}: skipSeconds must be a non-negative number`);
+      }
+      match.skipSeconds = Math.round(skipSeconds);
+    }
   });
 }
 

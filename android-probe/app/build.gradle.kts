@@ -52,6 +52,12 @@ android {
             assets.srcDir(layout.buildDirectory.dir("generated/nospoil-assets"))
         }
     }
+
+    applicationVariants.all {
+        outputs.all {
+            (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl).outputFileName = "时差观赛.apk"
+        }
+    }
 }
 
 val copyNospoilAssets by tasks.registering(Copy::class) {
