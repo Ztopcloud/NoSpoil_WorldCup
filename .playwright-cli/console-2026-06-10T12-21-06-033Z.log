@@ -1,0 +1,2 @@
+[       5ms] [LOG] %c disposing... myflash_player color:#2a9934;font-size:8pt;letter-spacing:12pt;line-height:8pt;font-weight:bold;font-family:monospace; @ https://player.cntv.cn/h5vod/vodh5player.min.js:4
+[     159ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ https://cbs.sports.cctv.com/worldcup2026_match_info.html?id=22920296:0

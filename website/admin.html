@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>比赛视频后台 | 时差观赛</title>
+    <link rel="icon" type="image/png" href="assets/iconblu.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+  </head>
+  <body class="admin-body">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="时差观赛首页">
+        <img src="assets/logo-white-wide.png" alt="时差观赛">
+      </a>
+      <nav class="nav-links" aria-label="后台导航">
+        <a href="index.html" class="nav-item">返回首页</a>
+        <a href="https://cbs.sports.cctv.com/index.html#3400" class="nav-item" target="_blank" rel="noopener noreferrer">央视视频源</a>
+      </nav>
+    </header>
+
+    <main class="admin-login-shell" id="admin-login-shell">
+      <section class="admin-login-card">
+        <p class="eyebrow">Admin Login</p>
+        <h1>后台登录</h1>
+        <p>输入启动 `admin-server.js` 时设置的 `ADMIN_TOKEN` 后，才能进入视频链接后台。</p>
+        <form id="login-form" class="admin-login-form">
+          <label class="admin-login-label" for="admin-token-input">后台密码</label>
+          <input id="admin-token-input" class="admin-login-input" type="password" autocomplete="current-password" placeholder="请输入 ADMIN_TOKEN">
+          <button class="admin-button primary" type="submit" id="login-submit-btn">进入后台</button>
+        </form>
+        <p class="admin-login-error" id="login-error" hidden>密码错误或服务未开启鉴权。</p>
+      </section>
+    </main>
+
+    <main class="admin-shell" id="admin-app" hidden>
+      <section class="admin-hero-panel">
+        <div>
+          <p class="eyebrow">Video Admin</p>
+          <h1>比赛视频链接后台</h1>
+          <p>管理主页卡片使用的直播和复播链接，支持把央视页面复制来的单场视频链接批量匹配到对应比赛。</p>
+        </div>
+        <div class="admin-actions">
+          <button class="admin-button subtle" type="button" id="logout-btn">退出登录</button>
+          <button class="admin-button primary" type="button" id="save-btn">保存到 matches.json</button>
+          <button class="admin-button" type="button" id="download-btn">导出 JSON</button>
+          <a class="admin-button ghost" href="index.html#matches">查看主页</a>
+        </div>
+      </section>
+
+      <section class="admin-status-row" aria-live="polite">
+        <div class="admin-stat">
+          <span class="admin-stat-label">全部比赛</span>
+          <strong id="stat-total">0</strong>
+        </div>
+        <div class="admin-stat">
+          <span class="admin-stat-label">已绑定复播</span>
+          <strong id="stat-replay">0</strong>
+        </div>
+        <div class="admin-stat">
+          <span class="admin-stat-label">已绑定直播</span>
+          <strong id="stat-live">0</strong>
+        </div>
+        <div class="admin-stat">
+          <span class="admin-stat-label">待更新淘汰赛</span>
+          <strong id="stat-pending">0</strong>
+        </div>
+        <div class="admin-stat wide">
+          <span class="admin-stat-label">保存状态</span>
+          <strong id="save-status">尚未保存</strong>
+        </div>
+      </section>
+
+      <section class="admin-panel">
+        <div class="admin-panel-head">
+          <div>
+            <h2>批量绑定央视链接</h2>
+            <p>从央视列表复制“标题 + URL”，每行一条。比赛 Hub 页会默认同时写入直播和复播；后台只保存链接，不写入比分、赛果和标题。</p>
+          </div>
+          <button class="admin-button" type="button" id="preview-import-btn">预览匹配</button>
+        </div>
+        <textarea id="bulk-input" class="bulk-input" spellcheck="false" placeholder="示例：&#10;06/12 墨西哥vs南非 https://cbs.sports.cctv.com/...&#10;韩国 捷克 https://cbs.sports.cctv.com/..."></textarea>
+        <div class="import-tools">
+          <label class="field-inline">
+            写入字段
+            <select id="bulk-target-field">
+              <option value="auto">自动判断</option>
+              <option value="liveUrl">直播链接 liveUrl</option>
+              <option value="replayUrl">复播链接 replayUrl</option>
+            </select>
+          </label>
+          <button class="admin-button primary" type="button" id="apply-import-btn" disabled>应用可匹配链接</button>
+          <button class="admin-button subtle" type="button" id="clear-import-btn">清空</button>
+        </div>
+        <div id="import-preview" class="import-preview" hidden></div>
+      </section>
+
+      <section class="admin-panel">
+        <div class="admin-panel-head">
+          <div class="admin-tabs">
+            <button class="admin-tab active" data-tab="knockout">🏆 淘汰赛快速填充</button>
+            <button class="admin-tab" data-tab="single">📋 单场维护</button>
+          </div>
+        </div>
+        <div class="admin-tab-panel" id="tab-knockout">
+          <p style="margin-bottom:12px;">小组赛结束后，在这里快速更新淘汰赛对阵双方。输入队名自动带出国旗代码。红色行 = 待更新。</p>
+          <div class="knockout-grid" id="knockout-grid">
+            <div class="empty-state">加载中…</div>
+          </div>
+        </div>
+        <div class="admin-tab-panel" id="tab-single" hidden>
+          <div style="display:flex; justify-content:space-between; align-items:start; gap:16px; margin-bottom:12px;">
+            <p style="margin-bottom:0;">可搜索队名、日期或比赛 ID；编辑后记得点击顶部保存。</p>
+            <div class="admin-filter">
+              <input id="search-input" type="search" placeholder="搜索：墨西哥、06/12、g1">
+              <select id="round-filter">
+                <option value="all">全部阶段</option>
+                <option value="group">小组赛</option>
+                <option value="round32">32强</option>
+                <option value="round16">16强</option>
+                <option value="quarter">1/4决赛</option>
+                <option value="semi">半决赛</option>
+                <option value="third">季军决赛</option>
+                <option value="final">决赛</option>
+              </select>
+            </div>
+          </div>
+          <div class="match-admin-list" id="match-list"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="admin.js?v=20260610-6"></script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+#nospoil-worldcup-notice {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  max-width: calc(100vw - 32px);
+  background: rgba(12, 18, 32, 0.94);
+  color: #ffffff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  pointer-events: none;
+  text-align: center;
+  box-sizing: border-box;
+  opacity: 1;
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+
+#nospoil-worldcup-notice.nospoil-notice-fade {
+  opacity: 0;
+  transform: translate(-50%, -8px);
+}
+
+.nospoil-hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+body.nospoil-clean-screen {
+  background: #000000 !important;
+  overflow: hidden !important;
+}
+
+html.nospoil-theater-mode,
+html.nospoil-theater-mode body {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+.nospoil-outside-player {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.nospoil-player-root {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 2147483000 !important;
+  background: #000000 !important;
+}
+
+.nospoil-player-root video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
