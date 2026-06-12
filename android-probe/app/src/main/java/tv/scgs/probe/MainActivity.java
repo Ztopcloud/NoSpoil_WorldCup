@@ -32,10 +32,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Locale;
-import java.util.Set;
 
 public class MainActivity extends Activity {
     private static final String TAG = "SCGSProbe";
@@ -43,11 +40,25 @@ public class MainActivity extends Activity {
     private static final int TOOLBAR_HORIZONTAL_PADDING_DP = 16;
     private static final int TOOLBAR_TOP_PADDING_DP = 8;
     private static final int TOOLBAR_BOTTOM_PADDING_DP = 8;
-    private static final Set<String> IN_APP_HOSTS = new HashSet<>(Arrays.asList(
+    private static final String[] IN_APP_HOST_SUFFIXES = new String[]{
             "scgs.tv",
-            "www.scgs.tv",
-            "worldcup.cctv.com"
-    ));
+            "cctv.com",
+            "cntv.cn",
+            "yangshipin.cn",
+            "xiaohongshu.com"
+    };
+    private static final String[] NOSPOIL_HOST_SUFFIXES = new String[]{
+            "worldcup.cctv.com",
+            "sports.cctv.com",
+            "cntv.cn",
+            "yangshipin.cn"
+    };
+    private static final String[] XIAOHONGSHU_APP_SCHEMES = new String[]{
+            "xhsdiscover",
+            "xhslink",
+            "xiaohongshu",
+            "rednote"
+    };
 
     private FrameLayout root;
     private LinearLayout toolbar;
@@ -254,6 +265,10 @@ public class MainActivity extends Activity {
 
         String scheme = safeLower(uri.getScheme());
         if (!"http".equals(scheme) && !"https".equals(scheme)) {
+            if (shouldSuppressExternalAppPrompt(uri)) {
+                Log.i(TAG, "Suppress external app deep link: " + uri);
+                return true;
+            }
             openExternal(uri);
             return true;
         }
@@ -270,18 +285,49 @@ public class MainActivity extends Activity {
         return true;
     }
 
+    private boolean shouldSuppressExternalAppPrompt(Uri uri) {
+        String scheme = safeLower(uri.getScheme());
+        if (scheme.isEmpty()) return false;
+
+        for (String appScheme : XIAOHONGSHU_APP_SCHEMES) {
+            if (appScheme.equals(scheme)) {
+                return true;
+            }
+        }
+
+        if ("intent".equals(scheme)) {
+            String raw = safeLower(uri.toString());
+            return raw.contains("xiaohongshu")
+                    || raw.contains("xhsdiscover")
+                    || raw.contains("xhslink")
+                    || raw.contains("com.xingin.xhs");
+        }
+
+        return false;
+    }
+
     private boolean isInAppHost(Uri uri) {
         String host = safeLower(uri.getHost());
-        return IN_APP_HOSTS.contains(host);
+        return hostMatchesAny(host, IN_APP_HOST_SUFFIXES);
     }
 
     private boolean isNospoilHost(Uri uri) {
-        return "worldcup.cctv.com".equals(safeLower(uri.getHost()));
+        String host = safeLower(uri.getHost());
+        if (hostMatchesAny(host, NOSPOIL_HOST_SUFFIXES)) {
+            return true;
+        }
+
+        if (hostMatches(host, "xiaohongshu.com")) {
+            String path = safeLower(uri.getPath());
+            return path.startsWith("/explore/") || path.startsWith("/discovery/item/");
+        }
+
+        return false;
     }
 
     private boolean isSiteHost(Uri uri) {
         String host = safeLower(uri.getHost());
-        return "scgs.tv".equals(host) || "www.scgs.tv".equals(host);
+        return hostMatches(host, "scgs.tv");
     }
 
     private void openExternal(Uri uri) {
@@ -401,9 +447,14 @@ public class MainActivity extends Activity {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView popupView, WebResourceRequest request) {
                     Uri uri = request.getUrl();
-                    if (isInAppHost(uri)) {
-                        webView.loadUrl(uri.toString());
-                    } else {
+                    String scheme = safeLower(uri.getScheme());
+                    if ("http".equals(scheme) || "https".equals(scheme)) {
+                        if (isInAppHost(uri)) {
+                            webView.loadUrl(uri.toString());
+                        } else {
+                            openExternal(uri);
+                        }
+                    } else if (!shouldSuppressExternalAppPrompt(uri)) {
                         openExternal(uri);
                     }
                     popup.destroy();
@@ -413,9 +464,14 @@ public class MainActivity extends Activity {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView popupView, String url) {
                     Uri uri = Uri.parse(url);
-                    if (isInAppHost(uri)) {
-                        webView.loadUrl(uri.toString());
-                    } else {
+                    String scheme = safeLower(uri.getScheme());
+                    if ("http".equals(scheme) || "https".equals(scheme)) {
+                        if (isInAppHost(uri)) {
+                            webView.loadUrl(uri.toString());
+                        } else {
+                            openExternal(uri);
+                        }
+                    } else if (!shouldSuppressExternalAppPrompt(uri)) {
                         openExternal(uri);
                     }
                     popup.destroy();
@@ -520,6 +576,19 @@ public class MainActivity extends Activity {
 
     private String safeLower(String value) {
         return value == null ? "" : value.toLowerCase(Locale.ROOT);
+    }
+
+    private boolean hostMatchesAny(String host, String[] suffixes) {
+        for (String suffix : suffixes) {
+            if (hostMatches(host, suffix)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hostMatches(String host, String suffix) {
+        return host.equals(suffix) || host.endsWith("." + suffix);
     }
 
     private int dpToPx(int dp) {

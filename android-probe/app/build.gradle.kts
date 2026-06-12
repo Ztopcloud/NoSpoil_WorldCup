@@ -18,8 +18,8 @@ android {
         applicationId = "tv.scgs.probe"
         minSdk = 23
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0-probe"
+        versionCode = 2
+        versionName = "0.1.1-probe"
     }
 
     buildFeatures {
@@ -55,7 +55,9 @@ android {
 
     applicationVariants.all {
         outputs.all {
-            (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl).outputFileName = "时差观赛.apk"
+            val variantOutput = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
+            val buildTypeName = variantOutput.name.substringAfterLast('-')
+            variantOutput.outputFileName = "时差观赛-${defaultConfig.versionName}-${buildTypeName}.apk"
         }
     }
 }

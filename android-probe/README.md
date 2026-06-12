@@ -5,11 +5,12 @@
 ## 当前行为
 
 - 默认打开 `https://scgs.tv/`。
-- `scgs.tv`、`www.scgs.tv`、`worldcup.cctv.com` 在 App 内打开。
+- `scgs.tv`、央视系回放域名（如 `worldcup.cctv.com`、`sports.cctv.com`、`cbs.sports.cctv.com`）、`xiaohongshu.com` 在 App 内打开。
 - 其他链接交给系统浏览器或外部 App。
-- `worldcup.cctv.com` 页面加载完成后，注入仓库现有的 `extension/content.js` 和 `extension/style.css`。
+- 识别为“净屏目标页”的央视/小红书页面加载完成后，注入仓库现有的 `extension/content.js` 和 `extension/style.css`。
 - 支持基础返回、刷新、回首页、视频全屏 custom view。
 - Debug 包开启 WebView 调试，可用 Chrome `chrome://inspect` 查看控制台与 DOM；Release 包会关闭调试。
+- APK 输出文件名会带版本号与构建类型，例如 `时差观赛-0.1.1-probe-debug.apk`。
 
 ## 构建方式
 

@@ -1,0 +1,8 @@
+name = "世界杯全自动更新"
+prompt = "执行 node website/auto-update.js 进行世界杯赛程和回放的全自动更新。脚本会: 1) 优先用静态抓取补全 CBS 比赛链接，失败时自动回退 Playwright（若已安装）；2) 扫描已结束但还没有回放链接的比赛，自动从央视 match 页面提取回放链接；3) 有数据更新时自动递增 SW 缓存版本号和 app.js 数据版本号；4) 默认通过 scp 上传到 RSYNC_PATH 指向的站点根目录；5) 如果设置了 AUTO_GIT=true 环境变量，还会自动 git commit 和 push。\n\n如果需要 Playwright 回退能力: npm i playwright && npx playwright install chromium"
+scheduleType = "recurring"
+rrule = "FREQ=HOURLY;INTERVAL=1"
+validFrom = "2026-06-12"
+validUntil = "2026-07-21"
+cwds = ["c:/MCP_Files/NoSpoil_WorldCup"]
+status = "ACTIVE"

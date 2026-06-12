@@ -134,6 +134,7 @@
     '积分榜',
     '查看全部'
   ];
+  const PLAYER_CONTROL_ATTR_RE = /暂停|播放|静音|音量|全屏|退出全屏|进度条|拖动|快进|后退|当前时间|时长|seek|progress|timeline|scrub|slider|fullscreen|mute|volume|pause|play/i;
 
   function shouldUsePrepaintShield() {
     const hostname = window.location.hostname.toLowerCase();
@@ -319,12 +320,47 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
     return candidates.sort((a, b) => (b.width * b.height) - (a.width * a.height))[0] || null;
   }
 
+  function isLikelyPlayerControl(el, playerRect) {
+    if (!el || !playerRect) return false;
+
+    const rect = el.getBoundingClientRect();
+    if (rect.width <= 2 || rect.height <= 2) return false;
+
+    const attrs = [
+      el.getAttribute('aria-label'),
+      el.getAttribute('title'),
+      el.getAttribute('role'),
+      el.id,
+      typeof el.className === 'string' ? el.className : ''
+    ].join(' ');
+    const text = elementText(el).slice(0, 120);
+    const tagName = (el.tagName || '').toLowerCase();
+    const interactive = tagName === 'button' || tagName === 'input' || tagName === 'progress' || tagName === 'video';
+    const role = safeLower(el.getAttribute('role'));
+    const isSliderLike = role === 'slider' || role === 'progressbar';
+    const looksLikeControl = PLAYER_CONTROL_ATTR_RE.test(`${attrs} ${text}`) ||
+      PLAYER_CONTROL_TEXT.some((marker) => text.includes(marker));
+    const nearPlayerHorizontally = rect.right >= playerRect.left - 40 && rect.left <= playerRect.right + 40;
+    const nearPlayerBottom = rect.top <= playerRect.bottom + 140 && rect.bottom >= playerRect.bottom - 60;
+    const insidePlayerBand = rect.top >= playerRect.top - 40 && rect.bottom <= playerRect.bottom + 140;
+
+    return (interactive || isSliderLike || looksLikeControl) &&
+      nearPlayerHorizontally &&
+      nearPlayerBottom &&
+      insidePlayerBand;
+  }
+
+  function safeLower(value) {
+    return value == null ? '' : String(value).toLowerCase();
+  }
+
   function isWithinPlayerRoot(el, playerRoot) {
     return el === playerRoot || playerRoot.contains(el);
   }
 
   function hideOutsidePlayer(playerRoot) {
     if (!playerRoot) return;
+    const playerRect = playerRoot.getBoundingClientRect();
 
     document.body.classList.add('nospoil-clean-screen');
     document.documentElement.classList.add(THEATER_CLASS);
@@ -341,6 +377,7 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
 
     document.body.querySelectorAll('*').forEach((el) => {
       if (el.id === NOTICE_ID || isWithinPlayerRoot(el, playerRoot) || el.contains(playerRoot)) return;
+      if (isLikelyPlayerControl(el, playerRect)) return;
 
       const rect = el.getBoundingClientRect();
       const hasVisibleBox = rect.width > 2 && rect.height > 2;
@@ -363,6 +400,7 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
 
     document.body.querySelectorAll('*').forEach((el) => {
       if (el.id === NOTICE_ID || el === video.el || video.el.contains(el) || el.contains(video.el)) return;
+      if (isLikelyPlayerControl(el, video.rect)) return;
 
       const rect = el.getBoundingClientRect();
       if (rect.width <= 2 || rect.height <= 2) return;
@@ -390,6 +428,7 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
     if (playerRect) {
       document.querySelectorAll('body *').forEach((el) => {
         if (el.id === NOTICE_ID || (playerRoot && isWithinPlayerRoot(el, playerRoot)) || isInsidePlayer(el)) return;
+        if (isLikelyPlayerControl(el, playerRect)) return;
 
         const rect = el.getBoundingClientRect();
         const sitsRightOfPlayer = rect.left >= playerRect.right - 32 && rect.width > 40 && rect.height > 12;
@@ -405,6 +444,7 @@ html.${PREPAINT_SHIELD_CLASS}:not(.${PREPAINT_READY_CLASS})::before {
 
     document.querySelectorAll('body *').forEach((el) => {
       if (el.id === NOTICE_ID || (playerRoot && isWithinPlayerRoot(el, playerRoot)) || isInsidePlayer(el)) return;
+      if (isLikelyPlayerControl(el, playerRect)) return;
 
       const text = (el.innerText || '').trim().replace(/\s+/g, ' ');
       if (!text || text.length > 260) return;
