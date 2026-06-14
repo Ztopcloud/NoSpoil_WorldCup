@@ -22,6 +22,24 @@ const deployStateFile = path.join(__dirname, '.deploy-state.json');
 
 // SSH 密钥路径（Windows 格式），用于 rsync 通过 WSL 连接
 const sshKeyWin = path.join(require('os').homedir(), '.ssh', 'id_ed25519');
+const sshKeyWsl = '/home/bond/.ssh/id_ed25519';
+
+// 检测可用的 WSL 发行版（需要能访问 /mnt/c/ 的发行版）
+function detectWslDistro() {
+  try {
+    const distros = ['Ubuntu', 'Ubuntu-22.04', 'Debian'];
+    for (const d of distros) {
+      try {
+        execSync(`wsl -d ${d} ls /mnt/c/ >nul 2>&1`, { stdio: 'ignore' });
+        return d;
+      } catch (_) { /* 继续尝试下一个 */ }
+    }
+  } catch (_) { /* fallback */ }
+  return ''; // 回退到默认 wsl
+}
+const WSL_DISTRO = detectWslDistro();
+const WSL_CMD = WSL_DISTRO ? `wsl -d ${WSL_DISTRO}` : 'wsl';
+let localRsyncChecked = false;
 
 function toWslPath(winPath) {
   let result = winPath.replace(/\\/g, '/');
@@ -32,6 +50,8 @@ function toWslPath(winPath) {
 }
 const chromiumZipFile = path.join(publicDir, 'scgs-tv-extension-chromium.zip');
 const firefoxZipFile = path.join(publicDir, 'scgs-tv-extension-firefox.zip');
+const crxFile = path.join(publicDir, 'scgs-tv-extension.crx');
+const updatesXmlFile = path.join(publicDir, 'updates.xml');
 const chromiumAliasFiles = [
   path.join(publicDir, 'scgs-tv-extension.zip'),
   path.join(publicDir, 'nospoil-worldcup-extension.zip')
@@ -41,7 +61,9 @@ const EXTENSION_ALIAS_TARGETS = [
   'public/scgs-tv-extension-chromium.zip',
   'public/scgs-tv-extension-firefox.zip',
   'public/scgs-tv-extension.zip',
-  'public/nospoil-worldcup-extension.zip'
+  'public/nospoil-worldcup-extension.zip',
+  'public/scgs-tv-extension.crx',
+  'public/updates.xml'
 ];
 const APK_TARGET = 'public/时差观赛.apk';
 const DEFAULT_EXCLUDED_NAMES = new Set([
@@ -232,25 +254,35 @@ function buildZipFromDir(sourceDir, zipPath) {
 }
 
 function packageExtensionArchives(state) {
+  const version = getExtensionVersion();
   const sourceHash = crypto.createHash('sha256').update([
-    directoryFingerprint(extensionDir, { excludeNames: ['firefox'] }),
-    directoryFingerprint(firefoxExtensionDir)
+    directoryFingerprint(extensionDir, { excludeNames: ['firefox', 'build-crx.js', 'nospoil-key.pem', 'nospoil-key.pub', 'README.md'] }),
+    directoryFingerprint(firefoxExtensionDir),
+    version
   ].join('\n')).digest('hex');
   const previousHash = state.sources.extensionSourceHash || '';
-  const zipsExist = [chromiumZipFile, firefoxZipFile, ...chromiumAliasFiles].every((file) => fs.existsSync(file));
+  const zipsExist = [chromiumZipFile, firefoxZipFile, ...chromiumAliasFiles, crxFile, updatesXmlFile].every((file) => fs.existsSync(file));
 
   if (sourceHash === previousHash && zipsExist) {
     console.log('📦 扩展无变化，跳过重新打包');
     return { targets: EXTENSION_ALIAS_TARGETS, changed: false };
   }
 
+  // 1. 构建 CRX 和 updates.xml
+  console.log(`🔨 构建扩展 CRX v${version} ...`);
+  execSync(`node "${path.join(extensionDir, 'build-crx.js')}" ${version}`, {
+    stdio: 'inherit',
+    cwd: repoRoot
+  });
+
+  // 2. 打包 ZIP
   const chromiumStageDir = path.join(deployTempDir, 'chromium-extension');
   const firefoxStageDir = path.join(deployTempDir, 'firefox-extension');
 
   resetDir(chromiumStageDir);
   resetDir(firefoxStageDir);
 
-  copyDirContents(extensionDir, chromiumStageDir, { excludeNames: ['firefox'] });
+  copyDirContents(extensionDir, chromiumStageDir, { excludeNames: ['firefox', 'build-crx.js', 'nospoil-key.pem', 'nospoil-key.pub', 'README.md'] });
   copyDirContents(firefoxExtensionDir, firefoxStageDir);
   fs.copyFileSync(path.join(extensionDir, 'content.js'), path.join(firefoxStageDir, 'content.js'));
   fs.copyFileSync(path.join(extensionDir, 'style.css'), path.join(firefoxStageDir, 'style.css'));
@@ -266,6 +298,16 @@ function packageExtensionArchives(state) {
 
   state.sources.extensionSourceHash = sourceHash;
   return { targets: EXTENSION_ALIAS_TARGETS, changed: true };
+}
+
+function getExtensionVersion() {
+  const manifestPath = path.join(extensionDir, 'manifest.json');
+  try {
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    return manifest.version || '0.1.0';
+  } catch {
+    return '0.1.0';
+  }
 }
 
 function shouldExcludeFile(name, relPath) {
@@ -335,8 +377,35 @@ function resolveRequestedFiles(files) {
   return Array.from(new Set(resolved)).sort();
 }
 
+function injectVersionIntoPluginHtml() {
+  const pluginHtmlPath = path.join(__dirname, 'plugin.html');
+  if (!fs.existsSync(pluginHtmlPath)) return null;
+
+  const source = fs.readFileSync(pluginHtmlPath, 'utf8');
+  const version = getExtensionVersion();
+  const replaced = source.replace(/\{\{EXTENSION_VERSION\}\}/g, `v${version}`);
+
+  if (replaced === source) return null; // no placeholder found, nothing to do
+
+  const tempPath = path.join(deployTempDir, 'plugin.html');
+  fs.mkdirSync(deployTempDir, { recursive: true });
+  fs.writeFileSync(tempPath, replaced, 'utf8');
+  return { tempPath, hash: crypto.createHash('sha256').update(replaced).digest('hex') };
+}
+
 function filterChangedFiles(files, state) {
+  // 对 plugin.html 做版本号注入，注入后始终标记为"已变更"以触发上传
+  let pluginInjected = null;
+  if (files.includes('plugin.html')) {
+    pluginInjected = injectVersionIntoPluginHtml();
+  }
+
   return files.filter((file) => {
+    // plugin.html：如果注入成功，用注入后文件的 hash 来比较
+    if (file === 'plugin.html' && pluginInjected) {
+      return state.deployed[file] !== pluginInjected.hash;
+    }
+
     const localPath = path.join(__dirname, file);
     if (!fs.existsSync(localPath) || fs.statSync(localPath).isDirectory()) {
       return true;
@@ -349,26 +418,79 @@ function filterChangedFiles(files, state) {
 
 function updateStateForSuccessfulUploads(state, files) {
   files.forEach((file) => {
+    // plugin.html：如果存在注入版本，使用注入版本的 hash
+    if (file === 'plugin.html') {
+      const tempPath = path.join(deployTempDir, 'plugin.html');
+      if (fs.existsSync(tempPath)) {
+        state.deployed[file] = fileHash(tempPath);
+        return;
+      }
+    }
+
     const localPath = path.join(__dirname, file);
     if (!fs.existsSync(localPath) || fs.statSync(localPath).isDirectory()) return;
     state.deployed[file] = fileHash(localPath);
   });
 }
 
+function remoteDirectoryFor(file) {
+  const remoteDir = path.posix.dirname(file);
+  return remoteDir === '.' ? `${userHost}:${target}/` : `${userHost}:${target}/${remoteDir}/`;
+}
+
+function ensureLocalRsyncAvailable() {
+  if (localRsyncChecked) return;
+
+  try {
+    execSync(`${WSL_CMD} rsync --version`, { stdio: 'pipe' });
+    localRsyncChecked = true;
+  } catch (err) {
+    const detail = err.stderr ? err.stderr.toString().trim() : err.message.trim();
+    throw new Error(`LOCAL_RSYNC_UNAVAILABLE: 本机 WSL rsync 不可用。${detail}`);
+  }
+}
+
+function prepareRsyncStage(files) {
+  const stageDir = path.join(deployTempDir, 'rsync-stage');
+  fs.rmSync(stageDir, { recursive: true, force: true });
+  fs.mkdirSync(stageDir, { recursive: true });
+
+  files.forEach((file) => {
+    let sourcePath = path.join(__dirname, file);
+
+    if (file === 'plugin.html') {
+      const tempPath = path.join(deployTempDir, 'plugin.html');
+      if (fs.existsSync(tempPath)) sourcePath = tempPath;
+    }
+
+    if (!fs.existsSync(sourcePath) || fs.statSync(sourcePath).isDirectory()) {
+      throw new Error(`LOCAL_FILE_MISSING: ${file}`);
+    }
+
+    const targetPath = path.join(stageDir, file);
+    fs.mkdirSync(path.dirname(targetPath), { recursive: true });
+    fs.copyFileSync(sourcePath, targetPath);
+  });
+
+  return stageDir;
+}
+
 function rsyncUpload(files) {
   if (files.length === 0) return { success: 0, fail: 0 };
+  ensureLocalRsyncAvailable();
 
   // 生成文件列表供 --files-from 使用（相对路径）
   const listFileWin = path.join(deployTempDir, 'upload-list.txt');
   fs.mkdirSync(deployTempDir, { recursive: true });
+  const stageDir = prepareRsyncStage(files);
   fs.writeFileSync(listFileWin, files.join('\n'), 'utf8');
 
   const wslListFile = toWslPath(listFileWin);
-  const wslSourceDir = toWslPath(__dirname);
-  const wslKeyFile = toWslPath(sshKeyWin);
+  const wslSourceDir = toWslPath(stageDir);
+  const wslKeyFile = sshKeyWsl;
 
-  const sshCmd = `ssh -i "${wslKeyFile}" -p ${port} -o StrictHostKeyChecking=no`;
-  const cmd = `wsl rsync -avz --files-from="${wslListFile}" -e "${sshCmd}" "${wslSourceDir}/" "${userHost}:${target}/"`;
+  const sshCmd = `ssh -i ${wslKeyFile} -p ${port} -o StrictHostKeyChecking=no`;
+  const cmd = `${WSL_CMD} rsync -avz --files-from="${wslListFile}" -e "${sshCmd}" "${wslSourceDir}/" "${userHost}:${target}/"`;
 
   console.log(`\n📡 rsync 通过 WSL 传输中...\n`);
 
@@ -386,6 +508,75 @@ function rsyncUpload(files) {
   } catch (err) {
     const stderr = err.stderr ? err.stderr.toString().trim() : '';
     const msg = stderr || err.message.trim();
+    throw new Error(msg);
+  }
+}
+
+function scpUpload(files) {
+  if (files.length === 0) return { success: 0, fail: 0 };
+
+  console.log(`\n📡 scp 逐个上传中...\n`);
+
+  let success = 0;
+  let fail = 0;
+
+  files.forEach((file) => {
+    let localPath = path.join(__dirname, file);
+    let remotePath = file;
+
+    // 如果有 plugin.html 的注入版本，使用临时文件
+    if (file === 'plugin.html') {
+      const tempPath = path.join(deployTempDir, 'plugin.html');
+      if (fs.existsSync(tempPath)) {
+        localPath = tempPath;
+      }
+    }
+
+    if (!fs.existsSync(localPath)) {
+      console.log(`  ⏭ 跳过(不存在): ${file}`);
+      return;
+    }
+
+    try {
+      const keyFlag = sshKeyWin && fs.existsSync(sshKeyWin) ? ` -i "${sshKeyWin}"` : '';
+      execSync(`scp${keyFlag} -P ${port} -o StrictHostKeyChecking=no "${localPath}" "${remoteDirectoryFor(remotePath)}"`, {
+        stdio: 'pipe'
+      });
+      console.log(`  ✅ ${file}`);
+      success++;
+    } catch (err) {
+      const stderr = err.stderr ? err.stderr.toString().trim() : '';
+      const msg = stderr || err.message.trim();
+      console.log(`  ❌ ${file}: ${msg}`);
+      fail++;
+    }
+  });
+
+  return { success, fail };
+}
+
+function printRsyncInstallHint() {
+  console.log('  提示: 这是远端服务器缺少 rsync，不是你本机命令输错了');
+  console.log('  可运行: node website/install-rsync-remote.js');
+}
+
+function uploadFiles(files) {
+  try {
+    return rsyncUpload(files);
+  } catch (err) {
+    const msg = err.message || '';
+    if (/^LOCAL_RSYNC_UNAVAILABLE:/.test(msg)) {
+      console.log(`  ⚠ ${msg.replace(/^LOCAL_RSYNC_UNAVAILABLE:\s*/, '')}`);
+      console.log('  ⚠ 自动回退到 scp 上传');
+      return scpUpload(files);
+    }
+
+    if (/rsync: not found/i.test(msg)) {
+      console.log('  ⚠ 当前链路缺少 rsync，自动回退到 scp');
+      printRsyncInstallHint();
+      return scpUpload(files);
+    }
+
     console.error(`  ❌ rsync 失败: ${msg}`);
     return { success: 0, fail: files.length };
   }
@@ -432,7 +623,7 @@ function main() {
   console.log(`🚀 部署到 ${userHost}:${target}\n`);
   console.log(`本次准备上传 ${changedFiles.length} 个变更文件:\n  - ${changedFiles.join('\n  - ')}\n`);
 
-  const result = rsyncUpload(changedFiles);
+  const result = uploadFiles(changedFiles);
 
   if (result.success > 0) {
     updateStateForSuccessfulUploads(state, changedFiles);

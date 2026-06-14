@@ -19,6 +19,8 @@ const SW_FILE = path.join(__dirname, 'sw.js');
 const APP_FILE = path.join(__dirname, 'app.js');
 const DEPLOY_TEMP_DIR = path.join(__dirname, '..', '.tmp', 'auto-update');
 const SSH_KEY_WIN = path.join(os.homedir(), '.ssh', 'id_ed25519');
+const SSH_KEY_WSL = '/home/bond/.ssh/id_ed25519';
+const WSL_CMD = 'wsl -d Ubuntu';
 
 // 自动加载 .env 文件
 const dotenvPath = path.join(__dirname, '.env');
@@ -44,6 +46,7 @@ const RSYNC_HOST = process.env.RSYNC_HOST || '';     // 服务器地址
 const RSYNC_PATH = process.env.RSYNC_PATH || '';     // 服务器目标路径，如 /var/www/scgs/
 const RSYNC_USER = process.env.RSYNC_USER || '';     // SSH 用户名 (可选)
 const RSYNC_PORT = process.env.RSYNC_PORT || '22';   // SSH 端口 (可选)
+let localRsyncChecked = false;
 
 // ===== 工具函数 =====
 
@@ -194,28 +197,33 @@ async function fetchCBSWithPlaywright() {
     const matches = await page.evaluate(() => {
       const links = document.querySelectorAll('a[href*="worldcup.cctv.com/2026/match/"]');
       return Array.from(links).map(link => {
-        const text = link.textContent.trim();
+        const text = (link.innerText || link.textContent || '').trim();
+        const lines = text.split('\n').map(line => line.trim()).filter(Boolean);
         const href = link.getAttribute('href');
-        // 从文本中解析时间、对阵、比分等
-        // 格式: "03:00 世界杯 A组 第1轮 已结束 墨西哥 2 南非 0 集锦/回放"
-        const timeMatch = text.match(/^(\d{2}:\d{2})/);
-        const groupMatch = text.match(/([A-L])组/);
-        const roundMatch = text.match(/第(\d+)轮/);
-        const statusMatch = text.match(/(已结束|未开始|进行中)/);
-        const teams = text.match(/([^-\s]+)\s+(\d+)\s+([^-\s]+)\s+(\d+)/); // 已结束
-        const teamsUpcoming = text.match(/([^-\s]+)\s+-\s+([^-\s]+)\s+-/); // 未开始
+
+        const time = lines.find(line => /^\d{2}:\d{2}$/.test(line)) || '';
+        const meta = lines.find(line => /世界杯\s+[A-L]组\s+第\d+轮/.test(line)) || '';
+        const statusIndex = lines.findIndex(line => /^(已结束|未开始|进行中|上半场|下半场|中场)$/.test(line));
+        const status = statusIndex >= 0 ? lines[statusIndex] : '';
+        const teamStart = statusIndex >= 0 && /^\d{1,3}:\d{2}$/.test(lines[statusIndex + 1] || '')
+          ? statusIndex + 2
+          : statusIndex + 1;
+        const home = lines[teamStart] || '';
+        const homeScoreText = lines[teamStart + 1] || '';
+        const away = lines[teamStart + 2] || '';
+        const awayScoreText = lines[teamStart + 3] || '';
 
         return {
           matchId: (href.match(/\/match\/(\d+)\//) || [])[1] || '',
           url: 'https:' + href,
-          time: timeMatch ? timeMatch[1] : '',
-          group: groupMatch ? groupMatch[1] : '',
-          round: roundMatch ? parseInt(roundMatch[1]) : 1,
-          status: statusMatch ? statusMatch[1] : '',
-          home: teams ? teams[1] : (teamsUpcoming ? teamsUpcoming[1] : ''),
-          away: teams ? teams[3] : (teamsUpcoming ? teamsUpcoming[2] : ''),
-          homeScore: teams ? parseInt(teams[2]) : null,
-          awayScore: teams ? parseInt(teams[4]) : null,
+          time,
+          group: (meta.match(/([A-L])组/) || [])[1] || '',
+          round: parseInt((meta.match(/第(\d+)轮/) || [])[1] || '1', 10),
+          status,
+          home,
+          away,
+          homeScore: /^\d+$/.test(homeScoreText) ? parseInt(homeScoreText, 10) : null,
+          awayScore: /^\d+$/.test(awayScoreText) ? parseInt(awayScoreText, 10) : null,
           fullText: text
         };
       });
@@ -288,6 +296,7 @@ function hasKickedOff(dateStr, timeStr) {
 
 function rsyncUploadWebsiteFiles(files) {
   if (!files.length) return;
+  ensureLocalRsyncAvailable();
 
   fs.mkdirSync(DEPLOY_TEMP_DIR, { recursive: true });
   const listFileWin = path.join(DEPLOY_TEMP_DIR, 'upload-list.txt');
@@ -295,10 +304,10 @@ function rsyncUploadWebsiteFiles(files) {
 
   const wslListFile = toWslPath(listFileWin);
   const wslSourceDir = toWslPath(path.join(__dirname, '..'));
-  const wslKeyFile = toWslPath(SSH_KEY_WIN);
+  const wslKeyFile = SSH_KEY_WSL;
   const userHost = RSYNC_USER ? `${RSYNC_USER}@${RSYNC_HOST}` : RSYNC_HOST;
-  const sshCmd = `ssh -i "${wslKeyFile}" -p ${RSYNC_PORT} -o StrictHostKeyChecking=no`;
-  const cmd = `wsl rsync -avz --files-from="${wslListFile}" -e "${sshCmd}" "${wslSourceDir}/" "${userHost}:${RSYNC_PATH}/"`;
+  const sshCmd = `ssh -i ${wslKeyFile} -p ${RSYNC_PORT} -o StrictHostKeyChecking=no`;
+  const cmd = `${WSL_CMD} rsync -avz --files-from="${wslListFile}" -e "${sshCmd}" "${wslSourceDir}/" "${userHost}:${RSYNC_PATH}/"`;
 
   console.log('\n[5] rsync 上传到服务器...');
   const output = execSync(cmd, { stdio: 'pipe', cwd: path.join(__dirname, '..'), encoding: 'utf8' });
@@ -309,6 +318,63 @@ function rsyncUploadWebsiteFiles(files) {
     }
   });
   console.log('  ✅ rsync 上传完成');
+}
+
+function ensureLocalRsyncAvailable() {
+  if (localRsyncChecked) return;
+
+  try {
+    execSync(`${WSL_CMD} rsync --version`, { stdio: 'pipe' });
+    localRsyncChecked = true;
+  } catch (err) {
+    const detail = err.stderr ? err.stderr.toString().trim() : err.message.trim();
+    throw new Error(`LOCAL_RSYNC_UNAVAILABLE: 本机 WSL rsync 不可用。${detail}`);
+  }
+}
+
+function scpUploadWebsiteFiles(files) {
+  if (!files.length) return;
+
+  const userHost = RSYNC_USER ? `${RSYNC_USER}@${RSYNC_HOST}` : RSYNC_HOST;
+  console.log('\n[5] scp 上传到服务器...');
+
+  files.forEach((file) => {
+    const localPath = path.join(__dirname, '..', file);
+    const relPath = file.replace(/^website\//, '');
+    const remoteDir = path.posix.dirname(relPath);
+    const remoteFull = remoteDir === '.' ? `${userHost}:${RSYNC_PATH}/` : `${userHost}:${RSYNC_PATH}/${remoteDir}/`;
+
+    console.log(`  上传: ${file}`);
+    const keyFlag = SSH_KEY_WIN && fs.existsSync(SSH_KEY_WIN) ? ` -i "${SSH_KEY_WIN}"` : '';
+    execSync(`scp${keyFlag} -P ${RSYNC_PORT} -o StrictHostKeyChecking=no "${localPath}" "${remoteFull}"`, {
+      stdio: 'pipe',
+      cwd: path.join(__dirname, '..')
+    });
+  });
+
+  console.log('  ✅ scp 上传完成');
+}
+
+function deployWebsiteFiles(files) {
+  try {
+    rsyncUploadWebsiteFiles(files);
+  } catch (err) {
+    const detail = err.stderr ? err.stderr.toString().trim() : err.message.trim();
+    if (/^LOCAL_RSYNC_UNAVAILABLE:/.test(detail)) {
+      console.log(`  ⚠ ${detail.replace(/^LOCAL_RSYNC_UNAVAILABLE:\s*/, '')}`);
+      console.log('  ⚠ 自动回退到 scp 上传');
+      scpUploadWebsiteFiles(files);
+      return;
+    }
+
+    if (/rsync: not found/i.test(detail)) {
+      console.log('  ⚠ 当前链路缺少 rsync，自动回退到 scp');
+      console.log('  提示: 这是远端服务器缺少 rsync，可运行 node website/install-rsync-remote.js');
+      scpUploadWebsiteFiles(files);
+      return;
+    }
+    throw new Error(detail);
+  }
 }
 
 // ===== 主流程 =====
@@ -460,7 +526,7 @@ async function main() {
           files.push('website/app.js');
         }
 
-        rsyncUploadWebsiteFiles(files);
+        deployWebsiteFiles(files);
       } catch (err) {
         const detail = err.stderr ? err.stderr.toString().trim() : err.message.trim();
         console.log(`  ⚠ rsync 失败: ${detail}`);

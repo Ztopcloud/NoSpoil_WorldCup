@@ -2,8 +2,6 @@ package tv.scgs.probe;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -16,6 +14,8 @@ import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.webkit.ConsoleMessage;
 import android.webkit.CookieManager;
+import android.webkit.JsPromptResult;
+import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -25,7 +25,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,6 +36,7 @@ import java.util.Locale;
 public class MainActivity extends Activity {
     private static final String TAG = "SCGSProbe";
     private static final String HOME_URL = "https://scgs.tv/";
+    private static final String APP_DISPLAY_VERSION = "0.2.12-probe";
     private static final int TOOLBAR_HORIZONTAL_PADDING_DP = 16;
     private static final int TOOLBAR_TOP_PADDING_DP = 8;
     private static final int TOOLBAR_BOTTOM_PADDING_DP = 8;
@@ -61,6 +61,7 @@ public class MainActivity extends Activity {
     };
 
     private FrameLayout root;
+    private LinearLayout shell;
     private LinearLayout toolbar;
     private ProgressBar progressBar;
     private TextView statusText;
@@ -82,7 +83,7 @@ public class MainActivity extends Activity {
         nospoilJs = readAsset("nospoil/content.js");
 
         root = new FrameLayout(this);
-        LinearLayout shell = new LinearLayout(this);
+        shell = new LinearLayout(this);
         shell.setOrientation(LinearLayout.VERTICAL);
         root.addView(shell, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -160,7 +161,7 @@ public class MainActivity extends Activity {
         home.setOnClickListener(v -> webView.loadUrl(HOME_URL));
 
         statusText = new TextView(this);
-        statusText.setText("时差观赛调研版");
+        statusText.setText("时差观赛 Android " + APP_DISPLAY_VERSION);
         statusText.setTextColor(0xffffffff);
         statusText.setSingleLine(true);
         statusText.setTextSize(14);
@@ -209,8 +210,8 @@ public class MainActivity extends Activity {
         settings.setLoadWithOverviewMode(true);
         settings.setUseWideViewPort(true);
         settings.setSupportZoom(false);
-        settings.setSupportMultipleWindows(true);
-        settings.setUserAgentString(settings.getUserAgentString() + " SCGSProbe/0.1");
+        settings.setSupportMultipleWindows(false);
+        settings.setUserAgentString(settings.getUserAgentString() + " SCGSProbe/" + APP_DISPLAY_VERSION);
 
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
@@ -252,7 +253,7 @@ public class MainActivity extends Activity {
             }
             if (isNospoilHost(Uri.parse(url))) {
                 enterNospoilViewingMode();
-                injectNospoilRules(view, () -> hideNospoilShield());
+                injectNospoilRules(view, () -> webContainer.postDelayed(() -> hideNospoilShield(), 2200));
             } else {
                 exitNospoilViewingMode();
                 hideNospoilShield();
@@ -265,11 +266,7 @@ public class MainActivity extends Activity {
 
         String scheme = safeLower(uri.getScheme());
         if (!"http".equals(scheme) && !"https".equals(scheme)) {
-            if (shouldSuppressExternalAppPrompt(uri)) {
-                Log.i(TAG, "Suppress external app deep link: " + uri);
-                return true;
-            }
-            openExternal(uri);
+            Log.i(TAG, "Block non-http(s) navigation: " + uri);
             return true;
         }
 
@@ -281,7 +278,7 @@ public class MainActivity extends Activity {
             return false;
         }
 
-        openExternal(uri);
+        Log.i(TAG, "Block external navigation: " + uri);
         return true;
     }
 
@@ -330,14 +327,6 @@ public class MainActivity extends Activity {
         return hostMatches(host, "scgs.tv");
     }
 
-    private void openExternal(Uri uri) {
-        try {
-            startActivity(new Intent(Intent.ACTION_VIEW, uri));
-        } catch (ActivityNotFoundException err) {
-            Toast.makeText(this, "无法打开外部链接", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void injectNospoilRules(WebView view, Runnable afterInjected) {
         if (nospoilCss == null || nospoilJs == null) {
             Log.w(TAG, "No-spoiler assets missing, skip injection");
@@ -356,6 +345,7 @@ public class MainActivity extends Activity {
                 + "}"
                 + "window.__SCGS_ANDROID_PROBE__={injectedAt:Date.now(),host:location.host};"
                 + nospoilJs
+                + androidNospoilPatchScript()
                 + "})();";
 
         view.evaluateJavascript(script, value -> {
@@ -383,16 +373,56 @@ public class MainActivity extends Activity {
         nospoilViewingMode = true;
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
         toolbar.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
+        promoteWebContainerToRoot();
         enterImmersiveMode();
     }
 
     private void exitNospoilViewingMode() {
         nospoilViewingMode = false;
         if (fullscreenView == null) {
+            restoreWebContainerToShell();
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
             toolbar.setVisibility(View.VISIBLE);
             exitImmersiveMode();
         }
+    }
+
+    private void promoteWebContainerToRoot() {
+        if (webContainer == null || root == null) return;
+        if (webContainer.getParent() == root) {
+            webContainer.bringToFront();
+            webContainer.setLayoutParams(new FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+            ));
+            return;
+        }
+
+        ViewGroup parent = (ViewGroup) webContainer.getParent();
+        if (parent != null) {
+            parent.removeView(webContainer);
+        }
+        root.addView(webContainer, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        ));
+        webContainer.bringToFront();
+    }
+
+    private void restoreWebContainerToShell() {
+        if (webContainer == null || shell == null) return;
+        if (webContainer.getParent() == shell) return;
+
+        ViewGroup parent = (ViewGroup) webContainer.getParent();
+        if (parent != null) {
+            parent.removeView(webContainer);
+        }
+        shell.addView(webContainer, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                0,
+                1
+        ));
     }
 
     private void enterImmersiveMode() {
@@ -426,6 +456,63 @@ public class MainActivity extends Activity {
         view.evaluateJavascript(script, value -> Log.i(TAG, "Site link handler injected"));
     }
 
+    private String androidNospoilPatchScript() {
+        return "(function(){"
+                + "if(window.__SCGS_ANDROID_NOSPOIL_PATCH__)return;"
+                + "window.__SCGS_ANDROID_NOSPOIL_PATCH__=true;"
+                + "var STYLE_ID='scgs-android-nospoil-style';"
+                + "function hostOk(){return /(^|\\.)(cctv\\.com|cntv\\.cn|yangshipin\\.cn)$/.test(location.hostname);}"
+                + "function rectArea(el){var r=el.getBoundingClientRect();return Math.max(0,r.width)*Math.max(0,r.height);}"
+                + "function largestMediaRoot(){"
+                + "var media=Array.prototype.slice.call(document.querySelectorAll('video,iframe,object,embed'));"
+                + "var best=null,bestArea=0;"
+                + "media.forEach(function(el){var area=rectArea(el);if(area>bestArea){best=el;bestArea=area;}});"
+                + "if(!best)return null;"
+                + "var root=best;"
+                + "for(var i=0;i<4&&root.parentElement&&root.parentElement!==document.body;i++){"
+                + "var parent=root.parentElement,pr=parent.getBoundingClientRect(),rr=root.getBoundingClientRect();"
+                + "if(pr.width>=rr.width&&pr.height>=rr.height&&pr.width<window.innerWidth*1.4&&pr.height<window.innerHeight*1.4){root=parent;}else{break;}"
+                + "}"
+                + "return root;"
+                + "}"
+                + "function installStyle(){"
+                + "if(document.getElementById(STYLE_ID))return;"
+                + "var style=document.createElement('style');style.id=STYLE_ID;"
+                + "style.textContent='html.scgs-android-nospoil,html.scgs-android-nospoil body{margin:0!important;padding:0!important;width:100vw!important;height:100vh!important;min-width:100vw!important;min-height:100vh!important;overflow:hidden!important;background:#000!important;transform:none!important;}'"
+                + "+'html.scgs-android-nospoil #myflash,html.scgs-android-nospoil .scgs-android-player-root{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;min-width:100vw!important;min-height:100vh!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;background:#000!important;z-index:2147483000!important;overflow:hidden!important;}'"
+                + "+'html.scgs-android-nospoil .scgs-android-player-shell{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;min-width:100vw!important;min-height:100vh!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;background:#000!important;overflow:hidden!important;z-index:2147482999!important;}'"
+                + "+'html.scgs-android-nospoil #myflash *,html.scgs-android-nospoil .scgs-android-player-root *,html.scgs-android-nospoil .scgs-android-player-root video,html.scgs-android-nospoil .scgs-android-player-root iframe,html.scgs-android-nospoil .scgs-android-player-root object,html.scgs-android-nospoil .scgs-android-player-root embed{width:100%!important;height:100%!important;min-width:100%!important;min-height:100%!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;background:#000!important;object-fit:contain!important;}'"
+                + "+'html.scgs-android-nospoil .scgs-android-hide{display:none!important;visibility:hidden!important;}';"
+                + "document.documentElement.appendChild(style);"
+                + "}"
+                + "function markShell(root){"
+                + "var el=root&&root.parentElement;"
+                + "for(var i=0;i<4&&el&&el!==document.body;i++,el=el.parentElement){el.classList.add('scgs-android-player-shell');}"
+                + "}"
+                + "function hideAround(root){"
+                + "if(!root||!document.body)return;"
+                + "Array.prototype.slice.call(document.body.querySelectorAll('*')).forEach(function(el){"
+                + "if(el===root||root.contains(el)||el.contains(root)||el.id==='nospoil-worldcup-notice')return;"
+                + "var r=el.getBoundingClientRect();"
+                + "if(r.width>2&&r.height>2){el.classList.add('scgs-android-hide');}"
+                + "});"
+                + "}"
+                + "function apply(){"
+                + "if(!hostOk()||!document.documentElement||!document.body)return;"
+                + "installStyle();"
+                + "document.documentElement.classList.add('scgs-android-nospoil');"
+                + "var root=document.querySelector('#myflash')||document.querySelector('.scgs-android-player-root')||largestMediaRoot();"
+                + "if(root){root.classList.add('scgs-android-player-root');markShell(root);hideAround(root);"
+                + "var target=root.querySelector&&(root.querySelector('video')||root.querySelector('iframe'))||root;"
+                + "try{var fn=target&&(target.requestFullscreen||target.webkitRequestFullscreen||target.webkitRequestFullScreen||target.mozRequestFullScreen||target.msRequestFullscreen);if(fn){var ret=fn.call(target);if(ret&&ret.catch)ret.catch(function(){});}}catch(e){}"
+                + "}"
+                + "}"
+                + "apply();"
+                + "[80,250,600,1200,2200,4000,7000].forEach(function(delay){setTimeout(apply,delay);});"
+                + "new MutationObserver(function(){requestAnimationFrame(apply);}).observe(document.documentElement,{childList:true,subtree:true});"
+                + "})();";
+    }
+
     private final class ProbeChromeClient extends WebChromeClient {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
@@ -440,48 +527,30 @@ public class MainActivity extends Activity {
         }
 
         @Override
+        public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+            result.cancel();
+            return true;
+        }
+
+        @Override
+        public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
+            result.cancel();
+            return true;
+        }
+
+        @Override
+        public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
+            result.cancel();
+            return true;
+        }
+
+        @Override
         public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, Message resultMsg) {
-            WebView popup = new WebView(MainActivity.this);
-            configureWebView(popup);
-            popup.setWebViewClient(new WebViewClient() {
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView popupView, WebResourceRequest request) {
-                    Uri uri = request.getUrl();
-                    String scheme = safeLower(uri.getScheme());
-                    if ("http".equals(scheme) || "https".equals(scheme)) {
-                        if (isInAppHost(uri)) {
-                            webView.loadUrl(uri.toString());
-                        } else {
-                            openExternal(uri);
-                        }
-                    } else if (!shouldSuppressExternalAppPrompt(uri)) {
-                        openExternal(uri);
-                    }
-                    popup.destroy();
-                    return true;
-                }
-
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView popupView, String url) {
-                    Uri uri = Uri.parse(url);
-                    String scheme = safeLower(uri.getScheme());
-                    if ("http".equals(scheme) || "https".equals(scheme)) {
-                        if (isInAppHost(uri)) {
-                            webView.loadUrl(uri.toString());
-                        } else {
-                            openExternal(uri);
-                        }
-                    } else if (!shouldSuppressExternalAppPrompt(uri)) {
-                        openExternal(uri);
-                    }
-                    popup.destroy();
-                    return true;
-                }
-            });
-
-            WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
-            transport.setWebView(popup);
-            resultMsg.sendToTarget();
+            Log.i(TAG, "Block new window request");
+            if (resultMsg != null && resultMsg.obj instanceof WebView.WebViewTransport) {
+                ((WebView.WebViewTransport) resultMsg.obj).setWebView(null);
+                resultMsg.sendToTarget();
+            }
             return true;
         }
 

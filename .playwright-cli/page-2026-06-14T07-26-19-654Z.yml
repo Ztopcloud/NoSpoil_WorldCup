@@ -1,0 +1,202 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - link "时差观赛首页" [ref=e3] [cursor=pointer]:
+      - /url: index.html
+      - img "时差观赛" [ref=e4]
+    - navigation "主导航" [ref=e5]:
+      - link "世界杯" [ref=e6] [cursor=pointer]:
+        - /url: index.html
+        - img [ref=e7]
+        - text: 世界杯
+      - button "足球" [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+        - text: 足球
+        - img [ref=e18]
+      - button "篮球" [ref=e21] [cursor=pointer]:
+        - img [ref=e22]
+        - text: 篮球
+        - img [ref=e28]
+      - link "赛事资讯" [ref=e30] [cursor=pointer]:
+        - /url: news.html
+      - link "安装助手" [ref=e31] [cursor=pointer]:
+        - /url: plugin.html
+      - link "免责声明" [ref=e32] [cursor=pointer]:
+        - /url: disclaimer.html
+  - main [ref=e33]:
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - generic [ref=e36]: 距离下一场比赛
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]: "00"
+            - generic [ref=e40]: 天
+          - generic [ref=e41]: ":"
+          - generic [ref=e42]:
+            - generic [ref=e43]: "09"
+            - generic [ref=e44]: 小时
+          - generic [ref=e45]: ":"
+          - generic [ref=e46]:
+            - generic [ref=e47]: "33"
+            - generic [ref=e48]: 分钟
+          - generic [ref=e49]: ":"
+          - generic [ref=e50]:
+            - generic [ref=e51]: "41"
+            - generic [ref=e52]: 秒
+      - generic [ref=e55]:
+        - paragraph [ref=e56]: 2026 FIFA World Cup · 美国/加拿大/墨西哥
+        - heading "2026美加墨世界杯" [level=1] [ref=e57]
+        - paragraph [ref=e58]: 不熬夜也能无剧透完整观赛
+        - paragraph [ref=e59]: 睡够了再起来看世界杯，屏蔽掉所有得分结果，拒绝一切剧透和干扰，精力更充沛、看得更尽兴
+        - generic [ref=e60]:
+          - link "安装时差观赛助手" [ref=e61] [cursor=pointer]:
+            - /url: plugin.html
+          - link "Windows.exe" [ref=e62] [cursor=pointer]:
+            - /url: plugin.html#windows-tutorial
+            - img [ref=e63]
+            - generic [ref=e65]: Windows.exe
+          - link "安卓.apk" [ref=e66] [cursor=pointer]:
+            - /url: plugin.html#android-download
+            - img [ref=e67]
+            - generic [ref=e70]: 安卓.apk
+          - link "Chrome Edge Firefox 浏览器插件" [ref=e71] [cursor=pointer]:
+            - /url: plugin.html#browser-downloads
+            - generic [ref=e72]:
+              - img "Chrome" [ref=e73]
+              - img "Edge" [ref=e74]
+              - img "Firefox" [ref=e75]
+            - generic [ref=e76]: 浏览器插件
+    - generic [ref=e77]:
+      - generic [ref=e78]:
+        - paragraph [ref=e79]: Spoiler-Free Guide
+        - heading "无剧透观赛建议" [level=2] [ref=e80]
+      - generic [ref=e81]:
+        - article [ref=e82]:
+          - generic: "1"
+          - heading "插件护体，一劳永逸" [level=3] [ref=e83]
+          - paragraph [ref=e84]:
+            - text: 先去安装助手页按教程把浏览器插件装好，找一场复播测试一下——看到
+            - strong [ref=e85]: 「时差观赛模式已开启」
+            - text: 就说明武装到位了。这一步只折腾一次，后面只管享受。
+        - article [ref=e86]:
+          - generic: "2"
+          - heading "手机「免打扰模式」" [level=3] [ref=e87]
+          - paragraph [ref=e88]:
+            - text: 确认好比赛时间，当晚把手机切到
+            - strong [ref=e89]: 免打扰模式
+            - text: 。新闻APP、社交平台、短视频——能弹出比分的，统统关掉通知。宁可杀错一千，不可放过一个，谁都别想影响老子看世界杯。
+        - article [ref=e90]:
+          - generic: "3"
+          - heading "浏览器开好SCGS.TV页面" [level=3] [ref=e91]
+          - paragraph [ref=e92]:
+            - text: 在电脑上打开浏览器，进入
+            - strong [ref=e93]: scgs.tv 的赛程页面
+            - text: 并停在那里。建议按
+            - strong [ref=e94]: F11 进入全屏模式
+            - text: ，同时检查电脑弹窗通知，然后合上盖子或进入睡眠模式——第二天唤醒屏幕就不会被任何推送偷袭。
+        - article [ref=e95]:
+          - generic: "4"
+          - heading "凌晨仪式 + 唤醒看球" [level=3] [ref=e96]
+          - paragraph [ref=e97]:
+            - strong [ref=e98]: 定好闹钟
+            - text: ，上班前两小时起床。忍住别看手机——任何推送都可能是叛徒。洗漱提神，备好零食花生和冰镇饮料，坐到电脑前唤醒屏幕，浏览器还停在昨晚的 scgs.tv 页面，
+            - strong [ref=e99]: 点开播放
+            - text: ，享受无剧透的纯粹足球。
+    - generic [ref=e100]:
+      - generic [ref=e101]:
+        - paragraph [ref=e102]: Match Schedule
+        - heading "2026世界杯时差观赛" [level=2] [ref=e103]
+        - paragraph [ref=e104]:
+          - strong [ref=e105]: "48"
+          - text: 支国家队 ·
+          - strong [ref=e106]: "104"
+          - text: 场比赛 · 显示均为北京时间
+        - navigation "赛程分类" [ref=e107]:
+          - button "国家" [ref=e108] [cursor=pointer]
+          - button "赛前" [active] [ref=e109] [cursor=pointer]
+          - button "小组赛" [ref=e110] [cursor=pointer]
+          - button "32强" [ref=e111] [cursor=pointer]
+          - button "16强" [ref=e112] [cursor=pointer]
+          - button "决赛" [ref=e113] [cursor=pointer]
+      - generic [ref=e1699]:
+        - generic [ref=e1701]: 赛前视频
+        - generic [ref=e1702]:
+          - link "赛前 视频入口 小红书 世界杯开幕式直播 2026美加墨世界杯开幕式视频入口 06月12日 01:30 打开视频" [ref=e1703] [cursor=pointer]:
+            - /url: https://www.xiaohongshu.com/explore/6a2b65270000000007020dec?xsec_token=ABioD-vtygjo3jo8kOsFoA5ObfuVDuCRhZMpIvTb4XHzQ=&xsec_source=pc_search&source=note_related_search
+            - generic [ref=e1704]:
+              - generic [ref=e1705]:
+                - generic [ref=e1706]: 赛前
+                - generic [ref=e1707]: 视频入口
+              - generic [ref=e1709]:
+                - generic [ref=e1710]: 小红书
+                - strong [ref=e1711]: 世界杯开幕式直播
+                - generic [ref=e1712]: 2026美加墨世界杯开幕式视频入口
+              - generic [ref=e1713]: 06月12日 01:30
+            - generic:
+              - generic: 打开视频
+          - link "赛前 视频入口 小红书 阿根廷 VS 冰岛 赛前友谊赛比赛视频入口 06月10日 09:00 打开视频" [ref=e1714] [cursor=pointer]:
+            - /url: https://www.xiaohongshu.com/explore/6a28d6cd0000000035039cbb?xsec_token=ABwLS0bUWjxodazMKDKFK69FQufZj2UG6e1JkV0YCdaWg%3D&xsec_source=pc_sfeed
+            - generic [ref=e1715]:
+              - generic [ref=e1716]:
+                - generic [ref=e1717]: 赛前
+                - generic [ref=e1718]: 视频入口
+              - generic [ref=e1720]:
+                - generic [ref=e1721]: 小红书
+                - generic [ref=e1722]:
+                  - generic [ref=e1723]: 阿根廷
+                  - emphasis [ref=e1724]: VS
+                  - generic [ref=e1725]: 冰岛
+                - generic [ref=e1726]: 赛前友谊赛比赛视频入口
+              - generic [ref=e1727]: 06月10日 09:00
+            - generic:
+              - generic: 打开视频
+    - generic [ref=e1656]:
+      - generic [ref=e1657]:
+        - paragraph [ref=e1658]: Ready for replay
+        - heading "先装助手，再开复播" [level=2] [ref=e1659]
+        - paragraph [ref=e1660]: 插件只在你的浏览器本地工作，用来减少复播页面里可能提前透露比赛走向的信息。
+      - link "打开安装助手" [ref=e1661] [cursor=pointer]:
+        - /url: plugin.html
+  - contentinfo [ref=e1662]:
+    - generic [ref=e1663]:
+      - generic "友情链接" [ref=e1664]:
+        - paragraph [ref=e1665]: 友情链接
+        - generic [ref=e1666]:
+          - link "时差观赛首页" [ref=e1667] [cursor=pointer]:
+            - /url: index.html
+            - img "时差观赛" [ref=e1668]
+            - generic [ref=e1669]: 不熬夜也能无剧透完整观赛
+          - link "极拓云官网" [ref=e1670] [cursor=pointer]:
+            - /url: https://ztopcloud.com
+            - img "极拓云" [ref=e1671]
+            - generic [ref=e1672]: 国际TOP5云服务厂商官方授权代理
+          - link "思想星图官网" [ref=e1673] [cursor=pointer]:
+            - /url: https://egocos.com
+            - img "思想星图" [ref=e1674]
+            - generic [ref=e1675]: 记录真实自我，构建你的思想星图
+      - generic [ref=e1676]:
+        - generic [ref=e1677]:
+          - paragraph [ref=e1678]: 联系我们
+          - list "联系方式" [ref=e1679]:
+            - listitem [ref=e1680]:
+              - generic [ref=e1681]: 邮箱
+              - link "support@egocos.com" [ref=e1682] [cursor=pointer]:
+                - /url: mailto:support@egocos.com
+            - listitem [ref=e1683]:
+              - generic [ref=e1684]: 手机
+              - link "+86 17612085881" [ref=e1685] [cursor=pointer]:
+                - /url: tel:+8617612085881
+            - listitem [ref=e1686]:
+              - generic [ref=e1687]: QQ
+              - link "2656726367" [ref=e1688] [cursor=pointer]:
+                - /url: //wpa.qq.com/msgrd?v=3&uin=2656726367&site=qq&menu=yes
+        - generic "客服二维码" [ref=e1689]:
+          - generic [ref=e1690]:
+            - img "微信客服二维码" [ref=e1691]
+            - generic [ref=e1692]: 微信客服
+          - generic [ref=e1693]:
+            - img "QQ客服二维码" [ref=e1694]
+            - generic [ref=e1695]: QQ客服
+          - link "Telegram客服二维码 Telegram客服" [ref=e1696] [cursor=pointer]:
+            - /url: https://t.me/ztopcloud
+            - img "Telegram客服二维码" [ref=e1697]
+            - generic [ref=e1698]: Telegram客服

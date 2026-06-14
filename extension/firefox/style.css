@@ -78,12 +78,93 @@ html.nospoil-theater-mode body {
   background: #000000 !important;
 }
 
-.nospoil-player-root video {
+.nospoil-player-root video,
+.nospoil-player-root iframe,
+.nospoil-player-root object,
+.nospoil-player-root embed {
   width: 100% !important;
   height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  display: block !important;
+  border: 0 !important;
   object-fit: contain !important;
 }
 
 .nospoil-player-root:is(video) {
+  object-fit: contain !important;
+}
+
+html.nospoil-cctv-match-page,
+html.nospoil-cctv-match-page body {
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: #000000 !important;
+}
+
+html.nospoil-cctv-match-page #page_body,
+html.nospoil-cctv-match-page .bg_top_h_tile,
+html.nospoil-cctv-match-page .bg_top_owner,
+html.nospoil-cctv-match-page .bg_bottom_h_tile,
+html.nospoil-cctv-match-page .bg_bottom_owner {
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #000000 !important;
+}
+
+html.nospoil-cctv-match-page .shijiebei20989_ind01,
+html.nospoil-cctv-match-page .shijiebei20989_ind02,
+html.nospoil-cctv-match-page #match_info,
+html.nospoil-cctv-match-page #worldcup2026_schedule,
+html.nospoil-cctv-match-page #match_tabs,
+html.nospoil-cctv-match-page #page_bottom,
+html.nospoil-cctv-match-page .shijiebei20989_er_ind01 .topBox,
+html.nospoil-cctv-match-page .shijiebei20989_er_ind01 .bottomBox .rightBox,
+html.nospoil-cctv-match-page .shijiebei20989_er_ind02,
+html.nospoil-cctv-match-page .ELMTwnypNwxv6LjFzShvMoWb260526,
+html.nospoil-cctv-match-page .kataer20175_ind03,
+html.nospoil-cctv-match-page .shijiebei20989_ind05,
+html.nospoil-cctv-match-page .vspace {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+html.nospoil-cctv-match-page .column_wrapper_mjm,
+html.nospoil-cctv-match-page .shijiebei20989_er_ind01,
+html.nospoil-cctv-match-page .shijiebei20989_er_ind01 .bottomBox,
+html.nospoil-cctv-match-page .shijiebei20989_er_ind01 .bottomBox .con01,
+html.nospoil-cctv-match-page .shijiebei20989_er_ind01 .bottomBox .leftBox,
+html.nospoil-cctv-match-page #myflash {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483000 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-width: 100vw !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: #000000 !important;
+}
+
+html.nospoil-cctv-match-page #myflash video,
+html.nospoil-cctv-match-page #myflash iframe,
+html.nospoil-cctv-match-page #myflash object,
+html.nospoil-cctv-match-page #myflash embed {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #000000 !important;
   object-fit: contain !important;
 }

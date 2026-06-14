@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "时差观赛助手",
-  "version": "0.1.7",
+  "version": "0.2.9",
   "description": "隐藏复播页面中可能包含剧透的信息，帮助用户用时差观赛方式观看官方复播。",
   "browser_specific_settings": {
     "gecko": {
@@ -9,7 +9,15 @@
       "strict_min_version": "109.0"
     }
   },
-  "permissions": [],
+  "permissions": ["storage", "activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
   "host_permissions": [
     "https://*.cctv.com/*",
     "https://*.cntv.cn/*",
@@ -26,7 +34,9 @@
       ],
       "js": ["content.js"],
       "css": ["style.css"],
-      "run_at": "document_start"
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true
     }
   ],
   "icons": {

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>时差观赛助手</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <div class="header">
+      <img src="icons/icon48.png" alt="" class="logo">
+      <span class="title">时差观赛助手</span>
+      <span class="version">v0.2.8</span>
+    </div>
+
+    <div class="toggle-section">
+      <div class="toggle-label-row">
+        <span class="toggle-label">插件状态</span>
+        <label class="switch">
+          <input type="checkbox" id="enableToggle" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <p id="statusText" class="status-text status-enabled">已启用 — 正在保护您的观赛体验</p>
+    </div>
+
+    <div class="toggle-section duration-section">
+      <div class="toggle-label-row">
+        <span class="toggle-label">⏱ 隐藏总时长</span>
+        <label class="switch">
+          <input type="checkbox" id="durationToggle" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <p id="durationStatusText" class="status-text duration-status">已开启 — 回放中不显示视频总时长</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info-section">
+      <p class="info-text">点击暂停后，插件将停止所有操作，页面恢复正常浏览。需要时随时重新启用即可。</p>
+      <p class="info-text info-hint">当前页面：<strong id="currentUrl"></strong></p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

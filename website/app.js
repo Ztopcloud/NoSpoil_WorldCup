@@ -66,7 +66,7 @@
 
   /* ===== Schedule Rendering ===== */
   const grid = document.getElementById('schedule-grid');
-  if (!grid) return;
+  if (grid) {
   const scheduleNav = document.querySelector('.schedule-nav');
   const countryFilters = document.getElementById('country-filters');
 
@@ -373,10 +373,20 @@
       linkClose;
   }
 
+  function isMobileDevice() {
+    return /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
+
   function buildPreMatchTile(match) {
-    var url = match.videoUrl || match.replayUrl || match.liveUrl || '';
+    var mobile = isMobileDevice();
+    var baseUrl = match.videoUrl || match.replayUrl || match.liveUrl || '';
+    // 手机端：跳转安卓下载页而非视频页，因为手机浏览器无法实现无剧透观赛
+    var url = mobile ? 'plugin.html#android-download' : baseUrl;
     var tag = url ? 'a' : 'div';
-    var hrefAttr = url ? ' href="' + escapeHtml(url) + '" target="_blank" rel="noopener noreferrer"' : '';
+    var hrefAttr = url ? (mobile
+      ? ' href="' + escapeHtml(url) + '"'
+      : ' href="' + escapeHtml(url) + '" target="_blank" rel="noopener noreferrer"'
+    ) : '';
     var linkClose = url ? '</a>' : '</div>';
     var title = escapeHtml(match.title || (match.home + ' VS ' + match.away));
     var subtitle = escapeHtml(match.subtitle || '赛前视频');
@@ -395,20 +405,27 @@
         '</div>'
       : '<strong class="prematch-video-title">' + title + '</strong>';
 
+    // 手机端：顶部标签和 hover 文案改为引导下载
+    var topLabelHtml = mobile
+      ? '<span class="match-round-text">赛前</span><span class="match-live-label"><span class="match-live-icon"></span>手机观赛</span>'
+      : '<span class="match-round-text">赛前</span><span class="match-live-label"><span class="match-live-icon"></span>视频入口</span>';
+    var hoverLabel = mobile ? '下载安卓应用' : '打开视频';
+    var subtitleExtra = mobile ? '<span class="prematch-video-mobile-hint">手机端需下载App才能无剧透观看</span>' : '';
+
     return '<' + tag + ' class="match-tile prematch-video-tile match-tile-actionable"' + hrefAttr + '>' +
       '<div class="match-content prematch-video-content">' +
         '<div class="match-topline">' +
-          '<span class="match-round-text">赛前</span>' +
-          '<span class="match-live-label"><span class="match-live-icon"></span>视频入口</span>' +
+          topLabelHtml +
         '</div>' +
         '<div class="prematch-video-body">' +
           '<span class="prematch-video-source">' + source + '</span>' +
           mainHtml +
           '<span class="prematch-video-subtitle">' + subtitle + '</span>' +
+          subtitleExtra +
         '</div>' +
         '<span class="match-card-time">' + meta + '</span>' +
       '</div>' +
-      '<span class="match-hover-action"><span class="match-hover-main"><span class="match-live-icon"></span>打开视频</span></span>' +
+      '<span class="match-hover-action"><span class="match-hover-main"><span class="match-live-icon"></span>' + hoverLabel + '</span></span>' +
       linkClose;
   }
 
@@ -748,7 +765,7 @@
   /* ===== Fetch & Init ===== */
   // 使用固定版本号替代 Date.now()，允许浏览器/CDN 条件缓存（304 Not Modified），
   // 同时更新版本号后会拉取最新数据，兼顾加载速度与内容更新。
-  var MATCHES_VERSION = '20260612-5';
+  var MATCHES_VERSION = '20260612-6';
   fetch('data/matches.json?v=' + MATCHES_VERSION)
     .then(function(response) {
       if (!response.ok) throw new Error('matches load failed');
@@ -771,6 +788,116 @@
   window.addEventListener('resize', function() {
     setupInlineScrollControls(document);
   });
+
+  } // end if (grid)
+
+  /* ===== News Rendering ===== */
+  var newsGrid = document.getElementById('news-grid');
+  if (newsGrid) {
+    var NEWS_VERSION = '20260613-1';
+    var newsFilterBar = document.querySelector('.news-filter-bar');
+    var allNews = [];
+    var activeNewsCategory = 'all';
+
+    var categoryClassMap = {
+      '前瞻': 'news-category-pre',
+      '赛果': 'news-category-result',
+      '花絮': 'news-category-fun',
+      '攻略': 'news-category-guide',
+      '动态': 'news-category-dynamic',
+      '综合': 'news-category-general'
+    };
+
+    function escapeHtml(value) {
+      return String(value == null ? '' : value).replace(/[&<>"']/g, function(char) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[char];
+      });
+    }
+
+    function buildNewsCard(news) {
+      var catClass = categoryClassMap[news.category] || 'news-category-general';
+      var tagHtml = news.tags && news.tags.length > 0
+        ? '<div class="news-card-tags">' + news.tags.map(function(t) { return '<span class="news-tag">' + escapeHtml(t) + '</span>'; }).join('') + '</div>'
+        : '';
+
+      var imageHtml = news.image
+        ? '<div class="news-card-image"><img src="' + escapeHtml(news.image) + '" alt="' + escapeHtml(news.title) + '" loading="lazy"></div>'
+        : '<div class="news-card-image"><div class="news-card-image-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 0h24v24H0z" fill="none"/><path stroke-linecap="round" stroke-linejoin="round" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><circle cx="8.5" cy="8.5" r="1.5"/><path stroke-linecap="round" stroke-linejoin="round" d="m21 15l-5-5L5 21"/></svg><span>赛事资讯</span></div></div>';
+
+      var tag = news.url ? 'a' : 'div';
+      var isExternalUrl = /^https?:\/\//i.test(news.url || '');
+      var hrefAttr = news.url
+        ? ' href="' + escapeHtml(news.url) + '"' + (isExternalUrl ? ' target="_blank" rel="noopener noreferrer"' : '')
+        : '';
+      var linkClose = news.url ? '</a>' : '</div>';
+
+      return '<' + tag + ' class="news-card"' + hrefAttr + '>' +
+        imageHtml +
+        '<div class="news-card-body">' +
+          '<div class="news-card-header">' +
+            '<span class="news-category ' + catClass + '">' + escapeHtml(news.category) + '</span>' +
+            '<span class="news-date">' + escapeHtml(news.date) + '</span>' +
+          '</div>' +
+          '<h3 class="news-card-title">' + escapeHtml(news.title) + '</h3>' +
+          '<p class="news-card-summary">' + escapeHtml(news.summary) + '</p>' +
+          tagHtml +
+        '</div>' +
+        linkClose;
+    }
+
+    function renderNews() {
+      if (!newsGrid) return;
+
+      var filtered = allNews;
+      if (activeNewsCategory !== 'all') {
+        filtered = allNews.filter(function(n) { return n.category === activeNewsCategory; });
+      }
+
+      // 按日期倒序排列
+      filtered.sort(function(a, b) {
+        return b.date.localeCompare(a.date);
+      });
+
+      if (filtered.length === 0) {
+        newsGrid.innerHTML = '<div class="empty-state">该分类暂无资讯。</div>';
+        return;
+      }
+
+      newsGrid.innerHTML = filtered.map(buildNewsCard).join('');
+    }
+
+    if (newsFilterBar) {
+      newsFilterBar.addEventListener('click', function(event) {
+        var button = event.target.closest('button[data-news-category]');
+        if (!button) return;
+
+        activeNewsCategory = button.getAttribute('data-news-category');
+        newsFilterBar.querySelectorAll('.news-filter-btn').forEach(function(btn) {
+          btn.classList.toggle('active', btn === button);
+        });
+        renderNews();
+      });
+    }
+
+    fetch('data/news.json?v=' + NEWS_VERSION)
+      .then(function(response) {
+        if (!response.ok) throw new Error('news load failed');
+        return response.json();
+      })
+      .then(function(data) {
+        allNews = data;
+        renderNews();
+      })
+      .catch(function() {
+        newsGrid.innerHTML = '<div class="empty-state">资讯暂时无法加载，请稍后刷新页面。</div>';
+      });
+  }
 
   /* ===== Nav Dropdowns ===== */
   var dropTriggers = document.querySelectorAll('.nav-drop-trigger');

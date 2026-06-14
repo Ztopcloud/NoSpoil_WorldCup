@@ -26,7 +26,7 @@ node admin-server.js
 服务器上设置百度推送接口后，后台每次保存 `matches.json` 时，如果有新的直播/复播链接被发布，会自动把站点首页推送给百度。
 
 ```powershell
-$env:BAIDU_SUBMIT_ENDPOINT="http://data.zz.baidu.com/urls?site=https://www.scgs.tv&token=你的百度推送token"
+$env:BAIDU_SUBMIT_ENDPOINT="http://data.zz.baidu.com/urls?site=https://scgs.tv&token=你的百度推送token"
 node admin-server.js
 ```
 
@@ -34,14 +34,14 @@ node admin-server.js
 
 ```powershell
 cd C:\MCP_Files\NoSpoil_WorldCup\website
-$env:BAIDU_SUBMIT_ENDPOINT="http://data.zz.baidu.com/urls?site=https://www.scgs.tv&token=你的百度推送token"
+$env:BAIDU_SUBMIT_ENDPOINT="http://data.zz.baidu.com/urls?site=https://scgs.tv&token=你的百度推送token"
 node baidu-submit.js --scan
 ```
 
 Windows 任务计划程序示例：
 
 ```powershell
-schtasks /Create /TN "SCGS Baidu URL Submit" /SC HOURLY /TR "powershell -NoProfile -ExecutionPolicy Bypass -Command `"cd C:\MCP_Files\NoSpoil_WorldCup\website; `$env:BAIDU_SUBMIT_ENDPOINT='http://data.zz.baidu.com/urls?site=https://www.scgs.tv&token=你的百度推送token'; node baidu-submit.js --scan`""
+schtasks /Create /TN "SCGS Baidu URL Submit" /SC HOURLY /TR "powershell -NoProfile -ExecutionPolicy Bypass -Command `"cd C:\MCP_Files\NoSpoil_WorldCup\website; `$env:BAIDU_SUBMIT_ENDPOINT='http://data.zz.baidu.com/urls?site=https://scgs.tv&token=你的百度推送token'; node baidu-submit.js --scan`""
 ```
 
 插件下载文件放在：

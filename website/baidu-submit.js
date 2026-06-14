@@ -3,7 +3,7 @@ const path = require('path');
 
 const rootDir = __dirname;
 const defaultStateFile = path.join(rootDir, 'data', 'baidu-submitted-urls.json');
-const defaultSite = 'https://www.scgs.tv';
+const defaultSite = 'https://scgs.tv';
 const defaultTimeoutMs = 10000;
 
 function siteOrigin() {
@@ -82,7 +82,7 @@ function walkFiles(dir, result) {
 function collectStaticPageUrls() {
   return walkFiles(rootDir, [])
     .filter(filePath => path.extname(filePath).toLowerCase() === '.html')
-    .filter(filePath => path.basename(filePath).toLowerCase() !== 'admin.html')
+    .filter(filePath => !['admin.html', 'install.html'].includes(path.basename(filePath).toLowerCase()))
     .map(htmlFileToPublicUrl);
 }
 

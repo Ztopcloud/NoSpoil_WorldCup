@@ -59,7 +59,16 @@ try {
     $sourceFile
 
 New-Item -ItemType Directory -Force -Path (Join-Path $distDir "extension") | Out-Null
-Copy-Item -Path (Join-Path $repoRoot "extension\*") -Destination (Join-Path $distDir "extension") -Recurse -Force
+$extensionDistDir = Join-Path $distDir "extension"
+Remove-Item -LiteralPath $extensionDistDir -Recurse -Force
+New-Item -ItemType Directory -Force -Path $extensionDistDir | Out-Null
+Get-ChildItem -Path (Join-Path $repoRoot "extension") -Force |
+    Where-Object {
+        $_.Name -notin @("firefox", "build-crx.js", "nospoil-key.pem", "nospoil-key.pub", "README.md")
+    } |
+    ForEach-Object {
+        Copy-Item -LiteralPath $_.FullName -Destination $extensionDistDir -Recurse -Force
+    }
 Copy-Item -Path (Join-Path $PSScriptRoot "PACKAGE_README.txt") -Destination (Join-Path $distDir $readmeName) -Force
 
 Compress-Archive -Path (Join-Path $distDir "*") -DestinationPath $zipPath -Force

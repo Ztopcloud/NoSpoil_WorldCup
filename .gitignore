@@ -7,3 +7,10 @@ android-probe/keystore.properties
 android-probe/*.jks
 android-probe/*.keystore
 website/data/baidu-submitted-urls.json
+
+# Extension CRX signing key (KEEP PRIVATE)
+extension/nospoil-key.pem
+extension/nospoil-key.pub
+
+# CRX build staging
+.tmp/crx-staging/

@@ -19,3 +19,9 @@
 [     534ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://cbs.sports.cctv.com/index.html#3400:0
 [     534ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://cbs.sports.cctv.com/index.html#3400:0
 [     534ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ https://cbs.sports.cctv.com/index.html#3400:0
+[25697778ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://cbs-u.sports.cctv.com/pc/game/game_status_list?ran=1781268915962&callBack=game_status_list&_=1781243221320:0
+[25697780ms] [LOG] {readyState: 4, getResponseHeader: , getAllResponseHeaders: , setRequestHeader: , overrideMimeType: } @ https://cbs.sports.cctv.com/scripts/index.1a1080fb.js:0
+[32405770ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://cbs-u.sports.cctv.com/pc/game/game_status_list?ran=1781275613496&callBack=game_status_list&_=1781243221376:0
+[32405771ms] [LOG] {readyState: 4, getResponseHeader: , getAllResponseHeaders: , setRequestHeader: , overrideMimeType: } @ https://cbs.sports.cctv.com/scripts/index.1a1080fb.js:0
+[32524886ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://cbs-u.sports.cctv.com/pc/game/game_status_list?ran=1781275733497&callBack=game_status_list&_=1781243221377:0
+[32524886ms] [LOG] {readyState: 4, getResponseHeader: , getAllResponseHeaders: , setRequestHeader: , overrideMimeType: } @ https://cbs.sports.cctv.com/scripts/index.1a1080fb.js:0
