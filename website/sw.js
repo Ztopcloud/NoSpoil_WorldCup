@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'scgs-tv-pwa-v12';
+const CACHE_VERSION = 'scgs-tv-pwa-v14';
 const CORE_ASSETS = [
   './',
   './index.html',

@@ -53,6 +53,31 @@ html.nospoil-prepaint-shield:not(.nospoil-prepaint-ready)::before {
   visibility: hidden !important;
 }
 
+.nospoil-xhs-login-hidden {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#nospoil-xhs-login-hint {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 18px !important;
+  transform: translateX(-50%) !important;
+  z-index: 2147483647 !important;
+  max-width: calc(100vw - 32px) !important;
+  box-sizing: border-box !important;
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  background: rgba(12, 18, 32, 0.94) !important;
+  color: #ffffff !important;
+  font: 500 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  letter-spacing: 0 !important;
+  text-align: center !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28) !important;
+  pointer-events: none !important;
+}
+
 body.nospoil-clean-screen {
   background: #000000 !important;
   overflow: hidden !important;

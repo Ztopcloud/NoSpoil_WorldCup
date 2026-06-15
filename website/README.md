@@ -44,6 +44,28 @@ Windows 任务计划程序示例：
 schtasks /Create /TN "SCGS Baidu URL Submit" /SC HOURLY /TR "powershell -NoProfile -ExecutionPolicy Bypass -Command `"cd C:\MCP_Files\NoSpoil_WorldCup\website; `$env:BAIDU_SUBMIT_ENDPOINT='http://data.zz.baidu.com/urls?site=https://scgs.tv&token=你的百度推送token'; node baidu-submit.js --scan`""
 ```
 
+## 回放缺失与同步失败邮件通知
+
+`auto-update.js` 会在赛后等待窗口后仍未找到央视全场回放时发出告警；部署同步失败、自动 Git 失败、CBS 数据抓取失败时也会发邮件。邮件配置写在 `website/.env`：
+
+```text
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your-account@example.com
+SMTP_PASS=你的 SMTP 授权码
+SMTP_FROM=your-account@example.com
+ALERT_EMAIL_TO=receiver@example.com
+```
+
+邮件模块优先使用 `nodemailer`，也内置了轻量 SMTP 兜底发送器；如果要安装正式依赖，可在 `website` 目录运行 `npm install`。没有配置 SMTP 时，自动更新只写日志，不会中断任务。
+
+试运行会预览“将发送”的邮件内容，不写入数据也不真正发送邮件：
+
+```powershell
+node website/auto-update.js --dry-run
+```
+
 插件下载文件放在：
 
 ```text
@@ -120,6 +142,12 @@ node website/deploy.js app.js
 node website/deploy.js data/matches.json
 node website/deploy.js sw.js
 node gx app.js
+```
+
+如果怀疑 `.deploy-state.json` 记录和线上实际内容不一致，可以强制重传：
+
+```powershell
+node website/deploy.js --force index.html news.html styles.css robots.txt sitemap.xml
 ```
 
 如果只想单独上传最新 APK，可以直接运行：

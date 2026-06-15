@@ -9,51 +9,10 @@
 
 const fs = require('fs');
 const path = require('path');
+const { resolveReplayUrl } = require('./replay-resolver');
 
 const DATA_FILE = path.join(__dirname, 'data', 'matches.json');
 const SW_FILE = path.join(__dirname, 'sw.js');
-
-async function fetchReplayUrl(liveUrl, matchId) {
-  try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 10000);
-    
-    const response = await fetch(liveUrl, {
-      signal: controller.signal,
-      headers: {
-        'User-Agent': 'Mozilla/5.0 NoSpoilReplayBot/1.0',
-        'Accept': 'text/html,application/xhtml+xml'
-      }
-    });
-    clearTimeout(timeout);
-    
-    if (!response.ok) {
-      console.log(`  [${matchId}] HTTP ${response.status}, 跳过`);
-      return null;
-    }
-    
-    const html = await response.text();
-    
-    // 提取 class="tab1" 的 <a> 标签中的回放链接
-    const replayMatch = html.match(/<li\s+class="tab1"[^>]*>\s*<a\s+href="(https:\/\/sports\.cctv\.com\/[^"]+)"[^>]*>/i);
-    if (replayMatch && replayMatch[1]) {
-      return replayMatch[1];
-    }
-    
-    // 备选：提取所有 sports.cctv.com 视频链接，取第一个（通常是回放）
-    const allVideoLinks = html.match(/https:\/\/sports\.cctv\.com\/\d{4}\/\d{2}\/\d{2}\/VIDE[a-zA-Z0-9]+\.shtml/gi);
-    if (allVideoLinks && allVideoLinks.length > 0) {
-      console.log(`  [${matchId}] 未找到 tab1 回放标签，使用备选提取: ${allVideoLinks[0]}`);
-      return allVideoLinks[0];
-    }
-    
-    console.log(`  [${matchId}] 未找到回放链接`);
-    return null;
-  } catch (err) {
-    console.log(`  [${matchId}] 请求失败: ${err.message}`);
-    return null;
-  }
-}
 
 function bumpSwVersion() {
   let content = fs.readFileSync(SW_FILE, 'utf8');
@@ -74,9 +33,8 @@ function bumpSwVersion() {
  * 判断比赛是否已经开赛（北京时间的开球时间已过）
  * @param {string} dateStr - 格式 "MM/DD"
  * @param {string} timeStr - 格式 "HH:MM"
- * @param {number} lookbackHours - 只关注最近 N 小时内的比赛（0=不限）
  */
-function hasKickedOff(dateStr, timeStr, lookbackHours) {
+function hasKickedOff(dateStr, timeStr) {
   if (!dateStr || !timeStr) return false;
   const [month, day] = dateStr.split('/').map(Number);
   const [hour, minute] = timeStr.split(':').map(Number);
@@ -85,11 +43,6 @@ function hasKickedOff(dateStr, timeStr, lookbackHours) {
   const now = new Date();
   // 构建比赛北京时间的 Date 对象（北京 = UTC+8）
   const matchBeijing = new Date(Date.UTC(now.getUTCFullYear(), month - 1, day, hour - 8, minute, 0));
-
-  if (lookbackHours > 0) {
-    const cutoff = new Date(now.getTime() - lookbackHours * 3600 * 1000);
-    return matchBeijing <= now && matchBeijing >= cutoff;
-  }
   return matchBeijing <= now;
 }
 
@@ -97,7 +50,6 @@ async function main() {
   console.log('=== 世界杯回放链接自动抓取 ===\n');
 
   const matches = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-  let skippedFuture = 0;
   let updatedCount = 0;
 
   for (const match of matches) {
@@ -111,9 +63,8 @@ async function main() {
       continue;
     }
 
-    // 还没开赛的跳过（只关注最近 48 小时内开赛但还没回放链接的）
-    if (!hasKickedOff(match.date, match.timeBeijing, 48)) {
-      skippedFuture++;
+    // 还没开赛的跳过
+    if (!hasKickedOff(match.date, match.timeBeijing)) {
       continue;
     }
 
@@ -121,20 +72,28 @@ async function main() {
     console.log(`检查: ${matchName} (${match.id}) [${match.date} ${match.timeBeijing}]`);
     console.log(`  liveUrl: ${match.liveUrl}`);
 
-    const replayUrl = await fetchReplayUrl(match.liveUrl, match.id);
+    const replayUrl = await resolveReplayUrl(
+      {
+        matchId: match.id,
+        liveUrl: match.liveUrl,
+        home: match.home,
+        away: match.away
+      },
+      {
+        logger: (message) => console.log(message)
+      }
+    );
 
     if (replayUrl && replayUrl !== match.replayUrl) {
       match.replayUrl = replayUrl;
       console.log(`  ✅ 已更新回放: ${replayUrl}`);
       updatedCount++;
+    } else if (!replayUrl) {
+      console.log(`  [${match.id}] 暂无可用全场回放`);
     }
 
     // 礼貌延迟
     await new Promise(r => setTimeout(r, 500));
-  }
-
-  if (skippedFuture > 0) {
-    console.log(`\n⏭ 跳过 ${skippedFuture} 场未开赛的比赛`);
   }
   
   if (updatedCount > 0) {

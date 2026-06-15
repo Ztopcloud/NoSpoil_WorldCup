@@ -4,6 +4,7 @@
  * 用法：
  *   node website/deploy.js
  *   node website/deploy.js --apk
+ *   node website/deploy.js --force
  *   node website/deploy.js index.html styles.css
  */
 
@@ -104,7 +105,8 @@ if (!host || !target) {
 const userHost = `${user}@${host}`;
 const rawArgs = process.argv.slice(2);
 const apkOnlyMode = rawArgs.includes('--apk');
-const fileArgs = rawArgs.filter((arg) => arg !== '--apk');
+const forceUploadMode = rawArgs.includes('--force');
+const fileArgs = rawArgs.filter((arg) => arg !== '--apk' && arg !== '--force');
 
 function loadDeployState() {
   if (!fs.existsSync(deployStateFile)) {
@@ -394,6 +396,10 @@ function injectVersionIntoPluginHtml() {
 }
 
 function filterChangedFiles(files, state) {
+  if (forceUploadMode) {
+    return files;
+  }
+
   // 对 plugin.html 做版本号注入，注入后始终标记为"已变更"以触发上传
   let pluginInjected = null;
   if (files.includes('plugin.html')) {
