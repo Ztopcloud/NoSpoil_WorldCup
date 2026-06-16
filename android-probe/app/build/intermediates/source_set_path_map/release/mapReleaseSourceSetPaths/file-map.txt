@@ -1,0 +1,7 @@
+tv.scgs.probe.app-pngs-0 C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\build\generated\res\pngs\release
+tv.scgs.probe.app-resValues-1 C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\build\generated\res\resValues\release
+tv.scgs.probe.app-packageReleaseResources-2 C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+tv.scgs.probe.app-packageReleaseResources-3 C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+tv.scgs.probe.app-release-4 C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\build\intermediates\merged_res\release\mergeReleaseResources
+tv.scgs.probe.app-main-5 C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\src\main\res
+tv.scgs.probe.app-release-6 C:\MCP_Files\NoSpoil_WorldCup\android-probe\app\src\release\res

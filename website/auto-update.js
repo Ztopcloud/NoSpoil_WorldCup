@@ -16,6 +16,7 @@ const { execSync } = require('child_process');
 const { resolveReplayUrl } = require('./replay-resolver');
 const { createAlertNotifier } = require('./alert-notifier');
 const { resolveXhsCandidates } = require('./xhs-candidate-resolver');
+const { resolveZhibo8Replay } = require('./zhibo8-resolver');
 
 const DATA_FILE = path.join(__dirname, 'data', 'matches.json');
 const SW_FILE = path.join(__dirname, 'sw.js');
@@ -144,7 +145,9 @@ function getReplayAlertDeadline(match) {
 }
 
 function isOfficialReplayUrl(url) {
-  return /https:\/\/sports\.cctv\.com\/\d{4}\/\d{2}\/\d{2}\/VIDE/i.test(String(url || ''));
+  const s = String(url || '');
+  return /https:\/\/sports\.cctv\.com\/\d{4}\/\d{2}\/\d{2}\/VIDE/i.test(s) ||
+         /https:\/\/(www\.)?xiaohongshu\.com\/explore\/[A-Za-z0-9]+/i.test(s);
 }
 
 function formatBeijingTime(date) {
@@ -589,7 +592,20 @@ async function main() {
     } else if (replayUrl) {
       console.log(`    ✅ 回放已存在，无需更新`);
     } else {
-      console.log(`    ⏳ 暂无回放`);
+      // 央视暂无回放，如果也没小红书链接，尝试从直播吧抓取
+      if (!isOfficialReplayUrl(match.replayUrl)) {
+        console.log(`    ⏳ 暂无央视回放，尝试直播吧...`);
+        const xhsUrl = await resolveZhibo8Replay(match);
+        if (xhsUrl) {
+          match.replayUrl = xhsUrl;
+          console.log(`    🎯 直播吧→小红书: ${xhsUrl}`);
+          updatedCount++;
+        } else {
+          console.log(`    ⏳ 暂无回放`);
+        }
+      } else {
+        console.log(`    ⏳ 暂无央视回放（已有其他回放）`);
+      }
     }
 
     await sleep(500);

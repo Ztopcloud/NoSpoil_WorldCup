@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
@@ -12,6 +13,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
+import android.webkit.JavascriptInterface;
 import android.webkit.ConsoleMessage;
 import android.webkit.CookieManager;
 import android.webkit.JsPromptResult;
@@ -36,7 +38,7 @@ import java.util.Locale;
 public class MainActivity extends Activity {
     private static final String TAG = "SCGSProbe";
     private static final String HOME_URL = "https://scgs.tv/";
-    private static final String APP_DISPLAY_VERSION = "0.2.12-probe";
+    private static final String APP_DISPLAY_VERSION = "0.2.13-probe";
     private static final int TOOLBAR_HORIZONTAL_PADDING_DP = 16;
     private static final int TOOLBAR_TOP_PADDING_DP = 8;
     private static final int TOOLBAR_BOTTOM_PADDING_DP = 8;
@@ -71,6 +73,7 @@ public class MainActivity extends Activity {
     private View fullscreenView;
     private WebChromeClient.CustomViewCallback fullscreenCallback;
     private boolean nospoilViewingMode;
+    private TextView floatBackButton;
     private String nospoilCss;
     private String nospoilJs;
 
@@ -120,6 +123,17 @@ public class MainActivity extends Activity {
         ));
 
         setContentView(root);
+
+        floatBackButton = buildFloatBackButton();
+        FrameLayout.LayoutParams fbParams = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                Gravity.TOP | Gravity.START
+        );
+        fbParams.topMargin = dpToPx(48);
+        fbParams.leftMargin = dpToPx(12);
+        root.addView(floatBackButton, fbParams);
+
         webView.loadUrl(HOME_URL);
     }
 
@@ -200,6 +214,71 @@ public class MainActivity extends Activity {
         return button;
     }
 
+    private TextView buildFloatBackButton() {
+        TextView btn = new TextView(this);
+        btn.setText("← 返回");
+        btn.setTextColor(0xffffffff);
+        btn.setTextSize(13);
+        btn.setGravity(Gravity.CENTER);
+        btn.setPadding(dpToPx(14), dpToPx(7), dpToPx(14), dpToPx(7));
+        GradientDrawable bg = new GradientDrawable();
+        bg.setColor(0x99000000);
+        bg.setCornerRadius(dpToPx(18));
+        btn.setBackground(bg);
+        btn.setVisibility(View.GONE);
+        btn.setClickable(true);
+        btn.setFocusable(true);
+        btn.setOnClickListener(v -> {
+            if (fullscreenView != null) {
+                hideFullscreenView();
+            }
+            exitNospoilViewingMode();
+            webView.loadUrl(HOME_URL);
+        });
+        return btn;
+    }
+
+    public class AndroidBridge {
+        @JavascriptInterface
+        public void log(String msg) {
+            Log.i(TAG, "SCGS-Bridge: " + msg);
+        }
+
+        @JavascriptInterface
+        public void requestFullscreen() {
+            runOnUiThread(() -> {
+                enterImmersiveMode();
+                floatBackButton.post(() -> {
+                    floatBackButton.setVisibility(View.VISIBLE);
+                    floatBackButton.bringToFront();
+                });
+            });
+        }
+
+        @JavascriptInterface
+        public void playVideo() {
+            runOnUiThread(() -> {
+                if (nospoilViewingMode) {
+                    floatBackButton.post(() -> {
+                        floatBackButton.setVisibility(View.VISIBLE);
+                        floatBackButton.bringToFront();
+                    });
+                }
+            });
+        }
+
+        @JavascriptInterface
+        public void backToSite() {
+            runOnUiThread(() -> {
+                if (fullscreenView != null) {
+                    hideFullscreenView();
+                }
+                exitNospoilViewingMode();
+                webView.loadUrl(HOME_URL);
+            });
+        }
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     private void configureWebView(WebView view) {
         WebSettings settings = view.getSettings();
@@ -219,6 +298,7 @@ public class MainActivity extends Activity {
 
         view.setWebViewClient(new ProbeWebViewClient());
         view.setWebChromeClient(new ProbeChromeClient());
+        view.addJavascriptInterface(new AndroidBridge(), "SCGSAndroid");
     }
 
     private final class ProbeWebViewClient extends WebViewClient {
@@ -376,10 +456,13 @@ public class MainActivity extends Activity {
         progressBar.setVisibility(View.GONE);
         promoteWebContainerToRoot();
         enterImmersiveMode();
+        floatBackButton.setVisibility(View.VISIBLE);
+        floatBackButton.bringToFront();
     }
 
     private void exitNospoilViewingMode() {
         nospoilViewingMode = false;
+        floatBackButton.setVisibility(View.GONE);
         if (fullscreenView == null) {
             restoreWebContainerToShell();
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
@@ -461,7 +544,8 @@ public class MainActivity extends Activity {
                 + "if(window.__SCGS_ANDROID_NOSPOIL_PATCH__)return;"
                 + "window.__SCGS_ANDROID_NOSPOIL_PATCH__=true;"
                 + "var STYLE_ID='scgs-android-nospoil-style';"
-                + "function hostOk(){return /(^|\\.)(cctv\\.com|cntv\\.cn|yangshipin\\.cn)$/.test(location.hostname);}"
+                + "var bridge=window.SCGSAndroid||null;"
+                + "function hostOk(){return /(^|\\.)(cctv\\.com|cntv\\.cn|yangshipin\\.cn|xiaohongshu\\.com)$/.test(location.hostname);}"
                 + "function rectArea(el){var r=el.getBoundingClientRect();return Math.max(0,r.width)*Math.max(0,r.height);}"
                 + "function largestMediaRoot(){"
                 + "var media=Array.prototype.slice.call(document.querySelectorAll('video,iframe,object,embed'));"
@@ -497,13 +581,21 @@ public class MainActivity extends Activity {
                 + "if(r.width>2&&r.height>2){el.classList.add('scgs-android-hide');}"
                 + "});"
                 + "}"
+                + "function autoPlayVideo(v){"
+                + "if(!v||!v.paused)return;"
+                + "var wasMuted=v.muted;v.muted=true;"
+                + "try{var p=v.play();if(p&&p.catch)p.catch(function(){v.muted=wasMuted;});}catch(e){}"
+                + "}"
                 + "function apply(){"
                 + "if(!hostOk()||!document.documentElement||!document.body)return;"
                 + "installStyle();"
                 + "document.documentElement.classList.add('scgs-android-nospoil');"
                 + "var root=document.querySelector('#myflash')||document.querySelector('.scgs-android-player-root')||largestMediaRoot();"
                 + "if(root){root.classList.add('scgs-android-player-root');markShell(root);hideAround(root);"
-                + "var target=root.querySelector&&(root.querySelector('video')||root.querySelector('iframe'))||root;"
+                + "var video=root.querySelector&&root.querySelector('video');"
+                + "if(video)autoPlayVideo(video);"
+                + "var target=video||(root.querySelector&&root.querySelector('iframe'))||root;"
+                + "if(bridge&&bridge.requestFullscreen){bridge.requestFullscreen();}"
                 + "try{var fn=target&&(target.requestFullscreen||target.webkitRequestFullscreen||target.webkitRequestFullScreen||target.mozRequestFullScreen||target.msRequestFullscreen);if(fn){var ret=fn.call(target);if(ret&&ret.catch)ret.catch(function(){});}}catch(e){}"
                 + "}"
                 + "}"
@@ -572,6 +664,8 @@ public class MainActivity extends Activity {
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT
             ));
+            floatBackButton.setVisibility(View.VISIBLE);
+            floatBackButton.bringToFront();
         }
 
         @Override
@@ -589,10 +683,13 @@ public class MainActivity extends Activity {
         if (nospoilViewingMode) {
             toolbar.setVisibility(View.GONE);
             enterImmersiveMode();
+            floatBackButton.setVisibility(View.VISIBLE);
+            floatBackButton.bringToFront();
         } else {
             toolbar.setVisibility(View.VISIBLE);
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
             exitImmersiveMode();
+            floatBackButton.setVisibility(View.GONE);
         }
 
         if (fullscreenCallback != null) {

@@ -214,16 +214,21 @@ function createAlertNotifier(options = {}) {
       return await notify(message);
     }
 
-    if (state.sent[key]) {
+    const sentRecord = state.sent[key];
+    if (sentRecord && sentRecord.to === config.to) {
       logger(`  已发送过告警，跳过: ${key}`);
       return { sent: false, skipped: 'deduped' };
+    }
+    if (sentRecord && sentRecord.to !== config.to) {
+      logger(`  收件人已变化，重新发送告警: ${key}`);
     }
 
     const result = await notify(message);
     if (!dryRun && result.sent) {
       state.sent[key] = {
         at: new Date().toISOString(),
-        subject: message.subject || ''
+        subject: message.subject || '',
+        to: config.to
       };
       if (stateFile) saveAlertState(stateFile, state);
     }

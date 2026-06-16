@@ -53,6 +53,62 @@ html.nospoil-prepaint-shield:not(.nospoil-prepaint-ready)::before {
   visibility: hidden !important;
 }
 
+.nospoil-xhs-login-hidden {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#nospoil-xhs-login-hint {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 18px !important;
+  transform: translateX(-50%) !important;
+  z-index: 2147483647 !important;
+  max-width: calc(100vw - 32px) !important;
+  box-sizing: border-box !important;
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  background: rgba(12, 18, 32, 0.94) !important;
+  color: #ffffff !important;
+  font: 500 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  letter-spacing: 0 !important;
+  text-align: center !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28) !important;
+  pointer-events: none !important;
+}
+
+#nospoil-back-home-button {
+  position: fixed !important;
+  top: max(16px, env(safe-area-inset-top, 0px) + 12px) !important;
+  left: max(16px, env(safe-area-inset-left, 0px) + 12px) !important;
+  z-index: 2147483647 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 92px !important;
+  min-height: 42px !important;
+  padding: 0 16px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: rgba(12, 18, 32, 0.88) !important;
+  color: #ffffff !important;
+  font: 600 14px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.34) !important;
+  cursor: pointer !important;
+  opacity: 0.96 !important;
+  pointer-events: auto !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+#nospoil-back-home-button:hover,
+#nospoil-back-home-button:focus-visible {
+  background: rgba(20, 31, 54, 0.96) !important;
+  outline: 2px solid rgba(255, 255, 255, 0.24) !important;
+  outline-offset: 2px !important;
+}
+
 body.nospoil-clean-screen {
   background: #000000 !important;
   overflow: hidden !important;

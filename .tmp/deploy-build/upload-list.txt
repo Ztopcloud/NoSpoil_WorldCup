@@ -1,9 +1,1 @@
-alert-notifier.js
-package.json
-public/nospoil-worldcup-extension.zip
-public/scgs-tv-extension-chromium.zip
-public/scgs-tv-extension-firefox.zip
-public/scgs-tv-extension.crx
-public/scgs-tv-extension.zip
-replay-resolver.js
-xhs-candidate-resolver.js
+admin.html

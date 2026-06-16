@@ -19,9 +19,24 @@
   const PREPAINT_SHIELD_CLASS = 'nospoil-prepaint-shield';
   const PREPAINT_READY_CLASS = 'nospoil-prepaint-ready';
   const PREPAINT_STYLE_ID = 'nospoil-prepaint-style';
+  const XHS_LOGIN_HINT_ID = 'nospoil-xhs-login-hint';
+  const BACK_HOME_BUTTON_ID = 'nospoil-back-home-button';
   const PREPAINT_MIN_SKIP_SECONDS = 4.5;
   const PREPAINT_MAX_HOLD_MS = 8000;
   const RERUN_DELAYS_MS = [80, 250, 600, 1200, 2200, 4000, 7000, 11000];
+  const XHS_LOGIN_SELECTORS = [
+    '[class*="login" i]',
+    '[class*="sign" i]',
+    '[class*="modal" i]',
+    '[class*="mask" i]',
+    '[class*="overlay" i]',
+    '[class*="qrcode" i]',
+    '[class*="qr-code" i]',
+    '[id*="login" i]',
+    '[id*="modal" i]',
+    '[role="dialog"]'
+  ];
+  const XHS_LOGIN_TEXT_RE = /(登录后|登录小红书|扫码登录|验证码登录|手机号登录|打开小红书|下载小红书|请先登录|注册\/登录|注册登录)/;
   const processedVideos = new WeakSet();
   const preparedVideos = new WeakSet();
   const clickedPlayRoots = new WeakSet();
@@ -74,6 +89,10 @@
 
     const notice = document.getElementById(NOTICE_ID);
     if (notice) notice.remove();
+    const xhsHint = document.getElementById(XHS_LOGIN_HINT_ID);
+    if (xhsHint) xhsHint.remove();
+    const backButton = document.getElementById(BACK_HOME_BUTTON_ID);
+    if (backButton) backButton.remove();
   }
 
   function handleToggle(enabled) {
@@ -388,6 +407,55 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
     }, 3200);
   }
 
+  function shouldShowBackHomeButton() {
+    if (!IS_TOP_FRAME) return false;
+    if (!pluginEnabled) return false;
+    if (isScgsSite()) return false;
+
+    const playerRoot = getPlayerRoot();
+    if (playerRoot && playerRoot.classList.contains(PLAYER_ROOT_CLASS)) return true;
+    if (document.documentElement && document.documentElement.classList.contains(CCTV_MATCH_CLASS)) return true;
+    if (document.documentElement && document.documentElement.classList.contains(THEATER_CLASS)) return true;
+
+    const fullscreenEl = document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement;
+    return Boolean(fullscreenEl);
+  }
+
+  function goHomeFromReplay() {
+    window.location.href = 'https://scgs.tv/';
+  }
+
+  function syncBackHomeButton() {
+    if (!document.documentElement) return;
+
+    const shouldShow = shouldShowBackHomeButton();
+    let button = document.getElementById(BACK_HOME_BUTTON_ID);
+
+    if (!shouldShow) {
+      if (button) button.remove();
+      return;
+    }
+
+    if (!button) {
+      button = document.createElement('button');
+      button.id = BACK_HOME_BUTTON_ID;
+      button.type = 'button';
+      button.setAttribute('aria-label', '返回时差观赛网站');
+      button.textContent = '返回网站';
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        goHomeFromReplay();
+      }, true);
+      document.documentElement.appendChild(button);
+    } else if (!button.isConnected) {
+      document.documentElement.appendChild(button);
+    }
+  }
+
   function isInsidePlayer(el) {
     return PLAYER_SAFE_SELECTORS.some((selector) => el.closest(selector));
   }
@@ -693,11 +761,69 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
   function hideXiaohongshuSideContent() {
     if (!isXiaohongshuPage()) return;
 
+    hideXiaohongshuLoginPrompts();
+    showXiaohongshuLoginHintIfBlocked();
+
     const playerRoot = getPlayerRoot();
     if (!playerRoot) return;
 
     hideOutsidePlayer(playerRoot);
     sanitizeDocumentTitle();
+  }
+
+  function isLikelyXhsLoginPrompt(el) {
+    if (!el || el.id === NOTICE_ID || el.id === XHS_LOGIN_HINT_ID || isInsidePlayer(el)) return false;
+
+    const rect = el.getBoundingClientRect();
+    if (rect.width < 80 || rect.height < 40) return false;
+
+    const style = window.getComputedStyle(el);
+    const isLayer = style.position === 'fixed' || style.position === 'sticky' || style.position === 'absolute';
+    const text = elementText(el).slice(0, 260);
+    const attrs = [
+      el.id,
+      typeof el.className === 'string' ? el.className : '',
+      el.getAttribute('aria-label'),
+      el.getAttribute('title')
+    ].join(' ');
+
+    const looksLikeLogin = XHS_LOGIN_TEXT_RE.test(text) || /login|sign|qrcode|qr-code|modal|mask|overlay/i.test(attrs);
+    const isLargeOverlay = rect.width >= window.innerWidth * 0.45 && rect.height >= window.innerHeight * 0.25;
+    const nearViewport = rect.left < window.innerWidth && rect.top < window.innerHeight && rect.right > 0 && rect.bottom > 0;
+
+    return looksLikeLogin && nearViewport && (isLayer || isLargeOverlay);
+  }
+
+  function hideXiaohongshuLoginPrompts() {
+    XHS_LOGIN_SELECTORS.forEach((selector) => {
+      document.querySelectorAll(selector).forEach((el) => {
+        if (isLikelyXhsLoginPrompt(el)) {
+          el.classList.add('nospoil-xhs-login-hidden');
+        }
+      });
+    });
+
+    document.querySelectorAll('body > div, body > section, body > aside').forEach((el) => {
+      if (isLikelyXhsLoginPrompt(el)) {
+        el.classList.add('nospoil-xhs-login-hidden');
+      }
+    });
+  }
+
+  function showXiaohongshuLoginHintIfBlocked() {
+    if (!isXiaohongshuPage() || document.querySelector('video')) return;
+    if (document.getElementById(XHS_LOGIN_HINT_ID)) return;
+
+    const blocked = Array.from(document.querySelectorAll('body *')).some((el) => {
+      const text = elementText(el).slice(0, 260);
+      return XHS_LOGIN_TEXT_RE.test(text);
+    });
+    if (!blocked) return;
+
+    const hint = document.createElement('div');
+    hint.id = XHS_LOGIN_HINT_ID;
+    hint.textContent = '小红书可能要求登录后观看，可登录后继续或换用其它复播源';
+    document.documentElement.appendChild(hint);
   }
 
   function sanitizeDocumentTitle() {
@@ -923,6 +1049,7 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
     hidePossibleSpoilers();
     trySkipIntro();
     tryPrepareVideos();
+    syncBackHomeButton();
   }
 
   function scheduleReruns() {
@@ -941,6 +1068,9 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
       if (!pluginEnabled || !prepaintShieldEnabled) return;
       if (!event.data || event.data.type !== 'nospoil_video_ready') return;
       releasePrepaintShield();
+    });
+    ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'].forEach((eventName) => {
+      document.addEventListener(eventName, () => window.requestAnimationFrame(syncBackHomeButton));
     });
   }
 

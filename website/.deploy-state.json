@@ -1,10 +1,10 @@
 {
   "deployed": {
     "README.md": "2eda94c02f9c00b9bd2fa0bb83dd6451f92364839dfaf2cfdd15cdbe7560346e",
-    "admin.css": "0b11dca8a69c2c9cd8eafd2075c42ad7e15c179f7445664082ac8705726d2078",
+    "admin.css": "14977f90f5f99e55017f14a72f4921ab02ccef54a4f0a43a018190e8f91f776e",
     "admin.html": "a61777043195aa0cee8fa3c2352e940b51fb15b1a02e720b3af8a099f8d8667e",
     "admin.js": "148969a03975a3bde73f1f13c9ae595457043632a82c0cb24d0e0a45679b7f34",
-    "app.js": "69a25478a6970531af64cd31a606e24d5a7316abc1d57974a64637034dfdab9c",
+    "app.js": "e5cbfaff078f97e3ec1f816db901ddfb059b755f78fc1add6cee4413cd433bc3",
     "assets/360.png": "6ea06e0fed3588d4f32e8fbcf08f4368ac4503d4c1a5aa8e3683f11115994422",
     "assets/QQ.png": "c8c7d2f3f399a32483722029c9a1281f4a0aa91f0d0dd6a32a8a50eba724cb54",
     "assets/UC.png": "cd128d864c958a6c0885fbe2659c007df0cf19a71dd512bd172695eaa07175e7",
@@ -24,7 +24,7 @@
     "assets/windows-10-icon.svg": "604fe318593a60be2ae3371a49cef668b49d7da357100a99a8b5c06e69461917",
     "assets/ztopcloud-logo.png": "d1d05d20857c20ab4d277f9bd5e59fd82913c09294c56bbc50c69e1d81bcd95c",
     "data/matches.example.json": "cc421ff952f8e87a04d9742d9757f9877146c14b63600db38777b59055f7ebef",
-    "data/matches.json": "5314df5427694f9e083dd32d1340866fafe59587fee9a87f55e88d5406b8bdac",
+    "data/matches.json": "3c433647e3014d4358d30110cbe240485d2e4da10557ece895ae886479e71097",
     "disclaimer.html": "db253a9865ec6c6ae4d755e98796db7c6a1298d118ec1f3792f4546ecc219e89",
     "index.html": "0354ee2cb18272ed1091d95f801d17b49fff7fffd4d52b4ab300202449c9a283",
     "install.html": "9ca97905ffc4a9a6cc8c7cd721cee6a8f8fe0ae201d1121b8e3adf30e9dea6e6",
@@ -36,7 +36,7 @@
     "public/scgs-tv-extension-chromium.zip": "0bb3550e082b01847ba8aad4ca995dff84dc74c2c27792b7e4ace0198ab42091",
     "public/scgs-tv-extension-firefox.zip": "88aeb62e39b54348c1d6ae4480352fe283b694f39c525cb6993da810bcf08b36",
     "public/scgs-tv-extension.zip": "0bb3550e082b01847ba8aad4ca995dff84dc74c2c27792b7e4ace0198ab42091",
-    "public/时差观赛.apk": "d3cab8c19cdb5cfbcd5da0da84ce7a48f0e4431f4c664b57d293e16a26941108",
+    "public/时差观赛.apk": "39d6b358790aebb4be0f0877a9641f39d73a07e9c8805123355177f2575f7c1a",
     "pwa-register.js": "06208295341d272836dbb175757953c1114df73e8db2edcd451aed2e36798264",
     "styles.css": "f5fd15532403899461495f8837939843c98e0637636132431c7d1b3af254a032",
     "sw.js": "ea01eb56937601ce3c6a0939bfa3c404f60f6fef86e0cdfc7169f9c1fa8463d9",
@@ -62,7 +62,9 @@
     "robots.txt": "7c60f4c111e79516962e959834624cc62deacc2e9e990b039f8e4c7df29b513d",
     "sitemap.xml": "dfc574cb0560e7ea9c1eae894de4ef26869043061cc757abc4b19ad5aedd2dce",
     "xhs-candidate-resolver.js": "29d9c7b3adb836bd5b0a8bd7892fd93224519bac78a7a651f72e0655886a5613",
-    "package.json": "01f2ef10d16d4acceaebdc35ffeb53e8aaacea4daef3499d99c01c12d242dc9c"
+    "package.json": "01f2ef10d16d4acceaebdc35ffeb53e8aaacea4daef3499d99c01c12d242dc9c",
+    "auto-update.js": "63a989ebfddb83c1a507a038648015239ab17ed0ee5c890f6f6d41e5b1b8461a",
+    "zhibo8-resolver.js": "0407ab9ecd153224b7c921c7daffa8a1992bd494392bce320402ef75f47c58f7"
   },
   "sources": {
     "apkSourceHash": "d3cab8c19cdb5cfbcd5da0da84ce7a48f0e4431f4c664b57d293e16a26941108",

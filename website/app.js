@@ -282,8 +282,8 @@
     }
 
     if (now < replayReady) {
-      // 如果已经抓取到 sports.cctv.com 的回放链接，直接显示可看
-      if (match.replayUrl && match.replayUrl.includes('sports.cctv.com')) {
+      // 如果已经抓取到回放链接（央视或小红书），直接显示可看
+      if (match.replayUrl && (match.replayUrl.includes('sports.cctv.com') || match.replayUrl.includes('xiaohongshu.com'))) {
         return {
           key: 'replay',
           centerLabel: '国区进行中',
@@ -765,7 +765,7 @@
   /* ===== Fetch & Init ===== */
   // 使用固定版本号替代 Date.now()，允许浏览器/CDN 条件缓存（304 Not Modified），
   // 同时更新版本号后会拉取最新数据，兼顾加载速度与内容更新。
-  var MATCHES_VERSION = '20260612-6';
+  var MATCHES_VERSION = '20260612-7';
   fetch('data/matches.json?v=' + MATCHES_VERSION)
     .then(function(response) {
       if (!response.ok) throw new Error('matches load failed');

@@ -446,7 +446,10 @@
 }
 
 .skip-seconds-input {
+  width: 100%;
   min-height: 30px;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .match-inline-open {
