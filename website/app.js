@@ -328,7 +328,7 @@
 
     const hasLink = state.link && !isPlaceholder;
     const tag = hasLink ? 'a' : 'div';
-    const hrefAttr = hasLink ? ' href="' + state.link + '"' : '';
+    const hrefAttr = hasLink ? ' href="' + state.link + '" target="_blank" rel="noopener noreferrer"' : '';
     const linkClose = hasLink ? '</a>' : '</div>';
 
     const roundLabel = roundLabels[match.round] || match.round;
@@ -380,11 +380,11 @@
   function buildPreMatchTile(match) {
     var mobile = isMobileDevice();
     var baseUrl = match.videoUrl || match.replayUrl || match.liveUrl || '';
-    // 手机端：跳转安卓下载页而非视频页，因为手机浏览器无法实现无剧透观赛
-    var url = mobile ? 'plugin.html#android-download' : baseUrl;
-    var tag = url ? 'a' : 'div';
+    // 手机端：安卓版维护中，暂不可用
+    var url = mobile ? 'javascript:void(0)' : baseUrl;
+    var tag = mobile ? 'a' : (url ? 'a' : 'div');
     var hrefAttr = url ? (mobile
-      ? ' href="' + escapeHtml(url) + '"'
+      ? ' href="javascript:void(0)" onclick="alert(\'安卓版正在维护中，请稍后再试。\')"'
       : ' href="' + escapeHtml(url) + '" target="_blank" rel="noopener noreferrer"'
     ) : '';
     var linkClose = url ? '</a>' : '</div>';
@@ -407,10 +407,10 @@
 
     // 手机端：顶部标签和 hover 文案改为引导下载
     var topLabelHtml = mobile
-      ? '<span class="match-round-text">赛前</span><span class="match-live-label"><span class="match-live-icon"></span>手机观赛</span>'
+      ? '<span class="match-round-text">赛前</span><span class="match-live-label"><span class="match-live-icon"></span>安卓维护中</span>'
       : '<span class="match-round-text">赛前</span><span class="match-live-label"><span class="match-live-icon"></span>视频入口</span>';
-    var hoverLabel = mobile ? '下载安卓应用' : '打开视频';
-    var subtitleExtra = mobile ? '<span class="prematch-video-mobile-hint">手机端需下载App才能无剧透观看</span>' : '';
+    var hoverLabel = mobile ? '安卓版正在维护中' : '打开视频';
+    var subtitleExtra = mobile ? '<span class="prematch-video-mobile-hint">安卓版正在维护中，请先用电脑观赛</span>' : '';
 
     return '<' + tag + ' class="match-tile prematch-video-tile match-tile-actionable"' + hrefAttr + '>' +
       '<div class="match-content prematch-video-content">' +

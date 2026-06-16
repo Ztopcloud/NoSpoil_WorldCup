@@ -199,18 +199,25 @@
                 ' · ' + escapeHtml(match.date) + ' ' + escapeHtml(match.timeBeijing) + '</span>' +
               '</div>' +
             '</div>' +
-            '<label class="match-url-label">直播' +
-              '<div class="match-url-row">' +
-                '<input data-field="liveUrl" value="' + escapeHtml(match.liveUrl || '') + '" placeholder="https://...">' +
-                urlOpenBtn(match.liveUrl) +
-              '</div>' +
-            '</label>' +
-            '<label class="match-url-label">复播' +
-              '<div class="match-url-row">' +
-                '<input data-field="replayUrl" value="' + escapeHtml(match.replayUrl || '') + '" placeholder="https://cbs.sports.cctv.com/...">' +
-                urlOpenBtn(match.replayUrl, match.skipSeconds) +
-              '</div>' +
-            '</label>' +
+            (match.round === 'pre'
+              ? '<label class="match-url-label">视频' +
+                  '<div class="match-url-row">' +
+                    '<input data-field="videoUrl" value="' + escapeHtml(match.videoUrl || '') + '" placeholder="https://...">' +
+                    urlOpenBtn(match.videoUrl) +
+                  '</div>' +
+                '</label>'
+              : '<label class="match-url-label">直播' +
+                  '<div class="match-url-row">' +
+                    '<input data-field="liveUrl" value="' + escapeHtml(match.liveUrl || '') + '" placeholder="https://...">' +
+                    urlOpenBtn(match.liveUrl) +
+                  '</div>' +
+                '</label>' +
+                '<label class="match-url-label">复播' +
+                  '<div class="match-url-row">' +
+                    '<input data-field="replayUrl" value="' + escapeHtml(match.replayUrl || '') + '" placeholder="https://cbs.sports.cctv.com/...">' +
+                    urlOpenBtn(match.replayUrl, match.skipSeconds) +
+                  '</div>' +
+                '</label>') +
             '<label class="match-url-label skip-seconds-label">跳过秒数' +
               '<input class="skip-seconds-input" data-field="skipSeconds" type="number" min="0" step="1" value="' + escapeHtml(match.skipSeconds == null ? '' : match.skipSeconds) +
               '" placeholder="自动" title="留空使用平台默认值；填 0 表示不跳过开头">' +
@@ -592,56 +599,7 @@
     event.returnValue = '';
   });
 
-  /* ===== 淘汰赛快速填充面板 ===== */
-  var knockoutGrid = document.getElementById('knockout-grid');
 
-  function renderKnockoutPanel() {
-    if (!knockoutGrid) return;
-    var koMatches = matches.filter(function(m) { return m.round !== 'group' && m.round !== 'pre'; });
-    if (koMatches.length === 0) {
-      knockoutGrid.innerHTML = '<div class="empty-state">暂无淘汰赛数据。</div>';
-      return;
-    }
-
-    var teamOptions = teamNames.map(function(n) { return '<option value="' + escapeHtml(n) + '">'; }).join('');
-    knockoutGrid.innerHTML =
-      '<datalist id="ko-team-list">' + teamOptions + '</datalist>' +
-      '<table class="knockout-table">' +
-        '<thead><tr>' +
-          '<th>ID</th><th>阶段</th><th>日期</th><th>时间</th>' +
-          '<th>主队</th><th>代码</th><th></th><th>客队</th><th>代码</th>' +
-          '<th>状态</th><th>操作</th>' +
-        '</tr></thead>' +
-        '<tbody>' +
-          koMatches.map(function(match) {
-            var roundLabel = roundLabels[match.round] || match.round;
-            var isPending = isPlaceholder(match);
-            return (
-              '<tr class="' + (isPending ? 'ko-row-pending' : 'ko-row-done') + '" data-id="' + escapeHtml(match.id) + '">' +
-                '<td><code>' + escapeHtml(match.id) + '</code></td>' +
-                '<td>' + escapeHtml(roundLabel) + '</td>' +
-                '<td>' + escapeHtml(match.date) + '</td>' +
-                '<td>' + escapeHtml(match.timeBeijing) + '</td>' +
-                '<td><input class="ko-team-input" data-field="home" ' +
-                (match.home === '待定' ? 'placeholder="主队" ' : 'value="' + escapeHtml(match.home) + '" placeholder="主队" ') +
-                'list="ko-team-list" autocomplete="off"></td>' +
-                '<td><input class="ko-code-input" data-field="homeCode" value="' + escapeHtml(match.homeCode) +
-                '" placeholder="代码" maxlength="6"></td>' +
-                '<td class="ko-vs">vs</td>' +
-                '<td><input class="ko-team-input" data-field="away" ' +
-                (match.away === '待定' ? 'placeholder="客队" ' : 'value="' + escapeHtml(match.away) + '" placeholder="客队" ') +
-                'list="ko-team-list" autocomplete="off"></td>' +
-                '<td><input class="ko-code-input" data-field="awayCode" value="' + escapeHtml(match.awayCode) +
-                '" placeholder="代码" maxlength="6"></td>' +
-                '<td><span class="ko-status-tag' + (isPending ? ' tag-pending' : ' tag-ok') + '">' +
-                (isPending ? '待更新' : '✓') + '</span></td>' +
-                '<td><button class="ko-clear-btn" data-action="clear-match" title="重置为待定">清除</button></td>' +
-              '</tr>'
-            );
-          }).join('') +
-        '</tbody>' +
-      '</table>';
-  }
 
   // 清除单场比赛的直播/复播链接及主客队信息
   function clearUrls(matchId) {
@@ -649,6 +607,7 @@
     if (!match) return;
     match.liveUrl = '';
     match.replayUrl = '';
+    match.videoUrl = '';
     match.home = '待定';
     match.away = '待定';
     match.homeCode = 'xx';
@@ -660,103 +619,7 @@
   }
 
   // 清除单场比赛为待定
-  function clearMatch(matchId) {
-    var match = matches.find(function(m) { return m.id === matchId; });
-    if (!match) return;
-    match.home = '待定';
-    match.away = '待定';
-    match.homeCode = 'xx';
-    match.awayCode = 'xx';
-    setStatus('有未保存修改', true);
-    updateStats();
-    // 刷新两个面板
-    renderMatches();
-    renderKnockoutPanel();
-  }
 
-  // 淘汰赛面板输入事件：自动填充国旗代码
-  if (knockoutGrid) {
-    knockoutGrid.addEventListener('input', function(event) {
-      var input = event.target;
-      var row = input.closest('[data-id]');
-      if (!row) return;
-      var matchId = row.getAttribute('data-id');
-      var field = input.getAttribute('data-field');
-
-      if (field === 'home' || field === 'away') {
-        var teamName = input.value.trim();
-        var code = teamCodeMap[teamName];
-        if (code) {
-          var codeField = field === 'home' ? 'homeCode' : 'awayCode';
-          var codeInput = row.querySelector('[data-field="' + codeField + '"]');
-          if (codeInput) {
-            codeInput.value = code;
-            updateMatch(matchId, codeField, code);
-          }
-        }
-        updateMatch(matchId, field, input.value);
-      } else if (field === 'homeCode' || field === 'awayCode') {
-        updateMatch(matchId, field, input.value);
-      }
-
-      // 实时刷新面板显示
-      var koMatch = matches.find(function(m) { return m.id === matchId; });
-      if (koMatch) {
-        row.className = isPlaceholder(koMatch) ? 'ko-row-pending' : 'ko-row-done';
-        var tag = row.querySelector('.ko-status-tag');
-        if (tag) {
-          tag.className = 'ko-status-tag' + (isPlaceholder(koMatch) ? ' tag-pending' : ' tag-ok');
-          tag.textContent = isPlaceholder(koMatch) ? '待更新' : '✓';
-        }
-      }
-      updateStats();
-    });
-
-    // 清除按钮点击事件
-    knockoutGrid.addEventListener('click', function(event) {
-      var btn = event.target.closest('[data-action="clear-match"]');
-      if (!btn) return;
-      var row = btn.closest('[data-id]');
-      if (!row) return;
-      var matchId = row.getAttribute('data-id');
-      clearMatch(matchId);
-    });
-  }
-
-  /* ===== 标签切换 ===== */
-  var adminTabs = document.querySelectorAll('.admin-tab');
-  adminTabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      var targetTab = tab.getAttribute('data-tab');
-      // 切换标签激活状态
-      adminTabs.forEach(function(t) { t.classList.remove('active'); });
-      tab.classList.add('active');
-      // 切换面板显示
-      document.querySelectorAll('.admin-tab-panel').forEach(function(panel) {
-        panel.hidden = true;
-      });
-      var targetPanel = document.getElementById('tab-' + targetTab);
-      if (targetPanel) {
-        targetPanel.hidden = false;
-        if (targetTab === 'knockout') renderKnockoutPanel();
-      }
-    });
-  });
-
-  // 扩展 loadMatches，加载后同时渲染淘汰赛面板
-  var _origLoadMatches = loadMatches;
-  loadMatches = function() {
-    return _origLoadMatches().then(function() {
-      renderKnockoutPanel();
-    });
-  };
-
-  // 扩展 applyImport，应用后刷新淘汰赛面板
-  var _origApplyImport = applyImport;
-  applyImport = function() {
-    _origApplyImport();
-    renderKnockoutPanel();
-  };
 
   if (adminToken) {
     attemptLogin(adminToken).catch(error => {

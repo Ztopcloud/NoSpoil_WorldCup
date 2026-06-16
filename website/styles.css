@@ -2021,6 +2021,21 @@ a.feature-card {
   min-height: 174px;
 }
 
+.prematch-video-tile .match-content {
+  z-index: 2;
+}
+
+.prematch-video-tile:hover .match-content,
+.prematch-video-tile:focus-visible .match-content {
+  opacity: 1;
+}
+
+.prematch-video-tile .match-hover-action {
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 18px;
+}
+
 .prematch-video-body {
   display: grid;
   align-content: center;
@@ -2034,12 +2049,14 @@ a.feature-card {
   font-size: 24px;
   line-height: 1.12;
   font-weight: 950;
+  overflow-wrap: anywhere;
 }
 
 .prematch-video-subtitle {
   color: rgba(255, 255, 255, 0.82);
   font-size: 14px;
   line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .prematch-video-mobile-hint {

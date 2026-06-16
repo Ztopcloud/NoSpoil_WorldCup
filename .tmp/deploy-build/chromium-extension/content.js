@@ -20,6 +20,7 @@
   const PREPAINT_READY_CLASS = 'nospoil-prepaint-ready';
   const PREPAINT_STYLE_ID = 'nospoil-prepaint-style';
   const XHS_LOGIN_HINT_ID = 'nospoil-xhs-login-hint';
+  const BACK_HOME_BUTTON_ID = 'nospoil-back-home-button';
   const PREPAINT_MIN_SKIP_SECONDS = 4.5;
   const PREPAINT_MAX_HOLD_MS = 8000;
   const RERUN_DELAYS_MS = [80, 250, 600, 1200, 2200, 4000, 7000, 11000];
@@ -90,6 +91,8 @@
     if (notice) notice.remove();
     const xhsHint = document.getElementById(XHS_LOGIN_HINT_ID);
     if (xhsHint) xhsHint.remove();
+    const backButton = document.getElementById(BACK_HOME_BUTTON_ID);
+    if (backButton) backButton.remove();
   }
 
   function handleToggle(enabled) {
@@ -402,6 +405,55 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
     window.setTimeout(() => {
       notice.classList.add('nospoil-notice-fade');
     }, 3200);
+  }
+
+  function shouldShowBackHomeButton() {
+    if (!IS_TOP_FRAME) return false;
+    if (!pluginEnabled) return false;
+    if (isScgsSite()) return false;
+
+    const playerRoot = getPlayerRoot();
+    if (playerRoot && playerRoot.classList.contains(PLAYER_ROOT_CLASS)) return true;
+    if (document.documentElement && document.documentElement.classList.contains(CCTV_MATCH_CLASS)) return true;
+    if (document.documentElement && document.documentElement.classList.contains(THEATER_CLASS)) return true;
+
+    const fullscreenEl = document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement;
+    return Boolean(fullscreenEl);
+  }
+
+  function goHomeFromReplay() {
+    window.location.href = 'https://scgs.tv/';
+  }
+
+  function syncBackHomeButton() {
+    if (!document.documentElement) return;
+
+    const shouldShow = shouldShowBackHomeButton();
+    let button = document.getElementById(BACK_HOME_BUTTON_ID);
+
+    if (!shouldShow) {
+      if (button) button.remove();
+      return;
+    }
+
+    if (!button) {
+      button = document.createElement('button');
+      button.id = BACK_HOME_BUTTON_ID;
+      button.type = 'button';
+      button.setAttribute('aria-label', '返回时差观赛网站');
+      button.textContent = '返回网站';
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        goHomeFromReplay();
+      }, true);
+      document.documentElement.appendChild(button);
+    } else if (!button.isConnected) {
+      document.documentElement.appendChild(button);
+    }
   }
 
   function isInsidePlayer(el) {
@@ -997,6 +1049,7 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
     hidePossibleSpoilers();
     trySkipIntro();
     tryPrepareVideos();
+    syncBackHomeButton();
   }
 
   function scheduleReruns() {
@@ -1015,6 +1068,9 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
       if (!pluginEnabled || !prepaintShieldEnabled) return;
       if (!event.data || event.data.type !== 'nospoil_video_ready') return;
       releasePrepaintShield();
+    });
+    ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'].forEach((eventName) => {
+      document.addEventListener(eventName, () => window.requestAnimationFrame(syncBackHomeButton));
     });
   }
 

@@ -1,0 +1,20 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "时差观赛首页" [ref=e3] [cursor=pointer]:
+      - /url: index.html
+      - img "时差观赛" [ref=e4]
+    - navigation "后台导航" [ref=e5]:
+      - link "返回首页" [ref=e6] [cursor=pointer]:
+        - /url: index.html
+      - link "央视视频源" [ref=e7] [cursor=pointer]:
+        - /url: https://cbs.sports.cctv.com/index.html#3400
+  - main [ref=e8]:
+    - generic [ref=e9]:
+      - paragraph [ref=e10]: Admin Login
+      - heading "后台登录" [level=1] [ref=e11]
+      - paragraph [ref=e12]: "输入启动 `admin-server.js` 时设置的 `ADMIN_TOKEN` 后，才能进入视频链接后台。"
+      - generic [ref=e13]:
+        - generic [ref=e14]: 后台密码
+        - textbox "后台密码" [ref=e15]:
+          - /placeholder: 请输入 ADMIN_TOKEN
+        - button "进入后台" [ref=e16] [cursor=pointer]
