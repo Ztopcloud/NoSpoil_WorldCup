@@ -198,9 +198,82 @@
     return new Date(MATCH_YEAR + '-' + month + '-' + day + 'T' + match.timeBeijing + ':00+08:00');
   }
 
+  // 计算小组赛轮次：每组4队，前2场=第一轮，中间2场=第二轮，后2场=第三轮
+  function getGroupRound(match) {
+    if (!match || match.round !== 'group' || !match.group) return 0;
+    var groupMatches = allMatches.filter(function(m) {
+      return m.round === 'group' && m.group === match.group && m.date && m.timeBeijing;
+    });
+    groupMatches.sort(function(a, b) {
+      return matchStartTime(a).getTime() - matchStartTime(b).getTime();
+    });
+    for (var i = 0; i < groupMatches.length; i++) {
+      if (groupMatches[i].id === match.id) {
+        return Math.floor(i / 2) + 1;
+      }
+    }
+    return 0;
+  }
+
+  var roundNumMap = { 1: '第一轮', 2: '第二轮', 3: '第三轮' };
+
+  function updateNextMatchPreview(nextMatchData) {
+    const previewEl = document.getElementById('next-match-preview');
+    if (!previewEl) return;
+
+    if (!nextMatchData) {
+      previewEl.style.display = 'none';
+      return;
+    }
+
+    var m = nextMatchData.match;
+    var homeFlag = document.getElementById('next-home-flag');
+    var awayFlag = document.getElementById('next-away-flag');
+    var homeName = document.getElementById('next-home-name');
+    var awayName = document.getElementById('next-away-name');
+    var matchRound = document.getElementById('next-match-round');
+    var matchDate = document.getElementById('next-match-date');
+
+    if (homeFlag) { homeFlag.src = flagUrl(m.homeCode); homeFlag.alt = m.home; homeFlag.style.display = ''; }
+    if (awayFlag) { awayFlag.src = flagUrl(m.awayCode); awayFlag.alt = m.away; awayFlag.style.display = ''; }
+    if (homeName) homeName.textContent = m.home;
+    if (awayName) awayName.textContent = m.away;
+
+    // 日期格式化
+    var dateParts = m.date.split('/');
+    var month = parseInt(dateParts[0], 10);
+    var day = parseInt(dateParts[1], 10);
+    var weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+    var d = new Date(MATCH_YEAR, month - 1, day);
+    var weekday = weekdays[d.getDay()];
+    var dateStr = month + '月' + day + '日 ' + weekday + ' ' + m.timeBeijing + ' (北京时间)';
+
+    // 小组/轮次信息 放在 VS 下方
+    var roundStr = '';
+    if (m.group) {
+      var grRound = getGroupRound(m);
+      roundStr = grRound > 0 ? m.group + '组 ' + roundNumMap[grRound] : m.group + '组';
+    } else if (m.round) {
+      var roundMap = {
+        'round32': '32强赛',
+        'round16': '16强赛',
+        'quarter': '1/4决赛',
+        'semi': '半决赛',
+        'third': '季军赛',
+        'final': '决赛'
+      };
+      roundStr = roundMap[m.round] || '';
+    }
+
+    if (matchRound) matchRound.textContent = roundStr;
+    if (matchDate) matchDate.textContent = dateStr;
+
+    previewEl.style.display = '';
+  }
+
   function setCountdownTargetFromMatches(matches) {
     const now = Date.now();
-    const nextMatch = matches
+    var upcomingMatches = matches
       .filter(function(match) {
         return isScheduleMatch(match) && match.date && match.timeBeijing;
       })
@@ -212,12 +285,15 @@
       })
       .sort(function(a, b) {
         return a.start.getTime() - b.start.getTime();
-      })[0];
+      });
+
+    var nextMatch = upcomingMatches[0];
 
     countdownTarget = nextMatch ? nextMatch.start : null;
     if (countdownLabelEl) {
       countdownLabelEl.textContent = nextMatch ? '距离下一场比赛' : '赛程已结束';
     }
+    updateNextMatchPreview(nextMatch || null);
     updateCountdown();
   }
 
@@ -251,6 +327,26 @@
     return baseUrl + '#' + hashParts.join('&');
   }
 
+  function isCctvReplayUrl(url) {
+    return /sports\.cctv\.com\/\d{4}\/\d{2}\/\d{2}\/VIDE/i.test(String(url || ''));
+  }
+
+  function isXhsUrl(url) {
+    return /(^|\.)xiaohongshu\.com\//i.test(String(url || ''));
+  }
+
+  function buildXhsState(url) {
+    return {
+      key: 'xhs',
+      centerLabel: '外部入口',
+      hoverLabel: '小红书入口',
+      hoverSubLabel: '可能需登录或 App 打开',
+      topType: 'external',
+      topLabel: '可能需登录',
+      link: url || ''
+    };
+  }
+
   function getMatchState(match) {
     const now = getPreviewNow().getTime();
     const start = matchStartTime(match).getTime();
@@ -282,8 +378,8 @@
     }
 
     if (now < replayReady) {
-      // 如果已经抓取到回放链接（央视或小红书），直接显示可看
-      if (match.replayUrl && (match.replayUrl.includes('sports.cctv.com') || match.replayUrl.includes('xiaohongshu.com'))) {
+      // 只有央视回放继续视作网页可播；小红书外链近期常返回登录壳。
+      if (isCctvReplayUrl(match.replayUrl)) {
         return {
           key: 'replay',
           centerLabel: '国区进行中',
@@ -294,6 +390,7 @@
           link: addSkipHash(match.replayUrl, match.skipSeconds)
         };
       }
+      if (isXhsUrl(match.replayUrl)) return buildXhsState(match.replayUrl);
       return {
         key: 'ended',
         centerLabel: '刚结束',
@@ -304,6 +401,8 @@
         link: ''
       };
     }
+
+    if (isXhsUrl(match.replayUrl)) return buildXhsState(match.replayUrl);
 
     return {
       key: 'replay',
@@ -332,17 +431,29 @@
     const linkClose = hasLink ? '</a>' : '</div>';
 
     const roundLabel = roundLabels[match.round] || match.round;
-    const roundText = match.round === 'group' && match.group ? match.group + '组 第1轮' : roundLabel;
+    var roundText;
+    if (match.round === 'group' && match.group) {
+      var grRound = getGroupRound(match);
+      roundText = grRound > 0 ? match.group + '组 ' + roundNumMap[grRound] : match.group + '组';
+    } else {
+      roundText = roundLabel;
+    }
     const dateParts = match.date.split('/');
     const dateText = dateParts[0] + '<span class="time-unit">月</span>' + dateParts[1] + '<span class="time-unit">日</span>';
     const liveLabel = state.topType === 'live'
       ? '<span class="match-live-label"><span class="match-live-icon"></span>' + state.topLabel + '</span>'
       : state.topType === 'countdown'
         ? '<span class="match-countdown-label"><span class="match-bell-icon"></span>' + state.topLabel + '</span>'
+        : state.topType === 'external'
+          ? '<span class="match-external-label">' + state.topLabel + '</span>'
         : state.topType === 'preparing'
           ? '<span class="match-live-label">' + state.topLabel + '</span>'
         : '';
-    const hoverIcon = state.hoverLabel === '视频直播' ? '<span class="match-live-icon"></span>' : '';
+    const hoverIcon = state.hoverLabel === '视频直播'
+      ? '<span class="match-live-icon"></span>'
+      : state.key === 'xhs'
+        ? '<span class="match-external-icon"></span>'
+        : '';
     const hoverSub = state.hoverSubLabel ? '<span class="match-hover-sub">' + state.hoverSubLabel + '</span>' : '';
 
     return '<' + tag + ' class="' + tileClass + '"' + hrefAttr + '>' +
@@ -380,6 +491,7 @@
   function buildPreMatchTile(match) {
     var mobile = isMobileDevice();
     var baseUrl = match.videoUrl || match.replayUrl || match.liveUrl || '';
+    var isXhs = isXhsUrl(baseUrl);
     // 手机端：安卓版维护中，暂不可用
     var url = mobile ? 'javascript:void(0)' : baseUrl;
     var tag = mobile ? 'a' : (url ? 'a' : 'div');
@@ -390,7 +502,7 @@
     var linkClose = url ? '</a>' : '</div>';
     var title = escapeHtml(match.title || (match.home + ' VS ' + match.away));
     var subtitle = escapeHtml(match.subtitle || '赛前视频');
-    var source = escapeHtml(match.source || '视频入口');
+    var source = escapeHtml(isXhs ? '小红书入口' : (match.source || '视频入口'));
     var dateText = match.date && match.date.indexOf('/') !== -1
       ? escapeHtml(match.date.split('/')[0] + '月' + match.date.split('/')[1] + '日')
       : escapeHtml(match.date || '');
@@ -408,9 +520,15 @@
     // 手机端：顶部标签和 hover 文案改为引导下载
     var topLabelHtml = mobile
       ? '<span class="match-round-text">赛前</span><span class="match-live-label"><span class="match-live-icon"></span>安卓维护中</span>'
-      : '<span class="match-round-text">赛前</span><span class="match-live-label"><span class="match-live-icon"></span>视频入口</span>';
-    var hoverLabel = mobile ? '安卓版正在维护中' : '打开视频';
-    var subtitleExtra = mobile ? '<span class="prematch-video-mobile-hint">安卓版正在维护中，请先用电脑观赛</span>' : '';
+      : '<span class="match-round-text">赛前</span>' + (isXhs
+        ? '<span class="match-external-label">可能需登录</span>'
+        : '<span class="match-live-label"><span class="match-live-icon"></span>视频入口</span>');
+    var hoverLabel = mobile ? '安卓版正在维护中' : (isXhs ? '小红书入口' : '打开视频');
+    var subtitleExtra = mobile
+      ? '<span class="prematch-video-mobile-hint">安卓版正在维护中，请先用电脑观赛</span>'
+      : isXhs
+        ? '<span class="prematch-video-mobile-hint">可能需要登录小红书或用 App 打开</span>'
+        : '';
 
     return '<' + tag + ' class="match-tile prematch-video-tile match-tile-actionable"' + hrefAttr + '>' +
       '<div class="match-content prematch-video-content">' +
@@ -765,7 +883,7 @@
   /* ===== Fetch & Init ===== */
   // 使用固定版本号替代 Date.now()，允许浏览器/CDN 条件缓存（304 Not Modified），
   // 同时更新版本号后会拉取最新数据，兼顾加载速度与内容更新。
-  var MATCHES_VERSION = '20260612-7';
+  var MATCHES_VERSION = '20260617-4';
   fetch('data/matches.json?v=' + MATCHES_VERSION)
     .then(function(response) {
       if (!response.ok) throw new Error('matches load failed');

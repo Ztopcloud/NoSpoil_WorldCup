@@ -66,6 +66,71 @@ ALERT_EMAIL_TO=receiver@example.com
 node website/auto-update.js --dry-run
 ```
 
+## 宝塔计划任务自动更新
+
+如果线上站点根目录是 `/www/wwwroot/scgs.tv`，可以直接在宝塔「计划任务」里运行仓库提供的入口：
+
+```bash
+bash /www/wwwroot/scgs.tv/auto-update-baota.sh
+```
+
+这个入口会：
+
+- `cd /www/wwwroot/scgs.tv`
+- 写日志到 `/www/wwwroot/scgs.tv/.tmp/auto-update/run.log`
+- 设置 `SCGS_LOCAL_SITE_ROOT=true`，让脚本只更新当前站点文件，不触发 `RSYNC_HOST` 远程同步
+
+首次上线前建议在宝塔终端先试运行：
+
+```bash
+cd /www/wwwroot/scgs.tv
+node -v
+SCGS_LOCAL_SITE_ROOT=true node auto-update.js --dry-run
+```
+
+或直接走同一个入口：
+
+```bash
+bash /www/wwwroot/scgs.tv/auto-update-baota.sh --dry-run
+tail -n 100 /www/wwwroot/scgs.tv/.tmp/auto-update/run.log
+```
+
+宝塔服务器上的 `.env` 建议只保留邮件配置；如果残留了 `RSYNC_HOST`、`RSYNC_PATH`、`RSYNC_USER`、`RSYNC_PORT`，`auto-update-baota.sh` 也会通过 `SCGS_LOCAL_SITE_ROOT=true` 忽略远程同步。
+
+## 小红书备用链接验活
+
+小红书外链近期可能只返回笔记壳页面，并要求登录或用 App 打开；站内不会再把它当作稳定网页回放源。批量检查当前数据里的小红书链接：
+
+```powershell
+node website/check-xhs-links.js
+```
+
+默认输出不会打印小红书标题，避免被赛果剧透。排查单条链接：
+
+```powershell
+node website/check-xhs-links.js --url "https://www.xiaohongshu.com/explore/..."
+```
+
+如确实需要核对笔记标题，可追加 `--show-title`。
+
+如果要在 Windows 任务计划程序里每小时自动跑 `auto-update.js`，不要直接指向 `.bat`，否则 `cmd.exe` 很容易闪窗。仓库里提供了一个隐藏窗口用的入口：
+
+```text
+website/auto-update-runner.ps1
+```
+
+推荐把计划任务改成下面这样：
+
+```powershell
+schtasks /Create /TN "SCGS_AutoUpdate" /SC HOURLY /MO 1 /ST 12:28 /F /TR "powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File \"C:\MCP_Files\NoSpoil_WorldCup\website\auto-update-runner.ps1\""
+```
+
+如果机器上已经有旧任务，先删掉旧的再重建更干净：
+
+```powershell
+schtasks /Delete /TN "SCGS_AutoUpdate" /F
+```
+
 插件下载文件放在：
 
 ```text

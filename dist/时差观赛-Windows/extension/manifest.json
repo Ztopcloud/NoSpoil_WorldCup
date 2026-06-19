@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "时差观赛助手",
-  "version": "0.2.9",
+  "version": "0.2.11",
   "description": "隐藏复播页面中可能包含剧透的信息，帮助用户用时差观赛方式观看官方复播。",
   "update_url": "https://scgs.tv/public/updates.xml",
   "permissions": ["storage", "activeTab", "scripting"],
@@ -16,6 +16,8 @@
   "host_permissions": [
     "https://scgs.tv/*",
     "https://www.scgs.tv/*",
+    "http://localhost:*/*",
+    "http://127.0.0.1:*/*",
     "https://*.cctv.com/*",
     "https://*.cntv.cn/*",
     "https://*.yangshipin.cn/*",
@@ -26,6 +28,8 @@
       "matches": [
         "https://scgs.tv/*",
         "https://www.scgs.tv/*",
+        "http://localhost:*/*",
+        "http://127.0.0.1:*/*",
         "https://*.cctv.com/*",
         "https://*.cntv.cn/*",
         "https://*.yangshipin.cn/*",

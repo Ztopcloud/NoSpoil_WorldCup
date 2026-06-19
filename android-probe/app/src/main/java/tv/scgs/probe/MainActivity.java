@@ -38,7 +38,7 @@ import java.util.Locale;
 public class MainActivity extends Activity {
     private static final String TAG = "SCGSProbe";
     private static final String HOME_URL = "https://scgs.tv/";
-    private static final String APP_DISPLAY_VERSION = "0.2.13-probe";
+    private static final String APP_DISPLAY_VERSION = "0.2.18-probe";
     private static final int TOOLBAR_HORIZONTAL_PADDING_DP = 16;
     private static final int TOOLBAR_TOP_PADDING_DP = 8;
     private static final int TOOLBAR_BOTTOM_PADDING_DP = 8;
@@ -130,7 +130,7 @@ public class MainActivity extends Activity {
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 Gravity.TOP | Gravity.START
         );
-        fbParams.topMargin = dpToPx(48);
+        fbParams.topMargin = dpToPx(8);
         fbParams.leftMargin = dpToPx(12);
         root.addView(floatBackButton, fbParams);
 
@@ -216,7 +216,7 @@ public class MainActivity extends Activity {
 
     private TextView buildFloatBackButton() {
         TextView btn = new TextView(this);
-        btn.setText("← 返回");
+        btn.setText("返回网站");
         btn.setTextColor(0xffffffff);
         btn.setTextSize(13);
         btn.setGravity(Gravity.CENTER);
@@ -424,7 +424,9 @@ public class MainActivity extends Activity {
                 + "document.documentElement.appendChild(style);"
                 + "}"
                 + "window.__SCGS_ANDROID_PROBE__={injectedAt:Date.now(),host:location.host};"
+                + "try{"
                 + nospoilJs
+                + "}catch(error){console.warn('[SCGS] content script failed in Android WebView:',error);}"
                 + androidNospoilPatchScript()
                 + "})();";
 
@@ -545,7 +547,9 @@ public class MainActivity extends Activity {
                 + "window.__SCGS_ANDROID_NOSPOIL_PATCH__=true;"
                 + "var STYLE_ID='scgs-android-nospoil-style';"
                 + "var bridge=window.SCGSAndroid||null;"
-                + "function hostOk(){return /(^|\\.)(cctv\\.com|cntv\\.cn|yangshipin\\.cn|xiaohongshu\\.com)$/.test(location.hostname);}"
+                + "function isCctvHost(){return /(^|\\.)(cctv\\.com|cntv\\.cn|yangshipin\\.cn)$/.test(location.hostname);}"
+                + "function isXhsHost(){return /(^|\\.)xiaohongshu\\.com$/.test(location.hostname);}"
+                + "function hostOk(){return isCctvHost()||isXhsHost();}"
                 + "function rectArea(el){var r=el.getBoundingClientRect();return Math.max(0,r.width)*Math.max(0,r.height);}"
                 + "function largestMediaRoot(){"
                 + "var media=Array.prototype.slice.call(document.querySelectorAll('video,iframe,object,embed'));"
@@ -562,11 +566,17 @@ public class MainActivity extends Activity {
                 + "function installStyle(){"
                 + "if(document.getElementById(STYLE_ID))return;"
                 + "var style=document.createElement('style');style.id=STYLE_ID;"
-                + "style.textContent='html.scgs-android-nospoil,html.scgs-android-nospoil body{margin:0!important;padding:0!important;width:100vw!important;height:100vh!important;min-width:100vw!important;min-height:100vh!important;overflow:hidden!important;background:#000!important;transform:none!important;}'"
-                + "+'html.scgs-android-nospoil #myflash,html.scgs-android-nospoil .scgs-android-player-root{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;min-width:100vw!important;min-height:100vh!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;background:#000!important;z-index:2147483000!important;overflow:hidden!important;}'"
-                + "+'html.scgs-android-nospoil .scgs-android-player-shell{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;min-width:100vw!important;min-height:100vh!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;background:#000!important;overflow:hidden!important;z-index:2147482999!important;}'"
-                + "+'html.scgs-android-nospoil #myflash *,html.scgs-android-nospoil .scgs-android-player-root *,html.scgs-android-nospoil .scgs-android-player-root video,html.scgs-android-nospoil .scgs-android-player-root iframe,html.scgs-android-nospoil .scgs-android-player-root object,html.scgs-android-nospoil .scgs-android-player-root embed{width:100%!important;height:100%!important;min-width:100%!important;min-height:100%!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;background:#000!important;object-fit:contain!important;}'"
-                + "+'html.scgs-android-nospoil .scgs-android-hide{display:none!important;visibility:hidden!important;}';"
+                + "style.textContent='html.scgs-android-cctv,html.scgs-android-cctv body{margin:0!important;padding:0!important;width:100vw!important;height:100vh!important;min-width:100vw!important;min-height:100vh!important;overflow:hidden!important;background:#000!important;transform:none!important;}'"
+                + "+'html.scgs-android-cctv #myflash,html.scgs-android-cctv .scgs-android-player-root{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;min-width:100vw!important;min-height:100vh!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;background:#000!important;z-index:2147483000!important;overflow:hidden!important;}'"
+                + "+'html.scgs-android-cctv .scgs-android-player-shell{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;min-width:100vw!important;min-height:100vh!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;background:#000!important;overflow:hidden!important;z-index:2147482999!important;}'"
+                + "+'html.scgs-android-cctv #myflash *,html.scgs-android-cctv .scgs-android-player-root *,html.scgs-android-cctv .scgs-android-player-root video,html.scgs-android-cctv .scgs-android-player-root iframe,html.scgs-android-cctv .scgs-android-player-root object,html.scgs-android-cctv .scgs-android-player-root embed{width:100%!important;height:100%!important;min-width:100%!important;min-height:100%!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;background:#000!important;object-fit:contain!important;}'"
+                + "+'html.scgs-android-xhs,html.scgs-android-xhs body{background:#000!important;overflow:auto!important;}'"
+                + "+'html.scgs-android-xhs body{padding-bottom:88px!important;}'"
+                + "+'html.scgs-android-xhs-video,html.scgs-android-xhs-video body{margin:0!important;padding:0!important;width:100vw!important;height:100vh!important;overflow:hidden!important;background:#000!important;}'"
+                + "+'html.scgs-android-xhs-video .scgs-android-xhs-player-root{position:fixed!important;top:44px!important;left:0!important;right:0!important;bottom:0!important;width:100vw!important;height:calc(100vh - 44px)!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;background:#000!important;z-index:2147483000!important;overflow:visible!important;pointer-events:auto!important;transform:none!important;}'"
+                + "+'html.scgs-android-xhs-video video.scgs-android-xhs-player-root,html.scgs-android-xhs-video .scgs-android-xhs-player-root video{display:block!important;width:100%!important;max-width:100%!important;max-height:calc(100vh - 88px)!important;margin:0 auto!important;background:#000!important;object-fit:contain!important;pointer-events:auto!important;}'"
+                + "+'html.scgs-android-xhs-video .scgs-android-xhs-player-root *{pointer-events:auto!important;}'"
+                + "+'html.scgs-android-nospoil .scgs-android-hide,html.scgs-android-nospoil .scgs-android-xhs-obstruction{display:none!important;visibility:hidden!important;pointer-events:none!important;}';"
                 + "document.documentElement.appendChild(style);"
                 + "}"
                 + "function markShell(root){"
@@ -586,16 +596,69 @@ public class MainActivity extends Activity {
                 + "var wasMuted=v.muted;v.muted=true;"
                 + "try{var p=v.play();if(p&&p.catch)p.catch(function(){v.muted=wasMuted;});}catch(e){}"
                 + "}"
+                + "function looksLikeXhsControl(el){"
+                + "var text=((el.innerText||el.textContent||'')+' '+(el.getAttribute&&((el.getAttribute('aria-label')||'')+' '+(el.getAttribute('title')||'')+' '+(el.id||'')+' '+(typeof el.className==='string'?el.className:''))||'')).toLowerCase();"
+                + "return /播放|暂停|音量|静音|进度|全屏|play|pause|volume|mute|progress|slider|time|fullscreen/.test(text)||/button|input|progress/.test((el.tagName||'').toLowerCase())||/slider|progressbar|button/.test((el.getAttribute&&el.getAttribute('role'))||'');"
+                + "}"
+                + "function chooseXhsRoot(v){"
+                + "if(!v)return null;"
+                + "var vr=v.getBoundingClientRect(),best=v,bestScore=0,el=v.parentElement,limit=0;"
+                + "while(el&&el!==document.body&&el!==document.documentElement&&limit++<9){"
+                + "var r=el.getBoundingClientRect();"
+                + "if(r.width>=vr.width*.75&&r.height>=vr.height*.75&&r.width<=window.innerWidth*1.6&&r.height<=window.innerHeight*1.8){"
+                + "var attrs=((el.id||'')+' '+(typeof el.className==='string'?el.className:''));"
+                + "var hasControl=Array.prototype.some.call(el.querySelectorAll('button,input,[role],progress,[aria-label],[title]'),function(node){return looksLikeXhsControl(node);});"
+                + "var score=(r.width*r.height)+(hasControl?10000000:0)+(/player|video|media|note|feed/i.test(attrs)?4000000:0)-(Math.max(0,r.height-window.innerHeight)*10000);"
+                + "if(score>bestScore){best=el;bestScore=score;}"
+                + "}"
+                + "el=el.parentElement;"
+                + "}"
+                + "return best;"
+                + "}"
+                + "function hideXhsObstructions(root){"
+                + "if(!root||!document.body)return;"
+                + "var rr=root.getBoundingClientRect();"
+                + "Array.prototype.slice.call(document.body.querySelectorAll('*')).forEach(function(el){"
+                + "if(el===root||root.contains(el)||el.contains(root)||el.id==='nospoil-worldcup-notice')return;"
+                + "var s=window.getComputedStyle(el);"
+                + "if(!/fixed|sticky|absolute/.test(s.position))return;"
+                + "var r=el.getBoundingClientRect();"
+                + "if(r.width<24||r.height<24||r.right<rr.left||r.left>rr.right||r.bottom<rr.top||r.top>rr.bottom)return;"
+                + "var text=((el.innerText||el.textContent||'')+' '+(el.id||'')+' '+(typeof el.className==='string'?el.className:'')).slice(0,500);"
+                + "if(/打开小红书|下载小红书|打开App|打开 APP|立即打开|客户端|app|download|modal|mask|overlay/i.test(text)){el.classList.add('scgs-android-xhs-obstruction');}"
+                + "});"
+                + "}"
+                + "function alignXhsVideo(v){"
+                + "if(!v)return;"
+                + "try{"
+                + "v.controls=true;v.setAttribute('controls','controls');"
+                + "var target=chooseXhsRoot(v)||v;"
+                + "document.documentElement.classList.add('scgs-android-xhs-video');"
+                + "document.querySelectorAll('.scgs-android-xhs-player-root').forEach(function(el){if(el!==target)el.classList.remove('scgs-android-xhs-player-root');});"
+                + "target.classList.add('scgs-android-xhs-player-root');"
+                + "window.scrollTo({top:0,behavior:'auto'});"
+                + "hideXhsObstructions(target);"
+                + "setTimeout(function(){hideXhsObstructions(target);},600);"
+                + "setTimeout(function(){hideXhsObstructions(target);},1800);"
+                + "}catch(e){}"
+                + "}"
                 + "function apply(){"
                 + "if(!hostOk()||!document.documentElement||!document.body)return;"
                 + "installStyle();"
                 + "document.documentElement.classList.add('scgs-android-nospoil');"
+                + "if(isXhsHost()){"
+                + "document.documentElement.classList.add('scgs-android-xhs');"
+                + "var xhsVideo=document.querySelector('video');"
+                + "if(xhsVideo){alignXhsVideo(xhsVideo);if(bridge&&bridge.playVideo){bridge.playVideo();}}"
+                + "return;"
+                + "}"
+                + "if(bridge&&bridge.requestFullscreen){bridge.requestFullscreen();}"
+                + "document.documentElement.classList.add('scgs-android-cctv');"
                 + "var root=document.querySelector('#myflash')||document.querySelector('.scgs-android-player-root')||largestMediaRoot();"
                 + "if(root){root.classList.add('scgs-android-player-root');markShell(root);hideAround(root);"
                 + "var video=root.querySelector&&root.querySelector('video');"
                 + "if(video)autoPlayVideo(video);"
                 + "var target=video||(root.querySelector&&root.querySelector('iframe'))||root;"
-                + "if(bridge&&bridge.requestFullscreen){bridge.requestFullscreen();}"
                 + "try{var fn=target&&(target.requestFullscreen||target.webkitRequestFullscreen||target.webkitRequestFullScreen||target.mozRequestFullScreen||target.msRequestFullscreen);if(fn){var ret=fn.call(target);if(ret&&ret.catch)ret.catch(function(){});}}catch(e){}"
                 + "}"
                 + "}"

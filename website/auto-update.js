@@ -21,11 +21,14 @@ const { resolveZhibo8Replay } = require('./zhibo8-resolver');
 const DATA_FILE = path.join(__dirname, 'data', 'matches.json');
 const SW_FILE = path.join(__dirname, 'sw.js');
 const APP_FILE = path.join(__dirname, 'app.js');
-const DEPLOY_TEMP_DIR = path.join(__dirname, '..', '.tmp', 'auto-update');
-const ALERT_STATE_FILE = path.join(DEPLOY_TEMP_DIR, 'alert-state.json');
 const SSH_KEY_WIN = path.join(os.homedir(), '.ssh', 'id_ed25519');
 const SSH_KEY_WSL = '/home/bond/.ssh/id_ed25519';
 const WSL_CMD = 'wsl -d Ubuntu';
+const CBS_API_BASE_PC = 'https://cbs-u.sports.cctv.com/pc';
+
+function parseEnvBoolean(value) {
+  return /^(1|true|yes|on)$/i.test(String(value || '').trim());
+}
 
 // 自动加载 .env 文件
 const dotenvPath = path.join(__dirname, '.env');
@@ -42,6 +45,14 @@ if (fs.existsSync(dotenvPath)) {
   });
   console.log('✅ 已加载 .env 配置');
 }
+
+const LOCAL_SITE_ROOT = parseEnvBoolean(process.env.SCGS_LOCAL_SITE_ROOT || process.env.BAOTA_SITE_ROOT);
+const DEPLOY_TEMP_DIR = process.env.AUTO_UPDATE_TEMP_DIR
+  ? path.resolve(process.env.AUTO_UPDATE_TEMP_DIR)
+  : LOCAL_SITE_ROOT
+    ? path.join(__dirname, '.tmp', 'auto-update')
+    : path.join(__dirname, '..', '.tmp', 'auto-update');
+const ALERT_STATE_FILE = path.join(DEPLOY_TEMP_DIR, 'alert-state.json');
 
 // ===== 配置 =====
 const CBS_URL = 'https://cbs.sports.cctv.com/index.html#3400';
@@ -121,6 +132,14 @@ async function tryFetchPlaywrightMatches() {
   return await fetchCBSWithPlaywright();
 }
 
+function normalizeTeamName(name) {
+  return String(name || '')
+    .replace(/\s+/g, '')
+    .replace(/臺/g, '台')
+    .replace(/波斯尼亚和黑塞哥维那/g, '波黑')
+    .replace(/刚果（金）/g, '刚果民主共和国');
+}
+
 // 提取 match ID (如 22920296)
 function extractMatchId(url) {
   const m = String(url || '').match(/\/match\/(\d+)\//);
@@ -146,8 +165,11 @@ function getReplayAlertDeadline(match) {
 
 function isOfficialReplayUrl(url) {
   const s = String(url || '');
-  return /https:\/\/sports\.cctv\.com\/\d{4}\/\d{2}\/\d{2}\/VIDE/i.test(s) ||
-         /https:\/\/(www\.)?xiaohongshu\.com\/explore\/[A-Za-z0-9]+/i.test(s);
+  return /https:\/\/sports\.cctv\.com\/\d{4}\/\d{2}\/\d{2}\/VIDE/i.test(s);
+}
+
+function isXhsReplayUrl(url) {
+  return /https:\/\/(www\.)?xiaohongshu\.com\/explore\/[A-Za-z0-9]+/i.test(String(url || ''));
 }
 
 function formatBeijingTime(date) {
@@ -238,6 +260,41 @@ function buildFailureAlert(subject, detail, extraLines = []) {
 async function fetchCBSMatchList() {
   console.log('[1] 从 CBS 页面抓取世界杯比赛列表...\n');
 
+  try {
+    const response = await fetch(
+      `${CBS_API_BASE_PC}/game/season_game_list?leagueId=3400&season=2026&client=pc&t=${Date.now()}`,
+      {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 NoSpoilBot/1.0',
+          'Accept': 'application/json,text/plain,*/*'
+        }
+      }
+    );
+
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = await response.json();
+    const results = Array.isArray(payload && payload.results) ? payload.results : [];
+    if (results.length > 0) {
+      console.log(`  从官方 JSON 接口提取到 ${results.length} 场比赛`);
+      return results.map(match => ({
+        matchId: String(match.id || ''),
+        url: match.id ? `https://worldcup.cctv.com/2026/match/${match.id}/index.shtml` : '',
+        time: String(match.startTime || '').slice(11, 16),
+        date: String(match.startTime || '').slice(5, 10).replace('-', '/'),
+        group: String(match.roundType || '').replace('组', ''),
+        round: Number.parseInt(String(match.gameRound || '').replace(/[^\d]/g, ''), 10) || null,
+        status: match.statusDesc || '',
+        home: match.homeName || '',
+        away: match.guestName || '',
+        homeScore: Number.isFinite(match.homeScore) ? match.homeScore : null,
+        awayScore: Number.isFinite(match.guestScore) ? match.guestScore : null,
+        fullText: [match.homeName, match.guestName, match.startTime].filter(Boolean).join(' | ')
+      }));
+    }
+  } catch (err) {
+    console.log(`  ⚠ 官方 JSON 接口抓取失败: ${err.message}`);
+  }
+
   // CBS 页面是 JS 渲染的，但数据可能内嵌在 HTML 中或通过 API 加载
   // 我们先尝试直接 fetch HTML，看是否有内嵌数据
   try {
@@ -282,7 +339,7 @@ async function fetchCBSMatchList() {
       }
     }
 
-    return matchIds;
+    return matchIds.map(id => ({ matchId: id }));
 
   } catch (err) {
     console.log(`  ⚠ CBS 页面抓取失败: ${err.message}`);
@@ -476,6 +533,13 @@ async function main() {
   console.log(`=== 世界杯赛程&回放全自动更新 ===`);
   console.log(`时间: ${new Date().toISOString()}`);
   console.log(`模式: ${forcePlaywright ? 'playwright' : 'auto'}${dryRun ? ' (试运行)' : ''}\n`);
+  if (LOCAL_SITE_ROOT) {
+    console.log(`部署: 本机站点根模式 (${__dirname})`);
+    if (RSYNC_HOST) {
+      console.log('  提示: 已启用 SCGS_LOCAL_SITE_ROOT，忽略 RSYNC_* 远程同步配置');
+    }
+    console.log('');
+  }
 
   const notifier = createAlertNotifier({
     stateFile: ALERT_STATE_FILE,
@@ -498,7 +562,7 @@ async function main() {
     const ids = await fetchCBSMatchList();
     if (ids.length > 0) {
       mode = 'fetch';
-      cbsMatches = ids.map(id => ({ matchId: id }));
+      cbsMatches = ids;
     } else {
       cbsFetchFailed = true;
       const fallbackMatches = await tryFetchPlaywrightMatches();
@@ -521,38 +585,32 @@ async function main() {
   if (cbsMatches.length > 0) {
     console.log('\n[2] 对比现有数据，补充缺失的 liveUrl...\n');
 
-    const existingIds = new Set(matches.map(m =>
-      extractMatchId(m.liveUrl) || (m.liveUrl ? m.id : '')
-    ));
-
     for (const cbs of cbsMatches) {
-      if (cbs.matchId && !existingIds.has(cbs.matchId)) {
-        // 这是一个新比赛！尝试在我们的数据中找对应项
-        // 按时间+对阵匹配
-        let found = null;
-        if (cbs.time && cbs.home && cbs.away) {
-          found = matches.find(m => {
-            const mTime = m.timeBeijing || '';
-            return mTime === cbs.time &&
-              m.home === cbs.home &&
-              m.away === cbs.away;
-          });
-        }
+      if (!cbs.matchId) continue;
 
-        if (found) {
-          // 更新已有比赛的 liveUrl
-          const nextLiveUrl = `https://worldcup.cctv.com/2026/match/${cbs.matchId}/index.shtml`;
-          if (found.liveUrl !== nextLiveUrl) {
-            found.liveUrl = nextLiveUrl;
-            updatedCount++;
-          }
-          if (!found.replayUrl || !found.replayUrl.includes('sports.cctv.com')) {
-            found.replayUrl = found.liveUrl; // fallback
-          }
-          console.log(`  补全: ${found.home} vs ${found.away} → ${cbs.matchId}`);
-        } else {
-          console.log(`  发现新比赛 ID=${cbs.matchId}，但未在数据中匹配到 (需手动添加)`);
+      let found = null;
+      if (cbs.time && cbs.home && cbs.away) {
+        found = matches.find(m => {
+          const mTime = m.timeBeijing || '';
+          return mTime === cbs.time &&
+            normalizeTeamName(m.home) === normalizeTeamName(cbs.home) &&
+            normalizeTeamName(m.away) === normalizeTeamName(cbs.away) &&
+            (!cbs.date || m.date === cbs.date);
+        });
+      }
+
+      if (found) {
+        const nextLiveUrl = `https://worldcup.cctv.com/2026/match/${cbs.matchId}/index.shtml`;
+        if (found.liveUrl !== nextLiveUrl) {
+          found.liveUrl = nextLiveUrl;
+          updatedCount++;
+          console.log(`  更新: ${found.home} vs ${found.away} → ${cbs.matchId}`);
         }
+        if (!found.replayUrl || !found.replayUrl.includes('sports.cctv.com')) {
+          found.replayUrl = found.liveUrl; // fallback
+        }
+      } else {
+        console.log(`  发现新比赛 ID=${cbs.matchId}，但未在数据中匹配到 (需手动添加)`);
       }
     }
   }
@@ -592,8 +650,8 @@ async function main() {
     } else if (replayUrl) {
       console.log(`    ✅ 回放已存在，无需更新`);
     } else {
-      // 央视暂无回放，如果也没小红书链接，尝试从直播吧抓取
-      if (!isOfficialReplayUrl(match.replayUrl)) {
+      // 央视暂无回放时，只在没有备用链接的情况下抓取小红书候选。
+      if (!match.replayUrl) {
         console.log(`    ⏳ 暂无央视回放，尝试直播吧...`);
         const xhsUrl = await resolveZhibo8Replay(match);
         if (xhsUrl) {
@@ -604,7 +662,8 @@ async function main() {
           console.log(`    ⏳ 暂无回放`);
         }
       } else {
-        console.log(`    ⏳ 暂无央视回放（已有其他回放）`);
+        const fallbackType = isXhsReplayUrl(match.replayUrl) ? '小红书备用链接' : '其他备用链接';
+        console.log(`    ⏳ 暂无央视回放（已有${fallbackType}，不视为官方回放）`);
       }
     }
 
@@ -647,7 +706,7 @@ async function main() {
     console.log(`📋 变更文件: ${changedFiles.join(', ')}`);
 
     // ----- 步骤5: 自动部署 -----
-    const deployMethod = RSYNC_HOST ? 'rsync' : (AUTO_GIT ? 'git' : '');
+    const deployMethod = LOCAL_SITE_ROOT ? '' : (RSYNC_HOST ? 'rsync' : (AUTO_GIT ? 'git' : ''));
 
     if (deployMethod === 'rsync') {
       const files = ['website/data/matches.json', 'website/sw.js'];

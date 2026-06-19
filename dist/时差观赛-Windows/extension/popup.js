@@ -8,7 +8,7 @@
   const durationToggle = document.getElementById('durationToggle');
   const durationStatusText = document.getElementById('durationStatusText');
   const durationSection = document.querySelector('.duration-section');
-  const SUPPORTED_URL_RE = /^https:\/\/([^/]+\.)*(scgs\.tv|cctv\.com|cntv\.cn|yangshipin\.cn|xiaohongshu\.com)\//i;
+  const SUPPORTED_URL_RE = /^(https:\/\/([^/]+\.)*(scgs\.tv|cctv\.com|cntv\.cn|yangshipin\.cn|xiaohongshu\.com)\/|http:\/\/(localhost|127\.0\.0\.1)(:\d+)?\/)/i;
 
   function updateUI(enabled) {
     toggle.checked = enabled;

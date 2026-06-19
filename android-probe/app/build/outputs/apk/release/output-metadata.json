@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 7,
-      "versionName": "0.2.13-probe",
-      "outputFile": "时差观赛-0.2.13-probe-release.apk"
+      "versionCode": 12,
+      "versionName": "0.2.18-probe",
+      "outputFile": "时差观赛-0.2.18-probe-release.apk"
     }
   ],
   "elementType": "File",

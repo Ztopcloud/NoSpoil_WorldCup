@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="user-scalable=yes">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <link rel="shortcut icon" type="image/x-icon" href="//www.cctv.com/favicon.ico">
+    <title>赛事中心_体育_央视网</title>
+    <meta name="keywords" content="央视网体育,CCTV5,CCTV体育赛事,体育节目,体育视频,体育直播,体育,NBA,姚明,意甲,欧冠,英超,世界杯">
+    <meta name="description" content="央视网(cctv.com)体育提供最全面专业的体育直播、体育视频、体育图文、体育赛事、体育评论，内容涵盖世界杯、国足、NBA、CBA、篮球、意甲、西甲、德甲、足球、综合体育、奥运会等国内外重大赛事，以及CCTV所有体育类节目的信息和CCTV5栏目。">
+    <script type="text/javascript" src="//r.img.cctvpic.com/photoAlbum/templet/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="//www.cntv.cn/Library/passport/2013passport_style/js/login.js"></script>
+    <script>
+        Date.prototype.format = function (fmt) {
+            var o = {
+                "M+": this.getMonth() + 1, //月份
+                "d+": this.getDate(), //日
+                "h+": this.getHours(), //小时
+                "m+": this.getMinutes(), //分
+                "s+": this.getSeconds(), //秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                "S": this.getMilliseconds() //毫秒
+            };
+            if (/(y+)/.test(fmt))
+                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt))
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+        if (!window.Promise) {
+            document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+        }
+        function IEVersion() {
+            var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+            var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器
+            var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器
+            var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+            if (isIE) {
+                var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+                reIE.test(userAgent);
+                var fIEVersion = parseFloat(RegExp["$1"]);
+                if (fIEVersion < 10) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        function isNBA (leagueId){
+            return (leagueId === 4314 || leagueId === 4351 || leagueId === 12792|| leagueId === 12781);
+        }
+    </script>
+    <style type="text/css">
+        #html5Player{-webkit-transform-style:preserve-3d;}
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        b, i {
+            font-style: normal;
+            font-weight: inherit;
+            _font-weight: normal;
+        }
+
+        /*顶部通栏*/
+        .nav_box_1000 {
+            display: none!important;
+            height: 40px;
+        }
+
+        .up {
+            width: 100%;
+            background: url(//p5.img.cctvpic.com/photoAlbum/templet/common/DEPA1381197220279381/jdi2_20131008_9313.jpg) 0 bottom repeat-x;
+            border-bottom: #e1e1e1 1px solid;
+            position: fixed;
+            z-index: 99999;
+            _position: absolute;
+            _top: expression(eval(document.documentElement.scrollTop));
+        }
+
+        .up .colnav {
+            background: url(//p5.img.cctvpic.com/photoAlbum/templet/common/DEPA1381197220279381/jdi2_20131008_9313.jpg) 0 bottom repeat-x;
+            width: 1000px;
+            margin: auto;
+            height: 40px;
+        }
+
+        .up .xl {
+            background: url(//p5.img.cctvpic.com/photoAlbum/templet/common/DEPA1381197220279381/jdi2_20131008_9313.gif) no-repeat 100% 8px;
+        }
+
+        .up .left {
+            float: left; /*_width:485px;*/
+            height: 40px;
+        }
+
+        .up .left a {
+            color: #303030;
+            padding-right: 0px;
+        }
+
+        .up .left a:hover {
+            color: #1E63B0;
+        }
+
+        .up .right {
+            float: right;
+            text-align: right;
+            height: 40px;
+            position: relative;
+        }
+
+        .up .right a {
+            color: #303030;
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        .up .right a:hover {
+            color: #1E63B0;
+        }
+
+        .up .right a.last {
+            padding-right: 0;
+        }
+
+        .up .right .xian {
+            display: inline-block;
+            margin-left: 14px;
+        }
+
+        .up .right ul {
+            height: 40px;
+            position: relative;
+        }
+
+        .up ul li {
+            float: left;
+            font: 12px/40px Arial, Helvetica, sans-serif, "宋体";
+            color: #333;
+            padding: 0 9px;
+        }
+
+        .up ul li.down {
+            position: relative;
+            z-index: 9999; /*_behavior:url(style/htc/hover.htc)*/
+        }
+
+        .up ul li.down .downMenu {
+            position: absolute;
+            width: 100%;
+            _width: 55px;
+            left: 0px;
+            top: 40px;
+            text-align: left;
+            display: inline-block;
+            border-bottom: 1px solid #dfdfdf;
+            background: #fff;
+            display: none;
+        }
+
+        .up ul li.down .downMenu a {
+            display: block;
+            font: 12px/30px "宋体";
+            color: #303030;
+            padding-left: 10px;
+            background-image: none;
+            border: 1px solid #dfdfdf;
+            border-bottom: none;
+        }
+
+        .up ul li.down .downMenu a:hover {
+            background: #e8e8e8;
+            color: #1E63B0;
+        }
+
+        .up ul li.col {
+            width: 14px;
+            font-size: 0;
+            line-height: 0;
+            height: 40px;
+            background: url(//p5.img.cctvpic.com/photoAlbum/templet/common/DEPA1381197220279381/col_20131008_9313.gif) 50% 50% no-repeat;
+            padding: 0;
+        }
+
+        .up ul li.down a {
+            padding: 0 13px 0 0;
+            background: url(//p5.img.cctvpic.com/photoAlbum/templet/common/DEPA1381197220279381/jdi2_20131008_9313.gif) right 50% no-repeat;
+        }
+
+        .up ul li.down:hover {
+            background: #e8e8e8;
+            text-decoration: none;
+            color: #1E63B0;
+        }
+
+        .up ul li.down.hover {
+            background: #e8e8e8;
+            text-decoration: none;
+            color: #1E63B0;
+        }
+
+        .up ul li.down a {
+            color: #303030;
+        }
+
+        .up ul li.down a:hover {
+            color: #1E63B0;
+            text-decoration: none;
+        }
+
+        .up ul li a {
+            color: #333;
+        }
+
+        .up ul li.mxl {
+            *padding-top: 1px;
+            _padding-top: 0px;
+        }
+
+        .up ul li.col {
+            width: 14px;
+            font-size: 0;
+            line-height: 0;
+            height: 40px;
+            background: url(//p5.img.cctvpic.com/photoAlbum/templet/common/DEPA1381197220279381/col_20131008_9313.gif) 50% 50% no-repeat;
+            padding: 0;
+        }
+
+        .up ul li.eng {
+            line-height: 40px;
+            line-height: 39px \0;
+            *padding-top: 0px;
+            _padding-top: 0px;
+            _line-height: 38px;
+        }
+
+        .up ul li.loginfo {
+            color: #1E63B0;
+        }
+
+        .up ul li.loginfo a {
+            color: #1E63B0;
+        }
+
+        /*足迹*/
+        .up ul li.track {
+        }
+
+        .up ul li.track .tracklist {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+        }
+
+        .up ul li.track .tracklist .box {
+            background: #fff;
+            border: solid 1px #dfdfdf;
+            box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.2);
+            height: 232px;
+            width: 233px;
+            text-align: left;
+        }
+
+        .up ul li.track .tracklist .box .item_list {
+            height: 188px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd {
+            border-bottom: solid 1px #dfdfdf;
+            cursor: pointer;
+            height: 46px;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd span.client {
+            background: url(//p5.img.cctvpic.com/photoAlbum/templet/common/DEPA1381197220279381/trackclient_20131012_9313.png) no-repeat;
+            display: block;
+            float: left;
+            height: 46px;
+            width: 36px;
+            overflow: hidden;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd span.client01 {
+            background-position: 0 0;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd span.client02 {
+            background-position: 0 -92px;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd span.client03 {
+            background-position: 0 -184px;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd span.info {
+            display: block;
+            float: left;
+            font: 12px/15px "宋体";
+            padding-top: 10px; /*width:123px;*/
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd span.info a {
+            background: none;
+            padding: 0;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd span.info em {
+            display: block;
+            color: #303030;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd span.info em a {
+            color: #303030;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd span.info i {
+            display: block;
+            color: #8d8d8d;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd.active {
+            background-color: #1e63b0;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd.active span.client01 {
+            background-position: 0 -46px;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd.active span.client02 {
+            background-position: 0 -138px;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd.active span.client03 {
+            background-position: 0 -230px;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd.active span.info em {
+            color: #fff;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd.active span.info em a {
+            color: #fff;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd.active span.info em a:hover {
+            text-decoration: underline;
+        }
+
+        .up ul li.track .tracklist .box .item_list dl dd.active span.info i {
+            display: block;
+            color: #bdd4ee;
+        }
+
+        .up ul li.track .tracklist .box .item_func {
+            background: #efefef;
+            padding: 14px 0 14px 12px;
+        }
+
+        .up ul li.track .tracklist .box .item_func a {
+            background: none;
+            color: #898989;
+            display: inline-block;
+            font: 12px/16px "宋体";
+            padding: 0 0 0 24px;
+        }
+
+        .up ul li.track .tracklist .box .item_func a:hover {
+            color: #1E63B0;
+            text-decoration: underline;
+        }
+
+        .up ul li.track .tracklist .box .item_func a.empty {
+            background: url(//p5.img.cctvpic.com/photoAlbum/templet/common/DEPA1381197220279381/trackclient_20131012_9313.png) no-repeat 0 -276px;
+        }
+
+        .up ul li.track .tracklist .box .item_func a.viewall {
+            background: url(//p5.img.cctvpic.com/photoAlbum/templet/common/DEPA1381197220279381/trackclient_20131012_9313.png) no-repeat 0 -296px;
+            margin-left: 29px;
+        }
+
+        /*.up ul li#topmore{line-height:39px\0;padding-bottom:1px\0;*padding-bottom:0;position:relative;}
+        .up ul li#topmore a:hover{text-decoration:none;}
+        .up ul li#topmore i{display:inline;float:right;*float:none;height:6px;margin:18px 0 0 3px;*margin:0;position:relative;*top:4px;*right:-3px;width:8px;
+        -webkit-transition:all 0.2s ease-in 0s;
+        -moz-transition:all 0.2s ease-in 0s;
+        -o-transition:all 0.2s ease-in 0s;
+        transition:all 0.2s ease-in 0s;
+        }
+        .up ul li#topmore i em{border-style:solid;border-width:4px;border-color:rgba(255,255,255,0);border-color:transparent\9;border-top-color:#999;_border-color:#999 #fbfbfb #fbfbfb;height:0;left:0;overflow:hidden;position:absolute;top:1px;width:0;}
+        .up ul li#topmore i b{border-style:solid;border-width:4px;border-color:rgba(255,255,255,0);border-color:transparent\9;border-top-color:#fbfbfb;_border-width:0;height:0;left:0;overflow:hidden;position:absolute;top:0;top:-1px\9;width:0;}
+        .up ul li#topmore span{display:none;background:#fff;border-bottom:solid 1px #dfdfdf;border-right:solid 1px #dfdfdf;box-shadow:4px 4px 4px 0 rgba(0, 0, 0, 0.2);left:0;position:absolute;top:40px;width:156px;}
+        .up ul li#topmore span a{border-left:solid 1px #dfdfdf;border-top:solid 1px #dfdfdf;display:block;float:left;height:30px;line-height:30px;text-align:center;width:51px;}
+        .up ul li#topmore span a.long{width:77px;}
+        .up ul li#topmore.active{background:#e8e8e8;cursor:pointer;*padding-right:17px;}
+        .up ul li#topmore.active a{color:#1E63B0;}
+        .up ul li#topmore.active i{
+        -webkit-transform:rotate(180deg);
+        -moz-transform:rotate(180deg);
+        -o-transform:rotate(180deg);
+        transform:rotate(180deg);
+        }
+        .up ul li#topmore.active i em{_border-color:#999 #e8e8e8 #e8e8e8;}
+        .up ul li#topmore.active i b{border-color:rgba(255,255,255,0);border-color:transparent\9;border-top-color:#e8e8e8;}
+        .up ul li#topmore.active span{display:block;}
+        .up ul li#topmore.active span a{color:#333;}
+        .up ul li#topmore.active span a:hover{background:#1E63B0;color:#fff;}*/
+
+        .up ul li#topmore_160922 {
+            line-height: 39px \0;
+            padding-bottom: 1px \0;
+            *padding-bottom: 0;
+            position: relative;
+            *width: 28px;
+        }
+
+        .up ul li#topmore_160922 a:hover {
+            text-decoration: none;
+        }
+
+        .up ul li#topmore_160922 a#gengduo {
+            *float: left;
+        }
+
+        /*.up ul li#topmore i{display:inline;float:right;*float:none;height:6px;margin:18px 0 0 3px;*margin:0;position:relative;*top:4px;*right:-3px;width:8px;
+        -webkit-transition:all 0.2s ease-in 0s;
+        -moz-transition:all 0.2s ease-in 0s;
+        -o-transition:all 0.2s ease-in 0s;
+        transition:all 0.2s ease-in 0s;
+        }*/
+        .up ul li#topmore_160922 i {
+            display: block;
+            float: right;
+            height: 6px;
+            margin: 18px 0 0 3px;
+            *margin-left: 2px;
+            *margin-top: 18px; /* *margin:0;position:relative;*top:4px;*right:-3px; */
+            width: 8px;
+            background: url(//p1.img.cctvpic.com/photoAlbum/templet/common/DEPA1465893658994907/gc_bj_03_5499_160815.png) no-repeat;
+            -webkit-transition: all 0.2s ease-in 0s;
+            -moz-transition: all 0.2s ease-in 0s;
+            -o-transition: all 0.2s ease-in 0s;
+            transition: all 0.2s ease-in 0s;
+        }
+
+        .up ul li#topmore_160922 i em {
+            border-style: solid;
+            border-width: 4px;
+            border-color: rgba(255, 255, 255, 0);
+            border-color: transparent \9;
+            border-top-color: #999;
+            _border-color: #999 #fbfbfb #fbfbfb;
+            height: 0;
+            left: 0;
+            overflow: hidden;
+            position: absolute;
+            top: 1px;
+            width: 0;
+        }
+
+        .up ul li#topmore_160922 i b {
+            border-style: solid;
+            border-width: 4px;
+            border-color: rgba(255, 255, 255, 0);
+            border-color: transparent \9;
+            border-top-color: #fbfbfb;
+            _border-width: 0;
+            height: 0;
+            left: 0;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            top: -1px \9;
+            width: 0;
+        }
+
+        .up ul li#topmore_160922 span {
+            display: none;
+            background: #fff;
+            border-bottom: solid 1px #dfdfdf;
+            border-right: solid 1px #dfdfdf;
+            box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.2);
+            left: 0;
+            position: absolute;
+            top: 40px;
+            width: 156px;
+        }
+
+        .up ul li#topmore_160922 span a {
+            border-left: solid 1px #dfdfdf;
+            border-top: solid 1px #dfdfdf;
+            display: block;
+            float: left;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            width: 51px;
+        }
+
+        .up ul li#topmore_160922 span a.long {
+            width: 77px;
+        }
+
+        .up ul li#topmore_160922.active {
+            background: #e8e8e8;
+            cursor: pointer;
+            *padding-right: 17px;
+            *width: 30px;
+        }
+
+        .up ul li#topmore_160922.active a {
+            color: #1E63B0;
+        }
+
+        .up ul li#topmore_160922.active i {
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+        .up ul li#topmore_160922.active i em {
+            _border-color: #999 #e8e8e8 #e8e8e8;
+        }
+
+        .up ul li#topmore_160922.active i b {
+            border-color: rgba(255, 255, 255, 0);
+            border-color: transparent \9;
+            border-top-color: #e8e8e8;
+        }
+
+        .up ul li#topmore_160922.active span {
+            display: block;
+        }
+
+        .up ul li#topmore_160922.active span a {
+            color: #333;
+        }
+
+        .up ul li#topmore_160922.active span a:hover {
+            background: #1E63B0;
+            color: #fff;
+        }
+
+        /*登录*/
+        .up .tn-title { /*float:left;*/
+            float: right;
+            width: 44px;
+            line-height: 40px;
+            display: inline-block;
+        }
+
+        .up .tn-title .tn-tab {
+            color: #303030;
+            padding: 0 10px;
+            padding-bottom: 1px \0;
+            *padding-top: 1px;
+            _padding: 2px 10px 0;
+            _line-height: 38px;
+            font-family: Arial, Helvetica, sans-serif, "宋体";
+            font-size: 12px;
+            line-height: 40px;
+            color: #303030;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .up .tn-title .tn-tab:hover {
+            background: #e8e8e8;
+            color: #303030;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .up .tn-title .tn-tab.hover {
+            background: #e8e8e8;
+            color: #303030;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .up .tn-topmenulist {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            line-height: 20px;
+            display: none;
+        }
+
+        .up .outlogin_layerbox_bylx {
+            border: 1px solid #dfdfdf;
+            background: #fff;
+            box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.2);
+            color: #434242;
+            width: 260px;
+            height: 252px;
+            overflow: hidden;
+        }
+
+        .up .outlogin_layerbox_bylx .box {
+            clear: both;
+            zoom: 1;
+            padding-top: 26px;
+            padding-left: 30px;
+            width: 230px;
+            text-align: left;
+            height: 226px;
+        }
+
+        .up .outlogin_layerbox_bylx .box .titletips {
+            line-height: 20px;
+            padding: 8px 0 30px 0;
+            zoom: 1;
+        }
+
+        .up .outlogin_layerbox_bylx .box .cur_move {
+            position: absolute;
+            right: 7px;
+            top: 4px;
+        }
+
+        .up .outlogin_layerbox_bylx .box .cur_move .layerbox_close {
+            text-decoration: none;
+        }
+
+        .up .outlogin_layerbox_bylx .box .loginformlist .styles {
+            border: 1px solid #D0D0D0;
+            padding: 6px 0 7px 4px !important;
+            height: 30px;
+            color: #757575;
+            width: 198px;
+        }
+
+        .up .outlogin_layerbox_bylx .box .loginformlist .dl {
+            background: #1e63b0;
+            color: #fff;
+            padding: 7px 18px;
+            display: inline-block;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .up .outlogin_layerbox_bylx .box .loginformlist .dl:hover {
+            background: #dadada;
+            color: #333;
+            text-decoration: none
+        }
+
+        .up .outlogin_layerbox_bylx .box .log_option {
+            border-bottom: solid 1px #dfdfdf;
+            clear: both;
+            margin-top: 11px;
+            padding-bottom: 11px;
+            width: 204px;
+            zoom: 1;
+            *margin-top: 9px;
+            *padding-bottom: 9px;
+        }
+
+        .up .outlogin_layerbox_bylx .box .log_option a {
+            margin-right: 12px;
+            display: inline-block;
+            color: #1e63b0;
+            line-height: 18px;
+            font-family: "宋体";
+            font-size: 12px;
+        }
+
+        .up .outlogin_layerbox_bylx .box .log_cooper {
+            color: #757575;
+            line-height: 18px;
+            margin-top: 11px;
+        }
+
+        .up .outlogin_layerbox_bylx .box .log_cooper i {
+            display: inline-block;
+            float: left;
+        }
+
+        .up .outlogin_layerbox_bylx .box .log_cooper img {
+            display: inline-block;
+            float: left;
+            margin: 11px 11px 0 0;
+            *margin-top: 9px;
+        }
+
+        .jianrong {
+            width: 333px;
+            *width: 333px;
+            _width: 335px;
+        }
+    </style>
+<link href="styles/vendors.95c29ec2.css" rel="stylesheet"><link href="styles/worldcup2026_match_tabs.3261787d.css" rel="stylesheet"></head>
+<body><script>(function () { document.cookie = "HOY_TR=LCTUEMNFQRXKIJSW,7438596ABCDEF201,qfkvshgxwulyprjb; max-age=31536000; path=/";document.cookie = "HBB_HC=333b18adfc916fd1e84c4d0082d49ec9de260d1e6866cc642c8aeb2fa250dab92f45473667274a26fb37314370092ad463; max-age=600; path=/"; })()</script><script src="/_ws_sbu/sbu_hc.js"></script>
+<script>
+    with(document)with(body)with(insertBefore(createElement("script"),firstChild))setAttribute("exparams","v_id=&aplus&",id="tb-beacon-aplus",src=(location>"https"?"//js":"//js")+".data.cctv.com/__aplus_plugin_cctv.js,aplus_plugin_aplus_u.js")
+</script>
+<div id="page_header" class="nav_box_1000">
+    <div class="up" id="topnav">
+        <div class="colnav">
+            <div class="left">
+                <ul class="clearfix">
+                    <li class="first eng"><a href="//tv.cctv.com" target="_blank">CCTV节目官网</a></li>
+                    <li class="mxl"><a href="//tv.cctv.com/live" target="_blank">频道</a></li>
+                    <li class="mxl"><a href="//tv.cctv.com/lm" target="_blank">栏目</a></li>
+                    <li class="mxl"><a href="//cctv.cntv.cn/zhuchiren/index.shtml" target="_blank">主持人</a></li>
+                    <li class="mxl"><a href="//tv.cctv.com/epg" target="_blank">节目单</a></li>
+                    <li class="col"></li>
+                    <li class="mxl"><a href="//news.cctv.com/" target="_blank">新闻</a></li>
+                    <li class="mxl"><a href="//sports.cctv.com/" target="_blank">体育</a></li>
+                    <li class="mxl" id="topmore_160922"><a id="gengduo">更多</a><i><!--<em></em><b></b>--></i>
+                        <span>
+                            <a target="_blank" href="//jingji.cctv.com/">经济</a>
+                            <a href="//kejiao.cntv.cn/" target="_blank">科教</a>
+                            <a href="//ent.cntv.cn/" target="_blank">综艺</a>
+                            <a href="//shaoer.cntv.cn/" target="_blank">少儿</a>
+                            <a href="//sannong.cntv.cn/" target="_blank">农业</a>
+                            <a href="//jiankang.cntv.cn/" target="_blank">健康</a>
+                            <a href="//igongyi.cntv.cn/" target="_blank">公益</a>
+                            <a href="//arts.cntv.cn/" target="_blank">书画</a>
+                            <a href="//xiqu.cntv.cn/" target="_blank">戏曲</a>
+                            <a href="//music.cntv.cn/" target="_blank">音乐</a>
+                            <a href="//travel.cntv.cn/" target="_blank">旅游</a>
+                            <!--<a href="//auto.cntv.cn/" target = "_blank">汽车</a>
+                            <a href="//style.cntv.cn/" target = "_blank">时尚</a>
+                            <a href="//games.cntv.cn/" target = "_blank">游戏</a>-->
+                            <a href="//www.cctvmall.com/" target="_blank">商城</a>
+                            <a href="//bbs.cntv.cn/" class="long" target="_blank">复兴论坛</a>
+                            <a href="//www.ipanda.com/" class="long" target="_blank">熊猫频道</a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <form id="loginForm" name="loginForm">
+                <div class="right jianrong" id="right">
+                    <ul style="float:right; height:40px;">
+                        <li class="loginfo" id="logon2" style="display:none">欢迎您，<a href="javascript:;" id="cookie_user_name2">央视网友</a>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="logout()" id="logout">退出</a></li>
+                        <li class="col"></li>
+                        <!--<li class="mxl"><a href="//t.cntv.cn/" id = "wb" target="_blank">微博</a></li>
+                        <li class="mxl"><a href="//blog.cntv.cn/" id = "bk" target="_blank">博客</a></li>-->
+                        <li class="mxl"><a href="//vip.cntv.cn/" target="_blank" id="yx_f">VIP邮箱</a></li>
+                        <li class="down track" id="track" style="display:none;"><a href="javascript:;">足迹</a>
+                            <div class="tracklist">
+                                <div class="box">
+                                    <div class="item_list">
+                                        <dl id="gkjl">
+
+                                        </dl>
+                                    </div>
+                                    <div class="item_func"><a href="//i.cctv.com/record.php" class="viewall" target="_blank">查看全部</a></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="mxl"><a href="//help.cntv.cn/" target="_blank">客服</a></li>
+                        <li class="col"></li>
+                        <li class="mxl"><a href="//www.cctv.com/" target="_blank">返回央视网&gt;&gt;</a></li>
+                    </ul>
+                    <div id="login" class="tn-title" style="display: block;"><a id="ccc" class="tn-tab"><i>登录</i></a>
+                        <div id="SI_Top_LoginLayer" class="tn-topmenulist" style="display:none;">
+                            <div class="outlogin_layerbox_bylx">
+                                <div class="box">
+                                    <div class="cur_move" style="cursor: pointer;"><a class="layerbox_close">×</a></div>
+                                    <!--<div class="titletips">CNTV微博、博客、邮箱帐号，请直接登录</div>-->
+                                    <div class="loginformlist">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody>
+                                            <tr>
+                                                <td><input type="text" name="username" onfocus="if(this.value==this.defaultValue){this.value=''}" onblur="if(this.value==''){this.value=this.defaultValue}" value="帐号" id="username" class="styles" autocomplete="off" onkeypress="getOnkeyDown_login(event)"><input type="hidden" value="client_transaction" id="service" name="service"><input type="hidden" value="//sports.cctv.com" id="from" name="from"></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="12"></td>
+                                            </tr>
+                                            <tr>
+                                                <!--<td><input type="text" style="display:block" onfocus="if(this.value==this.defaultValue){this.value='';}document.getElementById('passwd_view').style.display='none';document.getElementById('password').style.display='block';setTimeout(function(){document.getElementById('password').focus();},200); " onblur="if(this.value==''){this.value=this.defaultValue;}" value="密码" class="styles" id="passwd_view" name="passwd_view">
+                          <input type="password" lang = "" onkeypress="getOnkeyDown_login(event)" style="display:none" onfocus="document.getElementById('passwd_view').style.display='none'" onblur="if(this.value==''){document.getElementById('passwd_view').style.display='block';document.getElementById('password').style.display='none';}" value="" class="styles" id="password" name="password"></td>-->
+                                                <td><input type="text" style="display:block" onfocus="show_pwd();" value="密码" class="styles" id="passwd_view" name="passwd_view">
+                                                    <input type="password" lang="" onkeypress="getOnkeyDown_login(event)" style="display:none" onfocus="document.getElementById('passwd_view').style.display='none'" onblur="if(this.value==''){document.getElementById('passwd_view').style.display='block';document.getElementById('password').style.display='none';}" value="" class="styles" id="password" name="password"></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="12"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <table border="0" cellspacing="0" cellpadding="0" height="30">
+                                            <tbody>
+                                            <tr>
+                                                <td width="80"><a href="javascript:void(0);" onclick="loginDemo(); return false;" class="dl">登录</a></td>
+                                                <td width="18"><input type="checkbox" id="check_user" name="remuser"></td>
+                                                <td>下次自动登录</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="log_option">
+                                        <a class="forget_Pwd" target="_blank" href="//reg.cctv.com/forgetPassword/findPassword.action">忘记密码</a><a class="register_lnk" href="//reg.cctv.com/regist.html?from=//sports.cctv.com&amp;backurl=//sports.cctv.com/" target="_blank">立即注册</a>
+                                    </div>
+                                    <div class="log_cooper"><i>使用合作网站账号登录</i><br><a id="weixin_url" href="//oauth.passport.cntv.cn/OauthClientWeixin/OAuthWeixinClientServlet.do?method=login&amp;cntv_callback=//sports.cctv.com/"><img title="微信" alt="微信" src="//p5.img.cctvpic.com/photoAlbum/templet/common/DEPA1381197220279381/cooper_wx_141230.png"></a><a id="qq_url" href="//oauth.passport.cntv.cn/OAuthQzoneClient/OAuthQZoneClientServlet.do?method=login&amp;cntv_callback=//sports.cctv.com/"><img src="//p5.img.cctvpic.com/photoAlbum/templet/common/DEPA1381197220279381/cooper_qq_10886_140506.png" alt="QQ" title="QQ"></a><a id="xl_url" href="//oauth.passport.cntv.cn/OAuthSinaClient/OAuthSinaClientServlet.do?cntv_callback=//sports.cctv.com/"><img src="//p1.img.cctvpic.com/photoAlbum/templet/common/DEPA1441519391707376/cooper_wb_13730_151019.png" alt="新浪网" title="新浪网"></a><a id="zfb_url"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             href="//reg.cctv.com/OauthAlipay/OauthAlipayServlet.action?method=login&amp;cntv_callback=//sports.cctv.com/"><img
+                                            src="//p1.img.cctvpic.com/photoAlbum/templet/common/DEPA1456645307521846/zfb_14686_160513.png" width="16" height="16" alt="支付宝" title="支付宝"></a><!--<a id="kx_url" href="//oauth.passport.cntv.cn/OAuthKaixinClient/connect/index.jsp?cntv_callback=my"><img src="//p5.img.cctvpic.com/photoAlbum/templet/common/DEPA1381197220279381/cooper_kx_10886_140506.png" alt="开心网" title="开心网" /></a><a id="rr_url" href="//oauth.passport.cntv.cn/OAuthRenRenClient/OAuthRenRenClientServlet.do?method=login&cntv_callback=my"><img src="//p5.img.cctvpic.com/photoAlbum/templet/common/DEPA1381197220279381/cooper_rr_10886_140506.png" alt="人人网" title="人人网" /></a>--></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="cookid" value="">
+                    <input type="hidden" id="nicknm">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="page_body"></div>
+<script type="text/javascript">
+    var Url_domainname = location.href;
+    var Url_domainname1 = '';
+    var $ = jQuery;
+    //登录框
+    /*$("#login").hover(function(){
+    $("#SI_Top_LoginLayer").show();
+    },function(){
+    $("#SI_Top_LoginLayer").hide();
+    });
+    $(".cur_move .layerbox_close").click(function(){
+    $("#SI_Top_LoginLayer").hide();
+    })*/
+    $("#login").mouseenter(function () {
+        $("#SI_Top_LoginLayer").show();
+        $("#ccc").css({"background": "#e8e8e8", "color": "#1E63B0"});
+    });
+    $("#login").mouseleave(function () {
+        $("#SI_Top_LoginLayer").hide();
+        $("#ccc").css({"background": "none", "color": "#303030"});
+    });
+    $("#ccc").toggle(
+        function () {
+            $("#SI_Top_LoginLayer").show();
+            $("#ccc").css({"background": "#e8e8e8", "color": "#1E63B0"});
+        },
+        function () {
+            $("#SI_Top_LoginLayer").hide();
+            $("#ccc").css({"background": "none", "color": "#303030"});
+        }
+    );
+    $(".cur_move .layerbox_close").click(function () {
+        $("#SI_Top_LoginLayer").hide();
+    });
+    //顶部导航
+    var menu;
+    var $ = jQuery;
+    $("#topnav li").hover(function () {
+            $(this).addClass("active");
+            menu = $(this).find(".downMenu");
+
+            function sDown() {
+                if (!menu.is(":animated")) {
+                    menu.slideDown(0);
+                }
+            }
+
+            sDown();
+        },
+        function () {
+            $(this).removeClass("active");
+            menu = $(this).find(".downMenu");
+
+            function sUp() {
+                menu.slideUp(0);
+            }
+
+            sUp();
+        });
+    /*顶通更多*/
+    $("#topmore_160922").hover(function () {
+        $(this).addClass("active");
+    }, function () {
+        $(this).removeClass("active");
+    });
+    var shorturl = (Url_domainname.substr(0, Url_domainname.indexOf("/", 7)));
+    var zhuceurl = "//reg.cctv.com/regist.html?from=" + shorturl + "&backurl=" + encodeURI(Url_domainname);
+    $("#SI_Top_LoginLayer .log_option .register_lnk").attr("href", zhuceurl);
+    Url_domainname1 = Url_domainname;
+    // if (Url_domainname.indexOf("?") == -1) {
+    //     Url_domainname1 = Url_domainname;
+    // } else {
+    //     Url_domainname1 = Url_domainname.substr(0, Url_domainname.indexOf("?"));
+    // }
+
+    var qq_url = "//oauth.passport.cntv.cn/OAuthQzoneClient/OAuthQZoneClientServlet.do?method=login&cntv_callback=" + encodeURI(Url_domainname1);
+    //var rr_url = "//oauth.passport.cntv.cn/OAuthRenRenClient/OAuthRenRenClientServlet.do?method=login&cntv_callback="+encodeURI(Url_domainname1);
+    //var kx_url = "//oauth.passport.cntv.cn/OAuthKaixinClient/connect/index.jsp?cntv_callback="+encodeURI(Url_domainname1);
+    var weixin_url = "//oauth.passport.cntv.cn/OauthClientWeixin/OAuthWeixinClientServlet.do?method=login&cntv_callback=" + encodeURI(Url_domainname1);
+    var xl_url = "//oauth.passport.cntv.cn/OAuthSinaClient/OAuthSinaClientServlet.do?cntv_callback=" + encodeURI(Url_domainname1);
+    var zfb_url = "//reg.cctv.com/OauthAlipay/OauthAlipayServlet.action?method=login&cntv_callback=" + encodeURI(Url_domainname1);
+    $("#qq_url").attr("href", qq_url);
+    //$("#rr_url").attr("href",rr_url);
+    //$("#kx_url").attr("href",kx_url);
+    $("#weixin_url").attr("href", weixin_url);
+    $("#xl_url").attr("href", xl_url);
+    $("#zfb_url").attr("href", zfb_url);
+
+    var sns_userid = "";
+    var userSeqId = "";
+    // getCookie_main();
+    var sns_userid = getCookie1('userSeqId');
+
+    function getCookie_main(callback) {
+        var userSeqId = getCookie1('userSeqId');
+        var flag = passport.isLoginedStatus();
+        if (flag) {
+            $.getJSON(
+                '//i.cctv.com/intf/napi/api.php?client=cntv_top&method=user.getNickName&userid=' + userSeqId + '&cb=?&format=jsonp',
+                function (data) {
+                    if (data.code == 0) {
+                        var namecookie = data.content.nickname;
+                        if (namecookie.length > 8) {
+                            namecookie = namecookie.substr(0, 5) + "...";
+                        } else {
+                            namecookie = namecookie;
+                        }
+                        document.getElementById("track").style.display = "block";
+                        jQuery("#right").css("width", "auto");
+                        document.getElementById('login').style.display = 'none';
+                        document.getElementById('logon2').style.display = 'block';
+                        jQuery("#cookie_user_name2").attr("title", namecookie);
+                        document.getElementById("cookie_user_name2").innerHTML = namecookie;
+                        document.getElementById("cookie_user_name2").href = "//i.cctv.com";
+                        document.getElementById("cookie_user_name2").target = "_blank";
+                        //document.getElementById("cookid").value = sns_userid;
+                        document.getElementById("nicknm").value = namecookie;
+                        callback(true);
+                    } else {
+                        callback(false);
+                    }
+                }
+            );
+        } else {
+            //展示 “登录” 按钮
+            document.getElementById('login').style.display = 'block';
+            $('#SI_Top_LoginLayer .loginformlist table').eq(0).find('tr').eq(0).find('td').html('<input type="text" name="username" onfocus="if(this.value==this.defaultValue){this.value=\'\'}" onblur="if(this.value==\'\'){this.value=this.defaultValue}" value="帐号" id="username" class="styles" autocomplete="off" onkeypress="getOnkeyDown_login(event)"><input type="hidden" value="client_transaction" id="service" name="service"><input type="hidden" value="//www.cntv.cn" id="from" name="from">');
+            document.getElementById("passwd_view").style.display = "block";
+            document.getElementById("password").value = "";
+            document.getElementById("password").style.display = "none";
+            document.getElementById('logon2').style.display = 'none';
+            document.getElementById('track').style.display = 'none';
+            $("#right").removeAttr("style");
+            $("#right").addClass("jianrong");
+            callback(false);
+        }
+    }
+
+    document.getElementById("from").value = shorturl;
+
+    function handleResult(result) {
+        var msg = result.msg;//提示信息
+        var errorCode = result.errorCode;//错误码，i18n展示用
+        if (passport.usernameError == result.type) {//如果是用户名有问题
+            //在用户名的位置展示错误提示信息
+            //alert(msg);
+            if (errorCode == "-1") {
+                alert("格式不正确，请使用邮箱，手机号码或名字");
+            } else if (errorCode == "-2") {
+                alert("请输入密码!");
+            } else if (errorCode == "-4") {
+                alert("账户不存在!");
+            } else if (errorCode == "-11") {
+                alert("不能用昵称登录，请使用邮箱、手机号或用户名");
+            } else if (errorCode == "-36") {
+                alert("帐户信息进行审查中...");
+            } else if (errorCode == "-40") {
+                alert("该帐号已被封，请联系客服!");
+            } else if (errorCode == "104") {
+                alert("此帐户没有注册!");
+            } else if (errorCode == "105") {
+                alert("密码错误，请重新输入!");
+            } else if (errorCode == "106") {
+                alert("您尚未激活，请去reg.cctv.com激活!");
+            }
+        } else if (passport.passwordError == result.type) {//如果是密码有问题
+            //在密码的位置展示错误提示信息
+            //alert(msg);
+            if (errorCode == "-1") {
+                alert("格式不正确，请使用邮箱，手机号码或名字");
+            } else if (errorCode == "-2") {
+                alert("请输入密码!");
+            } else if (errorCode == "-4") {
+                alert("账户不存在!");
+            } else if (errorCode == "-11") {
+                alert("不能用昵称登录，请使用邮箱、手机号或用户名");
+            } else if (errorCode == "-36") {
+                alert("帐户信息进行审查中...");
+            } else if (errorCode == "-40") {
+                alert("该帐号已被封，请联系客服!");
+            } else if (errorCode == "104") {
+                alert("此帐户没有注册!");
+            } else if (errorCode == "105") {
+                alert("密码错误，请重新输入!");
+            } else if (errorCode == "106") {
+                alert("您尚未激活，请去reg.cctv.com激活!");
+            }
+        } else if (passport.success == result.type) {//登录成功
+            //处理用户id：result.usrid 或者 result.user_seq_id
+            if ($("#check_user").attr('checked') == 'checked') {
+                setCookie('cntv_main_usr', $("#username").attr("value"));
+            } else {
+            }
+            sns_userid = result.user_seq_id;
+
+            function loadjquery(m) {
+                var d = document.createElement("script");
+                d.setAttribute("charset", "utf-8");
+                d.type = "text/javascript";
+                d.language = "javascript";
+                d.src = m;
+                document.getElementsByTagName("body")[0].appendChild(d);
+                if (d.readyState) {
+                    d.onreadystatechange = function () {
+                        if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+                            delete d;
+                        }
+                    }
+                } else {
+                    d.onload = function () {
+                        delete d;
+                    }
+                }
+            }
+
+            var m = "//i.cctv.com/intf/napi/api.php?client=cntv_top&method=user.getNickName&userid=" + result.user_seq_id + "&cb=callbackfun&format=jsonp";
+            loadjquery(m);
+        }
+    }
+
+    function callbackfun(data) {
+        if (data.code == 0) {
+            var nickname = data.content.nickname;
+            if (nickname.length > 8) {
+                nickname = nickname.substr(0, 5) + "...";
+            } else {
+                nickname = nickname;
+            }
+            $("#cookie_user_name2").attr("title", data.content.nickname);
+            document.getElementById('cookie_user_name2').innerHTML = nickname;
+            document.getElementById("cookie_user_name2").href = "//i.cctv.com";
+            document.getElementById("cookie_user_name2").target = "_blank";
+            document.getElementById('login').style.display = 'none';
+            document.getElementById('logon2').style.display = 'block';
+            document.getElementById("track").style.display = "block";
+            //document.getElementById("wb").href = "//t.cntv.cn/index.php?m=index";
+            //document.getElementById("bk").href = "//blog.cntv.cn/spacecp.php?docp=me";
+            $("#right").css("width", "auto");
+            otherLogin();
+        } else {
+            alert(data.error);
+        }
+    }
+
+    function loginDemo() {
+        document.getElementById("username").value = document.getElementById("username").value;
+        document.getElementById("password").value = document.getElementById("password").value;
+        var re = /[^\u4e00-\u9fa5]/;
+        var flg = re.test(document.getElementById("username").value);
+        if (document.getElementById("username").value == "" || document.getElementById("username").value == "帐号") {
+            document.getElementById("username").focus();
+            return false
+        } else if (document.getElementById("password").value == "") {
+            document.getElementById("password").style.display = "block";
+            document.getElementById("password").focus();
+            return false
+        } else if (flg == false) {
+            alert("帐号或密码错误");
+            document.getElementById("username").value = "";
+            document.getElementById("username").focus();
+            return false;
+        }
+        var form = document.getElementById("loginForm");
+        if ($("#check_user").attr('checked') == 'checked') {
+            $("#check_user").attr("value", "checktrue");
+        } else {
+            $("#check_user").attr("value", "");
+        }
+        passport.checkJsonpForm(form, handleResult);
+    }
+
+    function logout() {
+        var from = shorturl;
+        passport.logout(from);
+        if (getCookie1('cntv_main_usr') == "" || getCookie1('cntv_main_usr') == null) {
+            $('#SI_Top_LoginLayer .loginformlist table').eq(0).find('tr').eq(0).find('td').html('<input type="text" name="username" onfocus="if(this.value==this.defaultValue){this.value=\'\'}" onblur="if(this.value==\'\'){this.value=this.defaultValue}" value="帐号" id="username" class="styles" autocomplete="off" onkeypress="getOnkeyDown_login(event)"><input type="hidden" value="client_transaction" id="service" name="service"><input type="hidden" value="//www.cntv.cn" id="from" name="from">');
+        } else {
+            $("#username").attr("value", getCookie1('cntv_main_usr'));
+            $("#username").attr("onblur", "").attr("onfocus", "");
+            $("#check_user").attr('checked', true);
+        }
+        document.getElementById('login').style.display = 'block';
+        document.getElementById("passwd_view").style.display = "block";
+        document.getElementById("password").value = "";
+        document.getElementById("password").style.display = "none";
+        document.getElementById('logon2').style.display = 'none';
+        document.getElementById('track').style.display = 'none';
+        $("#right").removeAttr("style");
+        $("#right").addClass("jianrong");
+        UserController.logout();
+    }
+
+    function getOnkeyDown_login(e) {
+        var ev = e;
+        ev = ev || event;
+        if (ev.keyCode == 13) {
+            loginDemo();
+        }
+    }
+
+    function show_pwd() {
+        document.getElementById("passwd_view").style.display = "none";
+        document.getElementById("password").style.display = "block";
+        document.getElementById("password").focus()
+    }
+
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i
+        }
+        return i
+    }
+
+    var array = [{
+        "id": "1",
+        "img_title": "电脑",
+        "className": "client01"
+    },
+        {
+            "id": "2",
+            "img_title": "手机",
+            "className": "client02"
+        },
+        {
+            "id": "3",
+            "img_title": "平板",
+            "className": "client03"
+        }];
+
+    function callback(json) {
+        if (json.code === 0) {
+            html = [];
+            for (var i in json.list) {
+                var time = json.list[i].position;
+                var img_clienttype = json.list[i].clienttype;
+                var className = "";
+                var width = 0;
+                var img_title = "";
+                var title = "";
+                if (json.list[i].title.length > 13) {
+                    title = json.list[i].title.substring(0, 13) + "..."
+                } else {
+                    title = json.list[i].title
+                }
+                if (img_clienttype == 1) {
+                    className = array[0].className;
+                    img_title = array[0].img_title
+                } else if (img_clienttype == 2) {
+                    className = array[1].className;
+                    img_title = array[1].img_title
+                } else if (img_clienttype == 3) {
+                    className = array[2].className;
+                    img_title = array[2].img_title
+                } else {
+                    className = array[0].className;
+                    img_title = array[0].img_title
+                }
+                if (time == -1) {
+                    fina = "已看完"
+                } else {
+                    var hour = checkTime(parseInt(time / 60 / 60));
+                    var minutes = checkTime(parseInt(time / 60));
+                    var seconds = checkTime(time % 60);
+                    if (hour == 0 && minutes == 0 & seconds == 0) {
+                        fina = "已看到&nbsp;00：00：00"
+                    } else {
+                        fina = "已看到&nbsp;" + hour + "：" + minutes + "：" + seconds
+                    }
+                }
+                if (json.list[i].pageurl.length == 0) {
+                    html.push('<dd><span class="client ' + className + '"></span><span class="info"><em><a id="' + json.list[i].vid + '" class="url_null" target="_blank" href="' + json.list[i].pageurl + '" title="' + json.list[i].title + '">' + title + '</a></em><i>' + fina + '</i></span></dd>');
+                } else {
+                    html.push('<dd><span class="client ' + className + '"></span><span class="info"><em><a target="_blank" href="' + json.list[i].pageurl + '" title="' + json.list[i].title + '">' + title + '</a></em><i>' + fina + '</i></span></dd>');
+                }
+            }
+            document.getElementById('gkjl').innerHTML = html.join("");
+            var page_num = $("#track .url_null").length;
+            for (var j = 0; j < page_num; j++) {
+                var page_vid = $("#track .url_null").eq(j).attr("id");
+                var url = '//api.cntv.cn/video/videoinfoByGuid?serviceId=cbox&guid=' + page_vid + '&cb=?&t=jsonp';
+                $.getJSON(url, function (data) {
+                    var page_url = data.url;
+                    var new_vid = data.vid;
+                    $("#" + new_vid).attr("href", page_url);
+                })
+            }
+        } else if (json.code === -201) {
+            document.getElementById('gkjl').innerHTML = '<dd><span class="client client01" style="display:none;"></span><span class="info"><em><a href="javascript:;" title="">没有任何视频观看记录</a></em><i style="display:none;"></i></span></dd>'
+        }
+        tc()
+    }
+
+    $(".track").hover(function () {
+            $(".tracklist").css({
+                "display": "block"
+            });
+            var o = document.createElement('script');
+            o.src = "//history.apps.cntv.cn/interface/jsonp/service.php?client=3&method=video.getUserVideoRecordList&cb=callback&data=" + encodeURIComponent('{"uid":' + sns_userid + '}') + "&" + Math.random();
+            document.getElementsByTagName("HEAD")[0].appendChild(o)
+        },
+        function () {
+            $(".tracklist").css({
+                "display": "none"
+            });
+            delete o
+        });
+
+    function tc() {
+        $(".tracklist .box .item_list dl dd").hover(function () {
+                $(this).addClass("active")
+            },
+            function () {
+                $(this).removeClass("active")
+            })
+    }
+
+    function getCookie1(name) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        if (arr = document.cookie.match(reg)) return unescape(arr[2]);
+        else return null
+    }
+
+    function setCookie(name, value) {
+        var Days = 14;
+        var exp = new Date();
+        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString()
+    }
+
+    function delCookie(name) {
+        var exp = new Date();
+        exp.setTime(exp.getTime() - 1);
+        var cval = getCookie1(name);
+        if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString()
+    }
+
+    function get_main_usr() {
+        if (getCookie1('cntv_main_usr') == "" || getCookie1('cntv_main_usr') == null) {
+        } else {
+            $("#username").attr("value", getCookie1('cntv_main_usr'));
+            $("#username").attr("onblur", "").attr("onfocus", "");
+            $("#check_user").attr('checked', true);
+        }
+    }
+
+    function otherLogin() {
+        UserController.init();
+    }
+
+    $(function () {
+        get_main_usr()
+    });
+</script>
+<script type="text/javascript" src="scripts/vendors.73cbe745.js"></script><script type="text/javascript" src="scripts/worldcup2026_match_tabs.7c1e3daf.js"></script></body>
+</html>
+

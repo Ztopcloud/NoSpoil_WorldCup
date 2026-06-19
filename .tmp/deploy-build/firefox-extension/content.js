@@ -6,6 +6,7 @@
   window.__nospoilWorldcupContentLoaded = true;
 
   const IS_TOP_FRAME = window.top === window;
+  const IS_ANDROID_WEBVIEW = Boolean(window.__SCGS_ANDROID_PROBE__);
   const STORAGE_KEY = 'nospoil_enabled';
   const DURATION_STORAGE_KEY = 'nospoil_hide_duration';
   const DURATION_HIDE_CLASS = 'nospoil-hide-duration';
@@ -39,7 +40,10 @@
   const XHS_LOGIN_TEXT_RE = /(登录后|登录小红书|扫码登录|验证码登录|手机号登录|打开小红书|下载小红书|请先登录|注册\/登录|注册登录)/;
   const processedVideos = new WeakSet();
   const preparedVideos = new WeakSet();
+  const fullscreenVideos = new WeakSet();
   const clickedPlayRoots = new WeakSet();
+  let pendingFullscreenVideo = null;
+  let userGestureFullscreenArmed = false;
   let prepaintShieldEnabled = false;
   let pendingPlayVideo = null;
   let userGesturePlayArmed = false;
@@ -48,9 +52,16 @@
   let prepaintStartedAt = Date.now();
   let prepaintReleaseTimer = null;
 
+  function getChromeStorageLocal() {
+    return typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local
+      ? chrome.storage.local
+      : null;
+  }
+
   async function isPluginEnabled() {
     try {
-      const result = await (chrome.storage && chrome.storage.local ? chrome.storage.local.get(STORAGE_KEY) : Promise.resolve({}));
+      const storage = getChromeStorageLocal();
+      const result = await (storage ? storage.get(STORAGE_KEY) : Promise.resolve({}));
       return result[STORAGE_KEY] !== false;
     } catch {
       return true;
@@ -97,19 +108,26 @@
 
   function handleToggle(enabled) {
     pluginEnabled = enabled;
+    if (isScgsSite()) return;
     if (!enabled) {
       restoreNormalPage();
     } else {
       // 恢复时长隐藏状态
-      chrome.storage && chrome.storage.local && chrome.storage.local.get(DURATION_STORAGE_KEY).then((result) => {
-        applyHideDuration(result[DURATION_STORAGE_KEY] !== false);
-      }).catch(() => {});
+      const storage = getChromeStorageLocal();
+      if (storage) {
+        storage.get(DURATION_STORAGE_KEY).then((result) => {
+          applyHideDuration(result[DURATION_STORAGE_KEY] !== false);
+        }).catch(() => {});
+      } else {
+        applyHideDuration(true);
+      }
       run();
     }
   }
 
   function handleDurationToggle(enabled) {
     hideDurationEnabled = enabled;
+    if (isScgsSite()) return;
     if (pluginEnabled) {
       applyHideDuration(enabled);
     }
@@ -127,7 +145,7 @@
     });
   }
 
-  const SCGS_HOST_RE = /(^|\.)scgs\.tv$/i;
+  const SCGS_HOST_RE = /(^|\.)scgs\.tv$|^(localhost|127\.0\.0\.1|\[::1\])$/i;
   const SUPPORTED_REPLAY_HOST_RE = /(^|\.)(cctv\.com|cntv\.cn|yangshipin\.cn|xiaohongshu\.com)$/i;
 
   function isScgsSite() {
@@ -170,6 +188,9 @@
       attributeFilter: ['href', 'target', 'rel']
     });
   }
+
+  keepReplayLinksInApp();
+  if (isScgsSite()) return;
 
   const PLAYER_SAFE_SELECTORS = [
     'video',
@@ -409,6 +430,7 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
 
   function shouldShowBackHomeButton() {
     if (!IS_TOP_FRAME) return false;
+    if (IS_ANDROID_WEBVIEW) return false;
     if (!pluginEnabled) return false;
     if (isScgsSite()) return false;
 
@@ -761,14 +783,16 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
   function hideXiaohongshuSideContent() {
     if (!isXiaohongshuPage()) return;
 
-    hideXiaohongshuLoginPrompts();
-    showXiaohongshuLoginHintIfBlocked();
+    sanitizeDocumentTitle();
+    if (IS_ANDROID_WEBVIEW) return;
 
     const playerRoot = getPlayerRoot();
     if (!playerRoot) return;
 
+    const video = playerRoot.matches('video') ? playerRoot : playerRoot.querySelector('video');
+    if (!video) return;
+
     hideOutsidePlayer(playerRoot);
-    sanitizeDocumentTitle();
   }
 
   function isLikelyXhsLoginPrompt(el) {
@@ -997,18 +1021,18 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
     userGesturePlayArmed = true;
     const handler = () => {
       userGesturePlayArmed = false;
-      document.removeEventListener('click', handler, true);
-      document.removeEventListener('touchend', handler, true);
-      document.removeEventListener('keydown', handler, true);
+      document.removeEventListener('click', handler, false);
+      document.removeEventListener('touchend', handler, false);
+      document.removeEventListener('keydown', handler, false);
 
       const targetVideo = pendingPlayVideo;
       pendingPlayVideo = null;
-      tryPrepareVideo(targetVideo);
+      window.setTimeout(() => tryPrepareVideo(targetVideo), 0);
     };
 
-    document.addEventListener('click', handler, true);
-    document.addEventListener('touchend', handler, true);
-    document.addEventListener('keydown', handler, true);
+    document.addEventListener('click', handler, false);
+    document.addEventListener('touchend', handler, false);
+    document.addEventListener('keydown', handler, false);
   }
 
   function scheduleVideoPrepare(video) {
@@ -1037,11 +1061,94 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
     }
   }
 
+  function requestElementFullscreen(el) {
+    if (!el) return false;
+
+    const requestFullscreen = el.requestFullscreen ||
+      el.webkitRequestFullscreen ||
+      el.mozRequestFullScreen ||
+      el.msRequestFullscreen;
+
+    if (requestFullscreen) {
+      try {
+        const result = requestFullscreen.call(el);
+        if (result && typeof result.catch === 'function') {
+          result.catch(() => {});
+        }
+        return true;
+      } catch (err) {
+        return false;
+      }
+    }
+
+    if (typeof el.webkitEnterFullscreen === 'function') {
+      try {
+        el.webkitEnterFullscreen();
+        return true;
+      } catch (err) {
+        return false;
+      }
+    }
+
+    return false;
+  }
+
+  function tryAutoFullscreen(video) {
+    if (!video || IS_ANDROID_WEBVIEW) return;
+    if (!isCctvPage() && !isXiaohongshuPage()) return;
+
+    const playerRoot = getPlayerRoot();
+    requestElementFullscreen(playerRoot || video);
+  }
+
+  function armUserGestureFullscreen(video) {
+    pendingFullscreenVideo = video;
+    if (userGestureFullscreenArmed) return;
+
+    userGestureFullscreenArmed = true;
+    const handler = () => {
+      userGestureFullscreenArmed = false;
+      document.removeEventListener('click', handler, false);
+      document.removeEventListener('touchend', handler, false);
+      document.removeEventListener('keydown', handler, false);
+
+      const targetVideo = pendingFullscreenVideo;
+      pendingFullscreenVideo = null;
+      window.setTimeout(() => tryAutoFullscreen(targetVideo), 0);
+    };
+
+    document.addEventListener('click', handler, false);
+    document.addEventListener('touchend', handler, false);
+    document.addEventListener('keydown', handler, false);
+  }
+
+  function scheduleAutoFullscreen(video) {
+    if (fullscreenVideos.has(video)) return;
+    fullscreenVideos.add(video);
+
+    const engage = () => {
+      tryAutoFullscreen(video);
+      armUserGestureFullscreen(video);
+    };
+
+    video.addEventListener('loadedmetadata', engage, { once: true });
+    video.addEventListener('canplay', engage, { once: true });
+    video.addEventListener('play', engage, { once: true });
+    window.setTimeout(engage, 500);
+    window.setTimeout(engage, 1500);
+    window.setTimeout(engage, 4000);
+  }
+
+  function tryAutoFullscreenVideos() {
+    document.querySelectorAll('video').forEach(scheduleAutoFullscreen);
+  }
+
   function run() {
     if (!pluginEnabled) return;
     if (!IS_TOP_FRAME) {
       trySkipIntro();
       tryPrepareVideos();
+      tryAutoFullscreenVideos();
       return;
     }
     applyKnownPageMode();
@@ -1049,6 +1156,7 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
     hidePossibleSpoilers();
     trySkipIntro();
     tryPrepareVideos();
+    tryAutoFullscreenVideos();
     syncBackHomeButton();
   }
 
@@ -1060,7 +1168,6 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
     document.addEventListener('readystatechange', run);
   }
 
-  keepReplayLinksInApp();
   if (IS_TOP_FRAME) installPrepaintShield();
 
   if (IS_TOP_FRAME) {
@@ -1076,7 +1183,7 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
 
   Promise.all([
     isPluginEnabled(),
-    chrome.storage && chrome.storage.local ? chrome.storage.local.get(DURATION_STORAGE_KEY) : Promise.resolve({})
+    getChromeStorageLocal() ? getChromeStorageLocal().get(DURATION_STORAGE_KEY) : Promise.resolve({})
   ]).then(([enabled, durationResult]) => {
     pluginEnabled = enabled;
     const hideDuration = durationResult[DURATION_STORAGE_KEY] !== false;

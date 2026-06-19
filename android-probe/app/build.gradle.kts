@@ -18,8 +18,8 @@ android {
         applicationId = "tv.scgs.probe"
         minSdk = 23
         targetSdk = 35
-        versionCode = 7
-        versionName = "0.2.13-probe"
+        versionCode = 12
+        versionName = "0.2.18-probe"
     }
 
     buildFeatures {
@@ -29,7 +29,7 @@ android {
     if (keystorePropertiesFile.exists()) {
         signingConfigs {
             create("release") {
-                storeFile = file(keystoreProperties["storeFile"] as String)
+                storeFile = rootProject.file(keystoreProperties["storeFile"] as String)
                 storePassword = keystoreProperties["storePassword"] as String
                 keyAlias = keystoreProperties["keyAlias"] as String
                 keyPassword = keystoreProperties["keyPassword"] as String

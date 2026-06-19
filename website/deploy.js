@@ -460,13 +460,13 @@ function prepareRsyncStage(files) {
   const stageDir = path.join(deployTempDir, 'rsync-stage');
   fs.rmSync(stageDir, { recursive: true, force: true });
   fs.mkdirSync(stageDir, { recursive: true });
+  const pluginInjected = files.includes('plugin.html') ? injectVersionIntoPluginHtml() : null;
 
   files.forEach((file) => {
     let sourcePath = path.join(__dirname, file);
 
     if (file === 'plugin.html') {
-      const tempPath = path.join(deployTempDir, 'plugin.html');
-      if (fs.existsSync(tempPath)) sourcePath = tempPath;
+      if (pluginInjected && fs.existsSync(pluginInjected.tempPath)) sourcePath = pluginInjected.tempPath;
     }
 
     if (!fs.existsSync(sourcePath) || fs.statSync(sourcePath).isDirectory()) {

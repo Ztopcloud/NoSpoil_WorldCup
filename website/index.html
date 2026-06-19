@@ -35,7 +35,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <link rel="stylesheet" href="styles.css?v=seo-2">
+    <link rel="stylesheet" href="styles.css?v=20260617-textfix">
     <link rel="preload" href="data/matches.json?v=20260612-6" as="fetch" crossorigin="anonymous">
   </head>
   <body>
@@ -92,27 +92,44 @@
       <section class="hero home-hero">
         <!-- 倒计时 -->
         <div class="countdown-overlay">
-          <span class="countdown-label">距离下一场比赛</span>
           <div class="countdown-timer">
             <div class="countdown-item">
               <span class="countdown-num" id="cd-days">00</span>
               <small>天</small>
             </div>
-            <span class="countdown-sep">:</span>
             <div class="countdown-item">
               <span class="countdown-num" id="cd-hours">00</span>
-              <small>小时</small>
+              <small>时</small>
             </div>
-            <span class="countdown-sep">:</span>
             <div class="countdown-item">
               <span class="countdown-num" id="cd-mins">00</span>
-              <small>分钟</small>
+              <small>分</small>
             </div>
-            <span class="countdown-sep">:</span>
             <div class="countdown-item">
               <span class="countdown-num" id="cd-secs">00</span>
               <small>秒</small>
             </div>
+          </div>
+          <span class="countdown-label">距离下一场比赛</span>
+        </div>
+        <!-- 下一场比赛预览 -->
+        <div class="next-match-preview" id="next-match-preview" style="display:none">
+          <div class="next-match-content">
+            <div class="next-match-team">
+              <img id="next-home-flag" src="" alt="" width="44" height="30" onerror="this.style.display='none'">
+              <span id="next-home-name"></span>
+            </div>
+            <div class="next-match-vs">
+              <strong>VS</strong>
+            </div>
+            <div class="next-match-team">
+              <img id="next-away-flag" src="" alt="" width="44" height="30" onerror="this.style.display='none'">
+              <span id="next-away-name"></span>
+            </div>
+          </div>
+          <div class="next-match-round" id="next-match-round"></div>
+          <div class="next-match-info">
+            <span id="next-match-date"></span>
           </div>
         </div>
         <div class="hero-shade"></div>

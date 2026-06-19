@@ -19,7 +19,7 @@ if not exist "%ANDROID_DIR%\gradlew.bat" (
 set "PATH=%JAVA_HOME%\bin;%PATH%"
 
 pushd "%ANDROID_DIR%"
-call gradlew.bat assembleDebug
+call gradlew.bat assembleRelease
 if errorlevel 1 (
   popd
   echo [ERROR] APK build failed.
