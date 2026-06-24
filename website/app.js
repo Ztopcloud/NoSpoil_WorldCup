@@ -163,7 +163,7 @@
   const scheduleMatchRounds = ['group', 'round32', 'round16', 'quarter', 'semi', 'third', 'final'];
 
   let allMatches = [];
-  let activeView = 'countries';
+  let activeView = 'upcoming';
   let activeCountry = 'all';
 
   function flagUrl(code) {
@@ -425,11 +425,6 @@
     if (state.link && !isPlaceholder) tileClass += ' match-tile-actionable';
     if (isPlaceholder) tileClass += ' match-tile-placeholder';
 
-    const hasLink = state.link && !isPlaceholder;
-    const tag = hasLink ? 'a' : 'div';
-    const hrefAttr = hasLink ? ' href="' + state.link + '" target="_blank" rel="noopener noreferrer"' : '';
-    const linkClose = hasLink ? '</a>' : '</div>';
-
     const roundLabel = roundLabels[match.round] || match.round;
     var roundText;
     if (match.round === 'group' && match.group) {
@@ -449,14 +444,40 @@
         : state.topType === 'preparing'
           ? '<span class="match-live-label">' + state.topLabel + '</span>'
         : '';
-    const hoverIcon = state.hoverLabel === '视频直播'
-      ? '<span class="match-live-icon"></span>'
-      : state.key === 'xhs'
-        ? '<span class="match-external-icon"></span>'
-        : '';
     const hoverSub = state.hoverSubLabel ? '<span class="match-hover-sub">' + state.hoverSubLabel + '</span>' : '';
+    const highlightUrl = match.liveUrl || '';
+    const replayUrl = isCctvReplayUrl(match.replayUrl) ? addSkipHash(match.replayUrl, match.skipSeconds) : '';
+    const highlightAction = highlightUrl && !isPlaceholder
+      ? '<a class="match-option-link match-option-highlight" href="' + escapeHtml(highlightUrl) + '" target="_blank" rel="noopener noreferrer">' +
+          '<span class="match-option-icon match-live-icon"></span>' +
+          '<span class="match-option-text">观看集锦</span>' +
+        '</a>'
+      : '<span class="match-option-link match-option-highlight match-option-disabled" aria-disabled="true">' +
+          '<span class="match-option-icon match-live-icon"></span>' +
+          '<span class="match-option-text">观看集锦</span>' +
+          '<span class="match-option-note">准备中</span>' +
+        '</span>';
+    const replayAction = replayUrl && !isPlaceholder
+      ? '<a class="match-option-link match-option-replay" href="' + escapeHtml(replayUrl) + '" target="_blank" rel="noopener noreferrer">' +
+          '<span class="match-option-icon match-live-icon"></span>' +
+          '<span class="match-option-text">完整视频</span>' +
+        '</a>'
+      : '<span class="match-option-link match-option-replay match-option-disabled" aria-disabled="true">' +
+          '<span class="match-option-icon match-live-icon"></span>' +
+          '<span class="match-option-text">完整视频</span>' +
+          '<span class="match-option-note">准备中</span>' +
+        '</span>';
+    const actionLayer = isPlaceholder ? '' :
+      '<div class="match-hover-action">' +
+        '<div class="match-option-grid">' +
+          highlightAction +
+          '<span class="match-option-divider" aria-hidden="true"></span>' +
+          replayAction +
+        '</div>' +
+        hoverSub +
+      '</div>';
 
-    return '<' + tag + ' class="' + tileClass + '"' + hrefAttr + '>' +
+    return '<div class="' + tileClass + '" tabindex="' + (isPlaceholder ? '-1' : '0') + '">' +
       '<div class="match-content">' +
         '<div class="match-topline">' +
           '<div class="match-round-time">' +
@@ -480,8 +501,8 @@
         '</div>' +
         '<span class="match-card-time">' + dateText + ' ' + match.timeBeijing + '</span>' +
       '</div>' +
-      '<span class="match-hover-action"><span class="match-hover-main">' + hoverIcon + state.hoverLabel + '</span>' + hoverSub + '</span>' +
-      linkClose;
+      actionLayer +
+      '</div>';
   }
 
   function isMobileDevice() {
@@ -693,6 +714,13 @@
   function filterMatchesByView(matches) {
     var filtered = matches;
 
+    if (activeView === 'upcoming') {
+      var now = Date.now();
+      return filtered.filter(function(match) {
+        return isScheduleMatch(match) && match.date && match.timeBeijing && matchStartTime(match).getTime() > now;
+      });
+    }
+
     if (activeView === 'countries') {
       if (activeCountry !== 'all') {
         return filtered.filter(function(match) {
@@ -796,6 +824,49 @@
       return;
     }
 
+    if (activeView === 'upcoming') {
+      var scheduleMatches = visibleMatches.filter(function(match) {
+        return !isPreMatchVideo(match);
+      });
+      var grouped = {};
+      var otherRounds = {};
+      scheduleMatches.forEach(function(m) {
+        if (m.round === 'group' && m.group) {
+          if (!grouped[m.group]) grouped[m.group] = [];
+          grouped[m.group].push(m);
+        } else if (isFinalRound(m.round)) {
+          if (!otherRounds.finals) otherRounds.finals = [];
+          otherRounds.finals.push(m);
+        } else {
+          if (!otherRounds[m.round]) otherRounds[m.round] = [];
+          otherRounds[m.round].push(m);
+        }
+      });
+
+      var html = '';
+
+      'ABCDEFGHIJKL'.split('').forEach(function(group) {
+        if (grouped[group] && grouped[group].length > 0) {
+          html += renderScrollableRoundBlock(group + '组', grouped[group]);
+        }
+      });
+
+      ['round32', 'round16', 'quarter'].forEach(function(round) {
+        if (otherRounds[round] && otherRounds[round].length > 0) {
+          html += renderRoundBlock(roundLabels[round], otherRounds[round]);
+        }
+      });
+
+      if (otherRounds.finals && otherRounds.finals.length > 0) {
+        html += renderRoundBlock('决赛阶段', otherRounds.finals);
+      }
+
+      grid.innerHTML = html;
+      setupInlineScrollControls(grid);
+      window.requestAnimationFrame(centerMobileMatchRows);
+      return;
+    }
+
     var countryPreMatches = activeView === 'countries'
       ? visibleMatches.filter(isPreMatchVideo)
       : [];
@@ -876,14 +947,44 @@
 
   grid.addEventListener('click', function(event) {
     var scrollButton = event.target.closest('.country-filter-fade');
-    if (!scrollButton) return;
-    scrollInlineListFromButton(scrollButton);
+    if (scrollButton) {
+      scrollInlineListFromButton(scrollButton);
+      return;
+    }
+
+    var optionLink = event.target.closest('.match-option-link:not(.match-option-disabled)');
+    if (optionLink) return;
+
+    var disabledOption = event.target.closest('.match-option-disabled');
+    if (disabledOption) {
+      event.preventDefault();
+      return;
+    }
+
+    var useTapExpand = window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    if (!useTapExpand) return;
+
+    var tile = event.target.closest('.match-tile-actionable:not(.prematch-video-tile)');
+    grid.querySelectorAll('.match-tile-options-open').forEach(function(item) {
+      if (item !== tile) item.classList.remove('match-tile-options-open');
+    });
+    if (!tile) return;
+
+    event.preventDefault();
+    tile.classList.toggle('match-tile-options-open');
+  });
+
+  document.addEventListener('click', function(event) {
+    if (event.target.closest('#schedule-grid')) return;
+    grid.querySelectorAll('.match-tile-options-open').forEach(function(item) {
+      item.classList.remove('match-tile-options-open');
+    });
   });
 
   /* ===== Fetch & Init ===== */
   // 使用固定版本号替代 Date.now()，允许浏览器/CDN 条件缓存（304 Not Modified），
   // 同时更新版本号后会拉取最新数据，兼顾加载速度与内容更新。
-  var MATCHES_VERSION = '20260617-4';
+  var MATCHES_VERSION = '20260624-15';
   fetch('data/matches.json?v=' + MATCHES_VERSION)
     .then(function(response) {
       if (!response.ok) throw new Error('matches load failed');

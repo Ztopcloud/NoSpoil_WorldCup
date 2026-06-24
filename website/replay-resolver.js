@@ -207,66 +207,17 @@ async function fetchReplayByGuidFallback(html, matchMeta, logger) {
 }
 
 // ===== CCTV 搜索 API 回退 =====
+// 使用 ifsearch.php JSON 接口（原 search.php 是 AJAX 渲染，静态抓取拿不到数据）
 
-const CCTV_SEARCH_API = 'https://search.cctv.com/search.php';
-const VIDE_LINK_RE = /https:\/\/sports\.cctv\.com\/\d{4}\/\d{2}\/\d{2}\/VIDE[a-zA-Z0-9]+\.shtml(?:\?[^"'\\s<>]*)?/gi;
+const CCTV_IFSEARCH_API = 'https://search.cctv.com/ifsearch.php';
+const FULL_MATCH_MIN_SECONDS = 3000; // 全场回放最低 50 分钟（部分比赛回放可能被裁剪）
 
-function extractSearchResults(html) {
-  const results = [];
-  // 按搜索卡片分块，取每个卡片的 VIDE 链接和周围文本作为标题/时长上下文
-  const cardRe = /<li[^>]*class="[^"]*image"[^>]*>([\s\S]*?)<\/li>/gi;
-  const cards = [...html.matchAll(cardRe)];
-
-  // 用已出现的链接去重
-  const seen = new Set();
-
-  for (const cardMatch of cards) {
-    const cardHtml = cardMatch[1] || cardMatch[0];
-    const linkMatch = cardHtml.match(VIDE_LINK_RE);
-    if (!linkMatch || seen.has(linkMatch[0])) continue;
-    seen.add(linkMatch[0]);
-
-    // 提取标题（可能在 h3 或 image_text 区域）
-    let title = '';
-    const h3Re = /<h3[^>]*>[\s\S]*?<a[^>]*>([\s\S]*?)<\/a>/i;
-    const h3Match = cardHtml.match(h3Re);
-    if (h3Match) {
-      title = h3Match[1].replace(/<[^>]+>/g, '').trim();
-    } else {
-      // 回退：取 a 标签内的文本
-      const aTextRe = /<a[^>]*>([\s\S]*?)<\/a>/i;
-      const aMatch = cardHtml.match(aTextRe);
-      if (aMatch) {
-        title = aMatch[1].replace(/<[^>]+>/g, '').trim();
-      }
-    }
-
-    // 提取时长
-    let len = '';
-    const durRe = /(\d{1,2}:\d{2}:\d{2})/;
-    const durMatch = cardHtml.match(durRe);
-    if (durMatch) {
-      len = durMatch[1];
-    }
-
-    results.push({
-      url: linkMatch[0],
-      title,
-      len
-    });
-  }
-
-  // 如果卡片解析失败，回退到全局 VIDE 链接提取
-  if (results.length === 0) {
-    const globalLinks = [...new Set(html.match(VIDE_LINK_RE) || [])];
-    for (const link of globalLinks) {
-      if (seen.has(link)) continue;
-      seen.add(link);
-      results.push({ url: link, title: '', len: '' });
-    }
-  }
-
-  return results;
+function formatDuration(seconds) {
+  if (!seconds || seconds <= 0) return '未知时长';
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  return `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
 }
 
 async function fetchReplayBySearchFallback(matchMeta, logger) {
@@ -275,48 +226,64 @@ async function fetchReplayBySearchFallback(matchMeta, logger) {
   const awaySearch = toSearchName(matchMeta.away);
   const query = encodeURIComponent(`${homeSearch} ${awaySearch}`);
 
-  const searchUrl = `${CCTV_SEARCH_API}?qtext=${query}&type=video&sort=date`;
-  log(`  [${matchMeta.matchId}] 尝试 CCTV 搜索回退: "${homeSearch} ${awaySearch}"`);
+  const searchUrl = `${CCTV_IFSEARCH_API}?qtext=${query}&type=video&page=1&pageSize=50&sort=date&vtime=-1&datepid=1&channel=%E4%B8%8D%E9%99%90&pageflag=0&qtext_str=${query}`;
+  log(`  [${matchMeta.matchId}] 尝试 CCTV ifsearch API: "${homeSearch} ${awaySearch}"`);
 
   try {
-    const result = await fetchTextWithTimeout(searchUrl, 12000);
-    if (!result.html) {
-      log(`  [${matchMeta.matchId}] 搜索回退: 无HTML内容`);
+    const data = await fetchJsonWithTimeout(searchUrl, 10000);
+    if (!data || !Array.isArray(data.list) || data.list.length === 0) {
+      log(`  [${matchMeta.matchId}] ifsearch API: 无结果`);
       return null;
     }
 
-    const candidates = extractSearchResults(result.html);
-    if (candidates.length === 0) {
-      log(`  [${matchMeta.matchId}] 搜索回退: 未解析到视频结果`);
-      return null;
+    // 分离体育和非体育链接，优先 sports.cctv.com
+    const sportsVideos = data.list.filter((item) => /sports\.cctv\.com/.test(String(item.urllink || '')));
+    const nonSportsVideos = data.list.filter((item) => !/sports\.cctv\.com/.test(String(item.urllink || '')));
+
+    // 优先找 sports.cctv.com 中时长 >= 50 分钟的全场回放
+    const fullMatch = sportsVideos.find((item) => item.durations >= FULL_MATCH_MIN_SECONDS);
+    if (fullMatch && fullMatch.urllink) {
+      log(`  [${matchMeta.matchId}] ifsearch 命中全场回放: ${fullMatch.all_title} (${formatDuration(fullMatch.durations)})`);
+      return fullMatch.urllink;
     }
 
-    // 使用现有的评分函数筛选最佳候选
-    const scored = candidates
-      .map((c) => {
-        const s = scoreReplayCandidate({ ...c, curl: c.url }, matchMeta);
-        return { ...c, score: s.score, durationSeconds: s.durationSeconds };
-      })
-      .filter((c) => c.durationSeconds >= 3600 && c.score > 0)
-      .sort((a, b) => {
-        if (b.score !== a.score) return b.score - a.score;
-        return b.durationSeconds - a.durationSeconds;
-      });
-
-    if (scored.length === 0) {
-      const preview = candidates
-        .slice(0, 5)
-        .map((c) => `${c.title || '(无标题)'} (${c.len || '未知时长'})`)
-        .join(' | ');
-      log(`  [${matchMeta.matchId}] 搜索回退未命中全场回放: ${preview}`);
-      return null;
+    // 宽松：sports 中时长 >= 50 分钟且标题含双方球队名，不含集锦关键词
+    const relaxed = sportsVideos.filter((item) => {
+      if (item.durations < FULL_MATCH_MIN_SECONDS) return false;
+      const title = String(item.all_title || '');
+      if (CLIP_TITLE_RE.test(title)) return false;
+      return normalizeText(title).includes(normalizeText(matchMeta.home)) &&
+        normalizeText(title).includes(normalizeText(matchMeta.away));
+    });
+    if (relaxed.length > 0) {
+      log(`  [${matchMeta.matchId}] ifsearch 宽松命中: ${relaxed[0].all_title} (${formatDuration(relaxed[0].durations)})`);
+      return relaxed[0].urllink;
     }
 
-    const best = scored[0];
-    log(`  [${matchMeta.matchId}] CCTV搜索回退命中: ${best.title} (${best.len}, score=${best.score})`);
-    return best.url;
+    // 极宽松：sports 中最长视频
+    const longSports = sportsVideos
+      .filter((item) => item.durations >= FULL_MATCH_MIN_SECONDS)
+      .sort((a, b) => (b.durations || 0) - (a.durations || 0));
+    if (longSports.length > 0) {
+      log(`  [${matchMeta.matchId}] ifsearch 极宽松命中: ${longSports[0].all_title} (${formatDuration(longSports[0].durations)})`);
+      return longSports[0].urllink;
+    }
+
+    // 兜底：sports 中取最长且有双方队名的视频
+    const anySportsWithTeams = sportsVideos.filter((item) => {
+      const title = String(item.all_title || '');
+      return normalizeText(title).includes(normalizeText(matchMeta.home)) &&
+        normalizeText(title).includes(normalizeText(matchMeta.away));
+    }).sort((a, b) => (b.durations || 0) - (a.durations || 0));
+    if (anySportsWithTeams.length > 0) {
+      log(`  [${matchMeta.matchId}] ifsearch 兜底命中: ${anySportsWithTeams[0].all_title} (${formatDuration(anySportsWithTeams[0].durations)})`);
+      return anySportsWithTeams[0].urllink;
+    }
+
+    log(`  [${matchMeta.matchId}] ifsearch API: 未找到长视频回放 (共${sportsVideos.length}体育+${nonSportsVideos.length}非体育结果, 最长${Math.max(...data.list.map(i => i.durations || 0))}秒)`);
+    return null;
   } catch (err) {
-    log(`  [${matchMeta.matchId}] 搜索回退异常: ${err.message}`);
+    log(`  [${matchMeta.matchId}] ifsearch API 异常: ${err.message}`);
     return null;
   }
 }
@@ -353,6 +320,6 @@ module.exports = {
   parseDurationToSeconds,
   resolveReplayUrl,
   fetchReplayBySearchFallback,
-  extractSearchResults,
-  toSearchName
+  toSearchName,
+  formatDuration
 };

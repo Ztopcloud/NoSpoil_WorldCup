@@ -607,7 +607,11 @@ async function main() {
           console.log(`  更新: ${found.home} vs ${found.away} → ${cbs.matchId}`);
         }
         if (!found.replayUrl || !found.replayUrl.includes('sports.cctv.com')) {
-          found.replayUrl = found.liveUrl; // fallback
+          if (!found.replayUrl) {
+            found.replayUrl = found.liveUrl; // fallback
+            updatedCount++;
+            console.log(`  补充回放兜底: ${found.home} vs ${found.away} → ${found.liveUrl}`);
+          }
         }
       } else {
         console.log(`  发现新比赛 ID=${cbs.matchId}，但未在数据中匹配到 (需手动添加)`);

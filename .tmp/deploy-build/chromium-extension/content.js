@@ -930,9 +930,13 @@ html.${DURATION_HIDE_CLASS} .vjs-time-control.vjs-duration-divider {
     try {
       const result = video.play();
       if (result && typeof result.catch === 'function') {
-        result.catch(() => { tryPlayMuted(video); });
+        result.catch(() => {
+          if (IS_ANDROID_WEBVIEW && isXiaohongshuPage()) return;
+          tryPlayMuted(video);
+        });
       }
     } catch (err) {
+      if (IS_ANDROID_WEBVIEW && isXiaohongshuPage()) return;
       tryPlayMuted(video);
     }
   }

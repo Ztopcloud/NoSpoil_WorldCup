@@ -1,4 +1,3 @@
 app.js
 data/matches.json
-index.html
-styles.css
+sw.js

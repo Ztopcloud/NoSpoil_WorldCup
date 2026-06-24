@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "httpS://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="视频搜索 电视搜索 搜索 央视网 中央电视台 央视 电视 节目 栏目 视频 新闻 体育 奥运 综艺 科教 中国公开课　网络春晚　梦想合唱团 春晚 NBA 星光大道 百家讲坛 电视剧 电影 纪录片 动画片" />
+	<meta name="description" content="央视网视频搜索是全球最大的中文正版电视视频搜索引擎，拥有最多的电视视频资源，提供用户最完美的搜索体验。通过央视网视频搜索，您可以便捷的找到最新最热的电视栏目、影视剧、大型节目、体育赛事等，更有多样的视频专题和系列满足不同用户的视频观看需求。央视搜视，视在必得。" />
+	<Meta name="Author" Content="CCTV.com 央视网">
+	<Meta name="Copyright" Content="中国中央电视台  央视网  版权所有">
+	
+    <title>央视网搜索</title>
+	<script type="text/javascript" >
+		var JumpUrl = './m/search.php?qtext=荷兰 瑞典&type=video&r=1782099972';
+	</script>
+	<script language="javascript" src="js/xss.js"></script>
+    <link href="style/style.css?t=20260622" rel="stylesheet" type="text/css" />
+    <link href="style/common.css?t=20260622" rel="stylesheet" type="text/css" />
+    <script language="javascript" src="js/jquery-3.5.0.min.js"></script>
+    <!--  <script language="javascript" src="js/pub.js?t=4206"></script> -->   
+     <script language="javascript" src="js/pub.js?t=202606224264"></script>  
+   
+    <script  type="text/javascript" src="https://r.img.cctvpic.com/so/cctv/topwords_js/hotword.js?t=20260622"></script><!-- 热词 -->
+    <script type="text/javascript" src="https://r.img.cctvpic.com/so/cctv/topwords_js/newhotword.js?t=20260622"></script><!-- 排行榜 或无结果页-->        
+    <script type="text/javascript" src="js/epg.js?t=20260622"></script>  
+    <script type="text/javascript" src="js/clamp.js" ></script>
+    <script type="text/javascript">
+	    var playlistArray=new Array();
+		//获取视频列表
+	    var qtext = "%E8%8D%B7%E5%85%B0%20%E7%91%9E%E5%85%B8";
+	   // var qtext_str = "";
+	    var qtext_str = "荷兰 瑞典";
+	    
+	    var sort ="relevance";
+	    var vtime = "-1";
+	    var datepid = "1"; 
+	    //var channel = "不限";
+	    //var channel = "";
+	    var channel = "";
+	    var currentPage = 1,pageNum = 20;//当前页数,每页条数,
+	    var totalNum= 0;//列表总条数
+	    var type ="video";
+	    var vtimeflag ="-1";
+	    var datepidflag="1";
+	    //var channelflag="不限";
+	    var channelflag="不限";
+	    var pageflag =0;
+	    var dotype ="";	    
+    </script>
+</head>
+<body id="bid">
+ <!-- <script type="text/javascript" src="ssl_js/index2013.js?t=4270" charset="gbk"></script> -->  
+
+ <!--<script type="text/javascript" src="ssl_js/index2013.js?t=202606224289"></script>-->
+ <script type="text/javascript" src="https://www.cctv.com/newcctv/containingPages/2019whitetop/index.js?t=202606224391"></script>
+ <div class="bg_top_h_tile">
+    <div class="bg_top_owner">
+        <div class="bg_bottom_h_tile">
+            <div class="bg_bottom_owner">
+                <!--页面-->
+                <!--页头-->
+                <div id="page_head_lt31"></div>
+                <!--页主体-->
+                <div id="page_body">
+                	
+                   <!--顶部搜索-->               	
+                	<div class="hudongA9876_ind01">
+                        <div class="kj specialC">
+                        	<div class="top_h"></div>
+                            <div class="logo"><a href="index.php"><img src="image/logo02.png" width="301" height="64"/></a></div>
+                            <div class="kuangO">
+                                <div class="nav"><a href="#"  id="web" onclick="queryByType('web');">网页</a><a href="#" class="cur" id="video"  onclick="queryByType('video');">视频</a><a href="#"  id="audio"  onclick="queryByType('audio');">音频</a></div>
+                                <div class="kuang">
+	                                <form method="post" action="search.php" name="searchform" id="searchform">
+	                                    <input type="hidden" name="type" id="search_top_type" value="video"/>
+	                                    <input  type="hidden" name="url"  id="search_url_type" value=""/>                                                                 
+	                                    <!-- search_url_type 存放下拉链接用的的域名 -->
+	                                    <input  type="hidden" name="httpflag"  id="httptype" value="https://"/>
+	                                    <input type="hidden" name="channel" id="search_channel" value=""/>
+	                                    <input type="hidden"  name="qtext_str" id="qtext_str" value="荷兰 瑞典"/>	                                  
+										<input type="text"  name="qtext" id="search_qtext" value="荷兰 瑞典" onkeyup="checkSuggest(this.value,'https://')"  autocomplete="off" disableautocomplete/><div id="wordClose" class="close"></div><a href="#" onclick="searchForm_submit();">搜&nbsp;&nbsp;&nbsp;索</a>
+	                                </form>
+	                                <div style="position:relative;z-index:900;"><div class="ascit" id="searchTip" style="display:none;z-index: 999;">
+	                                    
+	                                </div></div>
+	                            </div>
+	                            <script  type="text/javascript" src="js/search_form_new.js?t=202606224271"></script>
+	                            <div class="text" id="hotword">
+	                            </div>
+                            </div>
+                            <div class="bottom_h"></div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="vspace" style="height: 20px;"></div>
+                    <!--顶部搜索end-->  
+					<div class="column_wrapper_w1200">
+						<!--<div class="add"><a href=""><img src="image/add01.jpg"/></a><span class="close"></span></div>  -->
+					    <!--  <div class="add" id="cntvSearch_ad">					       					           
+					         <script type="text/javascript" src="http://galaxy.bjcathay.com/s?z=cathay&c=467" charset="gbk" ></script>					     
+					    </div>-->					   
+					</div>
+					<div class="vspace" style="height:20px"></div>					
+                    <div class="column_wrapper_w1200">
+                        <div class="col_w1015">                        
+                        <!-- epg修改部分 开始-->					
+													
+					<!-- epg修改部分 结束-->
+					<!-- 世界杯部分开始 -->
+										<!-- 世界杯部分结束 -->
+					<!-- 专题区开始 -->
+						
+					<!-- 专题区结束 -->
+					<!-- 直播中国开始 -->
+										
+					<!-- 直播中国结束 -->
+                      <!--缩略图、列表部分-->	                        
+                                                <!--全部视频结果-->   
+                        <span id="accountspan"></span>                     
+                                                	
+                        	<div class="search17354_ind03">
+                        		<div class="lmdhd" id="lmdhd"></div>
+                        		<div class="vspace" style="height:20px"></div>
+                        		<div class="ind03">
+                        			<div class="cla">
+                        				<ul>
+                        					<li class="xgd">
+                        						<span class="clas cur" onclick="do_get(4,'relevance', this)">相关度</span>
+                        					</li>
+                        					<li class="zxfb">
+                        						<span class="clas" onclick="do_get(4,'date', this)">最新发布</span>
+                        					</li>
+                        					<li class="spsc">
+                        						<span class="clas" id="timetext">视频时长</span>
+                        						<div class="fenlei">
+                        						</div>
+                        					</li>
+                        					<li class="fbsj">
+                        						<span class="clas">发布时间</span>
+                        						<div class="fenlei">                      						
+                        						</div>
+                        					</li>
+                        					<li class="sply">
+                        						<span class="clas">视频来源</span>
+                        						<div class="fenlei" id="channel">
+                        						</div>
+                        					</li>
+                        				</ul>
+                        			</div>
+                        			<div class="vspace" style="height:20px"></div>
+                        			<!-- <div class="jieguo">
+                        				<ul>                        					                        																
+                        				</ul>
+                        				<div class="page">
+										</div>
+                        			</div> -->
+                        			<div class="jieguo">
+                        			   <div class="outer">
+                        			       <div class="timg" style="display:block">
+	                        			       <div class="load">
+	                        			          <img src="style/img/search17354_timg.gif"/>
+	                        			          <span>加载中...</span>
+	                        			       </div>
+                        			       </div> 
+                        				   <div class="list">
+	                        				</div>
+                        				</div>
+                        				<div class="page">
+										</div>
+                        			</div>
+                                    <div class="search17354_wjg" style="display: none;">
+                                        <h3 class="tit">抱歉，没有找到“荷兰 瑞典”的相关
+                                            <span class="clas" id="timetext">视频</span>
+                                            结果
+                                        </h3>
+                                        <div class="jianyi">
+                                            <span>建议您：</span>
+                                            <ul>
+                                                <li>检查输入的关键词是否有误</li>
+                                                <li>缩短关键词</li>
+                                                <li>使用相近，相同或其他语义的关键词</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                        		</div>
+                        	</div>
+                        	                        <!--全部视频结果end-->
+                        </div>
+                        <div class="col_w166">
+                         <!-- 栏目列表开始 -->
+                         <!-- 栏目列表结束 -->
+                        	<div class="search17354_ind04">
+                        	 <!-- 栏目列表开始 -->
+                                                    <!-- 栏目列表结束 -->                       	
+                        		<div class="ind04_tit"><span>搜索排行榜</span></div>
+                        		<div class="ind04_bd">
+                        			<ul>                        			          
+                        			</ul>
+                        		</div>
+                        	</div>
+                            <div class="search17354_return">
+                                <div class="return" id="goto_top">
+                                    <a href="" class="to-back"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="vspace" style="height:40px"></div>
+                </div>
+               
+                 <script type="text/javascript" src="ssl_js/bottom.js?t=202606224270"></script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+//定义最上层搜索时间变量
+var search_datelist = '';
+var searchdateflag = new Array();
+var monthflag = new Array();
+var dateflag = new Array();
+$(document).click(function(){
+    $("#searchTip").hide();
+}); 
+
+ $(function(){
+	//关闭广告
+	$(".add .close").click(function(){
+		$(this).parent(".add").remove();
+    })
+	get_data(currentPage,qtext,sort,type,vtime,datepid,channel,pageNum,pageflag,qtext_str);
+
+	var urlflag ="";
+	var url_str = "https://search.cctv.com/search.php?qtext=荷兰 瑞典&amp;type=video";
+    showHotWord(urlflag);
+    showTopword(urlflag);
+ 
+//轮播图们函数
+	;(function (window){
+			function Lunbo(obj){
+				var self=this;
+				this.oUl=$(obj.oUl);
+				this.oLi=$(obj.oLi);
+				this.btnl=$(obj.btnl);
+				this.btnr=$(obj.btnr);
+				this.ml=obj.ml||0;
+				this.group=obj.group||1;
+				this.dot=$(obj.dot);															
+			//计数	
+				this.num=0;
+			//li个数	
+				var liLen=this.oLi.length;
+				
+			//计算ul的长度（等于整屏宽度的整数倍）
+				if(liLen%this.group>0){
+					var yu=this.group-liLen%this.group;
+					liLen=liLen+yu;
+				}
+				//一共几屏
+				this.s1=liLen/this.group;
+
+				//li加上margin的宽度
+				var liW=this.oLi.outerWidth()+this.ml;				
+				this.oUl.width(liLen*liW);				
+			//一屏的宽度
+				this.gw=liW*this.group;
+			//点击向右
+				this.btnr.click(function(){
+					self.moveR();
+				});
+			//点击向左
+				this.btnl.click(function(){
+					self.moveL();
+				});
+			//点
+				self.dot.click(function(){
+					var index=$(this).index();
+					self.num=index;
+					self.dot.eq(self.num).addClass("cur").siblings().removeClass("cur");
+					self.oUl.animate({"margin-left":-self.num*self.gw+"px"},500);
+				})
+				
+		}
+		Lunbo.prototype={
+			moveR:function(){
+				var self=this;				
+				self.num++;
+				if(self.num>=self.s1){
+					self.num=self.s1-1;
+				}
+				self.oUl.animate({"margin-left":-self.num*self.gw+"px"},500);
+				if(self.dot){
+					self.dot.eq(self.num).addClass("cur").siblings().removeClass("cur");
+				}
+			},
+			moveL:function(){
+				var self=this;
+				self.num--;
+				if(self.num<=0){
+					self.num=0;
+				}
+				self.oUl.animate({"margin-left":-self.num*self.gw+"px"},500);
+				if(self.dot){
+					self.dot.eq(self.num).addClass("cur").siblings().removeClass("cur");
+				}
+			}
+		}		
+		window.Lunbo=Lunbo;		
+	})(window);	
+   //判断鼠标移出的方向函数
+		
+   //var dateflag = new Array();
+		
+    //调用函数	 
+				
+//其他视频相关结果ind02下的点击事件
+	 $(".search17354_ind02 .more-ind .more").click(function(){
+		$(this).removeClass("cur").siblings(".shouqi").addClass("cur");
+		$(".search17354_ind02 .ind06 .outer").height($(".search17354_ind02 .ind06 ul").outerHeight());
+	})
+	$(".search17354_ind02 .more-ind .shouqi").click(function(){
+		$(this).removeClass("cur").siblings(".more").addClass("cur");
+		$(".search17354_ind02 .ind06 .outer").height(249);
+	}) 
+	/*返回顶部*/
+	 $("#goto_top").click(function () {
+		var speed=200;//滑动的速度
+		$('body,html').animate({ scrollTop: 0 }, speed);
+		return false;
+	});	
+	
+})
+ 
+</script>
+<script type="text/javascript" src="js/diaoyong.js"></script>
+</body>
+</html>
