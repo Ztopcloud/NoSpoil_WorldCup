@@ -163,7 +163,7 @@
   const scheduleMatchRounds = ['group', 'round32', 'round16', 'quarter', 'semi', 'third', 'final'];
 
   let allMatches = [];
-  let activeView = 'upcoming';
+  let activeView = 'countries';
   let activeCountry = 'all';
 
   function flagUrl(code) {
@@ -803,6 +803,18 @@
     });
   }
 
+  function scrollMatchRowsToEnd() {
+    if (!grid) return;
+
+    grid.querySelectorAll('.match-row-shell').forEach(function(listShell) {
+      var list = getInlineScrollList(listShell);
+      if (!list) return;
+
+      list.scrollLeft = Math.max(0, list.scrollWidth - list.clientWidth);
+      updateInlineScrollState(listShell, list);
+    });
+  }
+
   function renderSchedule(matches) {
     if (!grid) return;
     renderCountryFilters();
@@ -911,7 +923,11 @@
 
     grid.innerHTML = html;
     setupInlineScrollControls(grid);
-    window.requestAnimationFrame(centerMobileMatchRows);
+    if (activeView === 'countries') {
+      window.requestAnimationFrame(scrollMatchRowsToEnd);
+    } else {
+      window.requestAnimationFrame(centerMobileMatchRows);
+    }
   }
 
   if (scheduleNav) {
@@ -984,7 +1000,7 @@
   /* ===== Fetch & Init ===== */
   // 使用固定版本号替代 Date.now()，允许浏览器/CDN 条件缓存（304 Not Modified），
   // 同时更新版本号后会拉取最新数据，兼顾加载速度与内容更新。
-  var MATCHES_VERSION = '20260624-15';
+  var MATCHES_VERSION = '20260624-16';
   fetch('data/matches.json?v=' + MATCHES_VERSION)
     .then(function(response) {
       if (!response.ok) throw new Error('matches load failed');

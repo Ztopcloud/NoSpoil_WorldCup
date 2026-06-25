@@ -1,3 +1,4 @@
 app.js
 data/matches.json
+index.html
 sw.js
