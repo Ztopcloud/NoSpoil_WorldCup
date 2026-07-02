@@ -14,7 +14,7 @@
     "source": "小红书",
     "videoUrl": "https://www.xiaohongshu.com/explore/6a2b65270000000007020dec?xsec_token=ABioD-vtygjo3jo8kOsFoA5ObfuVDuCRhZMpIvTb4XHzQ=&xsec_source=pc_search&source=note_related_search",
     "liveUrl": "https://worldcup.cctv.com/2026/match/23510409/index.shtml",
-    "replayUrl": "https://sports.cctv.com/2026/06/19/VIDEvaiMkBlqHW1tw4ktHjYv260619.shtml",
+    "replayUrl": "",
     "skipSeconds": 5
   },
   {
@@ -32,7 +32,7 @@
     "source": "小红书",
     "videoUrl": "https://www.xiaohongshu.com/explore/6a28d6cd0000000035039cbb?xsec_token=ABwLS0bUWjxodazMKDKFK69FQufZj2UG6e1JkV0YCdaWg%3D&xsec_source=pc_sfeed",
     "liveUrl": "https://worldcup.cctv.com/2026/match/23510410/index.shtml",
-    "replayUrl": "https://sports.cctv.com/2026/06/19/VIDEiDepX4A3OZAdxPCl9vLb260619.shtml"
+    "replayUrl": ""
   },
   {
     "id": "g1",
@@ -249,7 +249,7 @@
     "group": "G",
     "round": "group",
     "liveUrl": "https://worldcup.cctv.com/2026/match/22920324/index.shtml",
-    "replayUrl": "https://sports.cctv.com/2026/06/16/ARTIbkmHEUh3i8g5bbbjXtgg260616.shtml",
+    "replayUrl": "https://www.xiaohongshu.com/explore/6a30d4fa0000000006020188?xsec_token=ABzK7cR8SMh3DxGyhHbcV5n0e1VgJxbOQDwe59c3JMomQ=&xsec_source=pc_user",
     "source": "小红书"
   },
   {
@@ -989,7 +989,7 @@
     "group": "K",
     "round": "group",
     "liveUrl": "https://worldcup.cctv.com/2026/match/23510457/index.shtml",
-    "replayUrl": "https://sports.cctv.com/2026/06/28/ARTITlY4DPj7upcOdpNbiXpg260628.shtml"
+    "replayUrl": "https://worldcup.cctv.com/2026/match/23510457/index.shtml"
   },
   {
     "id": "g71",
@@ -1042,7 +1042,7 @@
     "group": "",
     "round": "round32",
     "liveUrl": "https://worldcup.cctv.com/2026/match/24000276/index.shtml",
-    "replayUrl": "https://sports.cctv.com/2026/06/30/VIDEj5rKmWwAKEFLXvzJqIBo260630.shtml"
+    "replayUrl": ""
   },
   {
     "id": "k3",
@@ -1055,7 +1055,7 @@
     "group": "",
     "round": "round32",
     "liveUrl": "https://worldcup.cctv.com/2026/match/24000540/index.shtml",
-    "replayUrl": "https://sports.cctv.com/2026/06/30/VIDERqJOlsqZF4l5aMYD9SGZ260630.shtml"
+    "replayUrl": ""
   },
   {
     "id": "k4",
@@ -1068,7 +1068,7 @@
     "group": "",
     "round": "round32",
     "liveUrl": "https://worldcup.cctv.com/2026/match/24000277/index.shtml",
-    "replayUrl": "https://sports.cctv.com/2026/06/30/VIDE8jaDWthHETRezrJvWBqm260630.shtml"
+    "replayUrl": ""
   },
   {
     "id": "k5",
@@ -1080,8 +1080,8 @@
     "awayCode": "no",
     "group": "",
     "round": "round32",
-    "liveUrl": "https://worldcup.cctv.com/2026/match/24000522/index.shtml",
-    "replayUrl": "https://sports.cctv.com/2026/07/01/VIDEfKGCT5joAi6ZcjO6CfCO260701.shtml"
+    "liveUrl": "",
+    "replayUrl": ""
   },
   {
     "id": "k6",
@@ -1094,7 +1094,7 @@
     "group": "",
     "round": "round32",
     "liveUrl": "https://worldcup.cctv.com/2026/match/24000541/index.shtml",
-    "replayUrl": "https://sports.cctv.com/2026/07/01/VIDEYHi6qsaJnNEfaymY1aQH260701.shtml"
+    "replayUrl": ""
   },
   {
     "id": "k7",
@@ -1107,7 +1107,7 @@
     "group": "",
     "round": "round32",
     "liveUrl": "https://worldcup.cctv.com/2026/match/24000707/index.shtml",
-    "replayUrl": "https://sports.cctv.com/2026/07/01/VIDEvc0FnrhGt6J6e61mN9uY260701.shtml"
+    "replayUrl": ""
   },
   {
     "id": "k8",
@@ -1120,7 +1120,7 @@
     "group": "",
     "round": "round32",
     "liveUrl": "https://worldcup.cctv.com/2026/match/24000709/index.shtml",
-    "replayUrl": "https://sports.cctv.com/2026/07/02/VIDELgj1sxcv3iTLHCOKSDFS260702.shtml"
+    "replayUrl": ""
   },
   {
     "id": "k9",
@@ -1133,7 +1133,7 @@
     "group": "",
     "round": "round32",
     "liveUrl": "https://worldcup.cctv.com/2026/match/24000710/index.shtml",
-    "replayUrl": "https://sports.cctv.com/2026/07/02/VIDEODg7WdQOVAAgpUuH6Dmd260702.shtml"
+    "replayUrl": ""
   },
   {
     "id": "k10",
@@ -1146,7 +1146,7 @@
     "group": "",
     "round": "round32",
     "liveUrl": "https://worldcup.cctv.com/2026/match/24000278/index.shtml",
-    "replayUrl": "https://sports.cctv.com/2026/07/02/VIDEZsXOsiUZugIunYwpCA2N260702.shtml"
+    "replayUrl": ""
   },
   {
     "id": "k11",
@@ -1159,7 +1159,7 @@
     "group": "",
     "round": "round32",
     "liveUrl": "https://worldcup.cctv.com/2026/match/24000718/index.shtml",
-    "replayUrl": "https://worldcup.cctv.com/2026/match/24000718/index.shtml"
+    "replayUrl": ""
   },
   {
     "id": "k12",
@@ -1172,7 +1172,7 @@
     "group": "",
     "round": "round32",
     "liveUrl": "https://worldcup.cctv.com/2026/match/24000711/index.shtml",
-    "replayUrl": "https://worldcup.cctv.com/2026/match/24000711/index.shtml"
+    "replayUrl": ""
   },
   {
     "id": "k13",
@@ -1185,7 +1185,7 @@
     "group": "",
     "round": "round32",
     "liveUrl": "https://worldcup.cctv.com/2026/match/24000719/index.shtml",
-    "replayUrl": "https://worldcup.cctv.com/2026/match/24000719/index.shtml"
+    "replayUrl": ""
   },
   {
     "id": "k14",
@@ -1198,7 +1198,7 @@
     "group": "",
     "round": "round32",
     "liveUrl": "https://worldcup.cctv.com/2026/match/24000552/index.shtml",
-    "replayUrl": "https://worldcup.cctv.com/2026/match/24000552/index.shtml"
+    "replayUrl": ""
   },
   {
     "id": "k15",
@@ -1211,7 +1211,7 @@
     "group": "",
     "round": "round32",
     "liveUrl": "https://worldcup.cctv.com/2026/match/24000542/index.shtml",
-    "replayUrl": "https://worldcup.cctv.com/2026/match/24000542/index.shtml"
+    "replayUrl": ""
   },
   {
     "id": "k16",
@@ -1224,7 +1224,7 @@
     "group": "",
     "round": "round32",
     "liveUrl": "https://worldcup.cctv.com/2026/match/24000712/index.shtml",
-    "replayUrl": "https://worldcup.cctv.com/2026/match/24000712/index.shtml"
+    "replayUrl": ""
   },
   {
     "id": "k17",

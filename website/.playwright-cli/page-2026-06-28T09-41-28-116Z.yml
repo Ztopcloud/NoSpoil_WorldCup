@@ -1,0 +1,950 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "首页" [ref=e8] [cursor=pointer]:
+          - /url: http://www.cctv.com/
+          - text: 首页
+        - link "时政" [ref=e12] [cursor=pointer]:
+          - /url: javascript:;
+        - link "新闻" [ref=e16] [cursor=pointer]:
+          - /url: https://news.cctv.com/
+        - link "评论" [ref=e19] [cursor=pointer]:
+          - /url: https://opinion.cctv.com/
+        - link "视频" [ref=e22] [cursor=pointer]:
+          - /url: https://v.cctv.com/
+        - link "财经" [ref=e25] [cursor=pointer]:
+          - /url: https://finance.cctv.com/index.shtml
+        - link "世界杯" [ref=e28] [cursor=pointer]:
+          - /url: https://worldcup.cctv.com/2026/index.shtml
+        - link "教育" [ref=e31] [cursor=pointer]:
+          - /url: https://edu.cctv.com/
+        - link "熊猫" [ref=e34] [cursor=pointer]:
+          - /url: https://www.ipanda.com/
+        - link "直播中国" [ref=e38] [cursor=pointer]:
+          - /url: https://livechina.cctv.com/
+        - link "4K" [ref=e41] [cursor=pointer]:
+          - /url: https://tv.cctv.com/4K/index.shtml
+        - link "CCTV.直播" [ref=e44] [cursor=pointer]:
+          - /url: https://tv.cctv.com/index.shtml
+        - link "中" [ref=e48] [cursor=pointer]:
+          - /url: https://www.cctv.com/index.shtml
+        - link "AIGC" [ref=e52] [cursor=pointer]:
+          - /url: https://aigc.cctv.com/index.shtml
+      - generic [ref=e53]:
+        - link "盲人用户进入后，若无读屏软件可通过Ctrl+Alt+V开启声音获取语音提示" [ref=e56] [cursor=pointer]:
+          - /url: javascript:;
+        - link [ref=e60] [cursor=pointer]:
+          - /url: javascript:void(0);
+    - generic:
+      - generic:
+        - list [ref=e65]:
+          - listitem [ref=e66]:
+            - link "人民领袖习近平" [ref=e67] [cursor=pointer]:
+              - /url: https://news.cctv.com/rmlx/index.shtml
+          - listitem [ref=e68]:
+            - link "联播+" [ref=e69] [cursor=pointer]:
+              - /url: https://news.cctv.com/lbj/index.shtml
+          - listitem [ref=e70]:
+            - link "中国领导人" [ref=e71] [cursor=pointer]:
+              - /url: https://leaders.cctv.com/
+          - listitem [ref=e72]:
+            - link "央视快评" [ref=e73] [cursor=pointer]:
+              - /url: https://news.cctv.com/yskp/index.shtml
+          - listitem [ref=e74]:
+            - link "习式妙语" [ref=e75] [cursor=pointer]:
+              - /url: https://v.cctv.com/shizheng/xsmy/index.shtml
+          - listitem [ref=e76]:
+            - link "热解读" [ref=e77] [cursor=pointer]:
+              - /url: https://news.cctv.com/rjd/
+          - listitem [ref=e78]:
+            - link "天天学习" [ref=e79] [cursor=pointer]:
+              - /url: https://news.cctv.com/tiantianxuexi/index.shtml
+        - list [ref=e81]:
+          - listitem [ref=e82]:
+            - link "直播" [ref=e83] [cursor=pointer]:
+              - /url: https://tv.cctv.com/live/index.shtml
+          - listitem [ref=e84]:
+            - link "片库" [ref=e85] [cursor=pointer]:
+              - /url: https://tv.cctv.com/yxg/index.shtml
+          - listitem [ref=e86]:
+            - link "栏目大全" [ref=e87] [cursor=pointer]:
+              - /url: https://tv.cctv.com/lm/index.shtml
+          - listitem [ref=e88]:
+            - link "节目单" [ref=e89] [cursor=pointer]:
+              - /url: https://tv.cctv.com/epg/index.shtml
+          - listitem [ref=e90]:
+            - link "听音" [ref=e91] [cursor=pointer]:
+              - /url: https://tv.cctv.com/ty/m/index.shtml
+          - listitem [ref=e92]:
+            - link "微视频" [ref=e93] [cursor=pointer]:
+              - /url: https://tv.cctv.com/wsp/m/index.shtml
+          - listitem [ref=e94]:
+            - link "主持人" [ref=e95] [cursor=pointer]:
+              - /url: https://tv.cctv.com/zhuchiren/index.shtml
+          - listitem [ref=e96]:
+            - link "下载央视影音" [ref=e97] [cursor=pointer]:
+              - /url: https://app.cctv.com/index.shtml#page5
+        - list [ref=e99]:
+          - listitem [ref=e100]:
+            - link "海外频道" [ref=e101] [cursor=pointer]:
+              - /url: https://global.cctv.com/
+          - listitem [ref=e102]:
+            - link "iPanda" [ref=e103] [cursor=pointer]:
+              - /url: https://en.ipanda.com/
+          - listitem [ref=e104]:
+            - link "English" [ref=e105] [cursor=pointer]:
+              - /url: https://english.cctv.com/
+          - listitem [ref=e106]:
+            - link "Монгол" [ref=e107] [cursor=pointer]:
+              - /url: https://mn.cctv.com/
+          - listitem [ref=e108]:
+            - link [ref=e109] [cursor=pointer]:
+              - /url: https://mongol.cctv.com/
+              - img [ref=e110]
+          - listitem [ref=e111]:
+            - link [ref=e112] [cursor=pointer]:
+              - /url: http://www.tibetcnr.com/
+              - img [ref=e113]
+          - listitem [ref=e114]:
+            - link [ref=e115] [cursor=pointer]:
+              - /url: http://www.uycnr.com/
+              - img [ref=e116]
+          - listitem [ref=e117]:
+            - link [ref=e118] [cursor=pointer]:
+              - /url: http://www.kazakcnr.com/
+              - img [ref=e119]
+          - listitem [ref=e120]:
+            - link [ref=e121] [cursor=pointer]:
+              - /url: http://www.krcnr.cn/
+              - img [ref=e122]
+        - list [ref=e125]:
+          - listitem [ref=e126]:
+            - link "地方" [ref=e127] [cursor=pointer]:
+              - /url: https://local.cctv.com/index.shtml
+          - listitem [ref=e128]:
+            - link "乡村振兴" [ref=e129] [cursor=pointer]:
+              - /url: https://xczx.cctv.com/index.shtml
+          - listitem [ref=e130]:
+            - link "生态" [ref=e131] [cursor=pointer]:
+              - /url: https://eco.cctv.com/
+          - listitem [ref=e132]:
+            - link "一带一路" [ref=e133] [cursor=pointer]:
+              - /url: https://ydyl.cctv.com/
+          - listitem [ref=e134]:
+            - link "央博" [ref=e135] [cursor=pointer]:
+              - /url: https://yangbo.cctv.com/
+          - listitem [ref=e136]:
+            - link "文化" [ref=e137] [cursor=pointer]:
+              - /url: https://www.cctv.com/culture/index.shtml
+          - listitem [ref=e138]:
+            - link "旅游" [ref=e139] [cursor=pointer]:
+              - /url: https://culture-travel.cctv.com/
+          - listitem [ref=e140]:
+            - link "科普" [ref=e141] [cursor=pointer]:
+              - /url: https://kepu.cctv.cn/
+          - listitem [ref=e142]:
+            - link "健康" [ref=e143] [cursor=pointer]:
+              - /url: https://jiankang.cctv.com/
+          - listitem [ref=e144]:
+            - link "乐龄" [ref=e145] [cursor=pointer]:
+              - /url: https://laoling.cctv.com/index.shtml
+          - listitem [ref=e146]:
+            - link "阅读" [ref=e147] [cursor=pointer]:
+              - /url: https://book.cctv.com/
+          - listitem [ref=e148]:
+            - link "艺术" [ref=e149] [cursor=pointer]:
+              - /url: https://arts.cctv.com/
+          - listitem [ref=e150]:
+            - link "数智" [ref=e151] [cursor=pointer]:
+              - /url: https://5gai.cctv.com/
+          - listitem [ref=e152]:
+            - link "5G" [ref=e153] [cursor=pointer]:
+              - /url: https://5g.cctv.com/
+          - listitem [ref=e154]:
+            - link "产业+" [ref=e155] [cursor=pointer]:
+              - /url: https://business.cctv.com/
+          - listitem [ref=e156]:
+            - link "央央好物" [ref=e157] [cursor=pointer]:
+              - /url: https://www.cctvmall.com/
+        - generic [ref=e161]:
+          - generic [ref=e162]:
+            - table [ref=e163]:
+              - rowgroup [ref=e164]:
+                - row [ref=e165]:
+                  - cell [ref=e166]
+                - row "账号" [ref=e167]:
+                  - cell "账号" [ref=e168]:
+                    - textbox [ref=e169]: 账号
+                - row [ref=e170]:
+                  - cell [ref=e171]
+                - row "密码" [ref=e172]:
+                  - cell "密码" [ref=e173]:
+                    - textbox [ref=e174]: 密码
+                - row [ref=e175]:
+                  - cell [ref=e176]
+            - table [ref=e177]:
+              - rowgroup [ref=e178]:
+                - row "下次自动登录 忘记密码" [ref=e179]:
+                  - cell [ref=e180]:
+                    - checkbox [ref=e181]
+                  - cell "下次自动登录" [ref=e182]
+                  - cell "忘记密码" [ref=e183]:
+                    - link "忘记密码" [ref=e184] [cursor=pointer]:
+                      - /url: http://reg.cntv.cn/forgetPassword/findPassword.jsp
+                - row [ref=e185]:
+                  - cell [ref=e186]
+            - table [ref=e187]:
+              - rowgroup [ref=e188]:
+                - row "登录 立即注册" [ref=e189]:
+                  - cell "登录" [ref=e190]:
+                    - link "登录" [ref=e191] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=e192]
+                  - cell "立即注册" [ref=e193]:
+                    - link "立即注册" [ref=e194] [cursor=pointer]:
+                      - /url: http://reg.cctv.com/regist.html?from=http://www.cctv.com
+                - row [ref=e195]:
+                  - cell [ref=e196]
+          - generic [ref=e197]:
+            - generic [ref=e198]: 使用合作网站账号登录
+            - generic [ref=e199]:
+              - link "微信":
+                - /url: javascript:;
+                - img "微信" [ref=e200] [cursor=pointer]
+              - link "QQ":
+                - /url: javascript:;
+                - img "QQ" [ref=e201] [cursor=pointer]
+              - link "新浪网":
+                - /url: javascript:;
+                - img "新浪网" [ref=e202] [cursor=pointer]
+              - link "支付宝":
+                - /url: javascript:;
+                - img "支付宝" [ref=e203] [cursor=pointer]
+        - generic:
+          - generic:
+            - img [ref=e206]
+            - generic [ref=e209]:
+              - generic [ref=e211]:
+                - link "总台春晚" [ref=e212] [cursor=pointer]:
+                  - /url: https://chunwan.cctv.com/
+                - link "网络春晚" [ref=e213] [cursor=pointer]:
+                  - /url: https://wlchunwan.cctv.com
+                - link "共产党员网" [ref=e214] [cursor=pointer]:
+                  - /url: https://www.12371.cn/
+                - link "秧纪录" [ref=e215] [cursor=pointer]:
+                  - /url: http://jishi.cntv.cn/special/zgjlyx/index.shtml
+                - link "纪录片网" [ref=e216] [cursor=pointer]:
+                  - /url: http://www.docuchina.cn/
+                - link "国家大剧院" [ref=e217] [cursor=pointer]:
+                  - /url: http://ncpa-classic.cntv.cn/index.shtml
+                - link "大型活动" [ref=e218] [cursor=pointer]:
+                  - /url: https://gongyi.cctv.com/events/
+              - generic [ref=e220]:
+                - generic [ref=e221]:
+                  - link "新闻" [ref=e222] [cursor=pointer]:
+                    - /url: https://news.cctv.com/
+                  - link "国内" [ref=e223] [cursor=pointer]:
+                    - /url: https://news.cctv.com/china/
+                  - link "国际" [ref=e224] [cursor=pointer]:
+                    - /url: https://news.cctv.com/world/
+                  - link "评论" [ref=e225] [cursor=pointer]:
+                    - /url: https://opinion.cctv.com/
+                  - link "经济" [ref=e226] [cursor=pointer]:
+                    - /url: https://jingji.cctv.com/
+                  - link "军事" [ref=e227] [cursor=pointer]:
+                    - /url: https://military.cctv.com/index.shtml
+                  - link "科技" [ref=e228] [cursor=pointer]:
+                    - /url: https://news.cctv.com/tech/index.shtml
+                  - link "法治" [ref=e229] [cursor=pointer]:
+                    - /url: https://news.cctv.com/law/
+                  - link "文娱" [ref=e230] [cursor=pointer]:
+                    - /url: https://news.cctv.com/ent/
+                  - link "人物" [ref=e231] [cursor=pointer]:
+                    - /url: https://people.cctv.com/
+                  - link "公益" [ref=e232] [cursor=pointer]:
+                    - /url: https://gongyi.cctv.com/
+                  - link "图片" [ref=e233] [cursor=pointer]:
+                    - /url: https://photo.cctv.com/
+                - generic [ref=e234]:
+                  - link "人民领袖习近平" [ref=e235] [cursor=pointer]:
+                    - /url: https://news.cctv.com/rmlx/index.shtml
+                  - link "联播+" [ref=e236] [cursor=pointer]:
+                    - /url: https://news.cctv.com/lbj/index.shtml
+                  - link "热解读" [ref=e237] [cursor=pointer]:
+                    - /url: https://news.cctv.com/rjd/
+                  - link "天天学习" [ref=e238] [cursor=pointer]:
+                    - /url: https://news.cctv.com/tiantianxuexi/index.shtml
+                  - link "习式妙语" [ref=e239] [cursor=pointer]:
+                    - /url: https://v.cctv.com/shizheng/xsmy/index.shtml
+                  - link "央视快评" [ref=e240] [cursor=pointer]:
+                    - /url: https://news.cctv.com/yskp/index.shtml
+                  - link "央视网评" [ref=e241] [cursor=pointer]:
+                    - /url: https://opinion.cctv.com/yswp/index.shtml
+                  - link "光华锐评" [ref=e242] [cursor=pointer]:
+                    - /url: https://ghrp.cctv.com/index.shtml
+                  - link "锋面" [ref=e243] [cursor=pointer]:
+                    - /url: https://news.cctv.com/fengmian/index.shtml
+              - generic [ref=e244]:
+                - generic [ref=e245]:
+                  - link "视频" [ref=e246] [cursor=pointer]:
+                    - /url: https://v.cctv.com/
+                  - link "小央视频" [ref=e247] [cursor=pointer]:
+                    - /url: https://v.cctv.com/xysp/index.shtml
+                  - link "小央直播" [ref=e248] [cursor=pointer]:
+                    - /url: https://v.cctv.com/zhangbo/index.shtml
+                  - link "直播中国" [ref=e249] [cursor=pointer]:
+                    - /url: https://livechina.cctv.com/
+                  - link "熊猫频道" [ref=e250] [cursor=pointer]:
+                    - /url: https://www.ipanda.com/
+                  - link "VR/AR" [ref=e251] [cursor=pointer]:
+                    - /url: https://v.cctv.com/VR/index.shtml
+                  - link "4K专区" [ref=e252] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/4K/index.shtml
+                  - link "全景新闻" [ref=e253] [cursor=pointer]:
+                    - /url: http://news.cctv.com/yuanchuang/VR/index.shtml
+                - generic [ref=e254]:
+                  - link "现场" [ref=e255] [cursor=pointer]:
+                    - /url: https://v.cctv.com/zixun/xc/index.shtml
+                  - link "前线" [ref=e256] [cursor=pointer]:
+                    - /url: https://v.cctv.com/zixun/qx/index.shtml
+                  - link "比划" [ref=e257] [cursor=pointer]:
+                    - /url: https://v.cctv.com/reping/bh/index.shtml
+                  - link "快看" [ref=e258] [cursor=pointer]:
+                    - /url: https://news.cctv.com/kuaikan/index.shtml
+                  - link "蓝海中国" [ref=e259] [cursor=pointer]:
+                    - /url: https://v.cctv.com/jishi/lhzglhzg/index.shtml
+                  - link "新兵请入列" [ref=e260] [cursor=pointer]:
+                    - /url: https://v.cctv.com/jishi/jsxbqrl/index.shtml
+                  - link "人生第一次" [ref=e261] [cursor=pointer]:
+                    - /url: https://v.cctv.com/jishi/rsdyc/index.shtml
+                  - link "人生第二次" [ref=e262] [cursor=pointer]:
+                    - /url: https://v.cctv.com/jishi/jsrsdec/
+              - generic [ref=e263]:
+                - generic [ref=e264]:
+                  - link "体育" [ref=e265] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/
+                  - link "直播" [ref=e266] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/live/cctv5/
+                  - link "竞猜" [ref=e267] [cursor=pointer]:
+                    - /url: https://cbs.sports.cctv.com/
+                  - link "2026年世界杯" [ref=e268] [cursor=pointer]:
+                    - /url: https://worldcup.cctv.com/2026/index.shtml
+                  - link "2026年冬奥会" [ref=e269] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/Milano2026/
+                  - link "CBA" [ref=e270] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/cba/
+                  - link "NBA" [ref=e271] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/nba/
+                  - link "中超" [ref=e272] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/csl/
+                  - link "国足" [ref=e273] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/football/china/
+                  - link "国际足球" [ref=e274] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/football/international/index.shtml
+                  - link "网球" [ref=e275] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/tennis/
+                  - link "综合体育" [ref=e276] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/zong/index.shtml
+                  - link "亚冬会" [ref=e277] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/harbin2025/index.shtml
+                - generic [ref=e278]:
+                  - link "VIP会员" [ref=e279] [cursor=pointer]:
+                    - /url: https://vip.sports.cctv.com/
+                  - link "CCTV奥林匹克频道" [ref=e280] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/olympicportal/index.shtml
+                  - link "生活体育大会" [ref=e281] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/special/clsc/index.shtml
+                  - link "体育江湖" [ref=e282] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/special/Jianghu/index.shtml
+                  - link "文化体育" [ref=e283] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/wlty/index.shtml
+                  - link "冰雪道路" [ref=e284] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/special/footprintsinthesnow/index.shtml
+                  - link "足球道路" [ref=e285] [cursor=pointer]:
+                    - /url: http://worldcup.cctv.com/2018/lm/footballroadmap/
+              - generic [ref=e286]:
+                - generic [ref=e287]:
+                  - link "财经" [ref=e288] [cursor=pointer]:
+                    - /url: https://finance.cctv.com/index.shtml
+                  - link "教育" [ref=e289] [cursor=pointer]:
+                    - /url: https://edu.cctv.com/
+                  - link "乡村振兴" [ref=e290] [cursor=pointer]:
+                    - /url: https://xczx.cctv.com/index.shtml
+                  - link "生态环境" [ref=e291] [cursor=pointer]:
+                    - /url: https://eco.cctv.com/
+                  - link "一带一路" [ref=e292] [cursor=pointer]:
+                    - /url: http://ydyl.cctv.com/
+                  - link "央博" [ref=e293] [cursor=pointer]:
+                    - /url: https://yangbo.cctv.com/
+                  - link "非遗" [ref=e294] [cursor=pointer]:
+                    - /url: https://china-feiyi.cctv.cn
+                  - link "文化" [ref=e295] [cursor=pointer]:
+                    - /url: https://www.cctv.com/culture/index.shtml
+                  - link "旅游" [ref=e296] [cursor=pointer]:
+                    - /url: https://culture-travel.cctv.com/
+                  - link "科普" [ref=e297] [cursor=pointer]:
+                    - /url: https://kepu.cctv.cn/
+                  - link "健康" [ref=e298] [cursor=pointer]:
+                    - /url: https://jiankang.cctv.com/
+                  - link "乐龄" [ref=e299] [cursor=pointer]:
+                    - /url: https://laoling.cctv.com/index.shtml
+                  - link "阅读" [ref=e300] [cursor=pointer]:
+                    - /url: https://book.cctv.com/
+                  - link "艺术" [ref=e301] [cursor=pointer]:
+                    - /url: https://arts.cctv.com/index.shtml
+                  - link "汽车" [ref=e302] [cursor=pointer]:
+                    - /url: https://auto.cctv.com/
+                  - link "数智" [ref=e303] [cursor=pointer]:
+                    - /url: https://5gai.cctv.com/
+                  - link "5G" [ref=e304] [cursor=pointer]:
+                    - /url: https://5g.cctv.com/
+                  - link "产业+" [ref=e305] [cursor=pointer]:
+                    - /url: https://business.cctv.com/
+                - generic [ref=e306]:
+                  - link "大国智造" [ref=e307] [cursor=pointer]:
+                    - /url: https://jingji.cctv.com/special/dgzz/home/index.shtml
+                  - link "大国展会" [ref=e308] [cursor=pointer]:
+                    - /url: https://v.cctv.com/live_zb/LIVE3386.html?pageid=3386&tag=MicroLiveType
+                  - link "大国保险" [ref=e309] [cursor=pointer]:
+                    - /url: https://finance.cctv.com/special/daguobaoxian/home/index.shtml
+                  - link "云顶对话" [ref=e310] [cursor=pointer]:
+                    - /url: https://finance.cctv.com/special/yunding/index.shtml
+                  - link "云起" [ref=e311] [cursor=pointer]:
+                    - /url: https://jingji.cctv.com/special/yunqi/index.shtml
+                  - link "超级工厂" [ref=e312] [cursor=pointer]:
+                    - /url: https://business.cctv.com/special/cjgc/index.html
+                  - link "智敬中国" [ref=e313] [cursor=pointer]:
+                    - /url: https://5gai.cctv.com/ZJZG/index.shtml
+                  - link "全民健康" [ref=e314] [cursor=pointer]:
+                    - /url: https://edu.cctv.com/2022/08/24/VIDA9GgWzG2ywQ4nu0h078fv220824.shtml
+                  - link "颜选攻略" [ref=e315] [cursor=pointer]:
+                    - /url: https://edu.cctv.com/2021/06/01/VIDAEeKQjpGs6E8CrdT0uPf9210601.shtml
+                  - link "海洋" [ref=e316] [cursor=pointer]:
+                    - /url: https://ocean.cctv.com/
+                  - link "时尚" [ref=e317] [cursor=pointer]:
+                    - /url: https://style.cctv.com/
+                  - link "天气" [ref=e318] [cursor=pointer]:
+                    - /url: http://weather.cctv.com/index.shtml
+                  - link "才艺" [ref=e319] [cursor=pointer]:
+                    - /url: https://caiyi.cctv.com/cy/1/index.shtml
+                  - link "网展" [ref=e320] [cursor=pointer]:
+                    - /url: https://wangzhan.cctv.com/
+                  - link "央央好物" [ref=e321] [cursor=pointer]:
+                    - /url: https://www.cctvmall.com/
+              - generic [ref=e323]:
+                - link [ref=e324] [cursor=pointer]:
+                  - /url: https://local.cctv.com/index.shtml
+                  - img [ref=e325]
+                - link [ref=e326] [cursor=pointer]:
+                  - /url: https://sh.cctv.com/
+                  - img [ref=e327]
+                - link [ref=e328] [cursor=pointer]:
+                  - /url: http://dbzx.cctv.com/index.shtml
+                  - img [ref=e329]
+              - generic [ref=e331]:
+                - generic [ref=e332]:
+                  - link "CCTV.节目官网" [ref=e333] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/
+                  - link "直播" [ref=e334] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/live/index.shtml
+                  - link "节目单" [ref=e335] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/epg/index.shtml
+                  - link "栏目" [ref=e336] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/
+                  - link "片库" [ref=e337] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/yxg/
+                  - link "收视榜" [ref=e338] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/top/
+                  - link "总台企业白名单" [ref=e339] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/special/qybmd/index.shtml
+                - generic [ref=e340]:
+                  - list [ref=e341]:
+                    - listitem [ref=e342]:
+                      - link [ref=e343] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv1/
+                        - img [ref=e344]
+                    - listitem [ref=e345]:
+                      - link [ref=e346] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv2/
+                        - img [ref=e347]
+                    - listitem [ref=e348]:
+                      - link [ref=e349] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv3/
+                        - img [ref=e350]
+                    - listitem [ref=e351]:
+                      - link [ref=e352] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv4asia/
+                        - img [ref=e353]
+                    - listitem [ref=e354]:
+                      - link [ref=e355] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv5/
+                        - img [ref=e356]
+                    - listitem [ref=e357]:
+                      - link [ref=e358] [cursor=pointer]:
+                        - /url: http://tv.cctv.com/cctv5plus/
+                        - img [ref=e359]
+                    - listitem [ref=e360]:
+                      - link [ref=e361] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv6/
+                        - img [ref=e362]
+                    - listitem [ref=e363]:
+                      - link [ref=e364] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv7/
+                        - img [ref=e365]
+                    - listitem [ref=e366]:
+                      - link [ref=e367] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv8/
+                        - img [ref=e368]
+                    - listitem [ref=e369]:
+                      - link [ref=e370] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv9/
+                        - img [ref=e371]
+                    - listitem [ref=e372]:
+                      - link [ref=e373] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv10/
+                        - img [ref=e374]
+                    - listitem [ref=e375]:
+                      - link [ref=e376] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv11/
+                        - img [ref=e377]
+                    - listitem [ref=e378]:
+                      - link [ref=e379] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv12/
+                        - img [ref=e380]
+                    - listitem [ref=e381]:
+                      - link [ref=e382] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv13/
+                        - img [ref=e383]
+                    - listitem [ref=e384]:
+                      - link [ref=e385] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv14/
+                        - img [ref=e386]
+                    - listitem [ref=e387]:
+                      - link [ref=e388] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv15/
+                        - img [ref=e389]
+                    - listitem [ref=e390]:
+                      - link [ref=e391] [cursor=pointer]:
+                        - /url: http://tv.cctv.com/cctv16/
+                        - img [ref=e392]
+                    - listitem [ref=e393]:
+                      - link [ref=e394] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv17/
+                        - img [ref=e395]
+                  - list [ref=e396]:
+                    - listitem [ref=e397]:
+                      - link [ref=e398] [cursor=pointer]:
+                        - /url: https://news.cctv.com/special/zhgqsh/tgdzh/index.shtml
+                        - img [ref=e399]
+                    - listitem [ref=e400]:
+                      - link [ref=e401] [cursor=pointer]:
+                        - /url: https://tvtech.cctv.com/
+                        - img [ref=e402]
+  - generic [ref=e407]:
+    - generic [ref=e408]:
+      - generic [ref=e410]:
+        - link [ref=e413] [cursor=pointer]:
+          - /url: index.php
+          - img [ref=e414]
+        - generic [ref=e415]:
+          - generic [ref=e416]:
+            - link "网页" [ref=e417] [cursor=pointer]:
+              - /url: "#"
+            - link "视频" [ref=e418] [cursor=pointer]:
+              - /url: "#"
+            - link "音频" [ref=e419] [cursor=pointer]:
+              - /url: "#"
+          - generic [ref=e421]:
+            - textbox [ref=e422]: 佛得角沙特阿拉伯回放
+            - link "搜 索" [ref=e423] [cursor=pointer]:
+              - /url: "#"
+          - generic [ref=e424]:
+            - link "新闻联播" [ref=e425] [cursor=pointer]:
+              - /url: search.php?type=video&qtext=%E6%96%B0%E9%97%BB%E8%81%94%E6%92%AD
+            - link "今日说法" [ref=e426] [cursor=pointer]:
+              - /url: search.php?type=video&qtext=%E4%BB%8A%E6%97%A5%E8%AF%B4%E6%B3%95
+            - link "世界杯" [ref=e427] [cursor=pointer]:
+              - /url: search.php?type=video&qtext=%E4%B8%96%E7%95%8C%E6%9D%AF
+            - link "新闻周刊" [ref=e428] [cursor=pointer]:
+              - /url: search.php?type=video&qtext=%E6%96%B0%E9%97%BB%E5%91%A8%E5%88%8A
+            - link "NBA" [ref=e429] [cursor=pointer]:
+              - /url: search.php?type=video&qtext=NBA
+      - generic:
+        - generic [ref=e433]:
+          - generic [ref=e434]: 《佛得角沙特阿拉伯回放》全部视频结果共99条
+          - generic [ref=e436]:
+            - list [ref=e438]:
+              - listitem [ref=e439] [cursor=pointer]:
+                - generic [ref=e440]: 相关度
+              - listitem [ref=e441] [cursor=pointer]:
+                - generic [ref=e442]: 最新发布
+              - listitem [ref=e443] [cursor=pointer]:
+                - generic [ref=e444]: 视频时长
+              - listitem [ref=e445] [cursor=pointer]:
+                - generic [ref=e446]: 发布时间
+              - listitem [ref=e447] [cursor=pointer]:
+                - generic [ref=e448]: 视频来源
+            - generic [ref=e450]:
+              - list [ref=e453]:
+                - listitem [ref=e454]:
+                  - generic [ref=e455]:
+                    - link "[中国新闻]2026年美加墨世界杯 佛得角0比0战平沙特阿拉伯 小组出线 2026-06-27 13:20:57" [ref=e456] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=https%3A%2F%2Ftv.cctv.com%2F2026%2F06%2F27%2FVIDE76ew7MKXx8m2EjauvEUl260627.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e457]
+                    - generic [ref=e458]:
+                      - generic [ref=e459]: CCTV-4中文国际频道
+                      - generic [ref=e460]: 00:20
+                  - link "[中国新闻]2026年美加墨世界杯 佛得角0比0战平沙特阿拉伯 小组出..." [ref=e461] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=https%3A%2F%2Ftv.cctv.com%2F2026%2F06%2F27%2FVIDE76ew7MKXx8m2EjauvEUl260627.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "[中国新闻]2026年美加墨世界杯 佛得角0比0战平沙特阿拉伯 小组出..." [level=3] [ref=e462]:
+                      - paragraph [ref=e463]: "[中国新闻]2026年美加墨世界杯 佛得角0比0战平沙特阿拉伯 小组出..."
+                - listitem [ref=e464]:
+                  - generic [ref=e465]:
+                    - link "[新闻直播间]2026年美加墨世界杯 佛得角0比0战平沙特阿拉伯 小组出线 2026-06-27 12:34:57" [ref=e466] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=https%3A%2F%2Ftv.cctv.com%2F2026%2F06%2F27%2FVIDE8g0JzZWtGrXavWacjLub260627.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e467]
+                    - generic [ref=e468]:
+                      - generic [ref=e469]: CCTV-13新闻频道
+                      - generic [ref=e470]: 00:16
+                  - link "[新闻直播间]2026年美加墨世界杯 佛得角0比0战平沙特阿拉伯 小组出..." [ref=e471] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=https%3A%2F%2Ftv.cctv.com%2F2026%2F06%2F27%2FVIDE8g0JzZWtGrXavWacjLub260627.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "[新闻直播间]2026年美加墨世界杯 佛得角0比0战平沙特阿拉伯 小组出..." [level=3] [ref=e472]:
+                      - paragraph [ref=e473]: "[新闻直播间]2026年美加墨世界杯 佛得角0比0战平沙特阿拉伯 小组出..."
+                - listitem [ref=e474]:
+                  - generic [ref=e475]:
+                    - link "佛得角0-0沙特阿拉伯 2026-06-27 14:03:47" [ref=e476] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=https%3A%2F%2Fsports.cctv.com%2F2026%2F06%2F27%2FVIDEclcNGTmFkDVkjoibGO4t260627.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e477]
+                    - generic [ref=e478]:
+                      - generic [ref=e479]: 体育
+                      - generic [ref=e480]: 1:39:38
+                  - link "佛得角0-0沙特阿拉伯" [ref=e481] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=https%3A%2F%2Fsports.cctv.com%2F2026%2F06%2F27%2FVIDEclcNGTmFkDVkjoibGO4t260627.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "佛得角0-0沙特阿拉伯" [level=3] [ref=e482]:
+                      - paragraph [ref=e483]: 佛得角0-0沙特阿拉伯
+                - listitem [ref=e484]:
+                  - generic [ref=e485]:
+                    - link "[世界杯]H组第3轮：佛得角0-0沙特阿拉伯 集锦 2026-06-27 10:14:57" [ref=e486] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=https%3A%2F%2Fsports.cctv.com%2F2026%2F06%2F27%2FVIDEAhAWnAXLJwagIieA94Yz260627.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e487]
+                    - generic [ref=e488]:
+                      - generic [ref=e489]: 体育
+                      - generic [ref=e490]: 03:17
+                  - link "[世界杯]H组第3轮：佛得角0-0沙特阿拉伯 集锦" [ref=e491] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=https%3A%2F%2Fsports.cctv.com%2F2026%2F06%2F27%2FVIDEAhAWnAXLJwagIieA94Yz260627.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "[世界杯]H组第3轮：佛得角0-0沙特阿拉伯 集锦" [level=3] [ref=e492]:
+                      - paragraph [ref=e493]: "[世界杯]H组第3轮：佛得角0-0沙特阿拉伯 集锦"
+                - listitem [ref=e494]:
+                  - generic [ref=e495]:
+                    - link "[世界杯]沙特阿拉伯有心理包袱 佛得角想创造历史 2026-06-26 15:43:37" [ref=e496] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=https%3A%2F%2Fsports.cctv.com%2F2026%2F06%2F26%2FVIDEGYVcbRTFCxLQuPdFNsrY260626.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e497]
+                    - generic [ref=e498]:
+                      - generic [ref=e499]: 体育
+                      - generic [ref=e500]: 02:42
+                  - link "[世界杯]沙特阿拉伯有心理包袱 佛得角想创造历史" [ref=e501] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=https%3A%2F%2Fsports.cctv.com%2F2026%2F06%2F26%2FVIDEGYVcbRTFCxLQuPdFNsrY260626.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "[世界杯]沙特阿拉伯有心理包袱 佛得角想创造历史" [level=3] [ref=e502]:
+                      - paragraph [ref=e503]: "[世界杯]沙特阿拉伯有心理包袱 佛得角想创造历史"
+                - listitem [ref=e504]:
+                  - generic [ref=e505]:
+                    - link "全场回放：U19 亚锦赛 沙特阿拉伯2-1马来西亚 2018-10-20 20:46:52" [ref=e506] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=http%3A%2F%2Fsports.cctv.com%2F2018%2F10%2F20%2FVIDEBPvZexahIHfdj24yd2C9181020.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e507]
+                    - generic [ref=e508]:
+                      - generic [ref=e509]: 体育
+                      - generic [ref=e510]: 1:46:28
+                  - link "全场回放：U19 亚锦赛 沙特阿拉伯2-1马来西亚" [ref=e511] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=http%3A%2F%2Fsports.cctv.com%2F2018%2F10%2F20%2FVIDEBPvZexahIHfdj24yd2C9181020.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "全场回放：U19 亚锦赛 沙特阿拉伯2-1马来西亚" [level=3] [ref=e512]:
+                      - paragraph [ref=e513]: 全场回放：U19 亚锦赛 沙特阿拉伯2-1马来西亚
+                - listitem [ref=e514]:
+                  - generic [ref=e515]:
+                    - link "回放：世预赛亚洲区12强赛 澳大利亚0-0沙特阿拉伯 2021-11-11 20:17:28" [ref=e516] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=https%3A%2F%2Fm.yangshipin.cn%2Fvideo%3Ftype%3D0%26vid%3Da000088229o%26channel%3Dysyy_aoyun&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e517]
+                    - generic [ref=e518]:
+                      - generic [ref=e519]: 央视频
+                      - generic [ref=e520]: 1:35:48
+                  - link "回放：世预赛亚洲区12强赛 澳大利亚0-0沙特阿拉伯" [ref=e521] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=https%3A%2F%2Fm.yangshipin.cn%2Fvideo%3Ftype%3D0%26vid%3Da000088229o%26channel%3Dysyy_aoyun&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "回放：世预赛亚洲区12强赛 澳大利亚0-0沙特阿拉伯" [level=3] [ref=e522]:
+                      - paragraph [ref=e523]: 回放：世预赛亚洲区12强赛 澳大利亚0-0沙特阿拉伯
+                - listitem [ref=e524]:
+                  - generic [ref=e525]:
+                    - link "回放：2022迪拜国际足球邀请赛 伊拉克1-2沙特阿拉伯 2022-03-27 03:13:14" [ref=e526] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=https%3A%2F%2Fm.yangshipin.cn%2Fvideo%3Ftype%3D0%26vid%3Dg000013wx0c%26channel%3Dysyy_aoyun&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e527]
+                    - generic [ref=e528]:
+                      - generic [ref=e529]: 央视频
+                      - generic [ref=e530]: 1:40:09
+                  - link "回放：2022迪拜国际足球邀请赛 伊拉克1-2沙特阿拉伯" [ref=e531] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=https%3A%2F%2Fm.yangshipin.cn%2Fvideo%3Ftype%3D0%26vid%3Dg000013wx0c%26channel%3Dysyy_aoyun&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "回放：2022迪拜国际足球邀请赛 伊拉克1-2沙特阿拉伯" [level=3] [ref=e532]:
+                      - paragraph [ref=e533]: 回放：2022迪拜国际足球邀请赛 伊拉克1-2沙特阿拉伯
+                - listitem [ref=e534]:
+                  - generic [ref=e535]:
+                    - link "全场回放：亚洲杯E组第二轮 黎巴嫩0-2沙特阿拉伯 2019-01-13 04:13:15" [ref=e536] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=http%3A%2F%2Fsports.cctv.com%2F2019%2F01%2F13%2FVIDEf3ESXckkQ0Cthx71jlds190113.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e537]
+                    - generic [ref=e538]:
+                      - generic [ref=e539]: 体育
+                      - generic [ref=e540]: 1:46:47
+                  - link "全场回放：亚洲杯E组第二轮 黎巴嫩0-2沙特阿拉伯" [ref=e541] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=http%3A%2F%2Fsports.cctv.com%2F2019%2F01%2F13%2FVIDEf3ESXckkQ0Cthx71jlds190113.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "全场回放：亚洲杯E组第二轮 黎巴嫩0-2沙特阿拉伯" [level=3] [ref=e542]:
+                      - paragraph [ref=e543]: 全场回放：亚洲杯E组第二轮 黎巴嫩0-2沙特阿拉伯
+                - listitem [ref=e544]:
+                  - generic [ref=e545]:
+                    - link "全场回放：亚运会男足F组 朝鲜3-0沙特阿拉伯 2018-08-20 23:45:14" [ref=e546] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=http%3A%2F%2Fsports.cctv.com%2F2018%2F08%2F20%2FVIDEvK7obuuOZd4htKUCSNu1180820.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e547]
+                    - generic [ref=e548]:
+                      - generic [ref=e549]: 体育
+                      - generic [ref=e550]: 1:40:13
+                  - link "全场回放：亚运会男足F组 朝鲜3-0沙特阿拉伯" [ref=e551] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=http%3A%2F%2Fsports.cctv.com%2F2018%2F08%2F20%2FVIDEvK7obuuOZd4htKUCSNu1180820.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "全场回放：亚运会男足F组 朝鲜3-0沙特阿拉伯" [level=3] [ref=e552]:
+                      - paragraph [ref=e553]: 全场回放：亚运会男足F组 朝鲜3-0沙特阿拉伯
+                - listitem [ref=e554]:
+                  - generic [ref=e555]:
+                    - link "全场回放：A组小组赛第一轮 俄罗斯5-0沙特阿拉伯 2018-06-15 03:07:07" [ref=e556] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=http%3A%2F%2Fsports.cctv.com%2F2018%2F06%2F15%2FVIDElLUtx9fsIQvOO0q7B8al180615.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e557]
+                    - generic [ref=e558]:
+                      - generic [ref=e559]: 体育
+                      - generic [ref=e560]: 1:40:12
+                  - link "全场回放：A组小组赛第一轮 俄罗斯5-0沙特阿拉伯" [ref=e561] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=http%3A%2F%2Fsports.cctv.com%2F2018%2F06%2F15%2FVIDElLUtx9fsIQvOO0q7B8al180615.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "全场回放：A组小组赛第一轮 俄罗斯5-0沙特阿拉伯" [level=3] [ref=e562]:
+                      - paragraph [ref=e563]: 全场回放：A组小组赛第一轮 俄罗斯5-0沙特阿拉伯
+                - listitem [ref=e564]:
+                  - generic [ref=e565]:
+                    - link "回放：举重亚锦赛男子55公斤级A组 沙特阿拉伯选手包揽三金 2019-04-20 15:04:21" [ref=e566] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=http%3A%2F%2Fsports.cctv.com%2F2019%2F04%2F20%2FVIDEBbUbTheaHVQ7noXjMMf5190420.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e567]
+                    - generic [ref=e568]:
+                      - generic [ref=e569]: 体育
+                      - generic [ref=e570]: 1:04:56
+                  - link "回放：举重亚锦赛男子55公斤级A组 沙特阿拉伯选手包揽三..." [ref=e571] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=http%3A%2F%2Fsports.cctv.com%2F2019%2F04%2F20%2FVIDEBbUbTheaHVQ7noXjMMf5190420.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "回放：举重亚锦赛男子55公斤级A组 沙特阿拉伯选手包揽三..." [level=3] [ref=e572]:
+                      - paragraph [ref=e573]: 回放：举重亚锦赛男子55公斤级A组 沙特阿拉伯选手包揽三...
+                - listitem [ref=e574]:
+                  - generic [ref=e575]:
+                    - link "全场回放：亚洲杯E组小组赛第一轮 沙特阿拉伯4-0朝鲜 2019-01-09 04:23:21" [ref=e576] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=http%3A%2F%2Fsports.cctv.com%2F2019%2F01%2F09%2FVIDEbgJf2MosOzbz6qQYzLE8190109.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e577]
+                    - generic [ref=e578]:
+                      - generic [ref=e579]: 体育
+                      - generic [ref=e580]: 1:37:54
+                  - link "全场回放：亚洲杯E组小组赛第一轮 沙特阿拉伯4-0朝鲜" [ref=e581] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=http%3A%2F%2Fsports.cctv.com%2F2019%2F01%2F09%2FVIDEbgJf2MosOzbz6qQYzLE8190109.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "全场回放：亚洲杯E组小组赛第一轮 沙特阿拉伯4-0朝鲜" [level=3] [ref=e582]:
+                      - paragraph [ref=e583]: 全场回放：亚洲杯E组小组赛第一轮 沙特阿拉伯4-0朝鲜
+                - listitem [ref=e584]:
+                  - generic [ref=e585]:
+                    - link "全场回放：亚洲杯小组赛E组第三轮 沙特阿拉伯0-2卡塔尔 2019-01-18 04:23:07" [ref=e586] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=http%3A%2F%2Fsports.cctv.com%2F2019%2F01%2F18%2FVIDEQ21M59rv68P54cvEv4kf190118.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e587]
+                    - generic [ref=e588]:
+                      - generic [ref=e589]: 体育
+                      - generic [ref=e590]: 1:47:11
+                  - link "全场回放：亚洲杯小组赛E组第三轮 沙特阿拉伯0-2卡塔尔" [ref=e591] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=http%3A%2F%2Fsports.cctv.com%2F2019%2F01%2F18%2FVIDEQ21M59rv68P54cvEv4kf190118.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "全场回放：亚洲杯小组赛E组第三轮 沙特阿拉伯0-2卡塔尔" [level=3] [ref=e592]:
+                      - paragraph [ref=e593]: 全场回放：亚洲杯小组赛E组第三轮 沙特阿拉伯0-2卡塔尔
+                - listitem [ref=e594]:
+                  - generic [ref=e595]:
+                    - link "全场回放：2022卡塔尔世界杯C组第一轮 阿根廷1-2沙特阿拉伯 2022-11-22 21:33:30" [ref=e596] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=https%3A%2F%2Fm.yangshipin.cn%2Fvideo%3Ftype%3D0%26vid%3Dn000059941o%26channel%3Dysyy_aoyun&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e597]
+                    - generic [ref=e598]:
+                      - generic [ref=e599]: 央视频
+                      - generic [ref=e600]: 2:02:23
+                  - link "全场回放：2022卡塔尔世界杯C组第一轮 阿根廷1-2沙特阿拉..." [ref=e601] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=https%3A%2F%2Fm.yangshipin.cn%2Fvideo%3Ftype%3D0%26vid%3Dn000059941o%26channel%3Dysyy_aoyun&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "全场回放：2022卡塔尔世界杯C组第一轮 阿根廷1-2沙特阿拉..." [level=3] [ref=e602]:
+                      - paragraph [ref=e603]: 全场回放：2022卡塔尔世界杯C组第一轮 阿根廷1-2沙特阿拉...
+                - listitem [ref=e604]:
+                  - generic [ref=e605]:
+                    - link "全场回放：2022年卡塔尔世界杯小组赛C组第2轮 波兰2-0沙特阿拉伯 2022-11-27 00:06:36" [ref=e606] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=https%3A%2F%2Fm.yangshipin.cn%2Fvideo%3Ftype%3D0%26vid%3Di0000331t6n%26channel%3Dysyy_aoyun&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e607]
+                    - generic [ref=e608]:
+                      - generic [ref=e609]: 央视频
+                      - generic [ref=e610]: 1:48:14
+                  - link "全场回放：2022年卡塔尔世界杯小组赛C组第2轮 波兰2-0沙特阿拉..." [ref=e611] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=https%3A%2F%2Fm.yangshipin.cn%2Fvideo%3Ftype%3D0%26vid%3Di0000331t6n%26channel%3Dysyy_aoyun&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "全场回放：2022年卡塔尔世界杯小组赛C组第2轮 波兰2-0沙特阿拉..." [level=3] [ref=e612]:
+                      - paragraph [ref=e613]: 全场回放：2022年卡塔尔世界杯小组赛C组第2轮 波兰2-0沙特阿拉...
+                - listitem [ref=e614]:
+                  - generic [ref=e615]:
+                    - link "全场回放：2022年卡塔尔世界杯小组赛C组第3轮 沙特阿拉伯1-2墨西哥 2022-12-01 06:31:48" [ref=e616] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=https%3A%2F%2Fm.yangshipin.cn%2Fvideo%3Ftype%3D0%26vid%3Dg000038ihhf%26channel%3Dysyy_aoyun&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e617]
+                    - generic [ref=e618]:
+                      - generic [ref=e619]: 央视频
+                      - generic [ref=e620]: 1:45:10
+                  - link "全场回放：2022年卡塔尔世界杯小组赛C组第3轮 沙特阿拉伯1-2墨西..." [ref=e621] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=https%3A%2F%2Fm.yangshipin.cn%2Fvideo%3Ftype%3D0%26vid%3Dg000038ihhf%26channel%3Dysyy_aoyun&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "全场回放：2022年卡塔尔世界杯小组赛C组第3轮 沙特阿拉伯1-2墨西..." [level=3] [ref=e622]:
+                      - paragraph [ref=e623]: 全场回放：2022年卡塔尔世界杯小组赛C组第3轮 沙特阿拉伯1-2墨西...
+                - listitem [ref=e624]:
+                  - generic [ref=e625]:
+                    - link "[世界杯]L·杜阿尔特单刀攻门 奥韦斯完成精彩扑救 2026-06-27 10:04:57" [ref=e626] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=https%3A%2F%2Fsports.cctv.com%2F2026%2F06%2F27%2FVIDE8beX8FW5oFpCgbYvD4vk260627.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e627]
+                    - generic [ref=e628]:
+                      - generic [ref=e629]: 体育
+                      - generic [ref=e630]: 00:18
+                  - link "[世界杯]L·杜阿尔特单刀攻门 奥韦斯完成精彩扑救" [ref=e631] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=https%3A%2F%2Fsports.cctv.com%2F2026%2F06%2F27%2FVIDE8beX8FW5oFpCgbYvD4vk260627.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "[世界杯]L·杜阿尔特单刀攻门 奥韦斯完成精彩扑救" [level=3] [ref=e632]:
+                      - paragraph [ref=e633]: "[世界杯]L·杜阿尔特单刀攻门 奥韦斯完成精彩扑救"
+                - listitem [ref=e634]:
+                  - generic [ref=e635]:
+                    - link "[世界杯]战平沙特 佛得角小组第二晋级淘汰赛 2026-06-27 14:22:11" [ref=e636] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=https%3A%2F%2Fsports.cctv.com%2F2026%2F06%2F27%2FVIDEJLAnsIBWq2RZMGqn4mF5260627.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e637]
+                    - generic [ref=e638]:
+                      - generic [ref=e639]: 体育
+                      - generic [ref=e640]: 01:49
+                  - link "[世界杯]战平沙特 佛得角小组第二晋级淘汰赛" [ref=e641] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=https%3A%2F%2Fsports.cctv.com%2F2026%2F06%2F27%2FVIDEJLAnsIBWq2RZMGqn4mF5260627.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "[世界杯]战平沙特 佛得角小组第二晋级淘汰赛" [level=3] [ref=e642]:
+                      - paragraph [ref=e643]: "[世界杯]战平沙特 佛得角小组第二晋级淘汰赛"
+                - listitem [ref=e644]:
+                  - generic [ref=e645]:
+                    - link "[世界杯]W·塞梅多弧顶远射 皮球稍稍偏出球门 2026-06-27 09:20:58" [ref=e646] [cursor=pointer]:
+                      - /url: link_p.php?targetpage=https%3A%2F%2Fsports.cctv.com%2F2026%2F06%2F27%2FVIDEf4gAEPFA5p41WC6mvOXO260627.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                      - img [ref=e647]
+                    - generic [ref=e648]:
+                      - generic [ref=e649]: 体育
+                      - generic [ref=e650]: 00:28
+                  - link "[世界杯]W·塞梅多弧顶远射 皮球稍稍偏出球门" [ref=e651] [cursor=pointer]:
+                    - /url: link_p.php?targetpage=https%3A%2F%2Fsports.cctv.com%2F2026%2F06%2F27%2FVIDEf4gAEPFA5p41WC6mvOXO260627.shtml&point=video_normal&ref=ifsearch%3Fqtext%3D%E4%BD%9B%E5%BE%97%E8%A7%92%E6%B2%99%E7%89%B9%E9%98%BF%E6%8B%89%E4%BC%AF%E5%9B%9E%E6%94%BE%26sort%3Drelevance%26type%3Dvideo%26vtime%3D-1%26datepid%3D1%26channel%3Dpage%3D1
+                    - heading "[世界杯]W·塞梅多弧顶远射 皮球稍稍偏出球门" [level=3] [ref=e652]:
+                      - paragraph [ref=e653]: "[世界杯]W·塞梅多弧顶远射 皮球稍稍偏出球门"
+              - generic [ref=e654]:
+                - link "1" [ref=e655] [cursor=pointer]:
+                  - /url: Javascript:void(0);
+                - link "2" [ref=e656] [cursor=pointer]:
+                  - /url: Javascript:void(0);
+                - link "3" [ref=e657] [cursor=pointer]:
+                  - /url: Javascript:void(0);
+                - link "4" [ref=e658] [cursor=pointer]:
+                  - /url: Javascript:void(0);
+                - link "5" [ref=e659] [cursor=pointer]:
+                  - /url: Javascript:void(0);
+                - link "下一页" [ref=e660] [cursor=pointer]:
+                  - /url: Javascript:void(0);
+        - generic [ref=e662]:
+          - generic [ref=e663]: 搜索排行榜
+          - list [ref=e665]:
+            - listitem [ref=e666]:
+              - generic [ref=e667]: "1"
+              - link "今日说法" [ref=e668] [cursor=pointer]:
+                - /url: search.php?type=video&qtext=%E4%BB%8A%E6%97%A5%E8%AF%B4%E6%B3%95
+            - listitem [ref=e669]:
+              - generic [ref=e670]: "2"
+              - link "新闻联播" [ref=e671] [cursor=pointer]:
+                - /url: search.php?type=video&qtext=%E6%96%B0%E9%97%BB%E8%81%94%E6%92%AD
+            - listitem [ref=e672]:
+              - generic [ref=e673]: "3"
+              - link "一线" [ref=e674] [cursor=pointer]:
+                - /url: search.php?type=video&qtext=%E4%B8%80%E7%BA%BF
+            - listitem [ref=e675]:
+              - generic [ref=e676]: "4"
+              - link "天网" [ref=e677] [cursor=pointer]:
+                - /url: search.php?type=video&qtext=%E5%A4%A9%E7%BD%91
+            - listitem [ref=e678]:
+              - generic [ref=e679]: "5"
+              - link "今日关注" [ref=e680] [cursor=pointer]:
+                - /url: search.php?type=video&qtext=%E4%BB%8A%E6%97%A5%E5%85%B3%E6%B3%A8
+            - listitem [ref=e681]:
+              - generic [ref=e682]: "6"
+              - link "新闻周刊" [ref=e683] [cursor=pointer]:
+                - /url: search.php?type=video&qtext=%E6%96%B0%E9%97%BB%E5%91%A8%E5%88%8A
+            - listitem [ref=e684]:
+              - generic [ref=e685]: "7"
+              - link "天气预报" [ref=e686] [cursor=pointer]:
+                - /url: search.php?type=video&qtext=%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5
+            - listitem [ref=e687]:
+              - generic [ref=e688]: "8"
+              - link "海峡两岸" [ref=e689] [cursor=pointer]:
+                - /url: search.php?type=video&qtext=%E6%B5%B7%E5%B3%A1%E4%B8%A4%E5%B2%B8
+            - listitem [ref=e690]:
+              - generic [ref=e691]: "9"
+              - link "天下足球" [ref=e692] [cursor=pointer]:
+                - /url: search.php?type=video&qtext=%E5%A4%A9%E4%B8%8B%E8%B6%B3%E7%90%83
+            - listitem [ref=e693]:
+              - generic [ref=e694]: "10"
+              - link "百家讲坛" [ref=e695] [cursor=pointer]:
+                - /url: search.php?type=video&qtext=%E7%99%BE%E5%AE%B6%E8%AE%B2%E5%9D%9B
+    - generic [ref=e700]:
+      - img [ref=e701]
+      - generic [ref=e702]: 业务介绍：
+      - link "央视网" [ref=e703] [cursor=pointer]:
+        - /url: http://www.cntv.cn/special/guanyunew/PAGE1381886879510187/index.shtml
+      - text: "-"
+      - link "央视影音客户端" [ref=e704] [cursor=pointer]:
+        - /url: http://www.cntv.cn/special/guanyunew/PAGE1381887108536138/index.shtml
+      - text: "-"
+      - link "IP电视" [ref=e705] [cursor=pointer]:
+        - /url: http://www.cntv.cn/special/guanyunew/PAGE13818868795101870/index.shtml
+      - text: "-"
+      - link "互联网电视" [ref=e706] [cursor=pointer]:
+        - /url: http://www.cntv.cn/special/guanyunew/PAGE13818868795101872/index.shtml
+      - text: "-"
+      - link "手机电视" [ref=e707] [cursor=pointer]:
+        - /url: http://www.cntv.cn/special/guanyunew/PAGE13818868795101871/index.shtml
+      - text: "-"
+      - link "移动传媒" [ref=e708] [cursor=pointer]:
+        - /url: http://www.cntv.cn/special/guanyunew/PAGE13818868795101874/index.shtml
+    - generic [ref=e710]:
+      - generic [ref=e711]:
+        - link "中央电视台网站" [ref=e712] [cursor=pointer]:
+          - /url: http://www.cctv.cn/
+        - text: "|"
+        - link "关于CCTV.com" [ref=e713] [cursor=pointer]:
+          - /url: http://www.cntv.cn/special/guanyunew/PAGE1381886879510187/index.shtml
+        - text: "|"
+        - link "人才招聘" [ref=e714] [cursor=pointer]:
+          - /url: http://career.cntv.cn/
+        - text: "|"
+        - link "网站声明" [ref=e715] [cursor=pointer]:
+          - /url: http://www.cntv.cn/special/guanyunew/PAGE13818868795101878/index.shtml
+        - text: "|"
+        - link "法律顾问" [ref=e716] [cursor=pointer]:
+          - /url: http://www.cntv.cn/special/guanyunew/PAGE13818868795101879/index.shtml
+        - text: "|"
+        - link "总台总经理室" [ref=e717] [cursor=pointer]:
+          - /url: https://1118.cctv.cn/chinese/index.shtml?spm=C31267.PKfZiGX1ZRiV.0.0
+        - text: "|"
+        - link "帮助中心" [ref=e718] [cursor=pointer]:
+          - /url: http://help.cntv.cn/
+      - generic [ref=e719]:
+        - paragraph [ref=e720]:
+          - text: 中央广播电视总台 央视网 版权所有
+          - link "违法和不良信息举报电话:010-88047123" [ref=e721] [cursor=pointer]:
+            - /url: http://help.cntv.cn/2018/01/22/ARTIRZ81GBdnWp16VY09UpJd180122.shtml
+          - link "京ICP证060535号" [ref=e722] [cursor=pointer]:
+            - /url: http://www.beian.miit.gov.cn/
+          - link "京公网安备 11000002000018号" [ref=e723] [cursor=pointer]:
+            - /url: http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002000018
+            - img [ref=e724]
+            - text: 京公网安备 11000002000018号
+          - text: 京网文[2014]0383-083号
+          - text: 网上传播视听节目许可证号 0102004 新出网证（京）字098号
+          - link "中国互联网视听节目服务自律公约" [ref=e725] [cursor=pointer]:
+            - /url: http://www.cctv.cn/special/zlgy/zlgy/index.shtml
+        - link [ref=e727]:
+          - /url: javascript:void(0);
+          - img [ref=e728]
+        - link [ref=e730]:
+          - /url: javascript:void(0);
+          - img [ref=e731]
+  - link:
+    - /url: javascript:void(0)

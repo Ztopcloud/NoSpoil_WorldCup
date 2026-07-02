@@ -1,4 +1,6 @@
 app.js
+auto-update.js
 data/matches.json
 index.html
+replay-resolver.js
 sw.js

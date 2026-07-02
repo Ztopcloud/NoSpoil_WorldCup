@@ -1,0 +1,1357 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "首页" [ref=e8] [cursor=pointer]:
+          - /url: http://www.cctv.com/
+          - text: 首页
+        - link "时政" [ref=e12] [cursor=pointer]:
+          - /url: javascript:;
+        - link "新闻" [ref=e16] [cursor=pointer]:
+          - /url: https://news.cctv.com/
+        - link "评论" [ref=e19] [cursor=pointer]:
+          - /url: https://opinion.cctv.com/
+        - link "视频" [ref=e22] [cursor=pointer]:
+          - /url: https://v.cctv.com/
+        - link "财经" [ref=e25] [cursor=pointer]:
+          - /url: https://finance.cctv.com/index.shtml
+        - link "世界杯" [ref=e28] [cursor=pointer]:
+          - /url: https://worldcup.cctv.com/2026/index.shtml
+        - link "教育" [ref=e31] [cursor=pointer]:
+          - /url: https://edu.cctv.com/
+        - link "熊猫" [ref=e34] [cursor=pointer]:
+          - /url: https://www.ipanda.com/
+        - link "直播中国" [ref=e38] [cursor=pointer]:
+          - /url: https://livechina.cctv.com/
+        - link "4K" [ref=e41] [cursor=pointer]:
+          - /url: https://tv.cctv.com/4K/index.shtml
+        - link "CCTV.直播" [ref=e44] [cursor=pointer]:
+          - /url: https://tv.cctv.com/index.shtml
+        - link "中" [ref=e48] [cursor=pointer]:
+          - /url: https://www.cctv.com/index.shtml
+        - link "AIGC" [ref=e52] [cursor=pointer]:
+          - /url: https://aigc.cctv.com/index.shtml
+      - link [ref=e57] [cursor=pointer]:
+        - /url: javascript:void(0);
+    - generic:
+      - generic:
+        - list [ref=e62]:
+          - listitem [ref=e63]:
+            - link "人民领袖习近平" [ref=e64] [cursor=pointer]:
+              - /url: https://news.cctv.com/rmlx/index.shtml
+          - listitem [ref=e65]:
+            - link "联播+" [ref=e66] [cursor=pointer]:
+              - /url: https://news.cctv.com/lbj/index.shtml
+          - listitem [ref=e67]:
+            - link "中国领导人" [ref=e68] [cursor=pointer]:
+              - /url: https://leaders.cctv.com/
+          - listitem [ref=e69]:
+            - link "央视快评" [ref=e70] [cursor=pointer]:
+              - /url: https://news.cctv.com/yskp/index.shtml
+          - listitem [ref=e71]:
+            - link "习式妙语" [ref=e72] [cursor=pointer]:
+              - /url: https://v.cctv.com/shizheng/xsmy/index.shtml
+          - listitem [ref=e73]:
+            - link "热解读" [ref=e74] [cursor=pointer]:
+              - /url: https://news.cctv.com/rjd/
+          - listitem [ref=e75]:
+            - link "天天学习" [ref=e76] [cursor=pointer]:
+              - /url: https://news.cctv.com/tiantianxuexi/index.shtml
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "直播" [ref=e80] [cursor=pointer]:
+              - /url: https://tv.cctv.com/live/index.shtml
+          - listitem [ref=e81]:
+            - link "片库" [ref=e82] [cursor=pointer]:
+              - /url: https://tv.cctv.com/yxg/index.shtml
+          - listitem [ref=e83]:
+            - link "栏目大全" [ref=e84] [cursor=pointer]:
+              - /url: https://tv.cctv.com/lm/index.shtml
+          - listitem [ref=e85]:
+            - link "节目单" [ref=e86] [cursor=pointer]:
+              - /url: https://tv.cctv.com/epg/index.shtml
+          - listitem [ref=e87]:
+            - link "听音" [ref=e88] [cursor=pointer]:
+              - /url: https://tv.cctv.com/ty/m/index.shtml
+          - listitem [ref=e89]:
+            - link "微视频" [ref=e90] [cursor=pointer]:
+              - /url: https://tv.cctv.com/wsp/m/index.shtml
+          - listitem [ref=e91]:
+            - link "主持人" [ref=e92] [cursor=pointer]:
+              - /url: https://tv.cctv.com/zhuchiren/index.shtml
+          - listitem [ref=e93]:
+            - link "下载央视影音" [ref=e94] [cursor=pointer]:
+              - /url: https://app.cctv.com/index.shtml#page5
+        - list [ref=e96]:
+          - listitem [ref=e97]:
+            - link "海外频道" [ref=e98] [cursor=pointer]:
+              - /url: https://global.cctv.com/
+          - listitem [ref=e99]:
+            - link "iPanda" [ref=e100] [cursor=pointer]:
+              - /url: https://en.ipanda.com/
+          - listitem [ref=e101]:
+            - link "English" [ref=e102] [cursor=pointer]:
+              - /url: https://english.cctv.com/
+          - listitem [ref=e103]:
+            - link "Монгол" [ref=e104] [cursor=pointer]:
+              - /url: https://mn.cctv.com/
+          - listitem [ref=e105]:
+            - link [ref=e106] [cursor=pointer]:
+              - /url: https://mongol.cctv.com/
+              - img [ref=e107]
+          - listitem [ref=e108]:
+            - link [ref=e109] [cursor=pointer]:
+              - /url: http://www.tibetcnr.com/
+              - img [ref=e110]
+          - listitem [ref=e111]:
+            - link [ref=e112] [cursor=pointer]:
+              - /url: http://www.uycnr.com/
+              - img [ref=e113]
+          - listitem [ref=e114]:
+            - link [ref=e115] [cursor=pointer]:
+              - /url: http://www.kazakcnr.com/
+              - img [ref=e116]
+          - listitem [ref=e117]:
+            - link [ref=e118] [cursor=pointer]:
+              - /url: http://www.krcnr.cn/
+              - img [ref=e119]
+        - list [ref=e122]:
+          - listitem [ref=e123]:
+            - link "地方" [ref=e124] [cursor=pointer]:
+              - /url: https://local.cctv.com/index.shtml
+          - listitem [ref=e125]:
+            - link "乡村振兴" [ref=e126] [cursor=pointer]:
+              - /url: https://xczx.cctv.com/index.shtml
+          - listitem [ref=e127]:
+            - link "生态" [ref=e128] [cursor=pointer]:
+              - /url: https://eco.cctv.com/
+          - listitem [ref=e129]:
+            - link "一带一路" [ref=e130] [cursor=pointer]:
+              - /url: https://ydyl.cctv.com/
+          - listitem [ref=e131]:
+            - link "央博" [ref=e132] [cursor=pointer]:
+              - /url: https://yangbo.cctv.com/
+          - listitem [ref=e133]:
+            - link "文化" [ref=e134] [cursor=pointer]:
+              - /url: https://www.cctv.com/culture/index.shtml
+          - listitem [ref=e135]:
+            - link "旅游" [ref=e136] [cursor=pointer]:
+              - /url: https://culture-travel.cctv.com/
+          - listitem [ref=e137]:
+            - link "科普" [ref=e138] [cursor=pointer]:
+              - /url: https://kepu.cctv.cn/
+          - listitem [ref=e139]:
+            - link "健康" [ref=e140] [cursor=pointer]:
+              - /url: https://jiankang.cctv.com/
+          - listitem [ref=e141]:
+            - link "乐龄" [ref=e142] [cursor=pointer]:
+              - /url: https://laoling.cctv.com/index.shtml
+          - listitem [ref=e143]:
+            - link "阅读" [ref=e144] [cursor=pointer]:
+              - /url: https://book.cctv.com/
+          - listitem [ref=e145]:
+            - link "艺术" [ref=e146] [cursor=pointer]:
+              - /url: https://arts.cctv.com/
+          - listitem [ref=e147]:
+            - link "数智" [ref=e148] [cursor=pointer]:
+              - /url: https://5gai.cctv.com/
+          - listitem [ref=e149]:
+            - link "5G" [ref=e150] [cursor=pointer]:
+              - /url: https://5g.cctv.com/
+          - listitem [ref=e151]:
+            - link "产业+" [ref=e152] [cursor=pointer]:
+              - /url: https://business.cctv.com/
+          - listitem [ref=e153]:
+            - link "央央好物" [ref=e154] [cursor=pointer]:
+              - /url: https://www.cctvmall.com/
+        - generic [ref=e158]:
+          - generic [ref=e159]:
+            - table [ref=e160]:
+              - rowgroup [ref=e161]:
+                - row [ref=e162]:
+                  - cell [ref=e163]
+                - row "账号" [ref=e164]:
+                  - cell "账号" [ref=e165]:
+                    - textbox [ref=e166]: 账号
+                - row [ref=e167]:
+                  - cell [ref=e168]
+                - row "密码" [ref=e169]:
+                  - cell "密码" [ref=e170]:
+                    - textbox [ref=e171]: 密码
+                - row [ref=e172]:
+                  - cell [ref=e173]
+            - table [ref=e174]:
+              - rowgroup [ref=e175]:
+                - row "下次自动登录 忘记密码" [ref=e176]:
+                  - cell [ref=e177]:
+                    - checkbox [ref=e178]
+                  - cell "下次自动登录" [ref=e179]
+                  - cell "忘记密码" [ref=e180]:
+                    - link "忘记密码" [ref=e181] [cursor=pointer]:
+                      - /url: http://reg.cntv.cn/forgetPassword/findPassword.jsp
+                - row [ref=e182]:
+                  - cell [ref=e183]
+            - table [ref=e184]:
+              - rowgroup [ref=e185]:
+                - row "登录 立即注册" [ref=e186]:
+                  - cell "登录" [ref=e187]:
+                    - link "登录" [ref=e188] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=e189]
+                  - cell "立即注册" [ref=e190]:
+                    - link "立即注册" [ref=e191] [cursor=pointer]:
+                      - /url: http://reg.cctv.com/regist.html?from=http://www.cctv.com
+                - row [ref=e192]:
+                  - cell [ref=e193]
+          - generic [ref=e194]:
+            - generic [ref=e195]: 使用合作网站账号登录
+            - generic [ref=e196]:
+              - link "微信":
+                - /url: javascript:;
+                - img "微信" [ref=e197] [cursor=pointer]
+              - link "QQ":
+                - /url: javascript:;
+                - img "QQ" [ref=e198] [cursor=pointer]
+              - link "新浪网":
+                - /url: javascript:;
+                - img "新浪网" [ref=e199] [cursor=pointer]
+              - link "支付宝":
+                - /url: javascript:;
+                - img "支付宝" [ref=e200] [cursor=pointer]
+        - generic:
+          - generic:
+            - img [ref=e203]
+            - generic [ref=e206]:
+              - generic [ref=e208]:
+                - link "总台春晚" [ref=e209] [cursor=pointer]:
+                  - /url: https://chunwan.cctv.com/
+                - link "网络春晚" [ref=e210] [cursor=pointer]:
+                  - /url: https://wlchunwan.cctv.com
+                - link "共产党员网" [ref=e211] [cursor=pointer]:
+                  - /url: https://www.12371.cn/
+                - link "秧纪录" [ref=e212] [cursor=pointer]:
+                  - /url: http://jishi.cntv.cn/special/zgjlyx/index.shtml
+                - link "纪录片网" [ref=e213] [cursor=pointer]:
+                  - /url: http://www.docuchina.cn/
+                - link "国家大剧院" [ref=e214] [cursor=pointer]:
+                  - /url: http://ncpa-classic.cntv.cn/index.shtml
+                - link "大型活动" [ref=e215] [cursor=pointer]:
+                  - /url: https://gongyi.cctv.com/events/
+              - generic [ref=e217]:
+                - generic [ref=e218]:
+                  - link "新闻" [ref=e219] [cursor=pointer]:
+                    - /url: https://news.cctv.com/
+                  - link "国内" [ref=e220] [cursor=pointer]:
+                    - /url: https://news.cctv.com/china/
+                  - link "国际" [ref=e221] [cursor=pointer]:
+                    - /url: https://news.cctv.com/world/
+                  - link "评论" [ref=e222] [cursor=pointer]:
+                    - /url: https://opinion.cctv.com/
+                  - link "经济" [ref=e223] [cursor=pointer]:
+                    - /url: https://jingji.cctv.com/
+                  - link "军事" [ref=e224] [cursor=pointer]:
+                    - /url: https://military.cctv.com/index.shtml
+                  - link "科技" [ref=e225] [cursor=pointer]:
+                    - /url: https://news.cctv.com/tech/index.shtml
+                  - link "法治" [ref=e226] [cursor=pointer]:
+                    - /url: https://news.cctv.com/law/
+                  - link "文娱" [ref=e227] [cursor=pointer]:
+                    - /url: https://news.cctv.com/ent/
+                  - link "人物" [ref=e228] [cursor=pointer]:
+                    - /url: https://people.cctv.com/
+                  - link "公益" [ref=e229] [cursor=pointer]:
+                    - /url: https://gongyi.cctv.com/
+                  - link "图片" [ref=e230] [cursor=pointer]:
+                    - /url: https://photo.cctv.com/
+                - generic [ref=e231]:
+                  - link "人民领袖习近平" [ref=e232] [cursor=pointer]:
+                    - /url: https://news.cctv.com/rmlx/index.shtml
+                  - link "联播+" [ref=e233] [cursor=pointer]:
+                    - /url: https://news.cctv.com/lbj/index.shtml
+                  - link "热解读" [ref=e234] [cursor=pointer]:
+                    - /url: https://news.cctv.com/rjd/
+                  - link "天天学习" [ref=e235] [cursor=pointer]:
+                    - /url: https://news.cctv.com/tiantianxuexi/index.shtml
+                  - link "习式妙语" [ref=e236] [cursor=pointer]:
+                    - /url: https://v.cctv.com/shizheng/xsmy/index.shtml
+                  - link "央视快评" [ref=e237] [cursor=pointer]:
+                    - /url: https://news.cctv.com/yskp/index.shtml
+                  - link "央视网评" [ref=e238] [cursor=pointer]:
+                    - /url: https://opinion.cctv.com/yswp/index.shtml
+                  - link "光华锐评" [ref=e239] [cursor=pointer]:
+                    - /url: https://ghrp.cctv.com/index.shtml
+                  - link "锋面" [ref=e240] [cursor=pointer]:
+                    - /url: https://news.cctv.com/fengmian/index.shtml
+              - generic [ref=e241]:
+                - generic [ref=e242]:
+                  - link "视频" [ref=e243] [cursor=pointer]:
+                    - /url: https://v.cctv.com/
+                  - link "小央视频" [ref=e244] [cursor=pointer]:
+                    - /url: https://v.cctv.com/xysp/index.shtml
+                  - link "小央直播" [ref=e245] [cursor=pointer]:
+                    - /url: https://v.cctv.com/zhangbo/index.shtml
+                  - link "直播中国" [ref=e246] [cursor=pointer]:
+                    - /url: https://livechina.cctv.com/
+                  - link "熊猫频道" [ref=e247] [cursor=pointer]:
+                    - /url: https://www.ipanda.com/
+                  - link "VR/AR" [ref=e248] [cursor=pointer]:
+                    - /url: https://v.cctv.com/VR/index.shtml
+                  - link "4K专区" [ref=e249] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/4K/index.shtml
+                  - link "全景新闻" [ref=e250] [cursor=pointer]:
+                    - /url: http://news.cctv.com/yuanchuang/VR/index.shtml
+                - generic [ref=e251]:
+                  - link "现场" [ref=e252] [cursor=pointer]:
+                    - /url: https://v.cctv.com/zixun/xc/index.shtml
+                  - link "前线" [ref=e253] [cursor=pointer]:
+                    - /url: https://v.cctv.com/zixun/qx/index.shtml
+                  - link "比划" [ref=e254] [cursor=pointer]:
+                    - /url: https://v.cctv.com/reping/bh/index.shtml
+                  - link "快看" [ref=e255] [cursor=pointer]:
+                    - /url: https://news.cctv.com/kuaikan/index.shtml
+                  - link "蓝海中国" [ref=e256] [cursor=pointer]:
+                    - /url: https://v.cctv.com/jishi/lhzglhzg/index.shtml
+                  - link "新兵请入列" [ref=e257] [cursor=pointer]:
+                    - /url: https://v.cctv.com/jishi/jsxbqrl/index.shtml
+                  - link "人生第一次" [ref=e258] [cursor=pointer]:
+                    - /url: https://v.cctv.com/jishi/rsdyc/index.shtml
+                  - link "人生第二次" [ref=e259] [cursor=pointer]:
+                    - /url: https://v.cctv.com/jishi/jsrsdec/
+              - generic [ref=e260]:
+                - generic [ref=e261]:
+                  - link "体育" [ref=e262] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/
+                  - link "直播" [ref=e263] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/live/cctv5/
+                  - link "竞猜" [ref=e264] [cursor=pointer]:
+                    - /url: https://cbs.sports.cctv.com/
+                  - link "2026年世界杯" [ref=e265] [cursor=pointer]:
+                    - /url: https://worldcup.cctv.com/2026/index.shtml
+                  - link "2026年冬奥会" [ref=e266] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/Milano2026/
+                  - link "CBA" [ref=e267] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/cba/
+                  - link "NBA" [ref=e268] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/nba/
+                  - link "中超" [ref=e269] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/csl/
+                  - link "国足" [ref=e270] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/football/china/
+                  - link "国际足球" [ref=e271] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/football/international/index.shtml
+                  - link "网球" [ref=e272] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/tennis/
+                  - link "综合体育" [ref=e273] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/zong/index.shtml
+                  - link "亚冬会" [ref=e274] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/harbin2025/index.shtml
+                - generic [ref=e275]:
+                  - link "VIP会员" [ref=e276] [cursor=pointer]:
+                    - /url: https://vip.sports.cctv.com/
+                  - link "CCTV奥林匹克频道" [ref=e277] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/olympicportal/index.shtml
+                  - link "生活体育大会" [ref=e278] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/special/clsc/index.shtml
+                  - link "体育江湖" [ref=e279] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/special/Jianghu/index.shtml
+                  - link "文化体育" [ref=e280] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/wlty/index.shtml
+                  - link "冰雪道路" [ref=e281] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/special/footprintsinthesnow/index.shtml
+                  - link "足球道路" [ref=e282] [cursor=pointer]:
+                    - /url: http://worldcup.cctv.com/2018/lm/footballroadmap/
+              - generic [ref=e283]:
+                - generic [ref=e284]:
+                  - link "财经" [ref=e285] [cursor=pointer]:
+                    - /url: https://finance.cctv.com/index.shtml
+                  - link "教育" [ref=e286] [cursor=pointer]:
+                    - /url: https://edu.cctv.com/
+                  - link "乡村振兴" [ref=e287] [cursor=pointer]:
+                    - /url: https://xczx.cctv.com/index.shtml
+                  - link "生态环境" [ref=e288] [cursor=pointer]:
+                    - /url: https://eco.cctv.com/
+                  - link "一带一路" [ref=e289] [cursor=pointer]:
+                    - /url: http://ydyl.cctv.com/
+                  - link "央博" [ref=e290] [cursor=pointer]:
+                    - /url: https://yangbo.cctv.com/
+                  - link "非遗" [ref=e291] [cursor=pointer]:
+                    - /url: https://china-feiyi.cctv.cn
+                  - link "文化" [ref=e292] [cursor=pointer]:
+                    - /url: https://www.cctv.com/culture/index.shtml
+                  - link "旅游" [ref=e293] [cursor=pointer]:
+                    - /url: https://culture-travel.cctv.com/
+                  - link "科普" [ref=e294] [cursor=pointer]:
+                    - /url: https://kepu.cctv.cn/
+                  - link "健康" [ref=e295] [cursor=pointer]:
+                    - /url: https://jiankang.cctv.com/
+                  - link "乐龄" [ref=e296] [cursor=pointer]:
+                    - /url: https://laoling.cctv.com/index.shtml
+                  - link "阅读" [ref=e297] [cursor=pointer]:
+                    - /url: https://book.cctv.com/
+                  - link "艺术" [ref=e298] [cursor=pointer]:
+                    - /url: https://arts.cctv.com/index.shtml
+                  - link "汽车" [ref=e299] [cursor=pointer]:
+                    - /url: https://auto.cctv.com/
+                  - link "数智" [ref=e300] [cursor=pointer]:
+                    - /url: https://5gai.cctv.com/
+                  - link "5G" [ref=e301] [cursor=pointer]:
+                    - /url: https://5g.cctv.com/
+                  - link "产业+" [ref=e302] [cursor=pointer]:
+                    - /url: https://business.cctv.com/
+                - generic [ref=e303]:
+                  - link "大国智造" [ref=e304] [cursor=pointer]:
+                    - /url: https://jingji.cctv.com/special/dgzz/home/index.shtml
+                  - link "大国展会" [ref=e305] [cursor=pointer]:
+                    - /url: https://v.cctv.com/live_zb/LIVE3386.html?pageid=3386&tag=MicroLiveType
+                  - link "大国保险" [ref=e306] [cursor=pointer]:
+                    - /url: https://finance.cctv.com/special/daguobaoxian/home/index.shtml
+                  - link "云顶对话" [ref=e307] [cursor=pointer]:
+                    - /url: https://finance.cctv.com/special/yunding/index.shtml
+                  - link "云起" [ref=e308] [cursor=pointer]:
+                    - /url: https://jingji.cctv.com/special/yunqi/index.shtml
+                  - link "超级工厂" [ref=e309] [cursor=pointer]:
+                    - /url: https://business.cctv.com/special/cjgc/index.html
+                  - link "智敬中国" [ref=e310] [cursor=pointer]:
+                    - /url: https://5gai.cctv.com/ZJZG/index.shtml
+                  - link "全民健康" [ref=e311] [cursor=pointer]:
+                    - /url: https://edu.cctv.com/2022/08/24/VIDA9GgWzG2ywQ4nu0h078fv220824.shtml
+                  - link "颜选攻略" [ref=e312] [cursor=pointer]:
+                    - /url: https://edu.cctv.com/2021/06/01/VIDAEeKQjpGs6E8CrdT0uPf9210601.shtml
+                  - link "海洋" [ref=e313] [cursor=pointer]:
+                    - /url: https://ocean.cctv.com/
+                  - link "时尚" [ref=e314] [cursor=pointer]:
+                    - /url: https://style.cctv.com/
+                  - link "天气" [ref=e315] [cursor=pointer]:
+                    - /url: http://weather.cctv.com/index.shtml
+                  - link "才艺" [ref=e316] [cursor=pointer]:
+                    - /url: https://caiyi.cctv.com/cy/1/index.shtml
+                  - link "网展" [ref=e317] [cursor=pointer]:
+                    - /url: https://wangzhan.cctv.com/
+                  - link "央央好物" [ref=e318] [cursor=pointer]:
+                    - /url: https://www.cctvmall.com/
+              - generic [ref=e320]:
+                - link [ref=e321] [cursor=pointer]:
+                  - /url: https://local.cctv.com/index.shtml
+                  - img [ref=e322]
+                - link [ref=e323] [cursor=pointer]:
+                  - /url: https://sh.cctv.com/
+                  - img [ref=e324]
+                - link [ref=e325] [cursor=pointer]:
+                  - /url: http://dbzx.cctv.com/index.shtml
+                  - img [ref=e326]
+              - generic [ref=e328]:
+                - generic [ref=e329]:
+                  - link "CCTV.节目官网" [ref=e330] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/
+                  - link "直播" [ref=e331] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/live/index.shtml
+                  - link "节目单" [ref=e332] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/epg/index.shtml
+                  - link "栏目" [ref=e333] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/
+                  - link "片库" [ref=e334] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/yxg/
+                  - link "收视榜" [ref=e335] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/top/
+                  - link "总台企业白名单" [ref=e336] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/special/qybmd/index.shtml
+                - generic [ref=e337]:
+                  - list [ref=e338]:
+                    - listitem [ref=e339]:
+                      - link [ref=e340] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv1/
+                        - img [ref=e341]
+                    - listitem [ref=e342]:
+                      - link [ref=e343] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv2/
+                        - img [ref=e344]
+                    - listitem [ref=e345]:
+                      - link [ref=e346] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv3/
+                        - img [ref=e347]
+                    - listitem [ref=e348]:
+                      - link [ref=e349] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv4asia/
+                        - img [ref=e350]
+                    - listitem [ref=e351]:
+                      - link [ref=e352] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv5/
+                        - img [ref=e353]
+                    - listitem [ref=e354]:
+                      - link [ref=e355] [cursor=pointer]:
+                        - /url: http://tv.cctv.com/cctv5plus/
+                        - img [ref=e356]
+                    - listitem [ref=e357]:
+                      - link [ref=e358] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv6/
+                        - img [ref=e359]
+                    - listitem [ref=e360]:
+                      - link [ref=e361] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv7/
+                        - img [ref=e362]
+                    - listitem [ref=e363]:
+                      - link [ref=e364] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv8/
+                        - img [ref=e365]
+                    - listitem [ref=e366]:
+                      - link [ref=e367] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv9/
+                        - img [ref=e368]
+                    - listitem [ref=e369]:
+                      - link [ref=e370] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv10/
+                        - img [ref=e371]
+                    - listitem [ref=e372]:
+                      - link [ref=e373] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv11/
+                        - img [ref=e374]
+                    - listitem [ref=e375]:
+                      - link [ref=e376] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv12/
+                        - img [ref=e377]
+                    - listitem [ref=e378]:
+                      - link [ref=e379] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv13/
+                        - img [ref=e380]
+                    - listitem [ref=e381]:
+                      - link [ref=e382] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv14/
+                        - img [ref=e383]
+                    - listitem [ref=e384]:
+                      - link [ref=e385] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv15/
+                        - img [ref=e386]
+                    - listitem [ref=e387]:
+                      - link [ref=e388] [cursor=pointer]:
+                        - /url: http://tv.cctv.com/cctv16/
+                        - img [ref=e389]
+                    - listitem [ref=e390]:
+                      - link [ref=e391] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv17/
+                        - img [ref=e392]
+                  - list [ref=e393]:
+                    - listitem [ref=e394]:
+                      - link [ref=e395] [cursor=pointer]:
+                        - /url: https://news.cctv.com/special/zhgqsh/tgdzh/index.shtml
+                        - img [ref=e396]
+                    - listitem [ref=e397]:
+                      - link [ref=e398] [cursor=pointer]:
+                        - /url: https://tvtech.cctv.com/
+                        - img [ref=e399]
+  - generic [ref=e405]:
+    - list [ref=e408]:
+      - listitem [ref=e409] [cursor=pointer]:
+        - link "世界杯首页" [ref=e410]:
+          - /url: https://worldcup.cctv.com/2026/
+      - listitem [ref=e411] [cursor=pointer]:
+        - link "直播/赛程" [ref=e412]:
+          - /url: https://worldcup.cctv.com/2026/schedule/index.shtml
+      - listitem [ref=e414] [cursor=pointer]:
+        - link "VIP会员" [ref=e415]:
+          - /url: https://vip.sports.cctv.com/
+      - listitem [ref=e416] [cursor=pointer]: 积分榜/射手榜
+      - listitem [ref=e418] [cursor=pointer]:
+        - link "畅享世界杯" [ref=e419]:
+          - /url: https://worldcup.cctv.com/2026/cx/index.shtml
+      - listitem [ref=e421] [cursor=pointer]: 我爱世界杯
+      - listitem [ref=e423] [cursor=pointer]:
+        - link "奥林匹克频道" [ref=e424]:
+          - /url: https://www.olympicchannelchina.cn/index.shtml
+      - listitem [ref=e425] [cursor=pointer]:
+        - link "体育" [ref=e426]:
+          - /url: https://sports.cctv.com/
+    - iframe [ref=e433]:
+      - generic [ref=f1e3]:
+        - generic [ref=f1e5]:
+          - generic [ref=f1e6] [cursor=pointer]:
+            - generic [ref=f1e7]: ◆
+            - text: 时间赛程
+          - generic [ref=f1e8] [cursor=pointer]:
+            - generic [ref=f1e9]: ◆
+            - text: 球队赛程
+          - generic [ref=f1e10] [cursor=pointer]:
+            - generic [ref=f1e11]: ◆
+            - text: 小组赛赛程
+          - generic [ref=f1e12] [cursor=pointer]:
+            - generic [ref=f1e13]: ◆
+            - text: 淘汰赛赛程
+        - generic [ref=f1e18]:
+          - generic [ref=f1e19]:
+            - generic [ref=f1e20]: FINAL
+            - link "1/16决赛 06月30日 04:30 直播 视频直播 德国 德国 VS 巴拉圭 巴拉圭" [ref=f1e533] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000540
+              - generic [ref=f1e534]:
+                - generic [ref=f1e535]:
+                  - generic [ref=f1e536]: 1/16决赛
+                  - generic [ref=f1e537]: 06月30日 04:30
+                - generic [ref=f1e539]:
+                  - img "直播" [ref=f1e540]
+                  - generic [ref=f1e541]: 视频直播
+              - generic [ref=f1e542]:
+                - generic [ref=f1e543]:
+                  - img "德国" [ref=f1e544]
+                  - generic [ref=f1e545]: 德国
+                - generic [ref=f1e547]: VS
+                - generic [ref=f1e548]:
+                  - img "巴拉圭" [ref=f1e549]
+                  - generic [ref=f1e550]: 巴拉圭
+            - link "1/16决赛 07月01日 05:00 直播 视频直播 法国 法国 VS 瑞典 瑞典" [ref=f1e551] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000541
+              - generic [ref=f1e552]:
+                - generic [ref=f1e553]:
+                  - generic [ref=f1e554]: 1/16决赛
+                  - generic [ref=f1e555]: 07月01日 05:00
+                - generic [ref=f1e557]:
+                  - img "直播" [ref=f1e558]
+                  - generic [ref=f1e559]: 视频直播
+              - generic [ref=f1e560]:
+                - generic [ref=f1e561]:
+                  - img "法国" [ref=f1e562]
+                  - generic [ref=f1e563]: 法国
+                - generic [ref=f1e565]: VS
+                - generic [ref=f1e566]:
+                  - img "瑞典" [ref=f1e567]
+                  - generic [ref=f1e568]: 瑞典
+            - link "1/16决赛 06月29日 03:00 直播 视频直播 南非 南非 VS 加拿大 加拿大" [ref=f1e569] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000242
+              - generic [ref=f1e570]:
+                - generic [ref=f1e571]:
+                  - generic [ref=f1e572]: 1/16决赛
+                  - generic [ref=f1e573]: 06月29日 03:00
+                - generic [ref=f1e575]:
+                  - img "直播" [ref=f1e576]
+                  - generic [ref=f1e577]: 视频直播
+              - generic [ref=f1e578]:
+                - generic [ref=f1e579]:
+                  - img "南非" [ref=f1e580]
+                  - generic [ref=f1e581]: 南非
+                - generic [ref=f1e583]: VS
+                - generic [ref=f1e584]:
+                  - img "加拿大" [ref=f1e585]
+                  - generic [ref=f1e586]: 加拿大
+            - link "1/16决赛 06月30日 09:00 直播 视频直播 荷兰 荷兰 VS 摩洛哥 摩洛哥" [ref=f1e587] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000277
+              - generic [ref=f1e588]:
+                - generic [ref=f1e589]:
+                  - generic [ref=f1e590]: 1/16决赛
+                  - generic [ref=f1e591]: 06月30日 09:00
+                - generic [ref=f1e593]:
+                  - img "直播" [ref=f1e594]
+                  - generic [ref=f1e595]: 视频直播
+              - generic [ref=f1e596]:
+                - generic [ref=f1e597]:
+                  - img "荷兰" [ref=f1e598]
+                  - generic [ref=f1e599]: 荷兰
+                - generic [ref=f1e601]: VS
+                - generic [ref=f1e602]:
+                  - img "摩洛哥" [ref=f1e603]
+                  - generic [ref=f1e604]: 摩洛哥
+            - link "1/16决赛 07月03日 07:00 直播 视频直播 葡萄牙 葡萄牙 VS 克罗地亚 克罗地亚" [ref=f1e605] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000711
+              - generic [ref=f1e606]:
+                - generic [ref=f1e607]:
+                  - generic [ref=f1e608]: 1/16决赛
+                  - generic [ref=f1e609]: 07月03日 07:00
+                - generic [ref=f1e611]:
+                  - img "直播" [ref=f1e612]
+                  - generic [ref=f1e613]: 视频直播
+              - generic [ref=f1e614]:
+                - generic [ref=f1e615]:
+                  - img "葡萄牙" [ref=f1e616]
+                  - generic [ref=f1e617]: 葡萄牙
+                - generic [ref=f1e619]: VS
+                - generic [ref=f1e620]:
+                  - img "克罗地亚" [ref=f1e621]
+                  - generic [ref=f1e622]: 克罗地亚
+            - link "1/16决赛 07月03日 03:00 直播 视频直播 西班牙 西班牙 VS 奥地利 奥地利" [ref=f1e623] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000718
+              - generic [ref=f1e624]:
+                - generic [ref=f1e625]:
+                  - generic [ref=f1e626]: 1/16决赛
+                  - generic [ref=f1e627]: 07月03日 03:00
+                - generic [ref=f1e629]:
+                  - img "直播" [ref=f1e630]
+                  - generic [ref=f1e631]: 视频直播
+              - generic [ref=f1e632]:
+                - generic [ref=f1e633]:
+                  - img "西班牙" [ref=f1e634]
+                  - generic [ref=f1e635]: 西班牙
+                - generic [ref=f1e637]: VS
+                - generic [ref=f1e638]:
+                  - img "奥地利" [ref=f1e639]
+                  - generic [ref=f1e640]: 奥地利
+            - link "1/16决赛 07月02日 08:00 直播 视频直播 美国 美国 VS 波黑 波黑" [ref=f1e641] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000278
+              - generic [ref=f1e642]:
+                - generic [ref=f1e643]:
+                  - generic [ref=f1e644]: 1/16决赛
+                  - generic [ref=f1e645]: 07月02日 08:00
+                - generic [ref=f1e647]:
+                  - img "直播" [ref=f1e648]
+                  - generic [ref=f1e649]: 视频直播
+              - generic [ref=f1e650]:
+                - generic [ref=f1e651]:
+                  - img "美国" [ref=f1e652]
+                  - generic [ref=f1e653]: 美国
+                - generic [ref=f1e655]: VS
+                - generic [ref=f1e656]:
+                  - img "波黑" [ref=f1e657]
+                  - generic [ref=f1e658]: 波黑
+            - link "1/16决赛 07月02日 04:00 直播 视频直播 比利时 比利时 VS 塞内加尔 塞内加尔" [ref=f1e659] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000710
+              - generic [ref=f1e660]:
+                - generic [ref=f1e661]:
+                  - generic [ref=f1e662]: 1/16决赛
+                  - generic [ref=f1e663]: 07月02日 04:00
+                - generic [ref=f1e665]:
+                  - img "直播" [ref=f1e666]
+                  - generic [ref=f1e667]: 视频直播
+              - generic [ref=f1e668]:
+                - generic [ref=f1e669]:
+                  - img "比利时" [ref=f1e670]
+                  - generic [ref=f1e671]: 比利时
+                - generic [ref=f1e673]: VS
+                - generic [ref=f1e674]:
+                  - img "塞内加尔" [ref=f1e675]
+                  - generic [ref=f1e676]: 塞内加尔
+            - generic [ref=f1e677]:
+              - generic [ref=f1e678]:
+                - generic [ref=f1e679]:
+                  - generic [ref=f1e680]: 1/8决赛
+                  - generic [ref=f1e681]: 07月05日 05:00
+                - generic [ref=f1e683]: M89
+              - generic [ref=f1e684]:
+                - generic [ref=f1e685]:
+                  - img "W74" [ref=f1e686]
+                  - generic [ref=f1e687]: W74
+                - generic [ref=f1e689]: VS
+                - generic [ref=f1e690]:
+                  - img "W77" [ref=f1e691]
+                  - generic [ref=f1e692]: W77
+            - generic [ref=f1e693]:
+              - generic [ref=f1e694]:
+                - generic [ref=f1e695]:
+                  - generic [ref=f1e696]: 1/8决赛
+                  - generic [ref=f1e697]: 07月05日 01:00
+                - generic [ref=f1e699]: M90
+              - generic [ref=f1e700]:
+                - generic [ref=f1e701]:
+                  - img "W73" [ref=f1e702]
+                  - generic [ref=f1e703]: W73
+                - generic [ref=f1e705]: VS
+                - generic [ref=f1e706]:
+                  - img "W75" [ref=f1e707]
+                  - generic [ref=f1e708]: W75
+            - generic [ref=f1e709]:
+              - generic [ref=f1e710]:
+                - generic [ref=f1e711]:
+                  - generic [ref=f1e712]: 1/8决赛
+                  - generic [ref=f1e713]: 07月07日 03:00
+                - generic [ref=f1e715]: M93
+              - generic [ref=f1e716]:
+                - generic [ref=f1e717]:
+                  - img "W83" [ref=f1e718]
+                  - generic [ref=f1e719]: W83
+                - generic [ref=f1e721]: VS
+                - generic [ref=f1e722]:
+                  - img "W84" [ref=f1e723]
+                  - generic [ref=f1e724]: W84
+            - generic [ref=f1e725]:
+              - generic [ref=f1e726]:
+                - generic [ref=f1e727]:
+                  - generic [ref=f1e728]: 1/8决赛
+                  - generic [ref=f1e729]: 07月07日 08:00
+                - generic [ref=f1e731]: M94
+              - generic [ref=f1e732]:
+                - generic [ref=f1e733]:
+                  - img "W81" [ref=f1e734]
+                  - generic [ref=f1e735]: W81
+                - generic [ref=f1e737]: VS
+                - generic [ref=f1e738]:
+                  - img "W82" [ref=f1e739]
+                  - generic [ref=f1e740]: W82
+            - generic [ref=f1e741]:
+              - generic [ref=f1e742]:
+                - generic [ref=f1e743]:
+                  - generic [ref=f1e744]: 1/4决赛
+                  - generic [ref=f1e745]: 07月10日 04:00
+                - generic [ref=f1e747]: M97
+              - generic [ref=f1e748]:
+                - generic [ref=f1e749]:
+                  - img "W89" [ref=f1e750]
+                  - generic [ref=f1e751]: W89
+                - generic [ref=f1e753]: VS
+                - generic [ref=f1e754]:
+                  - img "W90" [ref=f1e755]
+                  - generic [ref=f1e756]: W90
+            - generic [ref=f1e757]:
+              - generic [ref=f1e758]:
+                - generic [ref=f1e759]:
+                  - generic [ref=f1e760]: 1/4决赛
+                  - generic [ref=f1e761]: 07月11日 03:00
+                - generic [ref=f1e763]: M98
+              - generic [ref=f1e764]:
+                - generic [ref=f1e765]:
+                  - img "W93" [ref=f1e766]
+                  - generic [ref=f1e767]: W93
+                - generic [ref=f1e769]: VS
+                - generic [ref=f1e770]:
+                  - img "W94" [ref=f1e771]
+                  - generic [ref=f1e772]: W94
+            - generic [ref=f1e773]:
+              - generic [ref=f1e774]:
+                - generic [ref=f1e775]:
+                  - generic [ref=f1e776]: 半决赛
+                  - generic [ref=f1e777]: 07月15日 03:00
+                - generic [ref=f1e779]: M101
+              - generic [ref=f1e780]:
+                - generic [ref=f1e781]:
+                  - img "W97" [ref=f1e782]
+                  - generic [ref=f1e783]: W97
+                - generic [ref=f1e785]: VS
+                - generic [ref=f1e786]:
+                  - img "W98" [ref=f1e787]
+                  - generic [ref=f1e788]: W98
+            - generic [ref=f1e789]:
+              - generic [ref=f1e790]:
+                - generic [ref=f1e791]:
+                  - generic [ref=f1e792]: 半决赛
+                  - generic [ref=f1e793]: 07月16日 03:00
+                - generic [ref=f1e795]: M102
+              - generic [ref=f1e796]:
+                - generic [ref=f1e797]:
+                  - img "W99" [ref=f1e798]
+                  - generic [ref=f1e799]: W99
+                - generic [ref=f1e801]: VS
+                - generic [ref=f1e802]:
+                  - img "W100" [ref=f1e803]
+                  - generic [ref=f1e804]: W100
+            - generic [ref=f1e805]:
+              - generic [ref=f1e806]:
+                - generic [ref=f1e807]:
+                  - generic [ref=f1e808]: 1/4决赛
+                  - generic [ref=f1e809]: 07月12日 05:00
+                - generic [ref=f1e811]: M99
+              - generic [ref=f1e812]:
+                - generic [ref=f1e813]:
+                  - img "W91" [ref=f1e814]
+                  - generic [ref=f1e815]: W91
+                - generic [ref=f1e817]: VS
+                - generic [ref=f1e818]:
+                  - img "W92" [ref=f1e819]
+                  - generic [ref=f1e820]: W92
+            - generic [ref=f1e821]:
+              - generic [ref=f1e822]:
+                - generic [ref=f1e823]:
+                  - generic [ref=f1e824]: 1/4决赛
+                  - generic [ref=f1e825]: 07月12日 09:00
+                - generic [ref=f1e827]: M100
+              - generic [ref=f1e828]:
+                - generic [ref=f1e829]:
+                  - img "W95" [ref=f1e830]
+                  - generic [ref=f1e831]: W95
+                - generic [ref=f1e833]: VS
+                - generic [ref=f1e834]:
+                  - img "W96" [ref=f1e835]
+                  - generic [ref=f1e836]: W96
+            - generic [ref=f1e837]:
+              - generic [ref=f1e838]:
+                - generic [ref=f1e839]:
+                  - generic [ref=f1e840]: 1/8决赛
+                  - generic [ref=f1e841]: 07月06日 04:00
+                - generic [ref=f1e843]: M91
+              - generic [ref=f1e844]:
+                - generic [ref=f1e845]:
+                  - img "W76" [ref=f1e846]
+                  - generic [ref=f1e847]: W76
+                - generic [ref=f1e849]: VS
+                - generic [ref=f1e850]:
+                  - img "W78" [ref=f1e851]
+                  - generic [ref=f1e852]: W78
+            - generic [ref=f1e853]:
+              - generic [ref=f1e854]:
+                - generic [ref=f1e855]:
+                  - generic [ref=f1e856]: 1/8决赛
+                  - generic [ref=f1e857]: 07月06日 08:00
+                - generic [ref=f1e859]: M92
+              - generic [ref=f1e860]:
+                - generic [ref=f1e861]:
+                  - img "W79" [ref=f1e862]
+                  - generic [ref=f1e863]: W79
+                - generic [ref=f1e865]: VS
+                - generic [ref=f1e866]:
+                  - img "W80" [ref=f1e867]
+                  - generic [ref=f1e868]: W80
+            - generic [ref=f1e869]:
+              - generic [ref=f1e870]:
+                - generic [ref=f1e871]:
+                  - generic [ref=f1e872]: 1/8决赛
+                  - generic [ref=f1e873]: 07月08日 00:00
+                - generic [ref=f1e875]: M95
+              - generic [ref=f1e876]:
+                - generic [ref=f1e877]:
+                  - img "W86" [ref=f1e878]
+                  - generic [ref=f1e879]: W86
+                - generic [ref=f1e881]: VS
+                - generic [ref=f1e882]:
+                  - img "W88" [ref=f1e883]
+                  - generic [ref=f1e884]: W88
+            - generic [ref=f1e885]:
+              - generic [ref=f1e886]:
+                - generic [ref=f1e887]:
+                  - generic [ref=f1e888]: 1/8决赛
+                  - generic [ref=f1e889]: 07月08日 04:00
+                - generic [ref=f1e891]: M96
+              - generic [ref=f1e892]:
+                - generic [ref=f1e893]:
+                  - img "W85" [ref=f1e894]
+                  - generic [ref=f1e895]: W85
+                - generic [ref=f1e897]: VS
+                - generic [ref=f1e898]:
+                  - img "W87" [ref=f1e899]
+                  - generic [ref=f1e900]: W87
+            - link "1/16决赛 06月30日 01:00 直播 视频直播 巴西 巴西 VS 日本 日本" [ref=f1e901] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000276
+              - generic [ref=f1e902]:
+                - generic [ref=f1e903]:
+                  - generic [ref=f1e904]: 1/16决赛
+                  - generic [ref=f1e905]: 06月30日 01:00
+                - generic [ref=f1e907]:
+                  - img "直播" [ref=f1e908]
+                  - generic [ref=f1e909]: 视频直播
+              - generic [ref=f1e910]:
+                - generic [ref=f1e911]:
+                  - img "巴西" [ref=f1e912]
+                  - generic [ref=f1e913]: 巴西
+                - generic [ref=f1e915]: VS
+                - generic [ref=f1e916]:
+                  - img "日本" [ref=f1e917]
+                  - generic [ref=f1e918]: 日本
+            - link "1/16决赛 07月01日 01:00 直播 视频直播 科特迪瓦 科特迪瓦 VS 挪威 挪威" [ref=f1e919] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000522
+              - generic [ref=f1e920]:
+                - generic [ref=f1e921]:
+                  - generic [ref=f1e922]: 1/16决赛
+                  - generic [ref=f1e923]: 07月01日 01:00
+                - generic [ref=f1e925]:
+                  - img "直播" [ref=f1e926]
+                  - generic [ref=f1e927]: 视频直播
+              - generic [ref=f1e928]:
+                - generic [ref=f1e929]:
+                  - img "科特迪瓦" [ref=f1e930]
+                  - generic [ref=f1e931]: 科特迪瓦
+                - generic [ref=f1e933]: VS
+                - generic [ref=f1e934]:
+                  - img "挪威" [ref=f1e935]
+                  - generic [ref=f1e936]: 挪威
+            - link "1/16决赛 07月01日 09:00 直播 视频直播 墨西哥 墨西哥 VS 厄瓜多尔 厄瓜多尔" [ref=f1e937] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000707
+              - generic [ref=f1e938]:
+                - generic [ref=f1e939]:
+                  - generic [ref=f1e940]: 1/16决赛
+                  - generic [ref=f1e941]: 07月01日 09:00
+                - generic [ref=f1e943]:
+                  - img "直播" [ref=f1e944]
+                  - generic [ref=f1e945]: 视频直播
+              - generic [ref=f1e946]:
+                - generic [ref=f1e947]:
+                  - img "墨西哥" [ref=f1e948]
+                  - generic [ref=f1e949]: 墨西哥
+                - generic [ref=f1e951]: VS
+                - generic [ref=f1e952]:
+                  - img "厄瓜多尔" [ref=f1e953]
+                  - generic [ref=f1e954]: 厄瓜多尔
+            - link "1/16决赛 07月02日 00:00 直播 视频直播 英格兰 英格兰 VS 刚果（金） 刚果（金）" [ref=f1e955] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000709
+              - generic [ref=f1e956]:
+                - generic [ref=f1e957]:
+                  - generic [ref=f1e958]: 1/16决赛
+                  - generic [ref=f1e959]: 07月02日 00:00
+                - generic [ref=f1e961]:
+                  - img "直播" [ref=f1e962]
+                  - generic [ref=f1e963]: 视频直播
+              - generic [ref=f1e964]:
+                - generic [ref=f1e965]:
+                  - img "英格兰" [ref=f1e966]
+                  - generic [ref=f1e967]: 英格兰
+                - generic [ref=f1e969]: VS
+                - generic [ref=f1e970]:
+                  - img "刚果（金）" [ref=f1e971]
+                  - generic [ref=f1e972]: 刚果（金）
+            - link "1/16决赛 07月04日 06:00 直播 视频直播 阿根廷 阿根廷 VS 佛得角 佛得角" [ref=f1e973] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000542
+              - generic [ref=f1e974]:
+                - generic [ref=f1e975]:
+                  - generic [ref=f1e976]: 1/16决赛
+                  - generic [ref=f1e977]: 07月04日 06:00
+                - generic [ref=f1e979]:
+                  - img "直播" [ref=f1e980]
+                  - generic [ref=f1e981]: 视频直播
+              - generic [ref=f1e982]:
+                - generic [ref=f1e983]:
+                  - img "阿根廷" [ref=f1e984]
+                  - generic [ref=f1e985]: 阿根廷
+                - generic [ref=f1e987]: VS
+                - generic [ref=f1e988]:
+                  - img "佛得角" [ref=f1e989]
+                  - generic [ref=f1e990]: 佛得角
+            - link "1/16决赛 07月04日 02:00 直播 视频直播 澳大利亚 澳大利亚 VS 埃及 埃及" [ref=f1e991] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000552
+              - generic [ref=f1e992]:
+                - generic [ref=f1e993]:
+                  - generic [ref=f1e994]: 1/16决赛
+                  - generic [ref=f1e995]: 07月04日 02:00
+                - generic [ref=f1e997]:
+                  - img "直播" [ref=f1e998]
+                  - generic [ref=f1e999]: 视频直播
+              - generic [ref=f1e1000]:
+                - generic [ref=f1e1001]:
+                  - img "澳大利亚" [ref=f1e1002]
+                  - generic [ref=f1e1003]: 澳大利亚
+                - generic [ref=f1e1005]: VS
+                - generic [ref=f1e1006]:
+                  - img "埃及" [ref=f1e1007]
+                  - generic [ref=f1e1008]: 埃及
+            - link "1/16决赛 07月03日 11:00 直播 视频直播 瑞士 瑞士 VS 阿尔及利亚 阿尔及利亚" [ref=f1e1009] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000719
+              - generic [ref=f1e1010]:
+                - generic [ref=f1e1011]:
+                  - generic [ref=f1e1012]: 1/16决赛
+                  - generic [ref=f1e1013]: 07月03日 11:00
+                - generic [ref=f1e1015]:
+                  - img "直播" [ref=f1e1016]
+                  - generic [ref=f1e1017]: 视频直播
+              - generic [ref=f1e1018]:
+                - generic [ref=f1e1019]:
+                  - img "瑞士" [ref=f1e1020]
+                  - generic [ref=f1e1021]: 瑞士
+                - generic [ref=f1e1023]: VS
+                - generic [ref=f1e1024]:
+                  - img "阿尔及利亚" [ref=f1e1025]
+                  - generic [ref=f1e1026]: 阿尔及利亚
+            - link "1/16决赛 07月04日 09:30 直播 视频直播 哥伦比亚 哥伦比亚 VS 加纳 加纳" [ref=f1e1027] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000712
+              - generic [ref=f1e1028]:
+                - generic [ref=f1e1029]:
+                  - generic [ref=f1e1030]: 1/16决赛
+                  - generic [ref=f1e1031]: 07月04日 09:30
+                - generic [ref=f1e1033]:
+                  - img "直播" [ref=f1e1034]
+                  - generic [ref=f1e1035]: 视频直播
+              - generic [ref=f1e1036]:
+                - generic [ref=f1e1037]:
+                  - img "哥伦比亚" [ref=f1e1038]
+                  - generic [ref=f1e1039]: 哥伦比亚
+                - generic [ref=f1e1041]: VS
+                - generic [ref=f1e1042]:
+                  - img "加纳" [ref=f1e1043]
+                  - generic [ref=f1e1044]: 加纳
+            - generic [ref=f1e1045]:
+              - generic [ref=f1e1047]:
+                - generic [ref=f1e1048]: 季军赛
+                - generic [ref=f1e1049]: 07月19日 05:00
+              - generic [ref=f1e1050]:
+                - generic [ref=f1e1051]:
+                  - img "RU101" [ref=f1e1052]
+                  - generic [ref=f1e1053]: RU101
+                - generic [ref=f1e1055]: VS
+                - generic [ref=f1e1056]:
+                  - img "RU102" [ref=f1e1057]
+                  - generic [ref=f1e1058]: RU102
+              - generic [ref=f1e1060]: M103
+            - generic [ref=f1e1061]:
+              - generic [ref=f1e1063]:
+                - generic [ref=f1e1064]: 决赛
+                - generic [ref=f1e1065]: 07月20日 03:00
+              - generic [ref=f1e1066]:
+                - generic [ref=f1e1067]:
+                  - img "W101" [ref=f1e1068]
+                  - generic [ref=f1e1069]: W101
+                - generic [ref=f1e1071]: VS
+                - generic [ref=f1e1072]:
+                  - img "W102" [ref=f1e1073]
+                  - generic [ref=f1e1074]: W102
+              - generic [ref=f1e1076]: M104
+          - generic [ref=f1e1077]:
+            - link "2026.06.29 03:00 1/16决赛 南非 VS 加拿大 视频直播 评论员：孙思辰" [ref=f1e1078] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000242
+              - generic [ref=f1e1079]: 2026.06.29 03:00
+              - generic [ref=f1e1080]: 1/16决赛
+              - generic [ref=f1e1082]: 南非
+              - generic [ref=f1e1085]: VS
+              - generic [ref=f1e1088]: 加拿大
+              - generic [ref=f1e1089]:
+                - img [ref=f1e1090]
+                - generic [ref=f1e1091]: 视频直播
+              - generic [ref=f1e1092]: 评论员：孙思辰
+            - link "2026.06.30 01:00 1/16决赛 巴西 VS 日本 视频直播 评论员：牛银昊" [ref=f1e1093] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000276
+              - generic [ref=f1e1094]: 2026.06.30 01:00
+              - generic [ref=f1e1095]: 1/16决赛
+              - generic [ref=f1e1097]: 巴西
+              - generic [ref=f1e1100]: VS
+              - generic [ref=f1e1103]: 日本
+              - generic [ref=f1e1104]:
+                - img [ref=f1e1105]
+                - generic [ref=f1e1106]: 视频直播
+              - generic [ref=f1e1107]: 评论员：牛银昊
+            - link "2026.06.30 04:30 1/16决赛 德国 VS 巴拉圭 视频直播 评论员：贺炜" [ref=f1e1108] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000540
+              - generic [ref=f1e1109]: 2026.06.30 04:30
+              - generic [ref=f1e1110]: 1/16决赛
+              - generic [ref=f1e1112]: 德国
+              - generic [ref=f1e1115]: VS
+              - generic [ref=f1e1118]: 巴拉圭
+              - generic [ref=f1e1119]:
+                - img [ref=f1e1120]
+                - generic [ref=f1e1121]: 视频直播
+              - generic [ref=f1e1122]: 评论员：贺炜
+            - link "2026.06.30 09:00 1/16决赛 荷兰 VS 摩洛哥 视频直播 评论员：朱晓雨" [ref=f1e1123] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000277
+              - generic [ref=f1e1124]: 2026.06.30 09:00
+              - generic [ref=f1e1125]: 1/16决赛
+              - generic [ref=f1e1127]: 荷兰
+              - generic [ref=f1e1130]: VS
+              - generic [ref=f1e1133]: 摩洛哥
+              - generic [ref=f1e1134]:
+                - img [ref=f1e1135]
+                - generic [ref=f1e1136]: 视频直播
+              - generic [ref=f1e1137]: 评论员：朱晓雨
+            - link "2026.07.01 01:00 1/16决赛 科特迪瓦 VS 挪威 视频直播" [ref=f1e1138] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000522
+              - generic [ref=f1e1139]: 2026.07.01 01:00
+              - generic [ref=f1e1140]: 1/16决赛
+              - generic [ref=f1e1142]: 科特迪瓦
+              - generic [ref=f1e1145]: VS
+              - generic [ref=f1e1148]: 挪威
+              - generic [ref=f1e1149]:
+                - img [ref=f1e1150]
+                - generic [ref=f1e1151]: 视频直播
+            - link "2026.07.01 05:00 1/16决赛 法国 VS 瑞典 视频直播" [ref=f1e1152] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000541
+              - generic [ref=f1e1153]: 2026.07.01 05:00
+              - generic [ref=f1e1154]: 1/16决赛
+              - generic [ref=f1e1156]: 法国
+              - generic [ref=f1e1159]: VS
+              - generic [ref=f1e1162]: 瑞典
+              - generic [ref=f1e1163]:
+                - img [ref=f1e1164]
+                - generic [ref=f1e1165]: 视频直播
+            - link "2026.07.01 09:00 1/16决赛 墨西哥 VS 厄瓜多尔 视频直播" [ref=f1e1166] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000707
+              - generic [ref=f1e1167]: 2026.07.01 09:00
+              - generic [ref=f1e1168]: 1/16决赛
+              - generic [ref=f1e1170]: 墨西哥
+              - generic [ref=f1e1173]: VS
+              - generic [ref=f1e1176]: 厄瓜多尔
+              - generic [ref=f1e1177]:
+                - img [ref=f1e1178]
+                - generic [ref=f1e1179]: 视频直播
+            - link "2026.07.02 00:00 1/16决赛 英格兰 VS 刚果（金） 视频直播" [ref=f1e1180] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000709
+              - generic [ref=f1e1181]: 2026.07.02 00:00
+              - generic [ref=f1e1182]: 1/16决赛
+              - generic [ref=f1e1184]: 英格兰
+              - generic [ref=f1e1187]: VS
+              - generic [ref=f1e1190]: 刚果（金）
+              - generic [ref=f1e1191]:
+                - img [ref=f1e1192]
+                - generic [ref=f1e1193]: 视频直播
+            - link "2026.07.02 04:00 1/16决赛 比利时 VS 塞内加尔 视频直播" [ref=f1e1194] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000710
+              - generic [ref=f1e1195]: 2026.07.02 04:00
+              - generic [ref=f1e1196]: 1/16决赛
+              - generic [ref=f1e1198]: 比利时
+              - generic [ref=f1e1201]: VS
+              - generic [ref=f1e1204]: 塞内加尔
+              - generic [ref=f1e1205]:
+                - img [ref=f1e1206]
+                - generic [ref=f1e1207]: 视频直播
+            - link "2026.07.02 08:00 1/16决赛 美国 VS 波黑 视频直播" [ref=f1e1208] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000278
+              - generic [ref=f1e1209]: 2026.07.02 08:00
+              - generic [ref=f1e1210]: 1/16决赛
+              - generic [ref=f1e1212]: 美国
+              - generic [ref=f1e1215]: VS
+              - generic [ref=f1e1218]: 波黑
+              - generic [ref=f1e1219]:
+                - img [ref=f1e1220]
+                - generic [ref=f1e1221]: 视频直播
+            - link "2026.07.03 03:00 1/16决赛 西班牙 VS 奥地利 视频直播" [ref=f1e1222] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000718
+              - generic [ref=f1e1223]: 2026.07.03 03:00
+              - generic [ref=f1e1224]: 1/16决赛
+              - generic [ref=f1e1226]: 西班牙
+              - generic [ref=f1e1229]: VS
+              - generic [ref=f1e1232]: 奥地利
+              - generic [ref=f1e1233]:
+                - img [ref=f1e1234]
+                - generic [ref=f1e1235]: 视频直播
+            - link "2026.07.03 07:00 1/16决赛 葡萄牙 VS 克罗地亚 视频直播" [ref=f1e1236] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000711
+              - generic [ref=f1e1237]: 2026.07.03 07:00
+              - generic [ref=f1e1238]: 1/16决赛
+              - generic [ref=f1e1240]: 葡萄牙
+              - generic [ref=f1e1243]: VS
+              - generic [ref=f1e1246]: 克罗地亚
+              - generic [ref=f1e1247]:
+                - img [ref=f1e1248]
+                - generic [ref=f1e1249]: 视频直播
+            - link "2026.07.03 11:00 1/16决赛 瑞士 VS 阿尔及利亚 视频直播" [ref=f1e1250] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000719
+              - generic [ref=f1e1251]: 2026.07.03 11:00
+              - generic [ref=f1e1252]: 1/16决赛
+              - generic [ref=f1e1254]: 瑞士
+              - generic [ref=f1e1257]: VS
+              - generic [ref=f1e1260]: 阿尔及利亚
+              - generic [ref=f1e1261]:
+                - img [ref=f1e1262]
+                - generic [ref=f1e1263]: 视频直播
+            - link "2026.07.04 02:00 1/16决赛 澳大利亚 VS 埃及 视频直播" [ref=f1e1264] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000552
+              - generic [ref=f1e1265]: 2026.07.04 02:00
+              - generic [ref=f1e1266]: 1/16决赛
+              - generic [ref=f1e1268]: 澳大利亚
+              - generic [ref=f1e1271]: VS
+              - generic [ref=f1e1274]: 埃及
+              - generic [ref=f1e1275]:
+                - img [ref=f1e1276]
+                - generic [ref=f1e1277]: 视频直播
+            - link "2026.07.04 06:00 1/16决赛 阿根廷 VS 佛得角 视频直播" [ref=f1e1278] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000542
+              - generic [ref=f1e1279]: 2026.07.04 06:00
+              - generic [ref=f1e1280]: 1/16决赛
+              - generic [ref=f1e1282]: 阿根廷
+              - generic [ref=f1e1285]: VS
+              - generic [ref=f1e1288]: 佛得角
+              - generic [ref=f1e1289]:
+                - img [ref=f1e1290]
+                - generic [ref=f1e1291]: 视频直播
+            - link "2026.07.04 09:30 1/16决赛 哥伦比亚 VS 加纳 视频直播" [ref=f1e1292] [cursor=pointer]:
+              - /url: https://worldcup.cctv.com/2026/match/index.shtml?matchid=24000712
+              - generic [ref=f1e1293]: 2026.07.04 09:30
+              - generic [ref=f1e1294]: 1/16决赛
+              - generic [ref=f1e1296]: 哥伦比亚
+              - generic [ref=f1e1299]: VS
+              - generic [ref=f1e1302]: 加纳
+              - generic [ref=f1e1303]:
+                - img [ref=f1e1304]
+                - generic [ref=f1e1305]: 视频直播
+  - generic [ref=e439]:
+    - generic [ref=e442]:
+      - generic [ref=e443]:
+        - term [ref=e444]: 关于我们
+        - definition [ref=e445]:
+          - list [ref=e446]:
+            - listitem [ref=e447]:
+              - link "总台之声" [ref=e448] [cursor=pointer]:
+                - /url: http://www.cctv.com/gyys/index.shtml
+            - listitem [ref=e449]:
+              - link "总台总经理室" [ref=e450] [cursor=pointer]:
+                - /url: https://1118.cctv.com/chinese/index.shtml
+            - listitem [ref=e451]:
+              - link "关于CCTV.com" [ref=e452] [cursor=pointer]:
+                - /url: https://www.cctv.com/special/guanyunew/gongsijianjie/index.shtml#cctvpage1
+            - listitem [ref=e453]:
+              - link "象舞广告" [ref=e454] [cursor=pointer]:
+                - /url: https://www.cmgadx.com
+            - listitem [ref=e455]:
+              - link "网站声明" [ref=e456] [cursor=pointer]:
+                - /url: https://www.cctv.com/special/guanyunew/gongsijianjie/index.shtml#wzsm
+      - generic [ref=e457]:
+        - term [ref=e458]: 业务概况
+        - definition [ref=e459]:
+          - list [ref=e460]:
+            - listitem [ref=e461]:
+              - link "央视网" [ref=e462] [cursor=pointer]:
+                - /url: https://www.cctv.com/special/guanyunew/gongsijianjie/index.shtml#ywtx
+            - listitem [ref=e463]:
+              - link "互联网电视" [ref=e464] [cursor=pointer]:
+                - /url: https://www.chinaott.com/?spm=C96370.PFsYCmOjDARN.E3TwkpSyqPF4.2
+            - listitem [ref=e465]:
+              - link "央视影音" [ref=e466] [cursor=pointer]:
+                - /url: https://app.cctv.com/index.shtml?spm=C96370.PFsYCmOjDARN.E3TwkpSyqPF4.1#page5
+            - listitem [ref=e467]:
+              - link "手机电视" [ref=e468] [cursor=pointer]:
+                - /url: https://www.cctv4g.com/cctv4gcms/jsp/view/neirong.jsp?spm=C96370.PFsYCmOjDARN.E3TwkpSyqPF4.4&file=neirong.jsp
+            - listitem [ref=e469]:
+              - link "移动传媒" [ref=e470] [cursor=pointer]:
+                - /url: https://www.cctv.com/special/guanyunew/PAGE13818868795101874/index.shtml
+            - listitem [ref=e471]:
+              - link "帮助中心" [ref=e472] [cursor=pointer]:
+                - /url: https://help.cctv.com/?spm=C96370.PPDB2vhvSivD.E0NoLLx8hyIZ.6
+      - generic [ref=e473]:
+        - term [ref=e474]: 更多链接
+        - definition [ref=e475]:
+          - list [ref=e476]:
+            - listitem [ref=e477]:
+              - link "网上有害信息举报专区" [ref=e478] [cursor=pointer]:
+                - /url: https://www.12377.cn/
+            - listitem [ref=e479]:
+              - link "辟谣平台" [ref=e480] [cursor=pointer]:
+                - /url: https://www.piyao.org.cn/
+            - listitem [ref=e481]:
+              - link "法律顾问" [ref=e482] [cursor=pointer]:
+                - /url: https://www.cctv.com/special/guanyunew/PAGE13818868795101879/index.shtml
+            - listitem [ref=e483]:
+              - link "望海热线" [ref=e484] [cursor=pointer]:
+                - /url: https://www.cctv.com/special/guanyunew/jianjiePAGEQezAEWqHSGGmjjQL6s0V231214/index.shtml
+            - listitem [ref=e485]:
+              - link "人才招聘" [ref=e486] [cursor=pointer]:
+                - /url: http://career.cntv.cn/
+      - generic [ref=e487]:
+        - term [ref=e488]:
+          - img [ref=e489]
+        - definition [ref=e490]:
+          - list [ref=e491]:
+            - listitem [ref=e492]:
+              - link "关于我们" [ref=e493] [cursor=pointer]:
+                - /url: https://aigc.cctv.com/about/index.shtml
+            - listitem [ref=e494]:
+              - link "智媒学院" [ref=e495] [cursor=pointer]:
+                - /url: https://aigc.cctv.com/college/index.shtml
+            - listitem [ref=e496]:
+              - link "成果发布" [ref=e497] [cursor=pointer]:
+                - /url: https://aigc.cctv.com/achievements/index.shtml
+            - listitem [ref=e498]:
+              - link "智慧媒体" [ref=e499] [cursor=pointer]:
+                - /url: https://aigc.cctv.com/industry/zhmt/index.shtml
+            - listitem [ref=e500]:
+              - link "智慧政务" [ref=e501] [cursor=pointer]:
+                - /url: https://aigc.cctv.com/industry/zhzw/index.shtml
+            - listitem [ref=e502]:
+              - link "智慧教育" [ref=e503] [cursor=pointer]:
+                - /url: https://aigc.cctv.com/industry/zhjy/index.shtml
+          - link "合作咨询 >" [ref=e505] [cursor=pointer]:
+            - /url: https://aigc.cctv.com/contact/index.shtml
+    - generic [ref=e506]:
+      - generic:
+        - generic [ref=e507]:
+          - paragraph [ref=e508]:
+            - link "互联网新闻信息服务许可证10120170003" [ref=e509] [cursor=pointer]:
+              - /url: //p2.img.cctvpic.com/uploadimg/2024/01/15/1705298528567488.jpg
+            - text: 网上传播视听节目许可证号0102002 新出网证（京）字098号
+            - link "违法和不良信息举报电话:010-88427865" [ref=e510] [cursor=pointer]:
+              - /url: https://help.cctv.com/2020/03/11/ARTI2EZRxlz2vUYrpi2B86VV200311.shtml
+          - paragraph [ref=e511]:
+            - link "京ICP证060535号" [ref=e512] [cursor=pointer]:
+              - /url: https://beian.miit.gov.cn
+            - link "京ICP备06036302号-2" [ref=e513] [cursor=pointer]:
+              - /url: https://beian.miit.gov.cn
+            - link "京ICP备10003349号" [ref=e514] [cursor=pointer]:
+              - /url: https://beian.miit.gov.cn
+            - link "京ICP备10003349号-1" [ref=e515] [cursor=pointer]:
+              - /url: https://beian.miit.gov.cn
+            - link "京公网安备 11000002000018号" [ref=e516] [cursor=pointer]:
+              - /url: http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002000018
+              - img [ref=e517]
+              - text: 京公网安备 11000002000018号
+            - text: 京网文〔2024〕4690-222号
+        - generic [ref=e518]:
+          - generic [ref=e519]:
+            - term [ref=e520]
+            - definition [ref=e522]:
+              - generic [ref=e524]:
+                - text: 网络110
+                - text: 报警服务
+          - paragraph [ref=e525]: 中央广播电视总台 央视网 版权所有

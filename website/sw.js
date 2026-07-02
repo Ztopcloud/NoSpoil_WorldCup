@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'scgs-tv-pwa-v32';
+const CACHE_VERSION = 'scgs-tv-pwa-v50';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -47,8 +47,8 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
 
   if (url.pathname.endsWith('/data/matches.json')) {
-    // 缓存优先 + 后台更新：立即返回缓存，同时在后台拉取最新数据更新缓存
-    event.respondWith(staleWhileRevalidate(request));
+    // 比赛数据优先使用网络，避免回放链接发布后被旧缓存挡住。
+    event.respondWith(networkFirst(request));
     return;
   }
 

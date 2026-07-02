@@ -21,6 +21,7 @@ const { resolveZhibo8Replay } = require('./zhibo8-resolver');
 const DATA_FILE = path.join(__dirname, 'data', 'matches.json');
 const SW_FILE = path.join(__dirname, 'sw.js');
 const APP_FILE = path.join(__dirname, 'app.js');
+const INDEX_FILE = path.join(__dirname, 'index.html');
 const SSH_KEY_WIN = path.join(os.homedir(), '.ssh', 'id_ed25519');
 const SSH_KEY_WSL = '/home/bond/.ssh/id_ed25519';
 const WSL_CMD = 'wsl -d Ubuntu';
@@ -120,7 +121,22 @@ function bumpAppVersion() {
   content = content.replace(`'${currentVer}'`, `'${newVer}'`);
   fs.writeFileSync(APP_FILE, content, 'utf8');
   console.log(`  MATCHES_VERSION: ${currentVer} → ${newVer}`);
+
+  // 同步更新 index.html 中的预加载版本号
+  bumpIndexHtmlVersion(newVer);
   return true;
+}
+
+function bumpIndexHtmlVersion(newVer) {
+  if (!fs.existsSync(INDEX_FILE)) return;
+  let content = fs.readFileSync(INDEX_FILE, 'utf8');
+  const verMatch = content.match(/matches\.json\?v=([\d-]+)/);
+  if (!verMatch) return;
+  const oldVer = verMatch[1];
+  if (oldVer === newVer) return;
+  content = content.replace(`matches.json?v=${oldVer}`, `matches.json?v=${newVer}`);
+  fs.writeFileSync(INDEX_FILE, content, 'utf8');
+  console.log(`  index.html preload: ${oldVer} → ${newVer}`);
 }
 
 async function tryFetchPlaywrightMatches() {
@@ -165,6 +181,7 @@ function getReplayAlertDeadline(match) {
 
 function isOfficialReplayUrl(url) {
   const s = String(url || '');
+  // ARTI 是文章页（新闻稿），不是真正的视频回放；只有 VIDE 才是视频回放页
   return /https:\/\/sports\.cctv\.com\/\d{4}\/\d{2}\/\d{2}\/VIDE/i.test(s);
 }
 
@@ -623,8 +640,8 @@ async function main() {
   console.log('\n[3] 扫描已结束比赛的回放链接...\n');
 
   for (const match of matches) {
-    // 跳过已有 sports.cctv.com 回放链接的
-    if (match.replayUrl && match.replayUrl.includes('sports.cctv.com')) continue;
+    // 跳过已有 VIDE 视频回放链接的（ARTI 是文章页，不是真正回放）
+    if (isOfficialReplayUrl(match.replayUrl)) continue;
 
     // 跳过没有 liveUrl 的
     if (!match.liveUrl || !match.liveUrl.includes('worldcup.cctv.com/2026/match/')) continue;
@@ -654,8 +671,10 @@ async function main() {
     } else if (replayUrl) {
       console.log(`    ✅ 回放已存在，无需更新`);
     } else {
-      // 央视暂无回放时，只在没有备用链接的情况下抓取小红书候选。
-      if (!match.replayUrl) {
+      // 央视暂无回放时抓取小红书候选：
+      // replayUrl 为空，或只是 liveUrl 占位符（worldcup.cctv.com match 页面）时，尝试直播吧→小红书
+      const isPlaceholderReplay = match.replayUrl && match.replayUrl === match.liveUrl;
+      if (!match.replayUrl || isPlaceholderReplay) {
         console.log(`    ⏳ 暂无央视回放，尝试直播吧...`);
         const xhsUrl = await resolveZhibo8Replay(match);
         if (xhsUrl) {
@@ -701,9 +720,10 @@ async function main() {
       changedFiles.push('website/sw.js');
     }
 
-    // 同步更新 app.js 中的数据版本号
+    // 同步更新 app.js 中的数据版本号（同时更新 index.html 预加载版本）
     if (bumpAppVersion()) {
       changedFiles.push('website/app.js');
+      changedFiles.push('website/index.html');
     }
 
     console.log(`\n✅ 更新完成！`);
@@ -715,9 +735,11 @@ async function main() {
     if (deployMethod === 'rsync') {
       const files = ['website/data/matches.json', 'website/sw.js'];
 
-      // 检查是否有 app.js 变更
       if (changedFiles.includes('website/app.js')) {
         files.push('website/app.js');
+      }
+      if (changedFiles.includes('website/index.html')) {
+        files.push('website/index.html');
       }
 
       try {

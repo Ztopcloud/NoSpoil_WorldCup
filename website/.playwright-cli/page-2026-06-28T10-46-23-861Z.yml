@@ -1,0 +1,1148 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "首页" [ref=e8] [cursor=pointer]:
+          - /url: http://www.cctv.com/
+          - text: 首页
+        - link "时政" [ref=e12] [cursor=pointer]:
+          - /url: javascript:;
+        - link "新闻" [ref=e16] [cursor=pointer]:
+          - /url: https://news.cctv.com/
+        - link "评论" [ref=e19] [cursor=pointer]:
+          - /url: https://opinion.cctv.com/
+        - link "视频" [ref=e22] [cursor=pointer]:
+          - /url: https://v.cctv.com/
+        - link "财经" [ref=e25] [cursor=pointer]:
+          - /url: https://finance.cctv.com/index.shtml
+        - link "世界杯" [ref=e28] [cursor=pointer]:
+          - /url: https://worldcup.cctv.com/2026/index.shtml
+        - link "教育" [ref=e31] [cursor=pointer]:
+          - /url: https://edu.cctv.com/
+        - link "熊猫" [ref=e34] [cursor=pointer]:
+          - /url: https://www.ipanda.com/
+        - link "直播中国" [ref=e38] [cursor=pointer]:
+          - /url: https://livechina.cctv.com/
+        - link "4K" [ref=e41] [cursor=pointer]:
+          - /url: https://tv.cctv.com/4K/index.shtml
+        - link "CCTV.直播" [ref=e44] [cursor=pointer]:
+          - /url: https://tv.cctv.com/index.shtml
+        - link "中" [ref=e48] [cursor=pointer]:
+          - /url: https://www.cctv.com/index.shtml
+        - link "AIGC" [ref=e52] [cursor=pointer]:
+          - /url: https://aigc.cctv.com/index.shtml
+      - generic [ref=e53]:
+        - link "盲人用户进入后，若无读屏软件可通过Ctrl+Alt+V开启声音获取语音提示" [ref=e56] [cursor=pointer]:
+          - /url: javascript:;
+        - generic [ref=e59] [cursor=pointer]:
+          - link:
+            - /url: javascript:void(0);
+    - generic:
+      - generic:
+        - list [ref=e64]:
+          - listitem [ref=e65]:
+            - link "人民领袖习近平" [ref=e66] [cursor=pointer]:
+              - /url: https://news.cctv.com/rmlx/index.shtml
+          - listitem [ref=e67]:
+            - link "联播+" [ref=e68] [cursor=pointer]:
+              - /url: https://news.cctv.com/lbj/index.shtml
+          - listitem [ref=e69]:
+            - link "中国领导人" [ref=e70] [cursor=pointer]:
+              - /url: https://leaders.cctv.com/
+          - listitem [ref=e71]:
+            - link "央视快评" [ref=e72] [cursor=pointer]:
+              - /url: https://news.cctv.com/yskp/index.shtml
+          - listitem [ref=e73]:
+            - link "习式妙语" [ref=e74] [cursor=pointer]:
+              - /url: https://v.cctv.com/shizheng/xsmy/index.shtml
+          - listitem [ref=e75]:
+            - link "热解读" [ref=e76] [cursor=pointer]:
+              - /url: https://news.cctv.com/rjd/
+          - listitem [ref=e77]:
+            - link "天天学习" [ref=e78] [cursor=pointer]:
+              - /url: https://news.cctv.com/tiantianxuexi/index.shtml
+        - list [ref=e80]:
+          - listitem [ref=e81]:
+            - link "直播" [ref=e82] [cursor=pointer]:
+              - /url: https://tv.cctv.com/live/index.shtml
+          - listitem [ref=e83]:
+            - link "片库" [ref=e84] [cursor=pointer]:
+              - /url: https://tv.cctv.com/yxg/index.shtml
+          - listitem [ref=e85]:
+            - link "栏目大全" [ref=e86] [cursor=pointer]:
+              - /url: https://tv.cctv.com/lm/index.shtml
+          - listitem [ref=e87]:
+            - link "节目单" [ref=e88] [cursor=pointer]:
+              - /url: https://tv.cctv.com/epg/index.shtml
+          - listitem [ref=e89]:
+            - link "听音" [ref=e90] [cursor=pointer]:
+              - /url: https://tv.cctv.com/ty/m/index.shtml
+          - listitem [ref=e91]:
+            - link "微视频" [ref=e92] [cursor=pointer]:
+              - /url: https://tv.cctv.com/wsp/m/index.shtml
+          - listitem [ref=e93]:
+            - link "主持人" [ref=e94] [cursor=pointer]:
+              - /url: https://tv.cctv.com/zhuchiren/index.shtml
+          - listitem [ref=e95]:
+            - link "下载央视影音" [ref=e96] [cursor=pointer]:
+              - /url: https://app.cctv.com/index.shtml#page5
+        - list [ref=e98]:
+          - listitem [ref=e99]:
+            - link "海外频道" [ref=e100] [cursor=pointer]:
+              - /url: https://global.cctv.com/
+          - listitem [ref=e101]:
+            - link "iPanda" [ref=e102] [cursor=pointer]:
+              - /url: https://en.ipanda.com/
+          - listitem [ref=e103]:
+            - link "English" [ref=e104] [cursor=pointer]:
+              - /url: https://english.cctv.com/
+          - listitem [ref=e105]:
+            - link "Монгол" [ref=e106] [cursor=pointer]:
+              - /url: https://mn.cctv.com/
+          - listitem [ref=e107]:
+            - link [ref=e108] [cursor=pointer]:
+              - /url: https://mongol.cctv.com/
+              - img [ref=e109]
+          - listitem [ref=e110]:
+            - link [ref=e111] [cursor=pointer]:
+              - /url: http://www.tibetcnr.com/
+              - img [ref=e112]
+          - listitem [ref=e113]:
+            - link [ref=e114] [cursor=pointer]:
+              - /url: http://www.uycnr.com/
+              - img [ref=e115]
+          - listitem [ref=e116]:
+            - link [ref=e117] [cursor=pointer]:
+              - /url: http://www.kazakcnr.com/
+              - img [ref=e118]
+          - listitem [ref=e119]:
+            - link [ref=e120] [cursor=pointer]:
+              - /url: http://www.krcnr.cn/
+              - img [ref=e121]
+        - list [ref=e124]:
+          - listitem [ref=e125]:
+            - link "地方" [ref=e126] [cursor=pointer]:
+              - /url: https://local.cctv.com/index.shtml
+          - listitem [ref=e127]:
+            - link "乡村振兴" [ref=e128] [cursor=pointer]:
+              - /url: https://xczx.cctv.com/index.shtml
+          - listitem [ref=e129]:
+            - link "生态" [ref=e130] [cursor=pointer]:
+              - /url: https://eco.cctv.com/
+          - listitem [ref=e131]:
+            - link "一带一路" [ref=e132] [cursor=pointer]:
+              - /url: https://ydyl.cctv.com/
+          - listitem [ref=e133]:
+            - link "央博" [ref=e134] [cursor=pointer]:
+              - /url: https://yangbo.cctv.com/
+          - listitem [ref=e135]:
+            - link "文化" [ref=e136] [cursor=pointer]:
+              - /url: https://www.cctv.com/culture/index.shtml
+          - listitem [ref=e137]:
+            - link "旅游" [ref=e138] [cursor=pointer]:
+              - /url: https://culture-travel.cctv.com/
+          - listitem [ref=e139]:
+            - link "科普" [ref=e140] [cursor=pointer]:
+              - /url: https://kepu.cctv.cn/
+          - listitem [ref=e141]:
+            - link "健康" [ref=e142] [cursor=pointer]:
+              - /url: https://jiankang.cctv.com/
+          - listitem [ref=e143]:
+            - link "乐龄" [ref=e144] [cursor=pointer]:
+              - /url: https://laoling.cctv.com/index.shtml
+          - listitem [ref=e145]:
+            - link "阅读" [ref=e146] [cursor=pointer]:
+              - /url: https://book.cctv.com/
+          - listitem [ref=e147]:
+            - link "艺术" [ref=e148] [cursor=pointer]:
+              - /url: https://arts.cctv.com/
+          - listitem [ref=e149]:
+            - link "数智" [ref=e150] [cursor=pointer]:
+              - /url: https://5gai.cctv.com/
+          - listitem [ref=e151]:
+            - link "5G" [ref=e152] [cursor=pointer]:
+              - /url: https://5g.cctv.com/
+          - listitem [ref=e153]:
+            - link "产业+" [ref=e154] [cursor=pointer]:
+              - /url: https://business.cctv.com/
+          - listitem [ref=e155]:
+            - link "央央好物" [ref=e156] [cursor=pointer]:
+              - /url: https://www.cctvmall.com/
+        - generic [ref=e160]:
+          - generic [ref=e161]:
+            - table [ref=e162]:
+              - rowgroup [ref=e163]:
+                - row [ref=e164]:
+                  - cell [ref=e165]
+                - row "账号" [ref=e166]:
+                  - cell "账号" [ref=e167]:
+                    - textbox [ref=e168]: 账号
+                - row [ref=e169]:
+                  - cell [ref=e170]
+                - row "密码" [ref=e171]:
+                  - cell "密码" [ref=e172]:
+                    - textbox [ref=e173]: 密码
+                - row [ref=e174]:
+                  - cell [ref=e175]
+            - table [ref=e176]:
+              - rowgroup [ref=e177]:
+                - row "下次自动登录 忘记密码" [ref=e178]:
+                  - cell [ref=e179]:
+                    - checkbox
+                  - cell "下次自动登录" [ref=e180]
+                  - cell "忘记密码" [ref=e181]:
+                    - link "忘记密码" [ref=e182] [cursor=pointer]:
+                      - /url: http://reg.cntv.cn/forgetPassword/findPassword.jsp
+                - row [ref=e183]:
+                  - cell [ref=e184]
+            - table [ref=e185]:
+              - rowgroup [ref=e186]:
+                - row "登录 立即注册" [ref=e187]:
+                  - cell "登录" [ref=e188]:
+                    - link "登录" [ref=e189] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=e190]
+                  - cell "立即注册" [ref=e191]:
+                    - link "立即注册" [ref=e192] [cursor=pointer]:
+                      - /url: http://reg.cctv.com/regist.html?from=http://www.cctv.com
+                - row [ref=e193]:
+                  - cell [ref=e194]
+          - generic [ref=e195]:
+            - generic [ref=e196]: 使用合作网站账号登录
+            - generic [ref=e197]:
+              - link "微信":
+                - /url: javascript:;
+                - img "微信" [ref=e198] [cursor=pointer]
+              - link "QQ":
+                - /url: javascript:;
+                - img "QQ" [ref=e199] [cursor=pointer]
+              - link "新浪网":
+                - /url: javascript:;
+                - img "新浪网" [ref=e200] [cursor=pointer]
+              - link "支付宝":
+                - /url: javascript:;
+                - img "支付宝" [ref=e201] [cursor=pointer]
+        - generic:
+          - generic:
+            - img [ref=e204]
+            - generic [ref=e207]:
+              - generic [ref=e209]:
+                - link "总台春晚" [ref=e210] [cursor=pointer]:
+                  - /url: https://chunwan.cctv.com/
+                - link "网络春晚" [ref=e211] [cursor=pointer]:
+                  - /url: https://wlchunwan.cctv.com
+                - link "共产党员网" [ref=e212] [cursor=pointer]:
+                  - /url: https://www.12371.cn/
+                - link "秧纪录" [ref=e213] [cursor=pointer]:
+                  - /url: http://jishi.cntv.cn/special/zgjlyx/index.shtml
+                - link "纪录片网" [ref=e214] [cursor=pointer]:
+                  - /url: http://www.docuchina.cn/
+                - link "国家大剧院" [ref=e215] [cursor=pointer]:
+                  - /url: http://ncpa-classic.cntv.cn/index.shtml
+                - link "大型活动" [ref=e216] [cursor=pointer]:
+                  - /url: https://gongyi.cctv.com/events/
+              - generic [ref=e218]:
+                - generic [ref=e219]:
+                  - link "新闻" [ref=e220] [cursor=pointer]:
+                    - /url: https://news.cctv.com/
+                  - link "国内" [ref=e221] [cursor=pointer]:
+                    - /url: https://news.cctv.com/china/
+                  - link "国际" [ref=e222] [cursor=pointer]:
+                    - /url: https://news.cctv.com/world/
+                  - link "评论" [ref=e223] [cursor=pointer]:
+                    - /url: https://opinion.cctv.com/
+                  - link "经济" [ref=e224] [cursor=pointer]:
+                    - /url: https://jingji.cctv.com/
+                  - link "军事" [ref=e225] [cursor=pointer]:
+                    - /url: https://military.cctv.com/index.shtml
+                  - link "科技" [ref=e226] [cursor=pointer]:
+                    - /url: https://news.cctv.com/tech/index.shtml
+                  - link "法治" [ref=e227] [cursor=pointer]:
+                    - /url: https://news.cctv.com/law/
+                  - link "文娱" [ref=e228] [cursor=pointer]:
+                    - /url: https://news.cctv.com/ent/
+                  - link "人物" [ref=e229] [cursor=pointer]:
+                    - /url: https://people.cctv.com/
+                  - link "公益" [ref=e230] [cursor=pointer]:
+                    - /url: https://gongyi.cctv.com/
+                  - link "图片" [ref=e231] [cursor=pointer]:
+                    - /url: https://photo.cctv.com/
+                - generic [ref=e232]:
+                  - link "人民领袖习近平" [ref=e233] [cursor=pointer]:
+                    - /url: https://news.cctv.com/rmlx/index.shtml
+                  - link "联播+" [ref=e234] [cursor=pointer]:
+                    - /url: https://news.cctv.com/lbj/index.shtml
+                  - link "热解读" [ref=e235] [cursor=pointer]:
+                    - /url: https://news.cctv.com/rjd/
+                  - link "天天学习" [ref=e236] [cursor=pointer]:
+                    - /url: https://news.cctv.com/tiantianxuexi/index.shtml
+                  - link "习式妙语" [ref=e237] [cursor=pointer]:
+                    - /url: https://v.cctv.com/shizheng/xsmy/index.shtml
+                  - link "央视快评" [ref=e238] [cursor=pointer]:
+                    - /url: https://news.cctv.com/yskp/index.shtml
+                  - link "央视网评" [ref=e239] [cursor=pointer]:
+                    - /url: https://opinion.cctv.com/yswp/index.shtml
+                  - link "光华锐评" [ref=e240] [cursor=pointer]:
+                    - /url: https://ghrp.cctv.com/index.shtml
+                  - link "锋面" [ref=e241] [cursor=pointer]:
+                    - /url: https://news.cctv.com/fengmian/index.shtml
+              - generic [ref=e242]:
+                - generic [ref=e243]:
+                  - link "视频" [ref=e244] [cursor=pointer]:
+                    - /url: https://v.cctv.com/
+                  - link "小央视频" [ref=e245] [cursor=pointer]:
+                    - /url: https://v.cctv.com/xysp/index.shtml
+                  - link "小央直播" [ref=e246] [cursor=pointer]:
+                    - /url: https://v.cctv.com/zhangbo/index.shtml
+                  - link "直播中国" [ref=e247] [cursor=pointer]:
+                    - /url: https://livechina.cctv.com/
+                  - link "熊猫频道" [ref=e248] [cursor=pointer]:
+                    - /url: https://www.ipanda.com/
+                  - link "VR/AR" [ref=e249] [cursor=pointer]:
+                    - /url: https://v.cctv.com/VR/index.shtml
+                  - link "4K专区" [ref=e250] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/4K/index.shtml
+                  - link "全景新闻" [ref=e251] [cursor=pointer]:
+                    - /url: http://news.cctv.com/yuanchuang/VR/index.shtml
+                - generic [ref=e252]:
+                  - link "现场" [ref=e253] [cursor=pointer]:
+                    - /url: https://v.cctv.com/zixun/xc/index.shtml
+                  - link "前线" [ref=e254] [cursor=pointer]:
+                    - /url: https://v.cctv.com/zixun/qx/index.shtml
+                  - link "比划" [ref=e255] [cursor=pointer]:
+                    - /url: https://v.cctv.com/reping/bh/index.shtml
+                  - link "快看" [ref=e256] [cursor=pointer]:
+                    - /url: https://news.cctv.com/kuaikan/index.shtml
+                  - link "蓝海中国" [ref=e257] [cursor=pointer]:
+                    - /url: https://v.cctv.com/jishi/lhzglhzg/index.shtml
+                  - link "新兵请入列" [ref=e258] [cursor=pointer]:
+                    - /url: https://v.cctv.com/jishi/jsxbqrl/index.shtml
+                  - link "人生第一次" [ref=e259] [cursor=pointer]:
+                    - /url: https://v.cctv.com/jishi/rsdyc/index.shtml
+                  - link "人生第二次" [ref=e260] [cursor=pointer]:
+                    - /url: https://v.cctv.com/jishi/jsrsdec/
+              - generic [ref=e261]:
+                - generic [ref=e262]:
+                  - link "体育" [ref=e263] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/
+                  - link "直播" [ref=e264] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/live/cctv5/
+                  - link "竞猜" [ref=e265] [cursor=pointer]:
+                    - /url: https://cbs.sports.cctv.com/
+                  - link "2026年世界杯" [ref=e266] [cursor=pointer]:
+                    - /url: https://worldcup.cctv.com/2026/index.shtml
+                  - link "2026年冬奥会" [ref=e267] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/Milano2026/
+                  - link "CBA" [ref=e268] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/cba/
+                  - link "NBA" [ref=e269] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/nba/
+                  - link "中超" [ref=e270] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/csl/
+                  - link "国足" [ref=e271] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/football/china/
+                  - link "国际足球" [ref=e272] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/football/international/index.shtml
+                  - link "网球" [ref=e273] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/tennis/
+                  - link "综合体育" [ref=e274] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/zong/index.shtml
+                  - link "亚冬会" [ref=e275] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/harbin2025/index.shtml
+                - generic [ref=e276]:
+                  - link "VIP会员" [ref=e277] [cursor=pointer]:
+                    - /url: https://vip.sports.cctv.com/
+                  - link "CCTV奥林匹克频道" [ref=e278] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/olympicportal/index.shtml
+                  - link "生活体育大会" [ref=e279] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/special/clsc/index.shtml
+                  - link "体育江湖" [ref=e280] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/special/Jianghu/index.shtml
+                  - link "文化体育" [ref=e281] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/wlty/index.shtml
+                  - link "冰雪道路" [ref=e282] [cursor=pointer]:
+                    - /url: https://sports.cctv.com/special/footprintsinthesnow/index.shtml
+                  - link "足球道路" [ref=e283] [cursor=pointer]:
+                    - /url: http://worldcup.cctv.com/2018/lm/footballroadmap/
+              - generic [ref=e284]:
+                - generic [ref=e285]:
+                  - link "财经" [ref=e286] [cursor=pointer]:
+                    - /url: https://finance.cctv.com/index.shtml
+                  - link "教育" [ref=e287] [cursor=pointer]:
+                    - /url: https://edu.cctv.com/
+                  - link "乡村振兴" [ref=e288] [cursor=pointer]:
+                    - /url: https://xczx.cctv.com/index.shtml
+                  - link "生态环境" [ref=e289] [cursor=pointer]:
+                    - /url: https://eco.cctv.com/
+                  - link "一带一路" [ref=e290] [cursor=pointer]:
+                    - /url: http://ydyl.cctv.com/
+                  - link "央博" [ref=e291] [cursor=pointer]:
+                    - /url: https://yangbo.cctv.com/
+                  - link "非遗" [ref=e292] [cursor=pointer]:
+                    - /url: https://china-feiyi.cctv.cn
+                  - link "文化" [ref=e293] [cursor=pointer]:
+                    - /url: https://www.cctv.com/culture/index.shtml
+                  - link "旅游" [ref=e294] [cursor=pointer]:
+                    - /url: https://culture-travel.cctv.com/
+                  - link "科普" [ref=e295] [cursor=pointer]:
+                    - /url: https://kepu.cctv.cn/
+                  - link "健康" [ref=e296] [cursor=pointer]:
+                    - /url: https://jiankang.cctv.com/
+                  - link "乐龄" [ref=e297] [cursor=pointer]:
+                    - /url: https://laoling.cctv.com/index.shtml
+                  - link "阅读" [ref=e298] [cursor=pointer]:
+                    - /url: https://book.cctv.com/
+                  - link "艺术" [ref=e299] [cursor=pointer]:
+                    - /url: https://arts.cctv.com/index.shtml
+                  - link "汽车" [ref=e300] [cursor=pointer]:
+                    - /url: https://auto.cctv.com/
+                  - link "数智" [ref=e301] [cursor=pointer]:
+                    - /url: https://5gai.cctv.com/
+                  - link "5G" [ref=e302] [cursor=pointer]:
+                    - /url: https://5g.cctv.com/
+                  - link "产业+" [ref=e303] [cursor=pointer]:
+                    - /url: https://business.cctv.com/
+                - generic [ref=e304]:
+                  - link "大国智造" [ref=e305] [cursor=pointer]:
+                    - /url: https://jingji.cctv.com/special/dgzz/home/index.shtml
+                  - link "大国展会" [ref=e306] [cursor=pointer]:
+                    - /url: https://v.cctv.com/live_zb/LIVE3386.html?pageid=3386&tag=MicroLiveType
+                  - link "大国保险" [ref=e307] [cursor=pointer]:
+                    - /url: https://finance.cctv.com/special/daguobaoxian/home/index.shtml
+                  - link "云顶对话" [ref=e308] [cursor=pointer]:
+                    - /url: https://finance.cctv.com/special/yunding/index.shtml
+                  - link "云起" [ref=e309] [cursor=pointer]:
+                    - /url: https://jingji.cctv.com/special/yunqi/index.shtml
+                  - link "超级工厂" [ref=e310] [cursor=pointer]:
+                    - /url: https://business.cctv.com/special/cjgc/index.html
+                  - link "智敬中国" [ref=e311] [cursor=pointer]:
+                    - /url: https://5gai.cctv.com/ZJZG/index.shtml
+                  - link "全民健康" [ref=e312] [cursor=pointer]:
+                    - /url: https://edu.cctv.com/2022/08/24/VIDA9GgWzG2ywQ4nu0h078fv220824.shtml
+                  - link "颜选攻略" [ref=e313] [cursor=pointer]:
+                    - /url: https://edu.cctv.com/2021/06/01/VIDAEeKQjpGs6E8CrdT0uPf9210601.shtml
+                  - link "海洋" [ref=e314] [cursor=pointer]:
+                    - /url: https://ocean.cctv.com/
+                  - link "时尚" [ref=e315] [cursor=pointer]:
+                    - /url: https://style.cctv.com/
+                  - link "天气" [ref=e316] [cursor=pointer]:
+                    - /url: http://weather.cctv.com/index.shtml
+                  - link "才艺" [ref=e317] [cursor=pointer]:
+                    - /url: https://caiyi.cctv.com/cy/1/index.shtml
+                  - link "网展" [ref=e318] [cursor=pointer]:
+                    - /url: https://wangzhan.cctv.com/
+                  - link "央央好物" [ref=e319] [cursor=pointer]:
+                    - /url: https://www.cctvmall.com/
+              - generic [ref=e321]:
+                - link [ref=e322] [cursor=pointer]:
+                  - /url: https://local.cctv.com/index.shtml
+                  - img [ref=e323]
+                - link [ref=e324] [cursor=pointer]:
+                  - /url: https://sh.cctv.com/
+                  - img [ref=e325]
+                - link [ref=e326] [cursor=pointer]:
+                  - /url: http://dbzx.cctv.com/index.shtml
+                  - img [ref=e327]
+              - generic [ref=e329]:
+                - generic [ref=e330]:
+                  - link "CCTV.节目官网" [ref=e331] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/
+                  - link "直播" [ref=e332] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/live/index.shtml
+                  - link "节目单" [ref=e333] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/epg/index.shtml
+                  - link "栏目" [ref=e334] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/
+                  - link "片库" [ref=e335] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/yxg/
+                  - link "收视榜" [ref=e336] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/top/
+                  - link "总台企业白名单" [ref=e337] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/special/qybmd/index.shtml
+                - generic [ref=e338]:
+                  - list [ref=e339]:
+                    - listitem [ref=e340]:
+                      - link [ref=e341] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv1/
+                        - img [ref=e342]
+                    - listitem [ref=e343]:
+                      - link [ref=e344] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv2/
+                        - img [ref=e345]
+                    - listitem [ref=e346]:
+                      - link [ref=e347] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv3/
+                        - img [ref=e348]
+                    - listitem [ref=e349]:
+                      - link [ref=e350] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv4asia/
+                        - img [ref=e351]
+                    - listitem [ref=e352]:
+                      - link [ref=e353] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv5/
+                        - img [ref=e354]
+                    - listitem [ref=e355]:
+                      - link [ref=e356] [cursor=pointer]:
+                        - /url: http://tv.cctv.com/cctv5plus/
+                        - img [ref=e357]
+                    - listitem [ref=e358]:
+                      - link [ref=e359] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv6/
+                        - img [ref=e360]
+                    - listitem [ref=e361]:
+                      - link [ref=e362] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv7/
+                        - img [ref=e363]
+                    - listitem [ref=e364]:
+                      - link [ref=e365] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv8/
+                        - img [ref=e366]
+                    - listitem [ref=e367]:
+                      - link [ref=e368] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv9/
+                        - img [ref=e369]
+                    - listitem [ref=e370]:
+                      - link [ref=e371] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv10/
+                        - img [ref=e372]
+                    - listitem [ref=e373]:
+                      - link [ref=e374] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv11/
+                        - img [ref=e375]
+                    - listitem [ref=e376]:
+                      - link [ref=e377] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv12/
+                        - img [ref=e378]
+                    - listitem [ref=e379]:
+                      - link [ref=e380] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv13/
+                        - img [ref=e381]
+                    - listitem [ref=e382]:
+                      - link [ref=e383] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv14/
+                        - img [ref=e384]
+                    - listitem [ref=e385]:
+                      - link [ref=e386] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv15/
+                        - img [ref=e387]
+                    - listitem [ref=e388]:
+                      - link [ref=e389] [cursor=pointer]:
+                        - /url: http://tv.cctv.com/cctv16/
+                        - img [ref=e390]
+                    - listitem [ref=e391]:
+                      - link [ref=e392] [cursor=pointer]:
+                        - /url: https://tv.cctv.com/cctv17/
+                        - img [ref=e393]
+                  - list [ref=e394]:
+                    - listitem [ref=e395]:
+                      - link [ref=e396] [cursor=pointer]:
+                        - /url: https://news.cctv.com/special/zhgqsh/tgdzh/index.shtml
+                        - img [ref=e397]
+                    - listitem [ref=e398]:
+                      - link [ref=e399] [cursor=pointer]:
+                        - /url: https://tvtech.cctv.com/
+                        - img [ref=e400]
+  - generic [ref=e402]:
+    - generic [ref=e404]:
+      - generic [ref=e405]:
+        - generic [ref=e410]:
+          - generic [ref=e411] [cursor=pointer]:
+            - img [ref=e413]
+            - text: 分享
+          - generic [ref=e415] [cursor=pointer]:
+            - img [ref=e417]
+            - text: 手机看
+        - generic [ref=e419]: 佛得角0-0沙特阿拉伯
+      - generic [ref=e421]:
+        - generic [ref=e422]: "来源 : 央视网"
+        - generic [ref=e423]: 2026-06-27 14:03
+        - generic [ref=e425] [cursor=pointer]: 内容简介
+        - generic [ref=e427]:
+          - link "佛得角比赛" [ref=e428] [cursor=pointer]:
+            - /url: https://search.cctv.com/search.php?qtext=佛得角比赛&channel=体育%2CCCTV-5%2B体育赛事频道%2CCCTV-5体育频道
+            - text: 佛得角比赛
+            - emphasis [ref=e430]
+          - link "沙特阿拉伯比赛" [ref=e431] [cursor=pointer]:
+            - /url: https://search.cctv.com/search.php?qtext=沙特阿拉伯比赛&channel=体育%2CCCTV-5%2B体育赛事频道%2CCCTV-5体育频道
+            - text: 沙特阿拉伯比赛
+            - emphasis [ref=e433]
+          - link "国际比赛" [ref=e434] [cursor=pointer]:
+            - /url: https://search.cctv.com/search.php?qtext=国际比赛&channel=体育%2CCCTV-5%2B体育赛事频道%2CCCTV-5体育频道
+            - text: 国际比赛
+            - emphasis [ref=e436]
+        - generic [ref=e437] [cursor=pointer]: "76"
+    - generic:
+      - link:
+        - /url: http://www.cctv.com
+    - generic [ref=e439]:
+      - generic [ref=e442]:
+        - generic [ref=e444]: 体育精彩视频
+        - generic [ref=e449]:
+          - list:
+            - listitem [ref=e451]:
+              - generic [ref=e452]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEARjzdweyhzL1X1EYpCbp260628.shtml
+                  - img [ref=e453] [cursor=pointer]
+              - generic [ref=e454]:
+                - link "[世界杯]克罗地亚队：使命的力量" [ref=e456] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEARjzdweyhzL1X1EYpCbp260628.shtml
+                - link "美加墨世界杯" [ref=e458] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=美加墨世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+            - listitem [ref=e459]:
+              - generic [ref=e460]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEWbHGUUJPHI5HCjzpPvAT260628.shtml
+                  - img [ref=e461] [cursor=pointer]
+              - generic [ref=e462]:
+                - link "[世界杯]征程结束 巴拿马队不愿离开" [ref=e464] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEWbHGUUJPHI5HCjzpPvAT260628.shtml
+                - link "美加墨世界杯" [ref=e466] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=美加墨世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+            - listitem [ref=e467]:
+              - generic [ref=e468]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEtRtZbQLgVkZ39QOB1yK6260628.shtml
+                  - img [ref=e469] [cursor=pointer]
+              - generic [ref=e470]:
+                - link "[世界杯]哈兰德姆巴佩赛后相聚 相约决赛见？" [ref=e472] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEtRtZbQLgVkZ39QOB1yK6260628.shtml
+                - link "世界杯" [ref=e474] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+            - listitem [ref=e475]:
+              - generic [ref=e476]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEF9XAUYy9c1BZMpnr0Izt260628.shtml
+                  - img [ref=e477] [cursor=pointer]
+              - generic [ref=e478]:
+                - link "[世界杯]欢乐多！巴西队训练备战淘汰赛" [ref=e480] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEF9XAUYy9c1BZMpnr0Izt260628.shtml
+                - link "世界杯" [ref=e482] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+            - listitem [ref=e483]:
+              - generic [ref=e484]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEATZWJg15uB6jhFGllozr260628.shtml
+                  - img [ref=e485] [cursor=pointer]
+              - generic [ref=e486]:
+                - link "[世界杯]世界杯第16日进球集锦" [ref=e488] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEATZWJg15uB6jhFGllozr260628.shtml
+                - link "美加墨世界杯" [ref=e490] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=美加墨世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+            - listitem [ref=e491]:
+              - generic [ref=e492]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDELtsPP8vz6CdiX1NcXu2a260628.shtml
+                  - img [ref=e493] [cursor=pointer]
+              - generic [ref=e494]:
+                - link "[世界杯]阿尔及利亚战平奥地利 携手晋级32强" [ref=e496] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDELtsPP8vz6CdiX1NcXu2a260628.shtml
+                - link "美加墨世界杯" [ref=e498] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=美加墨世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+            - listitem [ref=e499]:
+              - generic [ref=e500]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEtKELRP20eawiRzNh6yzd260628.shtml
+                  - img [ref=e501] [cursor=pointer]
+              - generic [ref=e502]:
+                - link "[世界杯]阿根廷三战全胜结束小组赛" [ref=e504] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEtKELRP20eawiRzNh6yzd260628.shtml
+                - link "美加墨世界杯" [ref=e506] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=美加墨世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+            - listitem [ref=e507]:
+              - generic [ref=e508]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEQ99RUICnjbjnDoedKZWj260628.shtml
+                  - img [ref=e509] [cursor=pointer]
+              - generic [ref=e510]:
+                - link "[世界杯]维萨独中两元 刚果（金）逆转乌兹别克斯坦" [ref=e512] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEQ99RUICnjbjnDoedKZWj260628.shtml
+                - link "美加墨世界杯" [ref=e514] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=美加墨世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+            - listitem [ref=e515]:
+              - generic [ref=e516]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDECcQiKogJbNmwk72owcrr260628.shtml
+                  - img [ref=e517] [cursor=pointer]
+              - generic [ref=e518]:
+                - link "[世界杯]J罗：我们完成了一场艰苦的比赛" [ref=e520] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDECcQiKogJbNmwk72owcrr260628.shtml
+                - link "美加墨世界杯" [ref=e522] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=美加墨世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+            - listitem [ref=e523]:
+              - generic [ref=e524]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEtdtSCbRjFcuItAPNMrBR260628.shtml
+                  - img [ref=e525] [cursor=pointer]
+              - generic [ref=e526]:
+                - link "[世界杯]哥伦比亚战平葡萄牙 锁定K组头名" [ref=e528] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEtdtSCbRjFcuItAPNMrBR260628.shtml
+                - link "美加墨世界杯" [ref=e530] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=美加墨世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+            - listitem [ref=e531]:
+              - generic [ref=e532]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDE7DiReoZcNgqXjqljxlMc260628.shtml
+                  - img [ref=e533] [cursor=pointer]
+              - generic [ref=e534]:
+                - link "[世界杯]苏契奇：对阵加纳是一场艰难的比赛" [ref=e536] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDE7DiReoZcNgqXjqljxlMc260628.shtml
+                - link "美加墨世界杯" [ref=e538] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=美加墨世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+            - listitem [ref=e539]:
+              - generic [ref=e540]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEBEmKLyIVRr34CkexG8tj260628.shtml
+                  - img [ref=e541] [cursor=pointer]
+              - generic [ref=e542]:
+                - link "[世界杯]克罗地亚取胜以小组第二晋级" [ref=e544] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEBEmKLyIVRr34CkexG8tj260628.shtml
+                - link "美加墨世界杯" [ref=e546] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=美加墨世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+            - listitem [ref=e547]:
+              - generic [ref=e548]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEKPdSdK9PsGvP0VrbeZ1s260628.shtml
+                  - img [ref=e549] [cursor=pointer]
+              - generic [ref=e550]:
+                - link "[世界杯]贝林厄姆：希望大家能够享受比赛" [ref=e552] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDEKPdSdK9PsGvP0VrbeZ1s260628.shtml
+                - link "美加墨世界杯" [ref=e554] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=美加墨世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+            - listitem [ref=e555]:
+              - generic [ref=e556]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDE1lK9e8uxDYRtIV9R7YBl260628.shtml
+                  - img [ref=e557] [cursor=pointer]
+              - generic [ref=e558]:
+                - link "[世界杯]英格兰队以小组第一身份晋级淘汰赛" [ref=e560] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDE1lK9e8uxDYRtIV9R7YBl260628.shtml
+                - link "美加墨世界杯" [ref=e562] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=美加墨世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+            - listitem [ref=e563]:
+              - generic [ref=e564]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDERlphLVNoCXd06AB4DFAj260628.shtml
+                  - img [ref=e565] [cursor=pointer]
+              - generic [ref=e566]:
+                - link "[世界杯]J组第3轮：阿尔及利亚3-3奥地利 集锦" [ref=e568] [cursor=pointer]:
+                  - /url: https://sports.cctv.com/2026/06/28/VIDERlphLVNoCXd06AB4DFAj260628.shtml
+                - link "美加墨世界杯" [ref=e570] [cursor=pointer]:
+                  - /url: https://search.cctv.com/search.php?qtext=美加墨世界杯&channel=体育,CCTV-5+体育赛事频道,CCTV-5体育频道
+      - generic [ref=e573]:
+        - generic [ref=e575]: 体育热门栏目
+        - generic [ref=e581]:
+          - generic:
+            - generic:
+              - list:
+                - listitem [ref=e582]:
+                  - generic [ref=e583]:
+                    - link:
+                      - /url: https://tv.cctv.com/lm/txzq/
+                      - img [ref=e584] [cursor=pointer]
+                  - link "《天下足球》" [ref=e586] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/txzq/
+                - listitem [ref=e587]:
+                  - generic [ref=e588]:
+                    - link:
+                      - /url: https://tv.cctv.com/lm/lqgy/
+                      - img [ref=e589] [cursor=pointer]
+                  - link "《篮球公园》" [ref=e591] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/lqgy/
+                - listitem [ref=e592]:
+                  - generic [ref=e593]:
+                    - link:
+                      - /url: https://tv.cctv.com/lm/zqzy/index.shtml
+                      - img [ref=e594] [cursor=pointer]
+                  - link "《足球之夜》" [ref=e596] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/zqzy/index.shtml
+                - listitem [ref=e597]:
+                  - generic [ref=e598]:
+                    - link:
+                      - /url: https://tv.cctv.com/lm/ysldalpk/index.shtml
+                      - img [ref=e599] [cursor=pointer]
+                  - link "《艺术里的奥林匹克》" [ref=e601] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/ysldalpk/index.shtml
+                - listitem [ref=e602]:
+                  - generic [ref=e603]:
+                    - link:
+                      - /url: https://tv.cctv.com/lm/jsdql/
+                      - img [ref=e604] [cursor=pointer]
+                  - link "《健身动起来》" [ref=e606] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/jsdql/
+      - generic [ref=e609]:
+        - generic [ref=e610]:
+          - generic [ref=e611]: 体育视觉系
+          - link "换一换" [ref=e613] [cursor=pointer]:
+            - /url: JavaScript:;
+            - text: 换一换
+        - generic [ref=e619]:
+          - list:
+            - listitem [ref=e620]:
+              - generic [ref=e621]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/PHOA6HiOVcoQqEPcZbSHOuuA260628.shtml
+                  - img [ref=e622] [cursor=pointer]
+              - link "[图]世界杯：绝平！阿尔及利亚3-3奥地利携手出线" [ref=e625] [cursor=pointer]:
+                - /url: https://sports.cctv.com/2026/06/28/PHOA6HiOVcoQqEPcZbSHOuuA260628.shtml
+            - listitem [ref=e626]:
+              - generic [ref=e627]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/PHOAdl2KfC03g2vaScJyNWcw260628.shtml
+                  - img [ref=e628] [cursor=pointer]
+              - link "[图]世界杯：阿根廷3-1击败约旦 小组头名出线" [ref=e631] [cursor=pointer]:
+                - /url: https://sports.cctv.com/2026/06/28/PHOAdl2KfC03g2vaScJyNWcw260628.shtml
+            - listitem [ref=e632]:
+              - generic [ref=e633]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/PHOAAKMHnUGPsJBlkqNgV8I5260628.shtml
+                  - img [ref=e634] [cursor=pointer]
+              - link "[图]世界杯：刚果（金）3-1逆转 队史首次晋级淘汰赛" [ref=e637] [cursor=pointer]:
+                - /url: https://sports.cctv.com/2026/06/28/PHOAAKMHnUGPsJBlkqNgV8I5260628.shtml
+            - listitem [ref=e638]:
+              - generic [ref=e639]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/PHOAInpGDnDB4xjx3QL8oF9Q260628.shtml
+                  - img [ref=e640] [cursor=pointer]
+              - link "[图]世界杯：葡萄牙平哥伦比亚 两队携手出线" [ref=e643] [cursor=pointer]:
+                - /url: https://sports.cctv.com/2026/06/28/PHOAInpGDnDB4xjx3QL8oF9Q260628.shtml
+            - listitem [ref=e644]:
+              - generic [ref=e645]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/PHOAKczvOu5fatlJp9f5k9G6260628.shtml
+                  - img [ref=e646] [cursor=pointer]
+              - link "[图]苏契奇世界波弗拉希奇破门 克罗地亚战胜加纳" [ref=e649] [cursor=pointer]:
+                - /url: https://sports.cctv.com/2026/06/28/PHOAKczvOu5fatlJp9f5k9G6260628.shtml
+            - listitem [ref=e650]:
+              - generic [ref=e651]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/PHOAalQBbZPGKi85YQ8dBGFt260628.shtml
+                  - img [ref=e652] [cursor=pointer]
+              - link "[图]凯恩头球破门贝林厄姆进球 英格兰完胜巴拿马" [ref=e655] [cursor=pointer]:
+                - /url: https://sports.cctv.com/2026/06/28/PHOAalQBbZPGKi85YQ8dBGFt260628.shtml
+            - listitem [ref=e656]:
+              - generic [ref=e657]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/PHOAFtkFi8julNNxGzTS2Y3V260628.shtml
+                  - img [ref=e658] [cursor=pointer]
+              - link "[图]拉莫斯头球破门 北京国安主场战胜武汉三镇" [ref=e661] [cursor=pointer]:
+                - /url: https://sports.cctv.com/2026/06/28/PHOAFtkFi8julNNxGzTS2Y3V260628.shtml
+            - listitem [ref=e662]:
+              - generic [ref=e663]:
+                - link:
+                  - /url: https://sports.cctv.com/2026/06/28/PHOAjmU1yxhVtFgutstxGjm2260628.shtml
+                  - img [ref=e664] [cursor=pointer]
+              - link "[图]肯帕努破门 重庆铜梁龙主场击败天津津门虎" [ref=e667] [cursor=pointer]:
+                - /url: https://sports.cctv.com/2026/06/28/PHOAjmU1yxhVtFgutstxGjm2260628.shtml
+    - generic [ref=e668]:
+      - generic [ref=e670]:
+        - generic [ref=e672]:
+          - link "中国中央电视台":
+            - /url: https://tv.cctv.com/
+            - img "中国中央电视台" [ref=e673] [cursor=pointer]
+        - table [ref=e675]:
+          - rowgroup [ref=e676]:
+            - row "CCTV-1 综 合 CCTV-2 财 经 CCTV-3 综 艺 CCTV-4 中文国际 CCTV-5 体 育 CCTV-5+ 体育赛事 CCTV-6 电 影 CCTV-7 国防军事 CCTV-8 电视剧" [ref=e677]:
+              - cell "CCTV-1 综 合" [ref=e678]:
+                - paragraph [ref=e679] [cursor=pointer]:
+                  - generic [ref=e680]:
+                    - text: CCTV-1
+                    - text: 综 合
+              - cell "CCTV-2 财 经" [ref=e681]:
+                - paragraph [ref=e682] [cursor=pointer]:
+                  - generic [ref=e683]:
+                    - text: CCTV-2
+                    - text: 财 经
+              - cell "CCTV-3 综 艺" [ref=e684]:
+                - paragraph [ref=e685] [cursor=pointer]:
+                  - generic [ref=e686]:
+                    - text: CCTV-3
+                    - text: 综 艺
+              - cell "CCTV-4 中文国际" [ref=e687]:
+                - paragraph [ref=e688] [cursor=pointer]:
+                  - generic [ref=e689]:
+                    - text: CCTV-4
+                    - text: 中文国际
+              - cell "CCTV-5 体 育" [ref=e690]:
+                - paragraph [ref=e691] [cursor=pointer]:
+                  - generic [ref=e692]:
+                    - text: CCTV-5
+                    - text: 体 育
+              - cell "CCTV-5+ 体育赛事" [ref=e693]:
+                - paragraph [ref=e694] [cursor=pointer]:
+                  - generic [ref=e695]:
+                    - text: CCTV-5+
+                    - text: 体育赛事
+              - cell "CCTV-6 电 影" [ref=e696]:
+                - paragraph [ref=e697] [cursor=pointer]:
+                  - generic [ref=e698]:
+                    - text: CCTV-6
+                    - text: 电 影
+              - cell "CCTV-7 国防军事" [ref=e699]:
+                - paragraph [ref=e700] [cursor=pointer]:
+                  - generic [ref=e701]:
+                    - text: CCTV-7
+                    - text: 国防军事
+              - cell "CCTV-8 电视剧" [ref=e702]:
+                - paragraph [ref=e703] [cursor=pointer]:
+                  - generic [ref=e704]:
+                    - text: CCTV-8
+                    - text: 电视剧
+            - row "CCTV-9 纪 录 CCTV-10 科 教 CCTV-11 戏 曲 CCTV-12 社会与法 CCTV-13 新 闻 CCTV-14 少 儿 CCTV-15 音 乐 CCTV-16 奥林匹克 CCTV-17 农业农村" [ref=e705]:
+              - cell "CCTV-9 纪 录" [ref=e706]:
+                - paragraph [ref=e707] [cursor=pointer]:
+                  - generic [ref=e708]:
+                    - text: CCTV-9
+                    - text: 纪 录
+              - cell "CCTV-10 科 教" [ref=e709]:
+                - paragraph [ref=e710] [cursor=pointer]:
+                  - generic [ref=e711]:
+                    - text: CCTV-10
+                    - text: 科 教
+              - cell "CCTV-11 戏 曲" [ref=e712]:
+                - paragraph [ref=e713] [cursor=pointer]:
+                  - generic [ref=e714]:
+                    - text: CCTV-11
+                    - text: 戏 曲
+              - cell "CCTV-12 社会与法" [ref=e715]:
+                - paragraph [ref=e716] [cursor=pointer]:
+                  - generic [ref=e717]:
+                    - text: CCTV-12
+                    - text: 社会与法
+              - cell "CCTV-13 新 闻" [ref=e718]:
+                - paragraph [ref=e719] [cursor=pointer]:
+                  - generic [ref=e720]:
+                    - text: CCTV-13
+                    - text: 新 闻
+              - cell "CCTV-14 少 儿" [ref=e721]:
+                - paragraph [ref=e722] [cursor=pointer]:
+                  - generic [ref=e723]:
+                    - text: CCTV-14
+                    - text: 少 儿
+              - cell "CCTV-15 音 乐" [ref=e724]:
+                - paragraph [ref=e725] [cursor=pointer]:
+                  - generic [ref=e726]:
+                    - text: CCTV-15
+                    - text: 音 乐
+              - cell "CCTV-16 奥林匹克" [ref=e727]:
+                - paragraph [ref=e728] [cursor=pointer]:
+                  - generic [ref=e729]:
+                    - text: CCTV-16
+                    - text: 奥林匹克
+              - cell "CCTV-17 农业农村" [ref=e730]:
+                - paragraph [ref=e731] [cursor=pointer]:
+                  - generic [ref=e732]:
+                    - text: CCTV-17
+                    - text: 农业农村
+        - generic [ref=e737]:
+          - generic [ref=e739]:
+            - generic [ref=e740]:
+              - link "CCTV1":
+                - /url: //tv.cctv.com/cctv1
+                - img "CCTV1" [ref=e741] [cursor=pointer]
+            - generic [ref=e742]:
+              - paragraph [ref=e743]: 正在播出：
+              - link "寻味山海-资兴" [ref=e744] [cursor=pointer]:
+                - /url: //tv.cctv.com/live/cctv1
+              - paragraph [ref=e745]: 精彩预告：
+              - text: 秘境之眼-2026-172
+          - table [ref=e748]:
+            - rowgroup [ref=e749]:
+              - row "新闻联播 焦点访谈 晚间新闻 经典咏流传 挑战不可能 故事里的中国" [ref=e750]:
+                - cell "新闻联播" [ref=e751]:
+                  - link "新闻联播" [ref=e752] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/xwlb/index.shtml
+                - cell "焦点访谈" [ref=e753]:
+                  - link "焦点访谈" [ref=e754] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/jdft/index.shtml
+                - cell "晚间新闻" [ref=e755]:
+                  - link "晚间新闻" [ref=e756] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/wjxw/index.shtml
+                - cell "经典咏流传" [ref=e757]:
+                  - link "经典咏流传" [ref=e758] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/2023/04/28/VIDA6SiGrfA863sWp9g49ZWM230428.shtml
+                - cell "挑战不可能" [ref=e759]:
+                  - link "挑战不可能" [ref=e760] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/tzbkn5/index.shtml
+                - cell "故事里的中国" [ref=e761]:
+                  - link "故事里的中国" [ref=e762] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/gsldzg3/index.shtml
+              - row "今日说法 时代楷模发布厅 开讲啦 我有传家宝 第一动画乐园 动物世界" [ref=e763]:
+                - cell "今日说法" [ref=e764]:
+                  - link "今日说法" [ref=e765] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/jrsf/index.shtml
+                - cell "时代楷模发布厅" [ref=e766]:
+                  - link "时代楷模发布厅" [ref=e767] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/sdkmfbt/index.shtml
+                - cell "开讲啦" [ref=e768]:
+                  - link "开讲啦" [ref=e769] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/kjl/index.shtml
+                - cell "我有传家宝" [ref=e770]:
+                  - link "我有传家宝" [ref=e771] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/xunbao/index.shtml
+                - cell "第一动画乐园" [ref=e772]:
+                  - link "第一动画乐园" [ref=e773] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/dydhly/index.shtml
+                - cell "动物世界" [ref=e774]:
+                  - link "动物世界" [ref=e775] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/dwsj/index.shtml
+              - row "人与自然 正大综艺 人口 国际艺苑 生活提示 中华民族" [ref=e776]:
+                - cell "人与自然" [ref=e777]:
+                  - link "人与自然" [ref=e778] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/ryzr/index.shtml
+                - cell "正大综艺" [ref=e779]:
+                  - link "正大综艺" [ref=e780] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/zdzy1/index.shtml
+                - cell "人口" [ref=e781]:
+                  - link "人口" [ref=e782] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/renkou/index.shtml
+                - cell "国际艺苑" [ref=e783]:
+                  - link "国际艺苑" [ref=e784] [cursor=pointer]:
+                    - /url: http://tv.cctv.com/lm/gjyy/
+                - cell "生活提示" [ref=e785]:
+                  - link "生活提示" [ref=e786] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/shts/index.shtml
+                - cell "中华民族" [ref=e787]:
+                  - link "中华民族" [ref=e788] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/zhmz/index.shtml
+              - row "秘境之眼 典籍里的中国 中国诗词大会 生活圈" [ref=e789]:
+                - cell "秘境之眼" [ref=e790]:
+                  - link "秘境之眼" [ref=e791] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/mjzy/index.shtml
+                - cell "典籍里的中国" [ref=e792]:
+                  - link "典籍里的中国" [ref=e793] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/2022/09/24/VIDAUDolTYXWlwFLFnC8Rj9G220924.shtml
+                - cell "中国诗词大会" [ref=e794]:
+                  - link "中国诗词大会" [ref=e795] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/2024/03/10/VIDArZULlYIYouBET8cVrcOr240310.shtml
+                - cell "生活圈" [ref=e796]:
+                  - link "生活圈" [ref=e797] [cursor=pointer]:
+                    - /url: https://tv.cctv.com/lm/shq/index.shtml
+      - generic [ref=e799]:
+        - generic [ref=e802]:
+          - generic [ref=e803]:
+            - term [ref=e804]: 关于我们
+            - definition [ref=e805]:
+              - list:
+                - listitem [ref=e806]:
+                  - link "总台之声" [ref=e807] [cursor=pointer]:
+                    - /url: http://www.cctv.com/gyys/index.shtml
+                - listitem [ref=e808]:
+                  - link "总台总经理室" [ref=e809] [cursor=pointer]:
+                    - /url: https://1118.cctv.com/chinese/index.shtml
+                - listitem [ref=e810]:
+                  - link "关于CCTV.com" [ref=e811] [cursor=pointer]:
+                    - /url: https://www.cctv.com/special/guanyunew/gongsijianjie/index.shtml#cctvpage1
+                - listitem [ref=e812]:
+                  - link "象舞广告" [ref=e813] [cursor=pointer]:
+                    - /url: https://www.cmgadx.com
+                - listitem [ref=e814]:
+                  - link "网站声明" [ref=e815] [cursor=pointer]:
+                    - /url: https://www.cctv.com/special/guanyunew/gongsijianjie/index.shtml#wzsm
+          - generic [ref=e816]:
+            - term [ref=e817]: 业务概况
+            - definition [ref=e818]:
+              - list:
+                - listitem [ref=e819]:
+                  - link "央视网" [ref=e820] [cursor=pointer]:
+                    - /url: https://www.cctv.com/special/guanyunew/gongsijianjie/index.shtml#ywtx
+                - listitem [ref=e821]:
+                  - link "互联网电视" [ref=e822] [cursor=pointer]:
+                    - /url: https://www.chinaott.com/?spm=C96370.PFsYCmOjDARN.E3TwkpSyqPF4.2
+                - listitem [ref=e823]:
+                  - link "央视影音" [ref=e824] [cursor=pointer]:
+                    - /url: https://app.cctv.com/index.shtml?spm=C96370.PFsYCmOjDARN.E3TwkpSyqPF4.1#page5
+                - listitem [ref=e825]:
+                  - link "手机电视" [ref=e826] [cursor=pointer]:
+                    - /url: https://www.cctv4g.com/cctv4gcms/jsp/view/neirong.jsp?spm=C96370.PFsYCmOjDARN.E3TwkpSyqPF4.4&file=neirong.jsp
+                - listitem [ref=e827]:
+                  - link "移动传媒" [ref=e828] [cursor=pointer]:
+                    - /url: https://www.cctv.com/special/guanyunew/PAGE13818868795101874/index.shtml
+                - listitem [ref=e829]:
+                  - link "帮助中心" [ref=e830] [cursor=pointer]:
+                    - /url: https://help.cctv.com/?spm=C96370.PPDB2vhvSivD.E0NoLLx8hyIZ.6
+          - generic [ref=e831]:
+            - term [ref=e832]: 更多链接
+            - definition [ref=e833]:
+              - list:
+                - listitem [ref=e834]:
+                  - link "网上有害信息举报专区" [ref=e835] [cursor=pointer]:
+                    - /url: https://www.12377.cn/
+                - listitem [ref=e836]:
+                  - link "辟谣平台" [ref=e837] [cursor=pointer]:
+                    - /url: https://www.piyao.org.cn/
+                - listitem [ref=e838]:
+                  - link "法律顾问" [ref=e839] [cursor=pointer]:
+                    - /url: https://www.cctv.com/special/guanyunew/PAGE13818868795101879/index.shtml
+                - listitem [ref=e840]:
+                  - link "望海热线" [ref=e841] [cursor=pointer]:
+                    - /url: https://www.cctv.com/special/guanyunew/jianjiePAGEQezAEWqHSGGmjjQL6s0V231214/index.shtml
+                - listitem [ref=e842]:
+                  - link "人才招聘" [ref=e843] [cursor=pointer]:
+                    - /url: http://career.cntv.cn/
+          - generic [ref=e844]:
+            - term [ref=e845]:
+              - img [ref=e846]
+            - definition [ref=e847]:
+              - list [ref=e848]:
+                - listitem [ref=e849]:
+                  - link "关于我们" [ref=e850] [cursor=pointer]:
+                    - /url: https://aigc.cctv.com/about/index.shtml
+                - listitem [ref=e851]:
+                  - link "智媒学院" [ref=e852] [cursor=pointer]:
+                    - /url: https://aigc.cctv.com/college/index.shtml
+                - listitem [ref=e853]:
+                  - link "成果发布" [ref=e854] [cursor=pointer]:
+                    - /url: https://aigc.cctv.com/achievements/index.shtml
+                - listitem [ref=e855]:
+                  - link "智慧媒体" [ref=e856] [cursor=pointer]:
+                    - /url: https://aigc.cctv.com/industry/zhmt/index.shtml
+                - listitem [ref=e857]:
+                  - link "智慧政务" [ref=e858] [cursor=pointer]:
+                    - /url: https://aigc.cctv.com/industry/zhzw/index.shtml
+                - listitem [ref=e859]:
+                  - link "智慧教育" [ref=e860] [cursor=pointer]:
+                    - /url: https://aigc.cctv.com/industry/zhjy/index.shtml
+              - link "合作咨询 >" [ref=e862] [cursor=pointer]:
+                - /url: https://aigc.cctv.com/contact/index.shtml
+        - generic [ref=e863]:
+          - generic:
+            - generic [ref=e864]:
+              - paragraph [ref=e865]:
+                - link "互联网新闻信息服务许可证10120170003" [ref=e866] [cursor=pointer]:
+                  - /url: //p2.img.cctvpic.com/uploadimg/2024/01/15/1705298528567488.jpg
+                - text: 网上传播视听节目许可证号0102002 新出网证（京）字098号
+                - link "违法和不良信息举报电话:010-88427865" [ref=e867] [cursor=pointer]:
+                  - /url: https://help.cctv.com/2020/03/11/ARTI2EZRxlz2vUYrpi2B86VV200311.shtml
+              - paragraph [ref=e868]:
+                - link "京ICP证060535号" [ref=e869] [cursor=pointer]:
+                  - /url: https://beian.miit.gov.cn
+                - link "京ICP备06036302号-2" [ref=e870] [cursor=pointer]:
+                  - /url: https://beian.miit.gov.cn
+                - link "京ICP备10003349号" [ref=e871] [cursor=pointer]:
+                  - /url: https://beian.miit.gov.cn
+                - link "京ICP备10003349号-1" [ref=e872] [cursor=pointer]:
+                  - /url: https://beian.miit.gov.cn
+                - link "京公网安备 11000002000018号" [ref=e873] [cursor=pointer]:
+                  - /url: http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002000018
+                  - img [ref=e874]
+                  - text: 京公网安备 11000002000018号
+                - text: 京网文〔2024〕4690-222号
+            - generic [ref=e875]:
+              - generic [ref=e876]:
+                - term [ref=e877]
+                - definition [ref=e879]:
+                  - generic [ref=e881]:
+                    - text: 网络110
+                    - text: 报警服务
+              - paragraph [ref=e882]: 中央广播电视总台 央视网 版权所有
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - paragraph: 取消
+    - generic:
+      - link:
+        - /url: "#"
+  - link:
+    - /url: javascript:void(0)

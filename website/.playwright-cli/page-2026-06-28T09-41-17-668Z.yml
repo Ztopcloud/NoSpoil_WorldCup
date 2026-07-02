@@ -1,0 +1,6 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - heading "对不起，可能是网络原因或无此页面，请稍后尝试。" [level=3] [ref=e4]
+    - paragraph [ref=e5]: 本页面3秒之后将带您回到央视网首页。
+  - link [ref=e6] [cursor=pointer]:
+    - /url: http://www.cctv.com/index.shtml

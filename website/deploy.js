@@ -73,7 +73,6 @@ const DEFAULT_EXCLUDED_NAMES = new Set([
   'README.md',
   'admin-server.js',
   'baidu-submit.js',
-  'auto-update.js',
   'fetch-replay-links.js',
   'deploy.js'
 ]);

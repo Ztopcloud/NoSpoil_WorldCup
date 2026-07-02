@@ -328,7 +328,7 @@
   }
 
   function isCctvReplayUrl(url) {
-    return /sports\.cctv\.com\/\d{4}\/\d{2}\/\d{2}\/VIDE/i.test(String(url || ''));
+    return /sports\.cctv\.com\/\d{4}\/\d{2}\/\d{2}\/(?:VIDE|ARTI)/i.test(String(url || ''));
   }
 
   function isXhsUrl(url) {
@@ -446,7 +446,11 @@
         : '';
     const hoverSub = state.hoverSubLabel ? '<span class="match-hover-sub">' + state.hoverSubLabel + '</span>' : '';
     const highlightUrl = match.liveUrl || '';
-    const replayUrl = isCctvReplayUrl(match.replayUrl) ? addSkipHash(match.replayUrl, match.skipSeconds) : '';
+    const replayUrl = isCctvReplayUrl(match.replayUrl)
+      ? addSkipHash(match.replayUrl, match.skipSeconds)
+      : isXhsUrl(match.replayUrl)
+        ? match.replayUrl
+        : '';
     const highlightAction = highlightUrl && !isPlaceholder
       ? '<a class="match-option-link match-option-highlight" href="' + escapeHtml(highlightUrl) + '" target="_blank" rel="noopener noreferrer">' +
           '<span class="match-option-icon match-live-icon"></span>' +
@@ -728,12 +732,8 @@
         });
       }
       return filtered.filter(function(match) {
-        return isScheduleMatch(match) || isPreMatchVideo(match);
+        return isScheduleMatch(match);
       });
-    }
-
-    if (activeView === 'pre') {
-      return filtered.filter(isPreMatchVideo);
     }
 
     if (activeView === 'finals') {
@@ -831,11 +831,6 @@
       return;
     }
 
-    if (activeView === 'pre') {
-      grid.innerHTML = renderVideoBlock('赛前视频', visibleMatches);
-      return;
-    }
-
     if (activeView === 'upcoming') {
       var scheduleMatches = visibleMatches.filter(function(match) {
         return !isPreMatchVideo(match);
@@ -879,9 +874,6 @@
       return;
     }
 
-    var countryPreMatches = activeView === 'countries'
-      ? visibleMatches.filter(isPreMatchVideo)
-      : [];
     var scheduleMatches = visibleMatches.filter(function(match) {
       return !isPreMatchVideo(match);
     });
@@ -901,10 +893,6 @@
     });
 
     var html = '';
-    if (countryPreMatches.length > 0) {
-      html += renderVideoBlock('赛前视频', countryPreMatches);
-    }
-
     'ABCDEFGHIJKL'.split('').forEach(function(group) {
       if (grouped[group] && grouped[group].length > 0) {
         html += renderScrollableRoundBlock(group + '组', grouped[group]);
@@ -1000,7 +988,7 @@
   /* ===== Fetch & Init ===== */
   // 使用固定版本号替代 Date.now()，允许浏览器/CDN 条件缓存（304 Not Modified），
   // 同时更新版本号后会拉取最新数据，兼顾加载速度与内容更新。
-  var MATCHES_VERSION = '20260624-16';
+  var MATCHES_VERSION = '20260630-34';
   fetch('data/matches.json?v=' + MATCHES_VERSION)
     .then(function(response) {
       if (!response.ok) throw new Error('matches load failed');
